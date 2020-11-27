@@ -38,7 +38,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Contact'
+                      $ref: ./Models/Contact.v1.yaml
                   links:
                     type: object
                     properties:
@@ -123,7 +123,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Contact'
+                $ref: ./Models/Contact.v1.yaml
           links:
             GetContactById:
               operationId: getContact
@@ -166,7 +166,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Contact'
+                $ref: ./Models/Contact.v1.yaml
           links:
             UpdateContactById:
               operationId: updateContact
@@ -270,7 +270,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Group'
+                      $ref: ./Models/Group.v1.yaml
                   links:
                     type: object
                     properties:
@@ -377,7 +377,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Group'
+                $ref: ./Models/Group.v1.yaml
           links:
             GetGroupById:
               operationId: getGroup
@@ -420,7 +420,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Group'
+                $ref: ./Models/Group.v1.yaml
           links:
             UpdateGroupById:
               operationId: updateGroup
@@ -587,112 +587,6 @@ components:
         default: application/json
       required: true
   schemas:
-    Contact:
-      $ref: ./Models/Contact.v1.yaml
-      description: ''
-    Group:
-      properties:
-        id:
-          $ref: '#/components/schemas/UUID'
-        name:
-          description: Name of the group
-          type: string
-          example: My Group
-        limits:
-          type: object
-          properties:
-            contacts:
-              description: Filters that determine if an existing contact can be added to the group
-              type: object
-              properties:
-                no_duplicates:
-                  description: (Dis)allow contacts that already exist in *this* group to be added to the group
-                  type: boolean
-                  example: true
-                no_duplicates_in_any_group:
-                  description: (Dis)allow contacts that already exist in *any* group to be added to the group
-                  type: boolean
-                  nullable: true
-                  example: false
-            messages:
-              description: Controls the rate and frequency of which messages can be sent to contacts of the group
-              type: object
-              properties:
-                max:
-                  description: Maximum amount of messages per the defined period (frequency)
-                  type: integer
-                  example: 2
-                period:
-                  description: The frequency period to limit message sends on
-                  type: string
-                  enum:
-                    - d
-                    - w
-                    - m
-                    - q
-                    - hy
-                    - 'y'
-                  example: d
-                include_reminders:
-                  description: Include reminder messages in the check
-                  type: boolean
-                  example: false
-            filter:
-              description: Determines whether a contact can be added or not
-              type: object
-              properties:
-                tag:
-                  description: The tag the group filters on when adding contacts
-                  type: string
-                  nullable: true
-                  example: locale
-                value:
-                  description: The value that the group tag filter must find to allow a contact to be stored
-                  type: string
-                  nullable: true
-                  example: nl
-        smart_fields:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                description: Type of the smart field
-                type: string
-                enum:
-                  - user
-                  - team
-                  - text
-                  - number
-                  - datetime
-                  - date
-                  - time
-                  - language
-                example: user
-              name:
-                description: Name of the smart field
-                type: string
-                example: owner
-              slug:
-                description: URL friendly version of the smart field name
-                type: string
-                example: owner
-              value:
-                description: Value of the smart field (can be mapped to an object for user and team types).
-                type: string
-                example: support@ratecard.io
-              created_at:
-                $ref: '#/components/schemas/DateTime'
-              updated_at:
-                $ref: '#/components/schemas/DateTime'
-        created_at:
-          $ref: '#/components/schemas/DateTime'
-        updated_at:
-          $ref: '#/components/schemas/DateTime'
-    DateTime:
-      description: Date time value
-      type: string
-      example: '2020-11-25T09:33:14.000000Z'
     UUID:
       description: Id of the object
       type: string
