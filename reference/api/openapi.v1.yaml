@@ -38,7 +38,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: ./Models/Contact.v1.yaml
+                      $ref: ./models/contact.v1.yaml
                   links:
                     type: object
                     properties:
@@ -123,7 +123,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./Models/Contact.v1.yaml
+                $ref: ./models/contact.v1.yaml
           links:
             GetContactById:
               operationId: getContact
@@ -166,7 +166,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./Models/Contact.v1.yaml
+                $ref: ./models/contact.v1.yaml
           links:
             UpdateContactById:
               operationId: updateContact
@@ -270,7 +270,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: ./Models/Group.v1.yaml
+                      $ref: ./models/group.v1.yaml
                   links:
                     type: object
                     properties:
@@ -377,7 +377,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./Models/Group.v1.yaml
+                $ref: ./models/group.v1.yaml
           links:
             GetGroupById:
               operationId: getGroup
@@ -420,7 +420,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./Models/Group.v1.yaml
+                $ref: ./models/group.v1.yaml
           links:
             UpdateGroupById:
               operationId: updateGroup
