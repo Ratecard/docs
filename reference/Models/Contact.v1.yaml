@@ -1,0 +1,135 @@
+title: Contact
+type: object
+required:
+  - id
+  - first_name
+  - last_name
+  - email
+properties:
+  id:
+    type: string
+    description: ID of the contact
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    readOnly: true
+  first_name:
+    description: First name of the contact
+    type: string
+    example: John
+  last_name:
+    description: Last name of the contact
+    type: string
+    example: Doe
+  email:
+    description: Email of the contact
+    type: string
+    example: johndoe@ratecard.io
+  phone:
+    description: Phone number of the contact
+    type: string
+    example: '0612345678'
+  subscribed:
+    description: (Dis)allow messages (mail/sms) to be sent to the contact
+    type: boolean
+    example: true
+  unsubscribe_date:
+    description: The date at which the contact was unsubscribed
+    type: string
+    nullable: true
+    example: null
+    readOnly: true
+  anonymous:
+    description: Make a contact's personal details (in)visible.
+    type: boolean
+    example: false
+  external_type:
+    description: The type which the contact has in the system it's added from (e.g. CREmployee in Carerix)
+    type: string
+    nullable: true
+    example: Contact
+  external_id:
+    description: The identifier which the contact has in the system it's added from
+    type: string
+    nullable: true
+    example: ea10916d-0684-4624-9d07-d341193554cf
+  synced_at:
+    description: When a contact has been synced with an external system, this column is updated
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    nullable: true
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  groups:
+    description: An array of groups with their id and name plus smart fields as direct properties
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the group
+          example: ea10916d-0684-4624-9d07-d341193554cf
+          readOnly: true
+        owner:
+          description: A smart field of type user
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID of the user
+              example: ea10916d-0684-4624-9d07-d341193554cf
+              readOnly: true
+            name:
+              description: Name of the user
+              type: string
+              example: John Doe
+            email:
+              description: Email of the user
+              type: string
+              example: johndoe@ratecard.io
+        team:
+          description: A smart field of type team
+          type: object
+          properties:
+            id:
+              type: string
+              description: ID of the team
+              example: ea10916d-0684-4624-9d07-d341193554cf
+              readOnly: true
+            name:
+              description: Name of the team
+              type: string
+              example: My Team
+            email:
+              description: Email for the team
+              type: string
+              example: myteam@ratecard.io
+        notes:
+          description: A smart field of type text
+          type: string
+          example: John Doe is an example for us all.
+        credits:
+          description: A smart field of type number
+          type: number
+          example: 154325
+        time_of_arrival:
+          description: A smart field of type time
+          type: string
+          example: '09:33:14.000000Z'
+        date_of_arrival:
+          description: A smart field of type date
+          type: string
+          example: '2020-11-25'
+        datetime_of_arrival:
+          description: A smart field of type datetime
+          type: string
+          example: '2020-11-25T09:33:14.000000Z'
+        locale:
+          description: A smart field of type language
+          type: string
+          example: en

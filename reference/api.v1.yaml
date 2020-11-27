@@ -5,19 +5,17 @@ info:
   description: Integrate your Ratecard account with your applications through connecting via the Ratecard API.
   contact:
     name: Ratecard Support
-    url: "https://support.ratecard.io/"
-  termsOfService: https://ratecard.io/general-terms
+    url: 'https://support.ratecard.io/'
+    email: support@ratecard.io
+  termsOfService: 'https://ratecard.io/general-terms'
 servers:
-  - url: https://api.ratecard.io/v1
+  - url: 'https://api.ratecard.io/v1'
 security:
   - bearerAuth: []
 tags:
   - name: Contacts
   - name: Groups
 paths:
-  # --------------------------------
-  # Contact paths
-  # --------------------------------
   /contacts:
     get:
       summary: List of contacts
@@ -26,13 +24,13 @@ paths:
       tags:
         - Contacts
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
-        - $ref: "#/components/parameters/pageParam"
-        - $ref: "#/components/parameters/showParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
       responses:
-        "200":
-          description: "Paginated contact response"
+        '200':
+          description: Paginated contact response
           content:
             application/json:
               schema:
@@ -40,24 +38,24 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Contact"
+                      $ref: '#/components/schemas/Contact'
                   links:
                     type: object
                     properties:
                       first:
                         type: string
-                        example: https://api.ratecard.io/v1/contacts?page=1
+                        example: 'https://api.ratecard.io/v1/contacts?page=1'
                       last:
                         type: string
-                        example: https://api.ratecard.io/v1/contacts?page=100
+                        example: 'https://api.ratecard.io/v1/contacts?page=100'
                       prev:
                         type: string
                         nullable: true
-                        example: https://api.ratecard.io/v1/contacts?page=1
+                        example: 'https://api.ratecard.io/v1/contacts?page=1'
                       next:
                         type: string
                         nullable: true
-                        example: https://api.ratecard.io/v1/contacts?page=2
+                        example: 'https://api.ratecard.io/v1/contacts?page=2'
                   meta:
                     type: object
                     properties:
@@ -72,7 +70,7 @@ paths:
                         example: 10
                       path:
                         type: string
-                        example: https://api.ratecard.io/v1/contacts
+                        example: 'https://api.ratecard.io/v1/contacts'
                       per_page:
                         type: integer
                         example: 1
@@ -83,81 +81,78 @@ paths:
                         type: integer
                         example: 100
     post:
-      summary: "Add a new contact"
-      description: "Description"
+      summary: Add a new contact
+      description: Description
       operationId: addContact
       tags:
         - Contacts
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
       requestBody:
         content:
           application/json:
             schema:
               type: object
               required:
-                - "first_name"
-                - "last_name"
-                - "email"
+                - first_name
+                - last_name
+                - email
               properties:
                 first_name:
-                  type: "string"
+                  type: string
                   example: John
                 last_name:
-                  type: "string"
+                  type: string
                   example: Doe
                 email:
-                  type: "string"
+                  type: string
                   example: johndoe@ratecard.io
                 phone:
-                  type: "string"
-                  example: "0612345678"
+                  type: string
+                  example: '0612345678'
                 subscribed:
-                  type: "boolean"
+                  type: boolean
                   example: true
                 anonymous:
-                  type: "boolean"
+                  type: boolean
                   example: false
       responses:
-        "201":
-          description: "Created"
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Contact"
+                $ref: '#/components/schemas/Contact'
           links:
             GetContactById:
               operationId: getContact
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `GET /contacts/{id}`.
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `GET /contacts/{id}`.
             UpdateContactById:
               operationId: updateContact
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `PUT /contacts/{id}`.
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `PUT /contacts/{id}`.
             DeleteContactById:
               operationId: deleteContact
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `DELETE /contacts/{id}`.
-  /contacts/{id}:
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `DELETE /contacts/{id}`.
+  '/contacts/{id}':
     get:
-      summary: "Retrieve a contact"
-      description: "Description"
+      summary: Retrieve a contact
+      description: Description
       operationId: getContact
       tags:
         - Contacts
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
         - in: path
           name: id
           description: id of the contact
@@ -166,38 +161,36 @@ paths:
             type: integer
             format: int64
       responses:
-        "200":
+        '200':
           description: Contact response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Contact"
+                $ref: '#/components/schemas/Contact'
           links:
             UpdateContactById:
               operationId: updateContact
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `PUT /contacts/{id}`.
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `PUT /contacts/{id}`.
             DeleteContactById:
               operationId: deleteContact
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `DELETE /contacts/{id}`.
-        "404":
-          $ref: "#/components/responses/404"
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `DELETE /contacts/{id}`.
+        '404':
+          $ref: '#/components/responses/404'
     put:
       summary: Update a contact
-      description: "Description"
+      description: Description
       operationId: updateContact
       tags:
         - Contacts
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
         - in: path
           name: id
           description: id of the contact
@@ -212,37 +205,37 @@ paths:
               type: object
               properties:
                 first_name:
-                  type: "string"
+                  type: string
                   example: John
                 last_name:
-                  type: "string"
+                  type: string
                   example: Doe
                 email:
-                  type: "string"
+                  type: string
                   example: johndoe@ratecard.io
                 phone:
-                  type: "string"
-                  example: "0612345678"
+                  type: string
+                  example: '0612345678'
                 subscribed:
-                  type: "boolean"
+                  type: boolean
                   example: true
                 anonymous:
-                  type: "boolean"
+                  type: boolean
                   example: false
       responses:
-        "204":
+        '204':
           description: Contact updated response
-        "404":
-          $ref: "#/components/responses/404"
+        '404':
+          $ref: '#/components/responses/404'
     delete:
       summary: Delete a contact
-      description: "Description"
+      description: Description
       operationId: deleteContact
       tags:
         - Contacts
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
         - in: path
           name: id
           description: id of the contact
@@ -251,28 +244,25 @@ paths:
             type: integer
             format: int64
       responses:
-        "204":
+        '204':
           description: Contact deleted response
-        "404":
-          $ref: "#/components/responses/404"
-  # --------------------------------
-  # Group paths
-  # --------------------------------
+        '404':
+          $ref: '#/components/responses/404'
   /groups:
     get:
       summary: List of groups
-      description: "Description"
+      description: Description
       operationId: listGroups
       tags:
         - Groups
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
-        - $ref: "#/components/parameters/pageParam"
-        - $ref: "#/components/parameters/showParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
       responses:
-        "200":
-          description: "Paginated group response"
+        '200':
+          description: Paginated group response
           content:
             application/json:
               schema:
@@ -280,24 +270,24 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Group"
+                      $ref: '#/components/schemas/Group'
                   links:
                     type: object
                     properties:
                       first:
                         type: string
-                        example: https://api.ratecard.io/v1/groups?page=1
+                        example: 'https://api.ratecard.io/v1/groups?page=1'
                       last:
                         type: string
-                        example: https://api.ratecard.io/v1/groups?page=100
+                        example: 'https://api.ratecard.io/v1/groups?page=100'
                       prev:
                         type: string
                         nullable: true
-                        example: https://api.ratecard.io/v1/groups?page=1
+                        example: 'https://api.ratecard.io/v1/groups?page=1'
                       next:
                         type: string
                         nullable: true
-                        example: https://api.ratecard.io/v1/groups?page=2
+                        example: 'https://api.ratecard.io/v1/groups?page=2'
                   meta:
                     type: object
                     properties:
@@ -312,7 +302,7 @@ paths:
                         example: 10
                       path:
                         type: string
-                        example: https://api.ratecard.io/v1/groups
+                        example: 'https://api.ratecard.io/v1/groups'
                       per_page:
                         type: integer
                         example: 1
@@ -323,25 +313,25 @@ paths:
                         type: integer
                         example: 100
     post:
-      summary: "Add a new group"
-      description: "Description"
+      summary: Add a new group
+      description: Description
       operationId: addGroup
       tags:
         - Groups
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
       requestBody:
         content:
           application/json:
             schema:
               type: object
               required:
-                - "name"
+                - name
               properties:
                 name:
                   type: string
-                  example: "My Group"
+                  example: My Group
                 limits:
                   type: object
                   properties:
@@ -365,7 +355,7 @@ paths:
                             - m
                             - q
                             - hy
-                            - y
+                            - 'y'
                         include_reminders:
                           type: boolean
                     filter:
@@ -374,52 +364,49 @@ paths:
                         tag:
                           type: string
                           nullable: true
-                          example: ""
+                          example: ''
                         value:
                           type: string
                           nullable: true
-                          example: ""
+                          example: ''
                 smart_fields:
                   type: object
       responses:
-        "201":
-          description: "Created"
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Group"
+                $ref: '#/components/schemas/Group'
           links:
             GetGroupById:
               operationId: getGroup
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `GET /groups/{id}`.
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `GET /groups/{id}`.
             UpdateGroupById:
               operationId: updateGroup
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `PUT /groups/{id}`.
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `PUT /groups/{id}`.
             DeleteGroupById:
               operationId: deleteGroup
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `DELETE /groups/{id}`.
-  /groups/{id}:
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `DELETE /groups/{id}`.
+  '/groups/{id}':
     get:
-      summary: "Retrieve a group"
-      description: "Description"
+      summary: Retrieve a group
+      description: Description
       operationId: getGroup
       tags:
         - Groups
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
         - in: path
           name: id
           description: id of the group
@@ -428,29 +415,27 @@ paths:
             type: integer
             format: int64
       responses:
-        "200":
+        '200':
           description: Group response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Group"
+                $ref: '#/components/schemas/Group'
           links:
             UpdateGroupById:
               operationId: updateGroup
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `PUT /groups/{id}`.
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `PUT /groups/{id}`.
             DeleteGroupById:
               operationId: deleteGroup
               parameters:
-                id: "$response.body#/id"
-              description: >
-                The `id` value returned in the response can be used as
-                the `id` parameter in `DELETE /groups/{id}`.
-        "404":
-          $ref: "#/components/responses/404"
+                id: $response.body#/id
+              description: |
+                The `id` value returned in the response can be used as the `id` parameter in `DELETE /groups/{id}`.
+        '404':
+          $ref: '#/components/responses/404'
     put:
       summary: Update a group
       description: Description
@@ -458,8 +443,8 @@ paths:
       tags:
         - Groups
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
         - in: path
           name: id
           description: id of the group
@@ -473,13 +458,13 @@ paths:
             schema:
               type: object
               required:
-                - "first_name"
-                - "last_name"
-                - "email"
+                - first_name
+                - last_name
+                - email
               properties:
                 name:
                   type: string
-                  example: "My Group"
+                  example: My Group
                 limits:
                   type: object
                   properties:
@@ -503,7 +488,7 @@ paths:
                             - m
                             - q
                             - hy
-                            - y
+                            - 'y'
                         include_reminders:
                           type: boolean
                     filter:
@@ -512,27 +497,27 @@ paths:
                         tag:
                           type: string
                           nullable: true
-                          example: ""
+                          example: ''
                         value:
                           type: string
                           nullable: true
-                          example: ""
+                          example: ''
                 smart_fields:
                   type: object
       responses:
-        "204":
+        '204':
           description: Group updated response
-        "404":
-          $ref: "#/components/responses/404"
+        '404':
+          $ref: '#/components/responses/404'
     delete:
       summary: Delete a group
-      description: "Description"
+      description: Description
       operationId: deleteGroup
       tags:
         - Groups
       parameters:
-        - $ref: "#/components/parameters/acceptParam"
-        - $ref: "#/components/parameters/contentTypeParam"
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
         - in: path
           name: id
           description: id of the group
@@ -541,26 +526,15 @@ paths:
             type: integer
             format: int64
       responses:
-        "204":
+        '204':
           description: Group deleted response
-        "404":
-          $ref: "#/components/responses/404"
-
-# --------------------------------
-# Components
-# --------------------------------
+        '404':
+          $ref: '#/components/responses/404'
 components:
-  # --------------------------------
-  # Security types
-  # --------------------------------
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-
-  # --------------------------------
-  # Headers
-  # --------------------------------
   headers:
     X-Total-Count:
       schema:
@@ -575,10 +549,6 @@ components:
       schema:
         type: integer
       example: 58
-
-  # --------------------------------
-  # Parameters
-  # --------------------------------
   parameters:
     pageParam:
       name: page
@@ -616,133 +586,18 @@ components:
         example: application/json
         default: application/json
       required: true
-
-
-  # --------------------------------
-  # Schemas
-  # --------------------------------
   schemas:
-    # --------------------------------
-    # Model schemas
-    # --------------------------------
     Contact:
-      type: object
-      required:
-        - id
-        - first_name
-        - last_name
-        - email
-      properties:
-        id:
-          $ref: "#/components/schemas/UUID"
-        first_name:
-          description: First name of the contact
-          type: string
-          example: John
-        last_name:
-          description: Last name of the contact
-          type: string
-          example: Doe
-        email:
-          description: Email of the contact
-          type: string
-          example: johndoe@ratecard.io
-        phone:
-          description: Phone number of the contact
-          type: string
-          example: "0612345678"
-        subscribed:
-          description: (Dis)allow messages (mail/sms) to be sent to the contact
-          type: boolean
-          example: true
-        unsubscribe_date:
-          description: The date at which the contact was unsubscribed
-          type: string
-          nullable: true
-          example: null
-          readOnly: true
-        anonymous:
-          description: Make a contact's personal details (in)visible.
-          type: boolean
-          example: false
-        external_type:
-          description: The type which the contact has in the system it's added from (e.g. CREmployee in Carerix)
-          type: string
-          nullable: true
-          example: Contact
-        external_id:
-          description: The identifier which the contact has in the system it's added from
-          type: string
-          nullable: true
-          example: ea10916d-0684-4624-9d07-d341193554cf
-        synced_at:
-          $ref: "#/components/schemas/DateTime"
-        created_at:
-          $ref: "#/components/schemas/DateTime"
-        updated_at:
-          $ref: "#/components/schemas/DateTime"
-        groups:
-          description: An array of groups with their id and name plus smart fields as direct properties
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                $ref: '#/components/schemas/UUID'
-              owner: 
-                description: A smart field of type user
-                type: object
-                properties:
-                  id:
-                    $ref: '#/components/schemas/UUID'
-                  name:
-                    description: Name of the user
-                    type: string
-                    example: John Doe
-                  email:
-                    description: Email of the user
-                    type: string
-                    example: johndoe@ratecard.io
-              team:
-                description: A smart field of type team
-                type: object
-                properties:
-                  id:
-                    $ref: '#/components/schemas/UUID'
-                  name:
-                    description: Name of the team
-                    type: string
-                    example: My Team
-                  email:
-                    description: Email for the team
-                    type: string
-                    example: myteam@ratecard.io
-              notes:
-                description: A smart field of type text
-                type: string
-                example: "John Doe is an example for us all."
-              credits:
-                description: A smart field of type number
-                type: number
-                example: 154325
-              time_of_arrival:
-                $ref: '#/components/schemas/Time'
-              date_of_arrival:
-                $ref: '#/components/schemas/Date'
-              datetime_of_arrival:
-                $ref: '#/components/schemas/DateTime'
-              locale:
-                description: A smart field of type language
-                type: string
-                example: en
+      $ref: ./Models/Contact.v1.yaml
+      description: ''
     Group:
       properties:
         id:
-          $ref: "#/components/schemas/UUID"
+          $ref: '#/components/schemas/UUID'
         name:
           description: Name of the group
           type: string
-          example: "My Group"
+          example: My Group
         limits:
           type: object
           properties:
@@ -776,7 +631,7 @@ components:
                     - m
                     - q
                     - hy
-                    - y
+                    - 'y'
                   example: d
                 include_reminders:
                   description: Include reminder messages in the check
@@ -818,49 +673,34 @@ components:
                 description: Name of the smart field
                 type: string
                 example: owner
-              slug: 
+              slug:
                 description: URL friendly version of the smart field name
                 type: string
                 example: owner
-              value: 
+              value:
                 description: Value of the smart field (can be mapped to an object for user and team types).
                 type: string
                 example: support@ratecard.io
-              created_at: 
-                $ref: "#/components/schemas/DateTime"
+              created_at:
+                $ref: '#/components/schemas/DateTime'
               updated_at:
-                $ref: "#/components/schemas/DateTime"
+                $ref: '#/components/schemas/DateTime'
         created_at:
-          $ref: "#/components/schemas/DateTime"
+          $ref: '#/components/schemas/DateTime'
         updated_at:
-          $ref: "#/components/schemas/DateTime"
-    # --------------------------------
-    # Example value schemas
-    # --------------------------------
+          $ref: '#/components/schemas/DateTime'
     DateTime:
       description: Date time value
       type: string
       example: '2020-11-25T09:33:14.000000Z'
-    Date:
-      description: Date value
-      type: string
-      example: '2020-11-25'
-    Time:
-      description: Time value
-      type: string
-      example: '09:33:14.000000Z'
     UUID:
       description: Id of the object
       type: string
       example: ea10916d-0684-4624-9d07-d341193554cf
       readOnly: true
-
-  # --------------------------------
-  # Responses
-  # --------------------------------
   responses:
-    "404":
-      description: "Not found"
+    '404':
+      description: Not found
       content:
         application/json:
           schema:
@@ -868,4 +708,4 @@ components:
             properties:
               message:
                 type: string
-                example: "Not found"
+                example: Not found
