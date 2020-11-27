@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "type": "divider",
+      "title": "APIS"
+    },
+    {
+      "type": "item",
+      "title": "Ratecard API",
+      "uri": "reference/api/openapi.v1.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Models"
+    },
+    {
+      "type": "item",
+      "title": "Contact",
+      "uri": "reference/api/models/contact.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Group",
+      "uri": "reference/api/models/group.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Error",
+      "uri": "reference/common/models/error.v1.yaml"
+    }
+  ]
+}
