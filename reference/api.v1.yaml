@@ -586,12 +586,6 @@ components:
         example: application/json
         default: application/json
       required: true
-  schemas:
-    UUID:
-      description: Id of the object
-      type: string
-      example: ea10916d-0684-4624-9d07-d341193554cf
-      readOnly: true
   responses:
     '404':
       description: Not found
