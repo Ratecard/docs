@@ -13,6 +13,7 @@ properties:
     type: string
     example: My Group
   limits:
+    description: Rules for limiting message sends and adding contacts to the groups
     type: object
     properties:
       contacts:
