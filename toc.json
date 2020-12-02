@@ -25,8 +25,13 @@
     },
     {
       "type": "item",
-      "title": "Error",
-      "uri": "reference/common/models/error.v1.yaml"
-    }
+      "title": "User",
+      "uri": "reference/api/models/user.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Team",
+      "uri": "reference/api/models/team.v1.yaml"
+    },
   ]
 }
