@@ -1,0 +1,130 @@
+title: User
+type: object
+description: ''
+properties:
+  id:
+    type: string
+    description: ID of the user
+    example: ea10916d-0684-4624-9d07-d341193554cf
+  review_visible:
+    type: boolean
+    description: Visibility of the user on public forms and/or the company page
+  first_name:
+    type: string
+    description: First name of the user
+    example: John
+  last_name:
+    type: string
+    description: Last name of the user
+    example: Doe
+  email:
+    type: string
+    description: Emailaddress of the user
+    example: johndoe@example.com
+  phone:
+    type:
+      - string
+      - 'null'
+    example: +31 6 12345678
+    description: Phone number of the user
+  date_of_birth:
+    type:
+      - string
+      - 'null'
+    example: 01-01-2020
+    description: Birthdate of the user
+  profile_picture:
+    type: string
+    description: Profile picture of the user
+  country:
+    type: string
+    example: NL
+    description: 'Country of the user, uses ISO 3166-1 alpha-2 language codes'
+  language:
+    type: string
+    description: The Ratecard app language for the user
+    enum:
+      - NL
+      - EN
+  function:
+    type: string
+    example: Developer
+    description: The function (job title) of the user
+  role:
+    type: string
+    enum:
+      - owner
+      - admin
+      - manager
+      - user
+    description: The user's role (within Ratecard)
+  teams:
+    type: array
+    items:
+      $ref: ./team.v1.yaml
+  notifications:
+    type: object
+    description: The user's notification settings
+    properties:
+      app:
+        type: boolean
+        description: In-app notifications (e.g. notification bubbles)
+      email:
+        type: object
+        description: Email based notifications
+        properties:
+          import_errors:
+            type: boolean
+            description: Sends a notification when an error occurs during an import
+          feedback:
+            type: boolean
+            description: Sends a notification when new feedback arrives
+          feedback_below:
+            type: object
+            description: Only send notification's regarding feedback below the defined score
+            properties:
+              enabled:
+                type: boolean
+              score:
+                type: integer
+                maximum: 10
+                minimum: 0
+                exclusiveMaximum: true
+                exclusiveMinimum: true
+          feedback_comments:
+            type: boolean
+            description: Sends a notification when there's a new comment for feedback
+      text:
+        type: object
+        description: Text (sms) based notifications
+        properties:
+          feedback:
+            type: boolean
+            description: Sends a notification when new feedback arrives
+          feedback_below:
+            type: object
+            description: Only send notification's regarding feedback below the defined score
+            properties:
+              enabled:
+                type: boolean
+              score:
+                type: integer
+                maximum: 10
+                minimum: 0
+                exclusiveMaximum: true
+                exclusiveMinimum: true
+          feedback_comments:
+            type: boolean
+            description: Sends a notification when there's a new comment for feedback
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+required:
+  - first_name
+  - last_name
+  - email

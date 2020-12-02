@@ -1,0 +1,41 @@
+title: Team
+type: object
+properties:
+  id:
+    type: string
+    description: ID of the team
+    example: ea10916d-0684-4624-9d07-d341193554cf
+  name:
+    type: string
+    description: Name of the team
+    example: Support
+  email:
+    type:
+      - string
+      - 'null'
+    description: Email of the team
+    example: support@ratecard.io
+  review_urls:
+    type: object
+    description: Review URLs for the team
+    properties:
+      google:
+        type: string
+        description: The team's Google review URL
+      facebook:
+        type: string
+        description: The team's Facebook review URL
+      indeed:
+        type: string
+        description: The team's Indeed review URL
+      glassdoor:
+        type: string
+        description: The team's Glassdoor review URL
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
