@@ -1,10 +1,5 @@
 title: Contact
 type: object
-required:
-  - id
-  - first_name
-  - last_name
-  - email
 properties:
   id:
     type: string
@@ -52,7 +47,7 @@ properties:
     nullable: true
     example: ea10916d-0684-4624-9d07-d341193554cf
   synced_at:
-    description: When a contact has been synced with an external system, this column is updated
+    description: 'When a contact has been synced with an external system, this column is updated'
     type: string
     example: '2020-11-25T09:33:14.000000Z'
     nullable: true
@@ -68,75 +63,9 @@ properties:
     description: An array of groups with their id and name plus smart fields as direct properties
     type: array
     items:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID of the group
-          example: ea10916d-0684-4624-9d07-d341193554cf
-          readOnly: true
-        name:
-          type: string
-          description: Group name
-          example: My Group
-        smart_fields:
-          type: object
-          properties:
-            owner:
-              description: A smart field of type user
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: ID of the user
-                  example: ea10916d-0684-4624-9d07-d341193554cf
-                  readOnly: true
-                name:
-                  description: Name of the user
-                  type: string
-                  example: John Doe
-                email:
-                  description: Email of the user
-                  type: string
-                  example: johndoe@ratecard.io
-            team:
-              description: A smart field of type team
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: ID of the team
-                  example: ea10916d-0684-4624-9d07-d341193554cf
-                  readOnly: true
-                name:
-                  description: Name of the team
-                  type: string
-                  example: My Team
-                email:
-                  description: Email for the team
-                  type: string
-                  example: myteam@ratecard.io
-            notes:
-              description: A smart field of type text
-              type: string
-              example: John Doe is an example for us all.
-            credits:
-              description: A smart field of type number
-              type: number
-              example: 154325
-            time_of_arrival:
-              description: A smart field of type time
-              type: string
-              example: '09:33:14.000000Z'
-            date_of_arrival:
-              description: A smart field of type date
-              type: string
-              example: '2020-11-25'
-            datetime_of_arrival:
-              description: A smart field of type datetime
-              type: string
-              example: '2020-11-25T09:33:14.000000Z'
-            locale:
-              description: A smart field of type language
-              type: string
-              example: en
+      $ref: ./contactGroup.v1.yaml
+required:
+  - id
+  - first_name
+  - last_name
+  - email
