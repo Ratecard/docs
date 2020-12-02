@@ -60,7 +60,7 @@ properties:
     type: string
     example: '2020-11-25T09:33:14.000000Z'
   groups:
-    description: An array of groups with their id and name plus smart fields as direct properties
+    description: An array of groups with their id, name, and smart fields
     type: array
     items:
       $ref: ./contactGroup.v1.yaml
