@@ -32,6 +32,6 @@
       "type": "item",
       "title": "Team",
       "uri": "reference/api/models/team.v1.yaml"
-    },
+    }
   ]
 }
