@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   version: 0.2.0
   title: Ratecard API
-  description: Integrate Ratecard directly with your applications through via the Ratecard [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. In this documentation you will find all the resources you'll need to connect to our API.
+  description: 'Integrate Ratecard directly with your applications through via the Ratecard [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. In this documentation you will find all the resources you''ll need to connect to our API.'
   contact:
     name: Ratecard Support
     url: 'https://support.ratecard.io/'
@@ -530,6 +530,74 @@ paths:
           description: Group deleted response
         '404':
           $ref: '#/components/responses/404'
+  /users:
+    get:
+      summary: List of users
+      tags: []
+      responses: {}
+      operationId: get-users
+    post:
+      summary: Add a new user
+      tags: []
+      responses: {}
+      operationId: post-users
+  '/users/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Retrieve a user
+      tags: []
+      responses: {}
+      operationId: get-users-id
+    put:
+      summary: Update a user
+      tags: []
+      responses: {}
+      operationId: put-users
+    delete:
+      summary: Delete a user
+      tags: []
+      responses: {}
+      operationId: delete-users-id
+  /teams:
+    get:
+      summary: List of teams
+      tags:
+        - Teams
+      responses: {}
+      operationId: get-teams
+    post:
+      summary: Add a new team
+      tags:
+        - Teams
+      responses: {}
+      operationId: post-teams
+  '/teams/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Retrieve a team
+      tags: []
+      responses: {}
+      operationId: get-teams-id
+    put:
+      summary: Update a team
+      tags: []
+      responses: {}
+      operationId: put-teams
+    delete:
+      summary: Delete a team
+      tags: []
+      responses: {}
+      operationId: delete-teams-id
 components:
   securitySchemes:
     bearerAuth:
