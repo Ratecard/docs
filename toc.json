@@ -28,6 +28,11 @@
       "type": "item",
       "title": "Team",
       "uri": "reference/api/models/team.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Webhook",
+      "uri": "reference/api/models/webhook.v1.yaml"
     }
   ]
 }
