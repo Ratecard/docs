@@ -606,6 +606,44 @@ paths:
         - Teams
       responses: {}
       operationId: delete-teams-id
+  /webhooks:
+    get:
+      summary: List of webhooks
+      tags:
+        - Webhooks
+      responses: {}
+      operationId: get-webhooks
+    post:
+      summary: Add a new webhook
+      tags:
+        - Webhooks
+      responses: {}
+      operationId: post-webhooks
+  '/webhooks/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Retrieve a webhook
+      tags:
+        - Webhooks
+      responses: {}
+      operationId: get-webhooks-id
+    put:
+      summary: Update a webhook
+      tags:
+        - Webhooks
+      responses: {}
+      operationId: put-webhooks-id
+    delete:
+      summary: Delete a webhook
+      tags:
+        - Webhooks
+      responses: {}
+      operationId: delete-webhooks-id
 components:
   securitySchemes:
     bearerAuth:
