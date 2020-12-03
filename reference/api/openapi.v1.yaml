@@ -533,12 +533,14 @@ paths:
   /users:
     get:
       summary: List of users
-      tags: []
+      tags:
+        - Users
       responses: {}
       operationId: get-users
     post:
       summary: Add a new user
-      tags: []
+      tags:
+        - Users
       responses: {}
       operationId: post-users
   '/users/{id}':
@@ -550,17 +552,20 @@ paths:
         required: true
     get:
       summary: Retrieve a user
-      tags: []
+      tags:
+        - Users
       responses: {}
       operationId: get-users-id
     put:
       summary: Update a user
-      tags: []
+      tags:
+        - Users
       responses: {}
       operationId: put-users
     delete:
       summary: Delete a user
-      tags: []
+      tags:
+        - Users
       responses: {}
       operationId: delete-users-id
   /teams:
@@ -585,17 +590,20 @@ paths:
         required: true
     get:
       summary: Retrieve a team
-      tags: []
+      tags:
+        - Teams
       responses: {}
       operationId: get-teams-id
     put:
       summary: Update a team
-      tags: []
+      tags:
+        - Teams
       responses: {}
       operationId: put-teams
     delete:
       summary: Delete a team
-      tags: []
+      tags:
+        - Teams
       responses: {}
       operationId: delete-teams-id
 components:
