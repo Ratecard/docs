@@ -15,6 +15,12 @@ security:
 tags:
   - name: Contacts
   - name: Groups
+  - name: Accounts
+  - name: Teams
+  - name: Users
+  - name: Webhooks
+  - name: Messages
+  - name: Feedback
 paths:
   /contacts:
     get:
@@ -644,6 +650,66 @@ paths:
         - Webhooks
       responses: {}
       operationId: delete-webhooks-id
+  /accounts:
+    get:
+      summary: List of accounts
+      tags:
+        - Accounts
+      responses: {}
+      operationId: get-accounts
+  '/accounts/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Retrieve an account
+      tags:
+        - Accounts
+      responses: {}
+      operationId: get-accounts-id
+  /messages:
+    get:
+      summary: List of messages
+      tags:
+        - Messages
+      responses: {}
+      operationId: get-messages
+  '/messages/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Retrieve a message
+      tags:
+        - Messages
+      responses: {}
+      operationId: get-messages-id
+  /feedback:
+    get:
+      summary: List of feedback
+      tags:
+        - Feedback
+      responses: {}
+      operationId: get-feedback
+  '/feedback/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Retrieve a feedback item
+      tags:
+        - Feedback
+      responses: {}
+      operationId: get-feedback-id
 components:
   securitySchemes:
     bearerAuth:
