@@ -7,6 +7,7 @@ properties:
     description: ID of the group
     example: ea10916d-0684-4624-9d07-d341193554cf
     readOnly: true
+    format: uuid
   name:
     type: string
     description: Group name
@@ -40,6 +41,7 @@ properties:
             description: ID of the team
             example: ea10916d-0684-4624-9d07-d341193554cf
             readOnly: true
+            format: uuid
           name:
             description: Name of the team
             type: string

@@ -5,9 +5,10 @@ required:
 properties:
   id:
     type: string
-    description: ID of the contact
+    description: ID of the group
     example: ea10916d-0684-4624-9d07-d341193554cf
     readOnly: true
+    format: uuid
   name:
     description: Name of the group
     type: string

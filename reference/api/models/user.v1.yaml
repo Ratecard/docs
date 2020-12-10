@@ -6,6 +6,7 @@ properties:
     type: string
     description: ID of the user
     example: ea10916d-0684-4624-9d07-d341193554cf
+    format: uuid
   review_visible:
     type: boolean
     description: Visibility of the user on public forms and/or the company page

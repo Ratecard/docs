@@ -3,19 +3,218 @@ type: object
 properties:
   id:
     type: string
-    description: ID of the contact
+    description: ID of the feedback
     example: ea10916d-0684-4624-9d07-d341193554cf
     readOnly: true
+    format: uuid
   review:
     type: boolean
-    description: When true, this feedback item is a review, not internal feedback
+    description: 'When true, this feedback item is a review, not internal feedback'
     example: true
   anonymous:
     type: boolean
-    descripion: When true, no contact information will be directly shown in both the Ratecard UI and API
+    descripion: 'When true, no contact information will be directly shown in both the Ratecard UI and API respondent result'
     example: true
   closed:
     type: boolean
-    description: When true, the feedback has been processed and is closed
+    description: 'When true, the feedback has been processed and is closed'
     example: false
-  
+  respondent:
+    type: object
+    properties:
+      id:
+        type:
+          - string
+          - 'null'
+        description: ID of the responent
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        format: uuid
+      first_name:
+        type: string
+        description: First name of the respondent
+        example: John
+      last_name:
+        type: string
+        description: Last name of the respondent
+        example: Doe
+      email:
+        type: string
+        description: Email of the respondent
+        example: johndoe@example.com
+      phone:
+        type: string
+        description: Phone number of the respondent
+        example: 612345678
+  form:
+    type: object
+    description: The form this feedback item belongs to
+    properties:
+      id:
+        type: string
+        description: ID of the form
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      name:
+        type: string
+        description: Name of the form
+        example: My Form
+        readOnly: true
+  answers:
+    type: array
+    items:
+      type: object
+      properties:
+        question_id:
+          type: string
+          description: ID of the form question
+          example: ea10916d-0684-4624-9d07-d341193554cf
+          readOnly: true
+          format: uuid
+        required:
+          type: boolean
+          description: Indicates whether this question was required
+          example: true
+        hidden:
+          type: boolean
+          description: Indicates whether this question was hidden
+          example: false
+        title:
+          type: string
+          description: Title of the question
+          example: How would you rate Ratecard?
+        type:
+          type: string
+          enum:
+            - rating
+            - nps_standard
+            - nps_custom
+            - multiple_choice
+            - select
+            - text
+            - textarea
+            - relationship
+            - team_members
+            - departments
+            - legal
+            - date
+            - email
+            - file
+            - phone
+            - video
+            - website
+          description: Type of the question
+          example: rating
+        value:
+          type:
+            - string
+            - integer
+            - object
+          description: Answer value the respondent gave
+          example: 9
+          properties:
+            id:
+              type: string
+              description: ID of the team or user
+              example: ea10916d-0684-4624-9d07-d341193554cf
+              readOnly: true
+              format: uuid
+            name:
+              type: string
+              description: Name of the team or user
+              example: John Doe
+            email:
+              type: string
+              description: Email of the team or user
+              example: johndoe@example.com
+  replies:
+    type: array
+    description: Replies sent back to the respondent
+    items:
+      type: object
+      properties:
+        subject:
+          type: string
+          description: Subject of the reply
+          example: Thank you for your response
+        message:
+          type: string
+          description: Message body of the reply
+          example: We will make sure to forward your feedback to the right people in our organization.
+        by:
+          type: string
+          description: Name of the replier
+          example: John Doe
+  notes:
+    type: array
+    description: Internal notes added to the feedback
+    items:
+      type: object
+      properties:
+        subject:
+          type: string
+          description: Subject of the note
+          example: Valuable feedback!
+        message:
+          type: string
+          description: Message body of the note
+          example: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
+        by:
+          type: string
+          description: Name of the noter
+          example: John Doe
+  assignee:
+    description: The user the feedback is assigned to
+    type:
+      - object
+      - 'null'
+    properties:
+      id:
+        type: string
+        description: ID of the user
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+      name:
+        description: Name of the user
+        type: string
+        example: John Doe
+      email:
+        description: Email of the user
+        type: string
+        example: johndoe@ratecard.io
+  score:
+    type:
+      - number
+      - 'null'
+    description: The average score given in the feedback item
+    example: 8.5
+  nps:
+    type:
+      - number
+      - 'null'
+    description: The NPS value of the feedback item, null when no NPS question present
+    example: 9
+  duration:
+    type: integer
+    description: The time between starting and finishing a feedback item
+    example: 300
+  locale:
+    type: string
+    description: The language the feedback item was submitted with
+    example: NL
+  embed_url:
+    type: string
+    description: A public embed URL for this feedback item with a special embed scoped access token
+    example: https://ratecard.io/embed/feedback/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  completed_at:
+    description: Date of completion
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
