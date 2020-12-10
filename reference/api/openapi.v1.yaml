@@ -538,6 +538,7 @@ paths:
           $ref: '#/components/responses/404'
   /users:
     get:
+      description: Description
       summary: List of users
       tags:
         - Users
@@ -546,6 +547,7 @@ paths:
           description: Description
       operationId: get-users
     post:
+      description: Description
       summary: Add a new user
       tags:
         - Users
@@ -561,6 +563,7 @@ paths:
         in: path
         required: true
     get:
+      description: Description
       summary: Retrieve a user
       tags:
         - Users
@@ -569,6 +572,7 @@ paths:
           description: Description
       operationId: get-users-id
     put:
+      description: Description
       summary: Update a user
       tags:
         - Users
@@ -577,6 +581,7 @@ paths:
           description: Description
       operationId: put-users
     delete:
+      description: Description
       summary: Delete a user
       tags:
         - Users
@@ -586,6 +591,7 @@ paths:
       operationId: delete-users-id
   /teams:
     get:
+      description: Description
       summary: List of teams
       tags:
         - Teams
@@ -594,6 +600,7 @@ paths:
           description: Description
       operationId: get-teams
     post:
+      description: Description
       summary: Add a new team
       tags:
         - Teams
@@ -609,6 +616,7 @@ paths:
         in: path
         required: true
     get:
+      description: Description
       summary: Retrieve a team
       tags:
         - Teams
@@ -617,6 +625,7 @@ paths:
           description: Description
       operationId: get-teams-id
     put:
+      description: Description
       summary: Update a team
       tags:
         - Teams
@@ -625,6 +634,7 @@ paths:
           description: Description
       operationId: put-teams
     delete:
+      description: Description
       summary: Delete a team
       tags:
         - Teams
@@ -634,6 +644,7 @@ paths:
       operationId: delete-teams-id
   /webhooks:
     get:
+      description: Description
       summary: List of webhooks
       tags:
         - Webhooks
@@ -642,6 +653,7 @@ paths:
           description: Description
       operationId: get-webhooks
     post:
+      description: Description
       summary: Add a new webhook
       tags:
         - Webhooks
@@ -657,6 +669,7 @@ paths:
         in: path
         required: true
     get:
+      description: Description
       summary: Retrieve a webhook
       tags:
         - Webhooks
@@ -665,6 +678,7 @@ paths:
           description: Description
       operationId: get-webhooks-id
     put:
+      description: Description
       summary: Update a webhook
       tags:
         - Webhooks
@@ -673,6 +687,7 @@ paths:
           description: Description
       operationId: put-webhooks-id
     delete:
+      description: Description
       summary: Delete a webhook
       tags:
         - Webhooks
@@ -773,15 +788,18 @@ paths:
             application/json:
               schema:
                 $ref: ./models/account.v1.yaml
-          headers: {}
+          headers:
         '404':
           $ref: '#/components/responses/404'
   /messages:
     get:
+      description: Description
       summary: List of messages
       tags:
         - Messages
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-messages
   '/messages/{id}':
     parameters:
@@ -791,17 +809,23 @@ paths:
         in: path
         required: true
     get:
+      description: Description
       summary: Retrieve a message
       tags:
         - Messages
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-messages-id
   /feedback:
     get:
+      description: Description
       summary: List of feedback
       tags:
         - Feedback
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-feedback
   '/feedback/{id}':
     parameters:
@@ -811,10 +835,13 @@ paths:
         in: path
         required: true
     get:
+      description: Description
       summary: Retrieve a feedback item
       tags:
         - Feedback
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-feedback-id
 components:
   securitySchemes:
