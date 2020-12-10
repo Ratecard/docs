@@ -541,13 +541,17 @@ paths:
       summary: List of users
       tags:
         - Users
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-users
     post:
       summary: Add a new user
       tags:
         - Users
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: post-users
   '/users/{id}':
     parameters:
@@ -560,32 +564,42 @@ paths:
       summary: Retrieve a user
       tags:
         - Users
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-users-id
     put:
       summary: Update a user
       tags:
         - Users
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: put-users
     delete:
       summary: Delete a user
       tags:
         - Users
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: delete-users-id
   /teams:
     get:
       summary: List of teams
       tags:
         - Teams
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-teams
     post:
       summary: Add a new team
       tags:
         - Teams
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: post-teams
   '/teams/{id}':
     parameters:
@@ -598,32 +612,42 @@ paths:
       summary: Retrieve a team
       tags:
         - Teams
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-teams-id
     put:
       summary: Update a team
       tags:
         - Teams
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: put-teams
     delete:
       summary: Delete a team
       tags:
         - Teams
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: delete-teams-id
   /webhooks:
     get:
       summary: List of webhooks
       tags:
         - Webhooks
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-webhooks
     post:
       summary: Add a new webhook
       tags:
         - Webhooks
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: post-webhooks
   '/webhooks/{id}':
     parameters:
@@ -636,19 +660,25 @@ paths:
       summary: Retrieve a webhook
       tags:
         - Webhooks
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-webhooks-id
     put:
       summary: Update a webhook
       tags:
         - Webhooks
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: put-webhooks-id
     delete:
       summary: Delete a webhook
       tags:
         - Webhooks
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: delete-webhooks-id
   /accounts:
     get:
@@ -726,6 +756,7 @@ paths:
         name: id
         in: path
         required: true
+        description: id of the account
     get:
       summary: Retrieve an account
       description: Description
@@ -735,13 +766,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the account
-          required: true
-          schema:
-            type: integer
-            format: int64
       responses:
         '200':
           description: Account response
@@ -842,15 +866,11 @@ components:
         type: integer
         example: 40
     X-RateLimit-Limit:
-      in: header
-      name: X-RateLimit-Limit
       description: Request limit per hour
       schema:
         type: integer
         example: 60
     X-RateLimit-Remaining:
-      in: header
-      name: X-RateLimit-Remaining
       description: Time remaining till rate limit resets
       schema:
         type: integer
