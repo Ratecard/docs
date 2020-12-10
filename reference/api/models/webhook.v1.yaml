@@ -1,4 +1,4 @@
-title: webhook
+title: Webhook
 type: object
 properties:
   id:
