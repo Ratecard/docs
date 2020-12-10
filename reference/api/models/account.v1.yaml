@@ -1,0 +1,235 @@
+title: Account
+type: object
+properties:
+  id:
+    type: string
+    description: ID of the contact
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    readOnly: true
+  name:
+    type: string
+    description: Name of the account
+    example: Ratecard
+  public:
+    type: boolean
+    description: Determines whether the company profile should be public or not
+    example: false
+  general:
+    type: object
+    description: General company information
+    properties:
+      website:
+        type: string
+        description: The company website
+        example: 'https://ratecard.io/'
+      phone:
+        type: string
+        description: The company phone number
+        example: +31 6 123 45 678
+      address:
+        type: string
+        description: The company address
+        example: Jisperweg 2
+      zip_code:
+        type: string
+        description: The zip code of the company's location
+        example: 1463 ND
+      city:
+        type: string
+        description: The city the company is based in
+        example: Noordbeemster
+      country:
+        type: string
+        description: The country the company is located in
+        example: NL
+      description:
+        type: string
+        description: A description of about the company
+        example: ''
+      company_size:
+        type: string
+        description: The size of the company
+        enum:
+          - 2-10
+          - 11-50
+          - 51-200
+          - 201-500
+          - 501-1000
+          - 1001-5000
+          - 5000+
+        example: 2-10
+      industries:
+        type: array
+        description: The industries the company is present in
+        example:
+          - Staffing and Recruiting
+      profiles:
+        type: object
+        description: The company's profile URLs
+        properties:
+          facebook:
+            type: string
+            description: The company's Facebook page
+            example: https://www.facebook.com/ratecardio
+          twiter:
+            type: string
+            description: The company's Twitter profile
+            example: https://twitter.com/ratecardio
+          linkedin:
+            type: string
+            description: The company's LinkedIn company page
+            example: https://www.linkedin.com/company/10642017
+          glassdoor:
+            type: string
+            description: The company's glassdoor profile
+            example: ''
+      review_urls:
+        type: object
+        description: The company's review URLs
+        properties:
+          google:
+            type: string
+            description: The company's google review URL
+            example: ''
+          indeed:
+            type: string
+            description: The company's indeed review URL
+            example: ''
+          glassdoor:
+            type: string
+            description: The company's glassdoor review URL
+            example: ''
+          facebook:
+            type: string
+            description: The company's facebook review URL
+            example: ''
+  branding:
+    type: object
+    description: All customization settings for the account
+    properties:
+      logo: 
+        type: string
+        description: The company logo image URL
+        example: https://ratecard.io/img/accounts/profile/ratecard-49029.png
+      header: 
+        type: string
+        description: The company header image URL
+        example: https://ratecard.io/img/accounts/header_image/ratecard-613524.png
+      forms:
+        type: object
+        description: Form customization settings
+        properties:
+          logo: 
+            type: string
+            description: The default company logo image URL for forms
+            example: https://ratecard.io/img/accounts/profile/ratecard-49029.png
+          colors:
+            type: object
+            description: Form color settings
+            properties:
+              navigation:
+                type: string
+                description: The form navigation color
+                example: '#1d8bdf'
+              background:
+                type: string
+                description: The form background color
+                example: '#ffffff'
+              buttons:
+                type: string
+                description: The form button colors
+                example: '#1d8bdf'
+      campaigns:
+        type: object
+        description: Canoaugb customization settings
+        properties:
+          logo: 
+            type: string
+            description: The default company logo image URL for campaigns
+            example: https://ratecard.io/img/accounts/profile/ratecard-49029.png
+          colors:
+            type: object
+            description: Camnpaign color settings
+            properties:
+              primary:
+                type: string
+                description: Primary color for campaigns
+                example: '#1d8bdf'
+              secondary:
+                type: string
+                description: Secondary color for campaigns
+                example: '#ffffff'
+              tertiary:
+                type: string
+                description: Tertiary color for campaigns
+                example: '#1d8bdf'
+  limits:
+    description: Rules for limiting message sends and imports on the account level
+    type: object
+    properties:
+      messages:
+        description: Controls the rate and frequency of which messages can be sent to contacts by the account
+        type: object
+        properties:
+          max:
+            description: Maximum amount of messages per the defined period (frequency)
+            type: integer
+            example: 2
+          period:
+            description: The frequency period to limit message sends on
+            type: string
+            enum:
+              - d
+              - w
+              - m
+              - q
+              - hy
+              - 'y'
+            example: d
+          include_reminders:
+            description: Include reminder messages in the check
+            type: boolean
+            example: false
+      allowed_domains:
+        type: string
+        description: Comma separated list of domains allowed to send import data to Ratecard
+        example: ratecard.io, ratecard.info, etc...
+  source:
+    type: string
+    nullable: true
+    readonly: true
+    description: When the account was created and a source was detected, this field will contain the name
+    example: Bullhorn
+  date_last_login:
+    description: The most recent login moment of a user belonging to the account
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  access_token:
+    type: string
+    description: Access token with full API scope access belonging to the account
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
