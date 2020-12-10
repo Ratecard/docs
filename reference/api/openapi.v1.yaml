@@ -653,9 +653,71 @@ paths:
   /accounts:
     get:
       summary: List of accounts
+      description: This is the list of accounts
       tags:
         - Accounts
-      responses: {}
+      parameters:
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+      responses:
+        '200':
+          description: Paginated account response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/account.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/accounts?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/accounts?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/accounts?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/accounts?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/accounts'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/parameters/X-RateLimit-Limit'
+            header-1:
+              $ref: '#/components/parameters/X-RateLimit-Remaining'
       operationId: get-accounts
   '/accounts/{id}':
     parameters:
@@ -666,10 +728,30 @@ paths:
         required: true
     get:
       summary: Retrieve an account
+      description: Description
+      operationId: get-accounts-id
       tags:
         - Accounts
-      responses: {}
-      operationId: get-accounts-id
+      parameters:
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - in: path
+          name: id
+          description: id of the account
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Account response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/account.v1.yaml
+          headers: {}
+        '404':
+          $ref: '#/components/responses/404'
   /messages:
     get:
       summary: List of messages
@@ -715,20 +797,6 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-  headers:
-    X-Total-Count:
-      schema:
-        type: integer
-      example: 40
-    X-RateLimit-Limit:
-      description: Request limit per hour
-      schema:
-        type: integer
-      example: 60
-    X-RateLimit-Remaining:
-      schema:
-        type: integer
-      example: 58
   parameters:
     pageParam:
       name: page
@@ -766,6 +834,27 @@ components:
         example: application/json
         default: application/json
       required: true
+    X-Total-Count:
+      in: header
+      name: X-Total-Count
+      description: Total item count in the response
+      schema:
+        type: integer
+        example: 40
+    X-RateLimit-Limit:
+      in: header
+      name: X-RateLimit-Limit
+      description: Request limit per hour
+      schema:
+        type: integer
+        example: 60
+    X-RateLimit-Remaining:
+      in: header
+      name: X-RateLimit-Remaining
+      description: Time remaining till rate limit resets
+      schema:
+        type: integer
+        example: 58
   responses:
     '404':
       description: Not found
