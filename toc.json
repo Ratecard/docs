@@ -33,6 +33,21 @@
       "type": "item",
       "title": "Webhook",
       "uri": "reference/api/models/webhook.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Message",
+      "uri": "reference/api/models/message.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Feedback",
+      "uri": "reference/api/models/feedback.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Account",
+      "uri": "reference/api/models/account.v1.yaml"
     }
   ]
 }
