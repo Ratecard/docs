@@ -758,11 +758,7 @@ paths:
                       total:
                         type: integer
                         example: 100
-          headers:
-            X-RateLimit-Limit:
-              $ref: '#/components/parameters/X-RateLimit-Limit'
-            header-1:
-              $ref: '#/components/parameters/X-RateLimit-Remaining'
+          headers: {}
       operationId: get-accounts
   '/accounts/{id}':
     parameters:
@@ -788,7 +784,7 @@ paths:
             application/json:
               schema:
                 $ref: ./models/account.v1.yaml
-          headers:
+          headers: null
         '404':
           $ref: '#/components/responses/404'
   /messages:
