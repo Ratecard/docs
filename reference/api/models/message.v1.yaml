@@ -1,0 +1,241 @@
+title: message
+type: object
+properties:
+  id:
+    type: string
+    description: ID of the message
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    format: uuid
+  channel:
+    type: string
+    description: The channel the message was sent from
+    enum:
+      - email
+      - sms
+    example: email
+  from:
+    type: string
+    description: The name of the person or company the message is sent from
+    example: Ratecard
+  to:
+    type: string
+    description: The email or phone number the message is sent to
+    example: johndoe@ratecard.io
+  reply_to:
+    type:
+      - string
+      - 'null'
+    description: The reply_to email address when a message is sent to an email
+    example: johndoe@ratecard.io
+  subject:
+    type: string
+    description: Subject of the message
+    example: Hey John, how was your job application with our company?
+  body:
+    type: string
+    description: The SMS text or email content (html)
+  language:
+    type: string
+    description: Language the message was sent in
+    example: EN
+  reminder:
+    type: boolean
+    description: Indicates whether the message is a reminder or not
+    example: true
+  remind_at:
+    type: string
+    description: The moment a reminder should be sent
+    example: true
+  metadata:
+    type: object
+    description: Tracked data about the message
+    properties:
+      send_date:
+        type: string
+        description: The date the message was sent
+        example: '2020-11-25T09:33:14.000000Z'
+      status:
+        type: string
+        enum:
+          - not_opened
+          - opened
+          - clicked
+          - feedback
+        description: The current status of the message based on the meta data
+        example: feedback
+      time_till_status:
+        type: integer
+        description: Time in seconds it took to reach the current status
+        example: 450
+      views:
+        type: integer
+        description: Amount of times the message was viewed (for sms this is equal to clicks)
+        example: 2
+      first_view_date:
+        type: string
+        description: The moment when the first view is registered
+        example: '2020-11-25T09:33:14.000000Z'
+      time_to_open:
+        type: integer
+        description: Time in seconds it took till the message was first viewed
+        example: 150
+      last_view_date:
+        type: string
+        description: The most recent moment the message was viewed
+        example: '2020-11-25T09:33:14.000000Z'
+      clicks:
+        type: integer
+        description: Amount of times the message was clicked
+        example: 2
+      first_click_date:
+        type: string
+        description: The moment when the first click is registered
+        example: '2020-11-25T09:33:14.000000Z'
+      time_to_click:
+        type: integer
+        description: Time in seconds it took till the message was first clicked
+        example: 150
+      last_click_date:
+        type: string
+        description: The most recent moment the message was clicked on
+        example: '2020-11-25T09:33:14.000000Z'
+      left_feedback:
+        type:
+          - string
+          - 'null'
+        description: Date when the feedback was given if there's feedback
+        example: '2020-11-25T09:33:14.000000Z'
+      time_to_rate:
+        type: integer
+        description: Time in seconds it took till the feedback was completed
+        example: 150
+  campaign:
+    type: object
+    description: The campaign this message is sent by
+    properties:
+      id:
+        type: string
+        description: ID of the campaign
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      name:
+        type: string
+        description: Name of the campaign
+        example: My Campaign
+        readOnly: true
+  form:
+    type: object
+    description: The form this message item belongs to
+    properties:
+      id:
+        type: string
+        description: ID of the form
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      name:
+        type: string
+        description: Name of the form
+        example: My Form
+        readOnly: true
+  connectable:
+    type: object
+    description: The group or team the message is connected to
+    properties:
+      type:
+        type: string
+        enum:
+          - group
+          - team
+        example: group
+      id:
+        type: string
+        description: ID of the connectable
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      name:
+        type: string
+        description: Name of the connectable
+        example: My Group
+        readOnly: true
+  connected_user:
+    type: object
+    description: The user the message is connected to
+    properties:
+      id:
+        type: string
+        description: ID of the user
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      name:
+        type: string
+        description: Name of the user
+        example: John Doe
+        readOnly: true
+      email:
+        type: string
+        description: Email of the user
+        example: johndoe@ratecard.io
+        readOnly: true
+  recipient:
+    type: object
+    description: The recipient the message is sent to
+    properties:
+      type:
+        type: string
+        enum:
+          - contact
+          - user
+        example: contact
+      id:
+        type: string
+        description: ID of the recipient
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      name:
+        type: string
+        description: Name of the recipient
+        example: John Doe
+        readOnly: true
+      email:
+        type: string
+        description: Email of the recipient
+        example: johndoe@example.com
+        readOnly: true
+  feedback:
+    type:
+      - object
+      - 'null'
+    description: The feedback given by the recipient
+    properties:
+      id:
+        type: string
+        description: ID of the feedback
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      score:
+        type: number
+        description: Score given by the recipient
+        example: 8.5
+        readOnly: true
+  embed_url:
+    type: string
+    description: A public embed URL for this message with a special embed scoped access token
+    example: 'https://ratecard.io/embed/messages/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+  deleted_at:
+    description: Date of deletion
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'

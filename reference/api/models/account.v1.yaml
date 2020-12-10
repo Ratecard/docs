@@ -70,15 +70,15 @@ properties:
           facebook:
             type: string
             description: The company's Facebook page
-            example: https://www.facebook.com/ratecardio
+            example: 'https://www.facebook.com/ratecardio'
           twiter:
             type: string
             description: The company's Twitter profile
-            example: https://twitter.com/ratecardio
+            example: 'https://twitter.com/ratecardio'
           linkedin:
             type: string
             description: The company's LinkedIn company page
-            example: https://www.linkedin.com/company/10642017
+            example: 'https://www.linkedin.com/company/10642017'
           glassdoor:
             type: string
             description: The company's glassdoor profile
@@ -107,22 +107,22 @@ properties:
     type: object
     description: All customization settings for the account
     properties:
-      logo: 
+      logo:
         type: string
         description: The company logo image URL
-        example: https://ratecard.io/img/accounts/profile/ratecard-49029.png
-      header: 
+        example: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+      header:
         type: string
         description: The company header image URL
-        example: https://ratecard.io/img/accounts/header_image/ratecard-613524.png
+        example: 'https://ratecard.io/img/accounts/header_image/ratecard-613524.png'
       forms:
         type: object
         description: Form customization settings
         properties:
-          logo: 
+          logo:
             type: string
             description: The default company logo image URL for forms
-            example: https://ratecard.io/img/accounts/profile/ratecard-49029.png
+            example: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
           colors:
             type: object
             description: Form color settings
@@ -143,10 +143,10 @@ properties:
         type: object
         description: Canoaugb customization settings
         properties:
-          logo: 
+          logo:
             type: string
             description: The default company logo image URL for campaigns
-            example: https://ratecard.io/img/accounts/profile/ratecard-49029.png
+            example: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
           colors:
             type: object
             description: Camnpaign color settings
@@ -193,12 +193,12 @@ properties:
       allowed_domains:
         type: string
         description: Comma separated list of domains allowed to send import data to Ratecard
-        example: ratecard.io, ratecard.info, etc...
+        example: 'ratecard.io, ratecard.info, etc...'
   source:
     type: string
     nullable: true
     readonly: true
-    description: When the account was created and a source was detected, this field will contain the name
+    description: 'When the account was created and a source was detected, this field will contain the name'
     example: Bullhorn
   date_last_login:
     description: The most recent login moment of a user belonging to the account
@@ -215,21 +215,4 @@ properties:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+description: 'This model is the Account model. It contains the name, status, general information, branding customization, limits and more of the account the access token user belongs to. When a user belongs to multiple accounts, they will all be retrievable within a special scope.'

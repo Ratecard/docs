@@ -1,4 +1,4 @@
-title: feedback
+title: Feedback
 type: object
 properties:
   id:
@@ -192,7 +192,7 @@ properties:
     type:
       - number
       - 'null'
-    description: The NPS value of the feedback item, null when no NPS question present
+    description: 'The NPS value of the feedback item, null when no NPS question present'
     example: 9
   duration:
     type: integer
@@ -205,7 +205,8 @@ properties:
   embed_url:
     type: string
     description: A public embed URL for this feedback item with a special embed scoped access token
-    example: https://ratecard.io/embed/feedback/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>
+    example: 'https://ratecard.io/embed/feedback/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+    format: uri
   created_at:
     description: Date of creation
     type: string
