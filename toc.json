@@ -5,31 +5,6 @@
       "title":"Getting Started",
       "uri": "docs/getting-started.md"
     },
-    // {
-    //   "type":"item",
-    //   "title":"About Ratecard",
-    //   "uri": "docs/about-ratecard.md"
-    // },
-    // {
-    //   "type":"item",
-    //   "title":"API Basics",
-    //   "uri": "docs/api-basics.md"
-    // },
-    // {
-    //   "type": "item",
-    //   "title": "OpenAPI Specification",
-    //   "uri": "docs/openapi-specification.md"
-    // },
-    // {
-    //   "type": "item",
-    //   "title": "Swagger Tutorial",
-    //   "uri": "docs/swagger-tutorial.md"
-    // },
-    // {
-    //   "type": "item",
-    //   "title": "Postman Tutorial",
-    //   "uri": "docs/postman-tutorial.md"
-    // },
     {
       "type": "item",
       "title": "Ratecard API",
