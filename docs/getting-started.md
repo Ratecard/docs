@@ -31,7 +31,7 @@ title: API Key (Query Parameter)
 -->
 
 ```
-GET https://api.ratecard.io/v1/contacts?access_token=<acces_token>
+GET https://api.ratecard.io/v1/contacts?access_token=<access_token>
 ```
 
 <!--
