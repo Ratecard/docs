@@ -36,7 +36,7 @@ GET https://api.ratecard.io/v1/contacts?access_token=<access_token>
 
 <!--
 type: tab
-title: API Key (Auth Header)
+title: API Key (Header)
 -->
 
 ```http
