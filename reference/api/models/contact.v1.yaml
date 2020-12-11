@@ -53,24 +53,26 @@ properties:
     type: string
     example: '2020-11-25T09:33:14.000000Z'
     nullable: true
-  created_at:
-    description: Date of creation
-    type: string
-    example: '2020-11-25T09:33:14.000000Z'
-  updated_at:
-    description: Date last changed
-    type: string
-    example: '2020-11-25T09:33:14.000000Z'
-  embed_url:
-    type: string
-    description: A public embed URL for this contact with a special embed scoped access token
-    example: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
-    format: uri
+    readOnly: true
   groups:
     description: 'An array of groups with their id, name, and smart fields'
     type: array
     items:
       $ref: ./contactGroup.v1.yaml
+  embed_url:
+    type: string
+    description: A public embed URL for this contact with a special embed scoped access token
+    example: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+    format: uri
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
 required:
   - id
   - first_name
