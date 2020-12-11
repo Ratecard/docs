@@ -48,6 +48,6 @@ GET https://api.ratecard.io/v1/contacts?access_token=<access_token>
 
 <!-- type: tab-end -->
 
-## Ratecard API
+## Ready for launch 💪🏼 🚀
 
-Now you're ready to get, put, and post data using our endpoints. Make sure you check out our inbound and outbound webhooks as well, if you really want to rock it. Have fun! And if you have any questions, make sure to reach out to us via [support@ratecard.io](mailto:support@ratecard.io). We're happy to help you improve every day 💪🏼 🚀
+Now you're ready to get, put, and post data using our endpoints. Make sure you check out our inbound and outbound webhooks as well, if you really want to rock it. Have fun! And if you have any questions, make sure to reach out to us via [support@ratecard.io](mailto:support@ratecard.io). We're happy to help you, of course. Let's improve every day!
