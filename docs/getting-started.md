@@ -27,15 +27,6 @@ Accept: application/json
 
 <!--
 type: tab
-title: API Key (Query Parameter)
--->
-
-```
-GET https://api.ratecard.io/v1/contacts?access_token=<access_token>
-```
-
-<!--
-type: tab
 title: API Key (Header)
 -->
 
@@ -44,6 +35,15 @@ GET https://api.ratecard.io/v1/contacts
 Connection: Keep-Alive
 Ratecard-AccessToken: <access_token>
 Accept: application/json
+```
+
+<!--
+type: tab
+title: API Key (Query Parameter)
+-->
+
+```
+GET https://api.ratecard.io/v1/contacts?access_token=<access_token>
 ```
 
 <!-- type: tab-end -->
