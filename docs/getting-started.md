@@ -27,11 +27,23 @@ Accept: application/json
 
 <!--
 type: tab
-title: API Key
+title: API Key (Query Parameter)
 -->
 
-# More Content!
+```
+GET https://api.ratecard.io/v1/contacts?access_token=<acces_token>
+```
 
-With more mind-blowing material. Really. Just amazing, grade-A stuff.
+<!--
+type: tab
+title: API Key (Auth Header)
+-->
+
+```http
+GET https://api.ratecard.io/v1/contacts
+Connection: Keep-Alive
+Ratecard-AccessToken: <access_token>
+Accept: application/json
+```
 
 <!-- type: tab-end -->
