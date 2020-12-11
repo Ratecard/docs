@@ -1,0 +1,3 @@
+# OpenAPI Specification
+
+The beginning of an awesome article...
