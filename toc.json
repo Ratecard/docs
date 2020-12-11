@@ -1,21 +1,13 @@
 {
   "items": [
     {
-      "type": "divider",
-      "title": "Getting Started"
-    },
-    {
       "type":"item",
-      "title":"About Ratecard",
-      "uri": "docs/overview.md"
-    },
-    {
-      "type": "divider",
-      "title": "API Reference"
+      "title":"Getting Started",
+      "uri": "docs/getting-started.md"
     },
     {
       "type": "item",
-      "title": "Ratecard API",
+      "title": "API Reference",
       "uri": "reference/api/openapi.v1.yaml"
     },
     {
