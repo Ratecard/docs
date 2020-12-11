@@ -11,8 +11,6 @@ info:
 servers:
   - url: 'https://api.ratecard.io/v1'
 security:
-  - API Key - 1: []
-  - API Key - 2: []
   - bearerAuth: []
 tags:
   - name: Contacts
