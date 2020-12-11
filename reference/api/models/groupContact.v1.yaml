@@ -1,0 +1,163 @@
+title: GroupContact
+type: object
+description: 'The group contact model is a variation on the contact model specific to the group scope and actions. It contains information regarding a contact with the inclusion of specific data regarding the current group and the ability to transform this data. A regular contact _can_ be added with (multiple) groups attached to it, but to modify (each) or remove this contact from the group(s), the group contact within the group scope is used. The main difference between the regular contact and group contact is that it has `smart_fields` and `group_data` properties instead of an array of `groups`'
+properties:
+  id:
+    type: string
+    description: ID of the contact
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    readOnly: true
+    format: uuid
+  first_name:
+    description: First name of the contact
+    type: string
+    example: John
+  last_name:
+    description: Last name of the contact
+    type: string
+    example: Doe
+  email:
+    description: Email of the contact
+    type: string
+    example: johndoe@ratecard.io
+  phone:
+    description: Phone number of the contact
+    type: string
+    example: '0612345678'
+  subscribed:
+    description: (Dis)allow messages (mail/sms) to be sent to the contact
+    type: boolean
+    example: true
+  unsubscribe_date:
+    description: The date at which the contact was unsubscribed
+    type: 
+      - string
+      - 'null'
+    example: null
+    readOnly: true
+  anonymous:
+    description: Make a contact's personal details (in)visible.
+    type: boolean
+    example: false
+  external_type:
+    description: The type which the contact has in the system it's added from (e.g. CREmployee in Carerix)
+    type: 
+      - string
+      - 'null'
+    example: Contact
+  external_id:
+    description: The identifier which the contact has in the system it's added from
+    type: 
+      - string
+      - 'null'
+    example: ea10916d-0684-4624-9d07-d341193554cf
+  synced_at:
+    description: 'When a contact has been synced with an external system, this column is updated'
+    type: 
+      - string
+      - 'null'
+    example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
+  smart_fields:
+    type: object
+    description: Smart fields
+    properties:
+      owner:
+        description: A smart field of type user
+        type: object
+        properties:
+          id:
+            type: string
+            description: ID of the user
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            readOnly: true
+          name:
+            description: Name of the user
+            type: string
+            example: John Doe
+          email:
+            description: Email of the user
+            type: string
+            example: johndoe@ratecard.io
+      team:
+        description: A smart field of type team
+        type: object
+        properties:
+          id:
+            type: string
+            description: ID of the team
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            readOnly: true
+            format: uuid
+          name:
+            description: Name of the team
+            type: string
+            example: My Team
+          email:
+            description: Email for the team
+            type: string
+            example: myteam@ratecard.io
+      notes:
+        description: A smart field of type text
+        type: string
+        example: John Doe is an example for us all.
+      credits:
+        description: A smart field of type number
+        type: number
+        example: 154325
+      time_of_arrival:
+        description: A smart field of type time
+        type: string
+        example: '09:33:14.000000Z'
+      date_of_arrival:
+        description: A smart field of type date
+        type: string
+        example: '2020-11-25'
+      datetime_of_arrival:
+        description: A smart field of type datetime
+        type: string
+        example: '2020-11-25T09:33:14.000000Z'
+      locale:
+        description: A smart field of type language
+        type: string
+        example: en
+  group_data:
+    type: object
+    description: Data belonging to the contact in association with the group
+    properties:
+      subscribed:
+        type: boolean
+        description: The contact's subscription status to the group (For text & mail to the group)
+        default: true
+        example: true
+      date_added:
+        type: string
+        description: The date the contact was added to the group
+        example: '2020-11-25T09:33:14.000000Z'
+        readOnly: true
+      date_updated:
+        type: string
+        description: The date the contact was last updated within the group
+        example: '2020-11-25T09:33:14.000000Z'
+        readOnly: true
+  embed_url:
+    type: string
+    description: A public embed URL for this contact with a special embed scoped access token
+    example: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+    format: uri
+    readOnly: true
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
+required:
+  - id
+  - first_name
+  - last_name
+  - email
