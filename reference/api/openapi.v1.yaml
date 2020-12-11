@@ -839,6 +839,60 @@ paths:
         '200':
           description: Description
       operationId: get-feedback-id
+  '/groups/{group_id}/contacts':
+    parameters:
+      - schema:
+          type: string
+        name: group_id
+        in: path
+        required: true
+    get:
+      summary: List of contacts in the group
+      tags:
+        - Groups
+        - Contacts
+      responses: {}
+      operationId: get-groups-group_id-contacts
+    post:
+      summary: Add a contact to the group
+      tags:
+        - Groups
+        - Contacts
+      responses: {}
+      operationId: post-groups-group_id-contacts
+  '/groups/{group_id}/contacts/{contact_id}':
+    parameters:
+      - schema:
+          type: string
+        name: group_id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: contact_id
+        in: path
+        required: true
+    get:
+      summary: Retrieve a contact from the group
+      tags:
+        - Groups
+        - Contacts
+      responses: {}
+      operationId: get-groups-group_id-contacts-contact_id
+    put:
+      summary: Update a contact in the group
+      tags:
+        - Groups
+        - Contacts
+      responses: {}
+      operationId: put-groups-group_id-contacts-contact_id
+    delete:
+      summary: Remove a contact from the group
+      tags:
+        - Groups
+        - Contacts
+      responses: {}
+      operationId: delete-groups-group_id-contacts-contact_id
 components:
   securitySchemes:
     bearerAuth:
