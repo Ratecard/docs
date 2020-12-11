@@ -847,18 +847,22 @@ paths:
         in: path
         required: true
     get:
+      description: Description
       summary: List of contacts in the group
       tags:
         - Groups
         - Contacts
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-groups-group_id-contacts
     post:
+      description: Description
       summary: Add a contact to the group
       tags:
         - Groups
         - Contacts
-      responses: {}
+      responses: 
       operationId: post-groups-group_id-contacts
   '/groups/{group_id}/contacts/{contact_id}':
     parameters:
@@ -873,25 +877,34 @@ paths:
         in: path
         required: true
     get:
+      description: Description
       summary: Retrieve a contact from the group
       tags:
         - Groups
         - Contacts
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: get-groups-group_id-contacts-contact_id
     put:
+      description: Description
       summary: Update a contact in the group
       tags:
         - Groups
         - Contacts
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: put-groups-group_id-contacts-contact_id
     delete:
+      description: Description
       summary: Remove a contact from the group
       tags:
         - Groups
         - Contacts
-      responses: {}
+      responses:
+        '200':
+          description: Description
       operationId: delete-groups-group_id-contacts-contact_id
 components:
   securitySchemes:
