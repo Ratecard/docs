@@ -7,6 +7,7 @@ properties:
     description: ID of the user
     example: ea10916d-0684-4624-9d07-d341193554cf
     format: uuid
+    readOnly: true
   review_visible:
     type: boolean
     description: Visibility of the user on public forms and/or the company page
@@ -37,6 +38,7 @@ properties:
   profile_picture:
     type: string
     description: Profile picture of the user
+    readOnly: true
   country:
     type: string
     example: NL
@@ -121,10 +123,12 @@ properties:
     description: Date of creation
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
   updated_at:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
 required:
   - first_name
   - last_name

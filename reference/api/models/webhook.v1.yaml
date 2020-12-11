@@ -3,4 +3,50 @@ type: object
 properties:
   id:
     type: string
+    description: ID of the webhook
+    example: ea10916d-0684-4624-9d07-d341193554cf
     format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: Name of the webhook, if not given we create a default name
+    example: My Webhook
+  is_inbound:
+    type: boolean
+    description: Indicates whether a webhook is inbound (you send to Ratecard) or outbound (Ratecard sends to you)
+    example: false
+    default: false
+  uses_signature:
+    type: boolean
+    description: When true, webhook data must be signed with an HMAC (sha256).
+    default: false
+    example: false
+  events:
+    type: array
+    description: Actions (inbound) and subscriptions (outbound) that your app or Ratecard listens for at the specified URLs.
+    items:
+      type: string
+    example:
+      - messages.sent
+  metadata:
+    type: object
+    description: Webhook meta data, will contain relevant information in the future.
+    readOnly: true
+    properties:
+  url:
+  secret:
+    type: string
+    description: The secret key used for signing and sending data between Ratecard and the connected apps
+    readOnly: true
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
+required:
+  - is_inbound

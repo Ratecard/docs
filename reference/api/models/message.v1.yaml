@@ -1,5 +1,6 @@
 title: Message
 type: object
+readOnly: true
 properties:
   id:
     type: string
@@ -190,6 +191,7 @@ properties:
           - contact
           - user
         example: contact
+        readOnly: true
       id:
         type: string
         description: ID of the recipient
@@ -235,7 +237,9 @@ properties:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
   deleted_at:
     description: Date of deletion
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true

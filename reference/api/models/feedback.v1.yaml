@@ -215,7 +215,9 @@ properties:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
   completed_at:
     description: Date of completion
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    readOnly: true
