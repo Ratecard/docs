@@ -11,8 +11,8 @@ info:
 servers:
   - url: 'https://api.ratecard.io/v1'
 security:
-  - Query access token: []
-  - Header access token: []
+  - API Key - 1: []
+  - API Key - 2: []
   - bearerAuth: []
 tags:
   - name: Contacts
@@ -847,12 +847,12 @@ components:
       type: http
       scheme: bearer
       description: ''
-    Query access token:
+    API Key - 1:
       name: access_token
       type: apiKey
       in: query
       description: ''
-    Header access token:
+    API Key - 2:
       name: Ratecard-AccessToken
       type: apiKey
       in: header
