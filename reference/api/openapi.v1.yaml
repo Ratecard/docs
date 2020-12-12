@@ -1,4 +1,4 @@
-tchopenapi: 3.0.3
+openapi: 3.0.3
 info:
   version: 0.2.0
   title: Ratecard API
@@ -331,7 +331,7 @@ paths:
   '/contacts/{id}':
     get:
       summary: Retrieve a contact
-      description: This endpoints retrieves a contact based on their identifier.
+      description: This endpoints retrieves a contact.
       operationId: getContact
       tags:
         - Contacts
@@ -812,13 +812,14 @@ paths:
   '/groups/{id}':
     get:
       summary: Retrieve a group
-      description: This endpoint retrieves a single group based on their identifier from your account.
+      description: This endpoint retrieves a single group from your account.
       operationId: getGroup
       tags:
         - Groups
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Group response
@@ -843,7 +844,7 @@ paths:
           $ref: '#/components/responses/404'
     put:
       summary: Update a group
-      description: This endpoint updates the enitre group based on the identifier and data given in the request body.
+      description: This endpoint updates the entire group and data given in the request body.
       operationId: updateGroup
       tags:
         - Groups
@@ -855,30 +856,38 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - first_name
-                - last_name
-                - email
               properties:
                 name:
+                  description: Name of the group
                   type: string
                   example: My Group
                 limits:
+                  description: Rules for limiting message sends and adding contacts to the groups
                   type: object
                   properties:
                     contacts:
+                      description: Filters that determine if an existing contact can be added to the group
                       type: object
                       properties:
                         no_duplicates:
+                          description: (Dis)allow contacts that already exist in *this* group to be added to the group
                           type: boolean
+                          example: true
                         no_duplicates_in_any_group:
+                          description: (Dis)allow contacts that already exist in *any* group to be added to the group
                           type: boolean
+                          nullable: true
+                          example: false
                     messages:
+                      description: Controls the rate and frequency of which messages can be sent to contacts of the group
                       type: object
                       properties:
                         max:
+                          description: Maximum amount of messages per the defined period (frequency)
                           type: integer
+                          example: 2
                         period:
+                          description: The frequency period to limit message sends on
                           type: string
                           enum:
                             - d
@@ -887,21 +896,98 @@ paths:
                             - q
                             - hy
                             - 'y'
+                          example: d
                         include_reminders:
+                          description: Include reminder messages in the check
                           type: boolean
+                          example: false
                     filter:
+                      description: Determines whether a contact can be added or not
                       type: object
                       properties:
                         tag:
+                          description: The tag the group filters on when adding contacts
                           type: string
                           nullable: true
-                          example: ''
+                          example: locale
                         value:
+                          description: The value that the group tag filter must find to allow a contact to be stored
                           type: string
                           nullable: true
-                          example: ''
+                          example: nl
                 smart_fields:
-                  type: object
+                  anyOf:
+                    - type: array
+                      description: Array of smart field objects
+                      items:
+                        type: object
+                        description: Smart field object
+                        properties:
+                          type:
+                            type: string
+                            example: text
+                            enum:
+                              - datetime
+                              - date
+                              - time
+                              - number
+                              - text
+                              - user
+                              - team
+                              - language
+                            description: Smart field type
+                          name:
+                            type: string
+                            example: My smart field
+                            description: Smart field name
+                          value:
+                            type: string
+                            description: Smart field value
+                            example: My value
+                    - type: object
+                      description: Smart field key value object
+                      properties:
+                        field_name:
+                          type: string
+                          description: Example field
+                  description: Array or object of smart fields
+              required:
+                - name
+            examples:
+              Example 1:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    - type: text
+                      name: My smart field
+                      value: My value
+              Example 2:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    my_smart_field: My value
         description: |-
           Just like with the contact endpoint(s). The group endpoint(s) have some built in flexibility regarding the smart fields. There's 2 ways a smart field can be added.
 
@@ -920,9 +1006,171 @@ paths:
           description: Group updated response
         '404':
           $ref: '#/components/responses/404'
+    patch:
+      summary: Partially update a group
+      description: This endpoint partially updates the group and data given in the request body.
+      operationId: partiallyUpdateGroup
+      tags:
+        - Groups
+      parameters:
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Name of the group
+                  type: string
+                  example: My Group
+                limits:
+                  description: Rules for limiting message sends and adding contacts to the groups
+                  type: object
+                  properties:
+                    contacts:
+                      description: Filters that determine if an existing contact can be added to the group
+                      type: object
+                      properties:
+                        no_duplicates:
+                          description: (Dis)allow contacts that already exist in *this* group to be added to the group
+                          type: boolean
+                          example: true
+                        no_duplicates_in_any_group:
+                          description: (Dis)allow contacts that already exist in *any* group to be added to the group
+                          type: boolean
+                          nullable: true
+                          example: false
+                    messages:
+                      description: Controls the rate and frequency of which messages can be sent to contacts of the group
+                      type: object
+                      properties:
+                        max:
+                          description: Maximum amount of messages per the defined period (frequency)
+                          type: integer
+                          example: 2
+                        period:
+                          description: The frequency period to limit message sends on
+                          type: string
+                          enum:
+                            - d
+                            - w
+                            - m
+                            - q
+                            - hy
+                            - 'y'
+                          example: d
+                        include_reminders:
+                          description: Include reminder messages in the check
+                          type: boolean
+                          example: false
+                    filter:
+                      description: Determines whether a contact can be added or not
+                      type: object
+                      properties:
+                        tag:
+                          description: The tag the group filters on when adding contacts
+                          type: string
+                          nullable: true
+                          example: locale
+                        value:
+                          description: The value that the group tag filter must find to allow a contact to be stored
+                          type: string
+                          nullable: true
+                          example: nl
+                smart_fields:
+                  anyOf:
+                    - type: array
+                      description: Array of smart field objects
+                      items:
+                        type: object
+                        description: Smart field object
+                        properties:
+                          type:
+                            type: string
+                            example: text
+                            enum:
+                              - datetime
+                              - date
+                              - time
+                              - number
+                              - text
+                              - user
+                              - team
+                              - language
+                            description: Smart field type
+                          name:
+                            type: string
+                            example: My smart field
+                            description: Smart field name
+                          value:
+                            type: string
+                            description: Smart field value
+                            example: My value
+                    - type: object
+                      description: Smart field key value object
+                      properties:
+                        field_name:
+                          type: string
+                          description: Example field
+                  description: Array or object of smart fields
+              required:
+                - name
+            examples:
+              Example 1:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    - type: text
+                      name: My smart field
+                      value: My value
+              Example 2:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    my_smart_field: My value
+        description: |-
+          Just like with the contact endpoint(s). The group endpoint(s) have some built in flexibility regarding the smart fields. There's 2 ways a smart field can be added.
+
+          The first way is by adding an object to the smart field array with the properties: name, type and value. This way you have full control over how the system processes the new smart field.
+
+          The second way is by name and value just like on the contacts endpoints. Our API checks which type of data your name value pair(s) contain(s). When it can't figure out what type of data the field contains it will default to a text field.
+
+          _See the example request bodies to gain a better view of this flexibility._
+
+          <!-- theme: info -->
+          > This endpoint can only add smart fields, not remove them.
+      responses:
+        '204':
+          description: Group updated response
+        '404':
+          $ref: '#/components/responses/404'
     delete:
       summary: Delete a group
-      description: Description
+      description: This endpoint deletes the given group.
       operationId: deleteGroup
       tags:
         - Groups
@@ -934,7 +1182,15 @@ paths:
           description: Group deleted response
         '404':
           $ref: '#/components/responses/404'
-    
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: ea10916d-0684-4624-9d07-d341193554cf
+        name: id
+        in: path
+        required: true
+        description: id of the group
   /users:
     get:
       description: Description
@@ -1238,7 +1494,7 @@ paths:
         description: id of the account
     get:
       summary: Retrieve an account
-      description: 'This enpoint retrieves a single account the access token''s owner belongs to based on it''s identifier. '
+      description: This enpoint retrieves a single account the access token's owner belongs to.
       operationId: get-accounts-id
       tags:
         - Accounts
@@ -1463,7 +1719,7 @@ paths:
         in: path
         required: true
     get:
-      description: This endpoint retrieves a single feedback item based on it's identifier.
+      description: This endpoint retrieves a single feedback item from your account.
       summary: Retrieve a feedback item
       tags:
         - Feedback
