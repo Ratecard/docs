@@ -22,22 +22,22 @@ properties:
     description: Review URLs for the team
     properties:
       google:
-        type: 
+        type:
           - string
           - 'null'
         description: The team's Google review URL
       facebook:
-        type: 
+        type:
           - string
           - 'null'
         description: The team's Facebook review URL
       indeed:
-        type: 
+        type:
           - string
           - 'null'
         description: The team's Indeed review URL
       glassdoor:
-        type: 
+        type:
           - string
           - 'null'
         description: The team's Glassdoor review URL
@@ -53,3 +53,7 @@ properties:
     readOnly: true
 required:
   - name
+description: |-
+  This is the team model. It contains the information regarding a team in your account.
+
+  Previously this was called a department in our app. When the word department shows up in the API you can assume this means it's a team. Some older data and smart fields still use this term to date for compatibility reasons.

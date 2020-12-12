@@ -1,6 +1,6 @@
 title: Contact
 type: object
-description: 'This is the contact model. It contains information regarding a contact. It also contains the the subcription status, external info and group data of the contact.'
+description: 'This is the contact model. It contains information regarding a contact in your account. It also contains the the subcription status, external info and group data of the contact.'
 properties:
   id:
     type: string

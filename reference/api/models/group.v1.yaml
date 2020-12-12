@@ -115,3 +115,4 @@ properties:
     type: string
     example: '2020-11-25T09:33:14.000000Z'
     readOnly: true
+description: This is the group model. It contains information regarding a group in your account and it's smart fields.

@@ -31,7 +31,7 @@ properties:
   subject:
     type: string
     description: Subject of the message
-    example: Hey John, how was your job application with our company?
+    example: 'Hey John, how was your job application with our company?'
   body:
     type: string
     description: The SMS text or email content (html)
@@ -243,3 +243,4 @@ properties:
     type: string
     example: '2020-11-25T09:33:14.000000Z'
     readOnly: true
+description: 'This is the message model. Messages contain the data sent to a recipient from a campaign. They are created during the distribution process and are updated when the recipient interacts with the email,  text they receive, or when they leave feedback. The metadata contains these statistics.'

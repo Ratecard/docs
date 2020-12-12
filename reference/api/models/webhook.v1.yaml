@@ -1,5 +1,6 @@
 title: Webhook
 type: object
+description: This is the webhook model. It contains the information regarding a webhook and it's metadata. Metadata will be added in a future update.
 properties:
   id:
     type: string
@@ -9,7 +10,7 @@ properties:
     readOnly: true
   name:
     type: string
-    description: Name of the webhook, if not given we create a default name
+    description: 'Name of the webhook, if not given we create a default name'
     example: My Webhook
   is_inbound:
     type: boolean
@@ -18,22 +19,24 @@ properties:
     default: false
   uses_signature:
     type: boolean
-    description: When true, webhook data must be signed with an HMAC (sha256).
+    description: 'When true, webhook data must be signed with an HMAC (sha256).'
     default: false
     example: false
   events:
     type: array
     description: Actions (inbound) and subscriptions (outbound) that your app or Ratecard listens for at the specified URLs.
-    items:
-      type: string
     example:
       - messages.sent
+    items:
+      type: string
   metadata:
     type: object
-    description: Webhook meta data, will contain relevant information in the future.
+    description: 'Webhook meta data, will contain relevant information in the future.'
     readOnly: true
-    properties:
   url:
+    type: string
+    description: This is the URL you specify for outbound webhooks or the URL we generate for inbound webhooks
+    format: uri
   secret:
     type: string
     description: The secret key used for signing and sending data between Ratecard and the connected apps

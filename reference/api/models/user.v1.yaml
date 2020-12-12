@@ -1,6 +1,6 @@
 title: User
 type: object
-description: ''
+description: 'This is the user model. It contains all basic info regarding a user in your account, their teams and notification settings, which can all be transformed using the API.'
 properties:
   id:
     type: string
