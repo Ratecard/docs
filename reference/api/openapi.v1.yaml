@@ -1,4 +1,4 @@
-openapi: 3.0.3
+tchopenapi: 3.0.3
 info:
   version: 0.2.0
   title: Ratecard API
@@ -25,7 +25,7 @@ paths:
   /contacts:
     get:
       summary: List of contacts
-      description: This endpoint retrieves a list of contacts from the account.
+      description: This endpoint retrieves a list of contacts from your account.
       operationId: listContacts
       tags:
         - Contacts
@@ -502,7 +502,7 @@ paths:
   /groups:
     get:
       summary: List of groups
-      description: Description
+      description: This endpoint retrieves a list of groups from your account.
       operationId: listGroups
       tags:
         - Groups
@@ -563,6 +563,45 @@ paths:
                       total:
                         type: integer
                         example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Group
+                        limits:
+                          contacts:
+                            no_duplicates: true
+                            no_duplicates_in_any_group: false
+                          messages:
+                            max: 2
+                            period: d
+                            include_reminders: false
+                          filter:
+                            tag: locale
+                            value: nl
+                        smart_fields:
+                          - type: user
+                            name: owner
+                            slug: owner
+                            value: support@ratecard.io
+                            created_at: '2020-11-25T09:33:14.000000Z'
+                            updated_at: '2020-11-25T09:33:14.000000Z'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/groups?page=1'
+                      last: 'https://api.ratecard.io/v1/groups?page=100'
+                      prev: 'https://api.ratecard.io/v1/groups?page=1'
+                      next: 'https://api.ratecard.io/v1/groups?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/groups'
+                      per_page: 1
+                      to: 2
+                      total: 100
     post:
       summary: Add a new group
       description: Description
@@ -577,28 +616,38 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - name
               properties:
                 name:
+                  description: Name of the group
                   type: string
                   example: My Group
                 limits:
+                  description: Rules for limiting message sends and adding contacts to the groups
                   type: object
                   properties:
                     contacts:
+                      description: Filters that determine if an existing contact can be added to the group
                       type: object
                       properties:
                         no_duplicates:
+                          description: (Dis)allow contacts that already exist in *this* group to be added to the group
                           type: boolean
+                          example: true
                         no_duplicates_in_any_group:
+                          description: (Dis)allow contacts that already exist in *any* group to be added to the group
                           type: boolean
+                          nullable: true
+                          example: false
                     messages:
+                      description: Controls the rate and frequency of which messages can be sent to contacts of the group
                       type: object
                       properties:
                         max:
+                          description: Maximum amount of messages per the defined period (frequency)
                           type: integer
+                          example: 2
                         period:
+                          description: The frequency period to limit message sends on
                           type: string
                           enum:
                             - d
@@ -607,21 +656,106 @@ paths:
                             - q
                             - hy
                             - 'y'
+                          example: d
                         include_reminders:
+                          description: Include reminder messages in the check
                           type: boolean
+                          example: false
                     filter:
+                      description: Determines whether a contact can be added or not
                       type: object
                       properties:
                         tag:
+                          description: The tag the group filters on when adding contacts
                           type: string
                           nullable: true
-                          example: ''
+                          example: locale
                         value:
+                          description: The value that the group tag filter must find to allow a contact to be stored
                           type: string
                           nullable: true
-                          example: ''
+                          example: nl
                 smart_fields:
-                  type: object
+                  anyOf:
+                    - type: array
+                      description: Array of smart field objects
+                      items:
+                        type: object
+                        description: Smart field object
+                        properties:
+                          type:
+                            type: string
+                            example: text
+                            enum:
+                              - datetime
+                              - date
+                              - time
+                              - number
+                              - text
+                              - user
+                              - team
+                              - language
+                            description: Smart field type
+                          name:
+                            type: string
+                            example: My smart field
+                            description: Smart field name
+                          value:
+                            type: string
+                            description: Smart field value
+                            example: My value
+                    - type: object
+                      description: Smart field key value object
+                      properties:
+                        field_name:
+                          type: string
+                          description: Example field
+                  description: Array or object of smart fields
+              required:
+                - name
+            examples:
+              Example 1:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    - type: text
+                      name: My smart field
+                      value: My value
+              Example 2:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    my_smart_field: My value
+        description: |-
+          Just like with the contact endpoint(s). The group endpoint(s) have some built in flexibility regarding the smart fields. There's 2 ways a smart field can be added.
+
+          The first way is by adding an object to the smart field array with the properties: name, type and value. This way you have full control over how the system processes the new smart field.
+
+          The second way is by name and value just like on the contacts endpoints. Our API checks which type of data your name value pair(s) contain(s). When it can't figure out what type of data the field contains it will default to a text field. 
+
+          _See the example request bodies to gain a better view of this flexibility._
       responses:
         '201':
           description: Created
@@ -629,6 +763,31 @@ paths:
             application/json:
               schema:
                 $ref: ./models/group.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: My Group
+                    limits:
+                      contacts:
+                        no_duplicates: true
+                        no_duplicates_in_any_group: false
+                      messages:
+                        max: 2
+                        period: d
+                        include_reminders: false
+                      filter:
+                        tag: locale
+                        value: nl
+                    smart_fields:
+                      - type: user
+                        name: owner
+                        slug: owner
+                        value: support@ratecard.io
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           links:
             GetGroupById:
               operationId: getGroup
@@ -648,23 +807,18 @@ paths:
                 id: $response.body#/id
               description: |
                 The `id` value returned in the response can be used as the `id` parameter in `DELETE /groups/{id}`.
+        '422':
+          $ref: '#/components/responses/422'
   '/groups/{id}':
     get:
       summary: Retrieve a group
-      description: Description
+      description: This endpoint retrieves a single group based on their identifier from your account.
       operationId: getGroup
       tags:
         - Groups
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the group
-          required: true
-          schema:
-            type: integer
-            format: int64
       responses:
         '200':
           description: Group response
@@ -689,20 +843,13 @@ paths:
           $ref: '#/components/responses/404'
     put:
       summary: Update a group
-      description: Description
+      description: This endpoint updates the enitre group based on the identifier and data given in the request body.
       operationId: updateGroup
       tags:
         - Groups
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the group
-          required: true
-          schema:
-            type: integer
-            format: int64
       requestBody:
         content:
           application/json:
@@ -755,6 +902,19 @@ paths:
                           example: ''
                 smart_fields:
                   type: object
+        description: |-
+          Just like with the contact endpoint(s). The group endpoint(s) have some built in flexibility regarding the smart fields. There's 2 ways a smart field can be added.
+
+          The first way is by adding an object to the smart field array with the properties: name, type and value. This way you have full control over how the system processes the new smart field.
+
+          The second way is by name and value just like on the contacts endpoints. Our API checks which type of data your name value pair(s) contain(s). When it can't figure out what type of data the field contains it will default to a text field.
+
+          _See the example request bodies to gain a better view of this flexibility._
+
+          <!-- theme: warning -->
+          > Do not forget that this is a `PUT` request. 
+          > 
+          > When smart fields are given through this request all smart fields not present in the request will be removed from the group.
       responses:
         '204':
           description: Group updated response
@@ -769,18 +929,12 @@ paths:
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the group
-          required: true
-          schema:
-            type: integer
-            format: int64
       responses:
         '204':
           description: Group deleted response
         '404':
           $ref: '#/components/responses/404'
+    
   /users:
     get:
       description: Description
@@ -1183,30 +1337,186 @@ paths:
       operationId: get-messages-id
   /feedback:
     get:
-      description: Description
+      description: This endpoint retrieves a list of the feedback in your account.
       summary: List of feedback
       tags:
         - Feedback
+      parameters:
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
       responses:
         '200':
-          description: Description
+          description: Paginated feedback response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/feedback.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/feedback?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/feedback?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/feedback?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/feedback?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/feedback'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        review: true
+                        anonymous: true
+                        closed: false
+                        respondent:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          first_name: John
+                          last_name: Doe
+                          email: johndoe@example.com
+                          phone: '612345678'
+                        form:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Form
+                        answers:
+                          - question_id: ea10916d-0684-4624-9d07-d341193554cf
+                            required: true
+                            hidden: false
+                            title: How would you rate Ratecard?
+                            type: rating
+                            value: 9
+                        replies:
+                          - subject: Thank you for your response
+                            message: We will make sure to forward your feedback to the right people in our organization.
+                            by: John Doe
+                        notes:
+                          - subject: Valuable feedback!
+                            message: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
+                            by: John Doe
+                        assignee: null
+                        score: 8.5
+                        nps: 9
+                        duration: 300
+                        locale: NL
+                        embed_url: 'https://ratecard.io/embed/feedback/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                        completed_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/feedback?page=1'
+                      last: 'https://api.ratecard.io/v1/feedback?page=100'
+                      prev: 'https://api.ratecard.io/v1/feedback?page=1'
+                      next: 'https://api.ratecard.io/v1/feedback?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/feedback'
+                      per_page: 1
+                      to: 2
+                      total: 100
       operationId: get-feedback
   '/feedback/{id}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: id
         in: path
         required: true
     get:
-      description: Description
+      description: This endpoint retrieves a single feedback item based on it's identifier.
       summary: Retrieve a feedback item
       tags:
         - Feedback
       responses:
         '200':
           description: Description
+          content:
+            application/json:
+              schema:
+                $ref: ./models/feedback.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    review: true
+                    anonymous: true
+                    closed: false
+                    respondent:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      first_name: John
+                      last_name: Doe
+                      email: johndoe@example.com
+                      phone: '612345678'
+                    form:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Form
+                    answers:
+                      - question_id: ea10916d-0684-4624-9d07-d341193554cf
+                        required: true
+                        hidden: false
+                        title: How would you rate Ratecard?
+                        type: rating
+                        value: 9
+                    replies:
+                      - subject: Thank you for your response
+                        message: We will make sure to forward your feedback to the right people in our organization.
+                        by: John Doe
+                    notes:
+                      - subject: Valuable feedback!
+                        message: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
+                        by: John Doe
+                    assignee: null
+                    score: 8.5
+                    nps: 9
+                    duration: 300
+                    locale: NL
+                    embed_url: 'https://ratecard.io/embed/feedback/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+                    completed_at: '2020-11-25T09:33:14.000000Z'
       operationId: get-feedback-id
+      parameters:
+        - $ref: '#/components/parameters/fieldsparam'
   '/groups/{group_id}/contacts':
     parameters:
       - schema:
