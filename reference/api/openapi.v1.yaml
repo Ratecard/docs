@@ -25,7 +25,7 @@ paths:
   /contacts:
     get:
       summary: List of contacts
-      description: This is the list of contacts
+      description: This endpoint retrieves a list of contacts from the account.
       operationId: listContacts
       tags:
         - Contacts
@@ -86,9 +86,58 @@ paths:
                       total:
                         type: integer
                         example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        first_name: John
+                        last_name: Doe
+                        email: johndoe@ratecard.io
+                        phone: '0612345678'
+                        subscribed: true
+                        unsubscribe_date: null
+                        anonymous: false
+                        external_type: Contact
+                        external_id: ea10916d-0684-4624-9d07-d341193554cf
+                        synced_at: '2020-11-25T09:33:14.000000Z'
+                        groups:
+                          - id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: My Group
+                            smart_fields:
+                              owner:
+                                id: ea10916d-0684-4624-9d07-d341193554cf
+                                name: John Doe
+                                email: johndoe@ratecard.io
+                              team:
+                                id: ea10916d-0684-4624-9d07-d341193554cf
+                                name: My Team
+                                email: myteam@ratecard.io
+                              notes: John Doe is an example for us all.
+                              credits: 154325
+                              time_of_arrival: '09:33:14.000000Z'
+                              date_of_arrival: '2020-11-25'
+                              datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                              locale: en
+                        embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/contacts?page=1'
+                      last: 'https://api.ratecard.io/v1/contacts?page=100'
+                      prev: 'https://api.ratecard.io/v1/contacts?page=1'
+                      next: 'https://api.ratecard.io/v1/contacts?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/contacts'
+                      per_page: 1
+                      to: 2
+                      total: 100
     post:
       summary: Add a new contact
-      description: Description
+      description: 'This endpoint is used to add a contact to the account. '
       operationId: addContact
       tags:
         - Contacts
@@ -100,29 +149,122 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - first_name
-                - last_name
-                - email
               properties:
                 first_name:
                   type: string
                   example: John
+                  description: The contact's first name
                 last_name:
                   type: string
                   example: Doe
+                  description: The contact's last name
+                name:
+                  type: string
+                  description: 'Alternative to first and last name, can be used instead'
+                  example: John Doe
                 email:
                   type: string
                   example: johndoe@ratecard.io
+                  description: The contact's email address
                 phone:
                   type: string
                   example: '0612345678'
+                  description: The contact's phone number
                 subscribed:
                   type: boolean
                   example: true
+                  description: Subscribe the contact to be able to send them mail and texts
                 anonymous:
                   type: boolean
                   example: false
+                  description: Make the contact anonymous
+                groups:
+                  type: array
+                  description: Add the contact to one or many groups with smart fields (see examples)
+                  items:
+                    anyOf:
+                      - properties:
+                          id:
+                            type: string
+                            format: uuid
+                            example: ea10916d-0684-4624-9d07-d341193554cf
+                            description: group id
+                        description: Add to group by group id
+                        required:
+                          - id
+                      - properties:
+                          name:
+                            type: string
+                            example: My Group
+                            description: Group name
+                        description: Add to group by group name (creates new group if group not found)
+                        required:
+                          - name
+                    description: Different ways to add a contact to a group
+                    type: object
+              required:
+                - email
+            examples:
+              Example 1:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  groups:
+                    - id: ea10916d-0684-4624-9d07-d341193554cf
+                      owner: johndoe@ratecard.io
+                      notes: John Doe is an example for us all.
+                      credits: 154325
+                      time_of_arrival: '09:33:14.000000Z'
+                      date_of_arrival: '2020-11-25'
+                      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                      locale: en
+              Example 2:
+                value:
+                  name: John Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  groups:
+                    - name: My Group
+                      owner: ea10916d-0684-4624-9d07-d341193554cf
+                      notes: John Doe is an example for us all.
+                      credits: 154325
+                      time_of_arrival: '09:33:14.000000Z'
+                      date_of_arrival: '2020-11-25'
+                      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                      locale: en
+              Example 3:
+                value:
+                  name: 'Doe, John'
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  groups:
+                    - id: ea10916d-0684-4624-9d07-d341193554cf
+                      owner: John Doe
+                      notes: John Doe is an example for us all.
+                      credits: 154325
+                      time_of_arrival: '09:33:14.000000Z'
+                      date_of_arrival: '2020-11-25'
+                      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                      locale: en
+        description: |-
+          Contacts can be added in a few ways. The endpoint is very flexible in how it accepts the data to be able to process as many use cases as possible. 
+
+          A contact's name can be added in 3 different ways for example:
+          1. With their first and last name in separate keys
+          2. With their first and last name with a space in between
+          3. Wit their last name first and then a comma plus space, followed by their first name
+
+          How a contact is added to a group is also very flexible. A contact can be added to a group with the group id or name of the group present in the object. The rest of the keys given to group objects are smart fields by name and value pairs.
+
+          _See the example request bodies to gain a better view of this flexibility._
       responses:
         '201':
           description: Created
@@ -130,6 +272,41 @@ paths:
             application/json:
               schema:
                 $ref: ./models/contact.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    first_name: John
+                    last_name: Doe
+                    email: johndoe@ratecard.io
+                    phone: '0612345678'
+                    subscribed: true
+                    unsubscribe_date: null
+                    anonymous: false
+                    external_type: Contact
+                    external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    synced_at: '2020-11-25T09:33:14.000000Z'
+                    groups:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Group
+                        smart_fields:
+                          owner:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: John Doe
+                            email: johndoe@ratecard.io
+                          team:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: My Team
+                            email: myteam@ratecard.io
+                          notes: John Doe is an example for us all.
+                          credits: 154325
+                          time_of_arrival: '09:33:14.000000Z'
+                          date_of_arrival: '2020-11-25'
+                          datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                          locale: en
+                    embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           links:
             GetContactById:
               operationId: getContact
@@ -149,23 +326,19 @@ paths:
                 id: $response.body#/id
               description: |
                 The `id` value returned in the response can be used as the `id` parameter in `DELETE /contacts/{id}`.
+        '422':
+          $ref: '#/components/responses/422'
   '/contacts/{id}':
     get:
       summary: Retrieve a contact
-      description: Description
+      description: This endpoints retrieves a contact based on their identifier.
       operationId: getContact
       tags:
         - Contacts
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the contact
-          required: true
-          schema:
-            type: integer
-            format: int64
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Contact response
@@ -173,6 +346,41 @@ paths:
             application/json:
               schema:
                 $ref: ./models/contact.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    first_name: John
+                    last_name: Doe
+                    email: johndoe@ratecard.io
+                    phone: '0612345678'
+                    subscribed: true
+                    unsubscribe_date: null
+                    anonymous: false
+                    external_type: Contact
+                    external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    synced_at: '2020-11-25T09:33:14.000000Z'
+                    groups:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Group
+                        smart_fields:
+                          owner:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: John Doe
+                            email: johndoe@ratecard.io
+                          team:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: My Team
+                            email: myteam@ratecard.io
+                          notes: John Doe is an example for us all.
+                          credits: 154325
+                          time_of_arrival: '09:33:14.000000Z'
+                          date_of_arrival: '2020-11-25'
+                          datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                          locale: en
+                    embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           links:
             UpdateContactById:
               operationId: updateContact
@@ -190,20 +398,13 @@ paths:
           $ref: '#/components/responses/404'
     put:
       summary: Update a contact
-      description: Description
+      description: This endpoint is used to update a contact without group related information.
       operationId: updateContact
       tags:
         - Contacts
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the contact
-          required: true
-          schema:
-            type: integer
-            format: int64
       requestBody:
         content:
           application/json:
@@ -213,21 +414,63 @@ paths:
                 first_name:
                   type: string
                   example: John
+                  description: The contact's first name
                 last_name:
                   type: string
                   example: Doe
+                  description: The contact's last name
+                name:
+                  type: string
+                  description: 'Alternative to first and last name, can be used instead'
+                  example: John Doe
                 email:
                   type: string
                   example: johndoe@ratecard.io
+                  description: The contact's email address
                 phone:
                   type: string
                   example: '0612345678'
+                  description: The contact's phone number
                 subscribed:
                   type: boolean
                   example: true
+                  description: Subscribe the contact to be able to send them mail and texts
                 anonymous:
                   type: boolean
                   example: false
+                  description: Make the contact anonymous
+              required:
+                - email
+            examples:
+              Example 1:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+              Example 2:
+                value:
+                  name: John Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+              Example 3:
+                value:
+                  name: 'Doe, John'
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+        description: |-
+          Similar to the contacts create endpoint, only without the group functionality as this process is handled in the group scoped contact endpoints. The big difference is how the anonymous property is handled. Once a contact is anonymous in our system it will remain anonymous in order to protect their anonimity, meaning a contact can only be anonymized in this endpoint and not the other way around.
+
+          A contact's name can be added in 3 different ways for example:
+          1. With their first and last name in separate keys
+          2. With their first and last name with a space in between
+          3. Wit their last name first and then a comma plus space, followed by their first name
       responses:
         '204':
           description: Contact updated response
@@ -235,25 +478,27 @@ paths:
           $ref: '#/components/responses/404'
     delete:
       summary: Delete a contact
-      description: Description
+      description: This endpoint is used to delete a contact from your account.
       operationId: deleteContact
       tags:
         - Contacts
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the contact
-          required: true
-          schema:
-            type: integer
-            format: int64
       responses:
-        '204':
-          description: Contact deleted response
+        '200':
+          $ref: '#/components/responses/200-(deleted)'
         '404':
           $ref: '#/components/responses/404'
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: ea10916d-0684-4624-9d07-d341193554cf
+        name: id
+        in: path
+        required: true
+        description: id of the contact
   /groups:
     get:
       summary: List of groups
@@ -698,7 +943,7 @@ paths:
   /accounts:
     get:
       summary: List of accounts
-      description: This is the list of accounts
+      description: This endpoint retrieves a list of accounts the access token's owner belongs to.
       tags:
         - Accounts
       parameters:
@@ -758,25 +1003,95 @@ paths:
                       total:
                         type: integer
                         example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: Ratecard
+                        public: false
+                        general:
+                          website: 'https://ratecard.io/'
+                          phone: +31 6 123 45 678
+                          address: Jisperweg 2
+                          zip_code: 1463 ND
+                          city: Noordbeemster
+                          country: NL
+                          description: ''
+                          company_size: 2-10
+                          industries:
+                            - Staffing and Recruiting
+                          profiles:
+                            facebook: 'https://www.facebook.com/ratecardio'
+                            twiter: 'https://twitter.com/ratecardio'
+                            linkedin: 'https://www.linkedin.com/company/10642017'
+                            glassdoor: ''
+                          review_urls:
+                            google: ''
+                            indeed: ''
+                            glassdoor: ''
+                            facebook: ''
+                        branding:
+                          logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                          header: 'https://ratecard.io/img/accounts/header_image/ratecard-613524.png'
+                          forms:
+                            logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                            colors:
+                              navigation: '#1d8bdf'
+                              background: '#ffffff'
+                              buttons: '#1d8bdf'
+                          campaigns:
+                            logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                            colors:
+                              primary: '#1d8bdf'
+                              secondary: '#ffffff'
+                              tertiary: '#1d8bdf'
+                        limits:
+                          messages:
+                            max: 2
+                            period: d
+                            include_reminders: false
+                          allowed_domains: 'ratecard.io, ratecard.info, etc...'
+                        source: Bullhorn
+                        date_last_login: '2020-11-25T09:33:14.000000Z'
+                        access_token: string
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/accounts?page=1'
+                      last: 'https://api.ratecard.io/v1/accounts?page=100'
+                      prev: 'https://api.ratecard.io/v1/accounts?page=1'
+                      next: 'https://api.ratecard.io/v1/accounts?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/accounts'
+                      per_page: 1
+                      to: 2
+                      total: 100
           headers: {}
       operationId: get-accounts
   '/accounts/{id}':
     parameters:
       - schema:
           type: string
+          format: uuid
+          example: ea10916d-0684-4624-9d07-d341193554cf
         name: id
         in: path
         required: true
         description: id of the account
     get:
       summary: Retrieve an account
-      description: Description
+      description: 'This enpoint retrieves a single account the access token''s owner belongs to based on it''s identifier. '
       operationId: get-accounts-id
       tags:
         - Accounts
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Account response
@@ -784,6 +1099,59 @@ paths:
             application/json:
               schema:
                 $ref: ./models/account.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: Ratecard
+                    public: false
+                    general:
+                      website: 'https://ratecard.io/'
+                      phone: +31 6 123 45 678
+                      address: Jisperweg 2
+                      zip_code: 1463 ND
+                      city: Noordbeemster
+                      country: NL
+                      description: ''
+                      company_size: 2-10
+                      industries:
+                        - Staffing and Recruiting
+                      profiles:
+                        facebook: 'https://www.facebook.com/ratecardio'
+                        twiter: 'https://twitter.com/ratecardio'
+                        linkedin: 'https://www.linkedin.com/company/10642017'
+                        glassdoor: ''
+                      review_urls:
+                        google: ''
+                        indeed: ''
+                        glassdoor: ''
+                        facebook: ''
+                    branding:
+                      logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                      header: 'https://ratecard.io/img/accounts/header_image/ratecard-613524.png'
+                      forms:
+                        logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                        colors:
+                          navigation: '#1d8bdf'
+                          background: '#ffffff'
+                          buttons: '#1d8bdf'
+                      campaigns:
+                        logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                        colors:
+                          primary: '#1d8bdf'
+                          secondary: '#ffffff'
+                          tertiary: '#1d8bdf'
+                    limits:
+                      messages:
+                        max: 2
+                        period: d
+                        include_reminders: false
+                      allowed_domains: 'ratecard.io, ratecard.info, etc...'
+                    source: Bullhorn
+                    date_last_login: '2020-11-25T09:33:14.000000Z'
+                    access_token: string
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           headers: null
         '404':
           $ref: '#/components/responses/404'
@@ -862,7 +1230,7 @@ paths:
       tags:
         - Groups
         - Contacts
-      responses: 
+      responses: null
       operationId: post-groups-group_id-contacts
   '/groups/{group_id}/contacts/{contact_id}':
     parameters:
@@ -932,6 +1300,8 @@ components:
       schema:
         type: integer
         format: int32
+        minimum: 1
+        default: 1
     showParam:
       name: show
       in: query
@@ -942,6 +1312,11 @@ components:
       schema:
         type: integer
         format: int32
+        maximum: 100
+        minimum: 1
+        exclusiveMinimum: true
+        exclusiveMaximum: true
+        default: 5
     contentTypeParam:
       in: header
       name: Content-Type
@@ -975,9 +1350,17 @@ components:
       schema:
         type: integer
         example: 58
+    fieldsparam:
+      name: fields
+      in: query
+      schema:
+        type: string
+        example: 'first_name,last_name,email'
+      description: Comma separated parameter to select specific fields only from the response.
+      allowEmptyValue: true
   responses:
     '404':
-      description: Not found
+      description: Entity not found response
       content:
         application/json:
           schema:
@@ -986,3 +1369,43 @@ components:
               message:
                 type: string
                 example: Not found
+          examples:
+            Example:
+              value:
+                message: Entity not found!
+    '422':
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: The error message
+              errors:
+                type: object
+                description: An object that lists the unprocessable properties with an array of messages regarding the validation errors
+          examples:
+            Example:
+              value:
+                message: The given data was invalid.
+                errors:
+                  first_name:
+                    - The first_name field is required.
+                  email:
+                    - The email must be a valid email address.
+    200-(deleted):
+      description: Entity deletion response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Entity has been deleted!
+          examples:
+            Example:
+              value:
+                message: Entity has been deleted!
