@@ -52,6 +52,7 @@ properties:
     description: 'When a contact has been synced with an external system, this column is updated'
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     nullable: true
     readOnly: true
   groups:
@@ -68,11 +69,13 @@ properties:
     description: Date of creation
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   updated_at:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
 required:
   - id

@@ -45,11 +45,13 @@ properties:
     description: Date of creation
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   updated_at:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
 required:
   - name

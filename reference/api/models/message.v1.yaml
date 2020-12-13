@@ -45,8 +45,9 @@ properties:
     example: true
   remind_at:
     type: string
+    format: datetime
     description: The moment a reminder should be sent
-    example: true
+    example: '2020-11-25T09:33:14.000000Z'
   metadata:
     type: object
     description: Tracked data about the message
@@ -55,6 +56,7 @@ properties:
         type: string
         description: The date the message was sent
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
       status:
         type: string
         enum:
@@ -76,6 +78,7 @@ properties:
         type: string
         description: The moment when the first view is registered
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
       time_to_open:
         type: integer
         description: Time in seconds it took till the message was first viewed
@@ -84,6 +87,7 @@ properties:
         type: string
         description: The most recent moment the message was viewed
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
       clicks:
         type: integer
         description: Amount of times the message was clicked
@@ -92,6 +96,7 @@ properties:
         type: string
         description: The moment when the first click is registered
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
       time_to_click:
         type: integer
         description: Time in seconds it took till the message was first clicked
@@ -100,12 +105,14 @@ properties:
         type: string
         description: The most recent moment the message was clicked on
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
       left_feedback:
         type:
           - string
           - 'null'
         description: Date when the feedback was given if there's feedback
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
       time_to_rate:
         type: integer
         description: Time in seconds it took till the feedback was completed
@@ -233,14 +240,17 @@ properties:
     description: Date of creation
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
   updated_at:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   deleted_at:
     description: Date of deletion
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
 description: 'This is the message model. Messages contain the data sent to a recipient from a campaign. They are created during the distribution process and are updated when the recipient interacts with the email,  text they receive, or when they leave feedback. The metadata contains these statistics.'

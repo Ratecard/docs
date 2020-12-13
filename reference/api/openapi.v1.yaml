@@ -827,6 +827,31 @@ paths:
             application/json:
               schema:
                 $ref: ./models/group.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: My Group
+                    limits:
+                      contacts:
+                        no_duplicates: true
+                        no_duplicates_in_any_group: false
+                      messages:
+                        max: 2
+                        period: d
+                        include_reminders: false
+                      filter:
+                        tag: locale
+                        value: nl
+                    smart_fields:
+                      - type: user
+                        name: owner
+                        slug: owner
+                        value: support@ratecard.io
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           links:
             UpdateGroupById:
               operationId: updateGroup
@@ -1471,11 +1496,13 @@ paths:
                   description: Date of creation
                   type: string
                   example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
                   readOnly: true
                 updated_at:
                   description: Date last changed
                   type: string
                   example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
                   readOnly: true
               required:
                 - first_name
@@ -1564,7 +1591,7 @@ paths:
         - Users
       responses:
         '200':
-          description: Description
+          description: User response
           content:
             application/json:
               schema:
@@ -1612,6 +1639,8 @@ paths:
                         feedback_comments: true
                     created_at: '2020-11-25T09:33:14.000000Z'
                     updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-users-id
       parameters:
         - $ref: '#/components/parameters/fieldsparam'
@@ -1737,11 +1766,13 @@ paths:
                   description: Date of creation
                   type: string
                   example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
                   readOnly: true
                 updated_at:
                   description: Date last changed
                   type: string
                   example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
                   readOnly: true
         description: |-
           Just like with contacts and groups, you're currently unable to add/remove a user to/from a team with the user update request.
@@ -1756,6 +1787,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/200-(deleted)'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: delete-users-id
   /teams:
     get:
@@ -1784,14 +1817,34 @@ paths:
         name: id
         in: path
         required: true
+        description: The team id
     get:
-      description: Description
+      description: This endpoint is used to retrieve a single team from you account.
       summary: Retrieve a team
       tags:
         - Teams
       responses:
         '200':
-          description: Description
+          description: Group response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/team.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: Support
+                    email: support@ratecard.io
+                    review_urls:
+                      google: null
+                      facebook: null
+                      indeed: null
+                      glassdoor: null
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-teams-id
     put:
       description: Description
@@ -1834,17 +1887,39 @@ paths:
     parameters:
       - schema:
           type: string
+          format: uuid
         name: id
         in: path
         required: true
+        description: The webhook id
     get:
-      description: Description
+      description: This endpoint is used to retrieve a single webhook from your account.
       summary: Retrieve a webhook
       tags:
         - Webhooks
       responses:
         '200':
-          description: Description
+          description: Webhook response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/webhook.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: My Webhook
+                    is_inbound: false
+                    uses_signature: false
+                    events:
+                      - messages.sent
+                    metadata: {}
+                    url: 'http://example.com'
+                    secret: string
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-webhooks-id
     put:
       description: Description
@@ -2081,29 +2156,201 @@ paths:
           $ref: '#/components/responses/404'
   /messages:
     get:
-      description: Description
+      description: This endpoint is used to retrieve a list of messages from your account.
       summary: List of messages
       tags:
         - Messages
       responses:
         '200':
-          description: Description
+          description: Paginated message response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/message.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/messages?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/messages?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/messages?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/messages?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/messages'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        channel: email
+                        from: Ratecard
+                        to: johndoe@ratecard.io
+                        reply_to: johndoe@ratecard.io
+                        subject: 'Hey John, how was your job application with our company?'
+                        body: string
+                        language: EN
+                        reminder: true
+                        remind_at: '2020-11-25T09:33:14.000000Z'
+                        metadata:
+                          send_date: '2020-11-25T09:33:14.000000Z'
+                          status: feedback
+                          time_till_status: 450
+                          views: 2
+                          first_view_date: '2020-11-25T09:33:14.000000Z'
+                          time_to_open: 150
+                          last_view_date: '2020-11-25T09:33:14.000000Z'
+                          clicks: 2
+                          first_click_date: '2020-11-25T09:33:14.000000Z'
+                          time_to_click: 150
+                          last_click_date: '2020-11-25T09:33:14.000000Z'
+                          left_feedback: '2020-11-25T09:33:14.000000Z'
+                          time_to_rate: 150
+                        campaign:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Campaign
+                        form:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Form
+                        connectable:
+                          type: group
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Group
+                        connected_user:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: John Doe
+                          email: johndoe@ratecard.io
+                        recipient:
+                          type: contact
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: John Doe
+                          email: johndoe@example.com
+                        feedback: null
+                        embed_url: 'https://ratecard.io/embed/messages/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                        deleted_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/messages?page=1'
+                      last: 'https://api.ratecard.io/v1/messages?page=100'
+                      prev: 'https://api.ratecard.io/v1/messages?page=1'
+                      next: 'https://api.ratecard.io/v1/messages?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/messages'
+                      per_page: 1
+                      to: 2
+                      total: 100
       operationId: get-messages
   '/messages/{id}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: id
         in: path
         required: true
+        description: The message id
     get:
-      description: Description
+      description: This endpoint is used to retrieve a single message from your account
       summary: Retrieve a message
       tags:
         - Messages
       responses:
         '200':
-          description: Description
+          description: Message response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/message.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    channel: email
+                    from: Ratecard
+                    to: johndoe@ratecard.io
+                    reply_to: johndoe@ratecard.io
+                    subject: 'Hey John, how was your job application with our company?'
+                    body: string
+                    language: EN
+                    reminder: true
+                    remind_at: '2020-11-25T09:33:14.000000Z'
+                    metadata:
+                      send_date: '2020-11-25T09:33:14.000000Z'
+                      status: feedback
+                      time_till_status: 450
+                      views: 2
+                      first_view_date: '2020-11-25T09:33:14.000000Z'
+                      time_to_open: 150
+                      last_view_date: '2020-11-25T09:33:14.000000Z'
+                      clicks: 2
+                      first_click_date: '2020-11-25T09:33:14.000000Z'
+                      time_to_click: 150
+                      last_click_date: '2020-11-25T09:33:14.000000Z'
+                      left_feedback: '2020-11-25T09:33:14.000000Z'
+                      time_to_rate: 150
+                    campaign:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Campaign
+                    form:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Form
+                    connectable:
+                      type: group
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Group
+                    connected_user:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: John Doe
+                      email: johndoe@ratecard.io
+                    recipient:
+                      type: contact
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: John Doe
+                      email: johndoe@example.com
+                    feedback: null
+                    embed_url: 'https://ratecard.io/embed/messages/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+                    deleted_at: '2020-11-25T09:33:14.000000Z'
       operationId: get-messages-id
   /feedback:
     get:
@@ -2239,7 +2486,7 @@ paths:
         - Feedback
       responses:
         '200':
-          description: Description
+          description: Feedback response
           content:
             application/json:
               schema:

@@ -57,6 +57,7 @@ properties:
       - string
       - 'null'
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   smart_fields:
     type: object
@@ -109,14 +110,17 @@ properties:
         description: A smart field of type time
         type: string
         example: '09:33:14.000000Z'
+        format: time
       date_of_arrival:
         description: A smart field of type date
         type: string
         example: '2020-11-25'
+        format: date
       datetime_of_arrival:
         description: A smart field of type datetime
         type: string
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
       locale:
         description: A smart field of type language
         type: string
@@ -134,11 +138,13 @@ properties:
         type: string
         description: The date the contact was added to the group
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
         readOnly: true
       date_updated:
         type: string
         description: The date the contact was last updated within the group
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
         readOnly: true
   embed_url:
     type: string
@@ -150,11 +156,13 @@ properties:
     description: Date of creation
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   updated_at:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
 required:
   - id
