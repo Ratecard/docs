@@ -226,42 +226,4 @@ properties:
     example: '2020-11-25T09:33:14.000000Z'
     format: datetime
     readOnly: true
-x-examples:
-  Example:
-    id: ea10916d-0684-4624-9d07-d341193554cf
-    review: true
-    anonymous: true
-    closed: false
-    respondent:
-      id: ea10916d-0684-4624-9d07-d341193554cf
-      first_name: John
-      last_name: Doe
-      email: johndoe@example.com
-      phone: 612345678
-    form:
-      id: ea10916d-0684-4624-9d07-d341193554cf
-      name: My Form
-    answers:
-      - question_id: ea10916d-0684-4624-9d07-d341193554cf
-        required: true
-        hidden: false
-        title: How would you rate Ratecard?
-        type: rating
-        value: 9
-    replies:
-      - subject: Thank you for your response
-        message: We will make sure to forward your feedback to the right people in our organization.
-        by: John Doe
-    notes:
-      - subject: Valuable feedback!
-        message: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
-        by: John Doe
-    assignee: null
-    score: 8.5
-    nps: 9
-    duration: 300
-    locale: NL
-    embed_url: 'https://ratecard.io/embed/feedback/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
-    created_at: '2020-11-25T09:33:14.000000Z'
-    updated_at: '2020-11-25T09:33:14.000000Z'
-    completed_at: '2020-11-25T09:33:14.000000Z'
+x-examples: {}

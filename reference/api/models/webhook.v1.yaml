@@ -66,30 +66,4 @@ properties:
     readOnly: true
 required:
   - is_inbound
-x-examples:
-  Example inbound:
-    id: ea10916d-0684-4624-9d07-d341193554cf
-    name: My Inbound Webhook
-    is_inbound: true
-    uses_signature: false
-    events:
-      - contacts.create
-    metadata: {}
-    url: 'https://api.ratecard.io/v1/webhook/<secret>'
-    secret: <secret>
-    created_at: '2020-11-25T09:33:14.000000Z'
-    updated_at: '2020-11-25T09:33:14.000000Z'
-  Example outbound:
-    id: ea10916d-0684-4624-9d07-d341193554cf
-    name: My Outbound Webhook
-    is_inbound: false
-    uses_signature: false
-    events:
-      - messages.sent
-      - messages.opened
-      - messages.clicked
-    metadata: {}
-    url: 'https://my-company.com/webhook-receiver'
-    secret: <secret>
-    created_at: '2020-11-25T09:33:14.000000Z'
-    updated_at: '2020-11-25T09:33:14.000000Z'
+x-examples: {}

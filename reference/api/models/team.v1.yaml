@@ -59,15 +59,4 @@ description: |-
   This is the team model. It contains the information regarding a team in your account.
 
   Previously this was called a department in our app. When the word department shows up in the API you can assume this means it's a team. Some older data and smart fields still use this term to date for compatibility reasons.
-x-examples:
-  Example:
-    id: ea10916d-0684-4624-9d07-d341193554cf
-    name: Support
-    email: support@ratecard.io
-    review_urls:
-      google: null
-      facebook: null
-      indeed: null
-      glassdoor: null
-    created_at: '2020-11-25T09:33:14.000000Z'
-    updated_at: '2020-11-25T09:33:14.000000Z'
+x-examples: {}
