@@ -93,7 +93,7 @@ properties:
                 maximum: 10
                 minimum: 0
                 exclusiveMaximum: true
-                exclusiveMinimum: true
+                exclusiveMinimum: false
           feedback_comments:
             type: boolean
             description: Sends a notification when there's a new comment for feedback
@@ -115,7 +115,6 @@ properties:
                 maximum: 10
                 minimum: 0
                 exclusiveMaximum: true
-                exclusiveMinimum: true
           feedback_comments:
             type: boolean
             description: Sends a notification when there's a new comment for feedback
