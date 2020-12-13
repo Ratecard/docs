@@ -34,6 +34,7 @@ paths:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Paginated contact response
@@ -2199,6 +2200,7 @@ paths:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Paginated account response
@@ -2622,6 +2624,7 @@ paths:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Paginated feedback response
@@ -2792,16 +2795,9 @@ paths:
                     completed_at: '2020-11-25T09:33:14.000000Z'
       operationId: get-feedback-id
       parameters:
-        '0':
-          $ref: '#/components/parameters/fieldsparam'
-        '1':
-          schema:
-            type: string
-          in: header
-        '-':
-          schema:
-            type: string
-          in: query
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   '/groups/{group_id}/contacts':
     parameters:
       - schema:
