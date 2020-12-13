@@ -254,3 +254,53 @@ properties:
     format: datetime
     readOnly: true
 description: 'This is the message model. Messages contain the data sent to a recipient from a campaign. They are created during the distribution process and are updated when the recipient interacts with the email,  text they receive, or when they leave feedback. The metadata contains these statistics.'
+x-examples:
+  Example:
+    id: ea10916d-0684-4624-9d07-d341193554cf
+    channel: email
+    from: Ratecard
+    to: johndoe@ratecard.io
+    reply_to: johndoe@ratecard.io
+    subject: 'Hey John, how was your job application with our company?'
+    body: string
+    language: EN
+    reminder: true
+    remind_at: '2020-11-25T09:33:14.000000Z'
+    metadata:
+      send_date: '2020-11-25T09:33:14.000000Z'
+      status: feedback
+      time_till_status: 450
+      views: 2
+      first_view_date: '2020-11-25T09:33:14.000000Z'
+      time_to_open: 150
+      last_view_date: '2020-11-25T09:33:14.000000Z'
+      clicks: 2
+      first_click_date: '2020-11-25T09:33:14.000000Z'
+      time_to_click: 150
+      last_click_date: '2020-11-25T09:33:14.000000Z'
+      left_feedback: '2020-11-25T09:33:14.000000Z'
+      time_to_rate: 150
+    campaign:
+      id: ea10916d-0684-4624-9d07-d341193554cf
+      name: My Campaign
+    form:
+      id: ea10916d-0684-4624-9d07-d341193554cf
+      name: My Form
+    connectable:
+      type: group
+      id: ea10916d-0684-4624-9d07-d341193554cf
+      name: My Group
+    connected_user:
+      id: ea10916d-0684-4624-9d07-d341193554cf
+      name: John Doe
+      email: johndoe@ratecard.io
+    recipient:
+      type: contact
+      id: ea10916d-0684-4624-9d07-d341193554cf
+      name: John Doe
+      email: johndoe@example.com
+    feedback: null
+    embed_url: 'https://ratecard.io/embed/messages/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+    created_at: '2020-11-25T09:33:14.000000Z'
+    updated_at: '2020-11-25T09:33:14.000000Z'
+    deleted_at: '2020-11-25T09:33:14.000000Z'

@@ -77,3 +77,22 @@ properties:
         description: A smart field of type language
         type: string
         example: en
+x-examples:
+  Example:
+    id: ea10916d-0684-4624-9d07-d341193554cf
+    name: My Group
+    smart_fields:
+      owner:
+        id: ea10916d-0684-4624-9d07-d341193554cf
+        name: John Doe
+        email: johndoe@ratecard.io
+      team:
+        id: ea10916d-0684-4624-9d07-d341193554cf
+        name: My Team
+        email: myteam@ratecard.io
+      notes: John Doe is an example for us all.
+      credits: 154325
+      time_of_arrival: '09:33:14.000000Z'
+      date_of_arrival: '2020-11-25'
+      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+      locale: en

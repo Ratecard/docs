@@ -120,3 +120,27 @@ properties:
     format: datetime
     readOnly: true
 description: This is the group model. It contains information regarding a group in your account and it's smart fields.
+x-examples:
+  Example:
+    id: ea10916d-0684-4624-9d07-d341193554cf
+    name: My Group
+    limits:
+      contacts:
+        no_duplicates: true
+        no_duplicates_in_any_group: false
+      messages:
+        max: 2
+        period: d
+        include_reminders: false
+      filter:
+        tag: locale
+        value: nl
+    smart_fields:
+      - type: user
+        name: owner
+        slug: owner
+        value: support@ratecard.io
+        created_at: '2020-11-25T09:33:14.000000Z'
+        updated_at: '2020-11-25T09:33:14.000000Z'
+    created_at: '2020-11-25T09:33:14.000000Z'
+    updated_at: '2020-11-25T09:33:14.000000Z'
