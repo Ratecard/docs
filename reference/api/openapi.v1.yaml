@@ -511,6 +511,7 @@ paths:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Paginated group response
@@ -1332,7 +1333,13 @@ paths:
                       per_page: 1
                       to: 2
                       total: 100
+          headers: {}
       operationId: get-users
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
     post:
       description: Description
       summary: Add a new user
@@ -1575,6 +1582,9 @@ paths:
           Just like with adding contacts, a user can be added to one or more teams when being created. A team's ID or name can be used to add a user to the team. The API will create a new team when a name property is specified and a team with that name doesn't yet exist. It functions the same way as the add new team endpoint, so you can also add the other team properties if needed.
 
           > A team will not update here if it exists and a property is given that doesn't match it's group. value
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   '/users/{id}':
     parameters:
       - schema:
@@ -1644,6 +1654,8 @@ paths:
       operationId: get-users-id
       parameters:
         - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
     put:
       description: This endpoint is used to update a user in your account.
       summary: Update a user
@@ -1779,6 +1791,9 @@ paths:
 
           <!-- theme: warning -->
           > Be careful when updating user roles, so they don't get a role they shouldn't have
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
     delete:
       description: This endpoint is used to remove a user from your account.
       summary: Delete a user
@@ -1790,25 +1805,172 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       operationId: delete-users-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   /teams:
     get:
-      description: Description
+      description: This endpoint is used to retrieve a list of teams from your account.
       summary: List of teams
       tags:
         - Teams
       responses:
         '200':
-          description: Description
+          description: Paginated team response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/team.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/teams?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/teams?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/teams?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/teams?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/teams'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: Support
+                        email: support@ratecard.io
+                        review_urls:
+                          google: null
+                          facebook: null
+                          indeed: null
+                          glassdoor: null
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/teams?page=1'
+                      last: 'https://api.ratecard.io/v1/teams?page=100'
+                      prev: 'https://api.ratecard.io/v1/teams?page=1'
+                      next: 'https://api.ratecard.io/v1/teams?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/teams'
+                      per_page: 1
+                      to: 2
+                      total: 100
       operationId: get-teams
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
     post:
-      description: Description
+      description: This endpoint is used to add a team to your account.
       summary: Add a new team
       tags:
         - Teams
       responses:
         '200':
-          description: Description
+          description: Team response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/team.v1.yaml
+        '422':
+          $ref: '#/components/responses/422'
       operationId: post-teams
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the team
+                  example: Support
+                email:
+                  type:
+                    - string
+                    - 'null'
+                  description: Email of the team
+                  example: support@ratecard.io
+                review_urls:
+                  type: object
+                  description: Review URLs for the team
+                  properties:
+                    google:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Google review URL
+                    facebook:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Facebook review URL
+                    indeed:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Indeed review URL
+                    glassdoor:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Glassdoor review URL
+              required:
+                - name
+            examples:
+              Example:
+                value:
+                  name: Support
+                  email: support@ratecard.io
+                  review_urls:
+                    google: null
+                    facebook: null
+                    indeed: null
+                    glassdoor: null
   '/teams/{id}':
     parameters:
       - schema:
@@ -1846,24 +2008,92 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       operationId: get-teams-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/fieldsparam'
     put:
-      description: Description
+      description: This endpoint is used to update a team in your account.
       summary: Update a team
       tags:
         - Teams
       responses:
-        '200':
-          description: Description
+        '204':
+          description: Team update response
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
       operationId: put-teams
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the team
+                  example: Support
+                email:
+                  type:
+                    - string
+                    - 'null'
+                  description: Email of the team
+                  example: support@ratecard.io
+                review_urls:
+                  type: object
+                  description: Review URLs for the team
+                  properties:
+                    google:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Google review URL
+                    facebook:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Facebook review URL
+                    indeed:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Indeed review URL
+                    glassdoor:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Glassdoor review URL
+              required:
+                - name
+            examples:
+              Example:
+                value:
+                  name: Support
+                  email: support@ratecard.io
+                  review_urls:
+                    google: null
+                    facebook: null
+                    indeed: null
+                    glassdoor: null
     delete:
-      description: Description
+      description: This endpoint is used to remove a team from your account.
       summary: Delete a team
       tags:
         - Teams
       responses:
         '200':
-          description: Description
+          $ref: '#/components/responses/200-(deleted)'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: delete-teams-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   /webhooks:
     get:
       description: Description
@@ -1874,6 +2104,12 @@ paths:
         '200':
           description: Description
       operationId: get-webhooks
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
     post:
       description: Description
       summary: Add a new webhook
@@ -1883,6 +2119,9 @@ paths:
         '200':
           description: Description
       operationId: post-webhooks
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   '/webhooks/{id}':
     parameters:
       - schema:
@@ -1921,6 +2160,10 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       operationId: get-webhooks-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/fieldsparam'
     put:
       description: Description
       summary: Update a webhook
@@ -1930,6 +2173,9 @@ paths:
         '200':
           description: Description
       operationId: put-webhooks-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
     delete:
       description: Description
       summary: Delete a webhook
@@ -1939,6 +2185,9 @@ paths:
         '200':
           description: Description
       operationId: delete-webhooks-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   /accounts:
     get:
       summary: List of accounts
@@ -2279,6 +2528,12 @@ paths:
                       to: 2
                       total: 100
       operationId: get-messages
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
   '/messages/{id}':
     parameters:
       - schema:
@@ -2352,6 +2607,10 @@ paths:
                     updated_at: '2020-11-25T09:33:14.000000Z'
                     deleted_at: '2020-11-25T09:33:14.000000Z'
       operationId: get-messages-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/fieldsparam'
   /feedback:
     get:
       description: This endpoint retrieves a list of the feedback in your account.
@@ -2533,7 +2792,16 @@ paths:
                     completed_at: '2020-11-25T09:33:14.000000Z'
       operationId: get-feedback-id
       parameters:
-        - $ref: '#/components/parameters/fieldsparam'
+        '0':
+          $ref: '#/components/parameters/fieldsparam'
+        '1':
+          schema:
+            type: string
+          in: header
+        '-':
+          schema:
+            type: string
+          in: query
   '/groups/{group_id}/contacts':
     parameters:
       - schema:
@@ -2658,6 +2926,7 @@ paths:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
     post:
       description: This endpoint is used to add a single contact to a single group.
       summary: Add a contact to the group
@@ -2774,6 +3043,9 @@ paths:
           Instead of a `groups` property, the group contact has the properties `smart_fields` and `group_data`. Smart fields is an object that accepts name value pairs based on the smart field in the group. If a given name doesn't exist the API will try to figure out the smart field type and if it can't it will default to a text field, then save it to both the contact and the group.
 
           _See the example request bodies to gain a better view of this flexibility._
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   '/groups/{group_id}/contacts/{contact_id}':
     parameters:
       - schema:
@@ -3051,7 +3323,7 @@ components:
       allowEmptyValue: true
   responses:
     '404':
-      description: Entity not found response
+      description: This response returns an object with a message property containing the entity that couldn't be found.
       content:
         application/json:
           schema:
@@ -3065,7 +3337,10 @@ components:
               value:
                 message: Entity not found!
     '422':
-      description: Unable to process entity response
+      description: |-
+        This response returns an object with a message property that contains the main error message and an errors property that contains the detailed error messages. 
+
+        The errors property is an object that contains the properties which threw an error. The properties are each an array of strings. These might not always match the properties in your request body as the API restructures or renames some old data and properties to better reflect the meaning and intent of them in our systems. Error messages will be improved upon in the future, but should still give a clear enough response.
       content:
         application/json:
           schema:
@@ -3087,7 +3362,7 @@ components:
                   email:
                     - The email must be a valid email address.
     200-(deleted):
-      description: Entity deletion response
+      description: This response contains an object with a message to confirm that the entity has been deleted or removed from it's parent.
       content:
         application/json:
           schema:
