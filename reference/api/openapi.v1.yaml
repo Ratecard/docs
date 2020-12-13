@@ -2538,27 +2538,242 @@ paths:
     parameters:
       - schema:
           type: string
+          format: uuid
         name: group_id
         in: path
         required: true
     get:
-      description: Description
+      description: This endpoint retrieves a list of contacts that belong to the given group from your account.
       summary: List of contacts in the group
       tags:
         - Groups
         - Contacts
       responses:
         '200':
-          description: Description
+          description: Paginated group contact response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/groupContact.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        first_name: John
+                        last_name: Doe
+                        email: johndoe@ratecard.io
+                        phone: '0612345678'
+                        subscribed: true
+                        unsubscribe_date: null
+                        anonymous: false
+                        external_type: Contact
+                        external_id: ea10916d-0684-4624-9d07-d341193554cf
+                        synced_at: '2020-11-25T09:33:14.000000Z'
+                        smart_fields:
+                          owner:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: John Doe
+                            email: johndoe@ratecard.io
+                          team:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: My Team
+                            email: myteam@ratecard.io
+                          notes: John Doe is an example for us all.
+                          credits: 154325
+                          time_of_arrival: '09:33:14.000000Z'
+                          date_of_arrival: '2020-11-25'
+                          datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                          locale: en
+                        group_data:
+                          subscribed: true
+                          date_added: '2020-11-25T09:33:14.000000Z'
+                          date_updated: '2020-11-25T09:33:14.000000Z'
+                        embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=1'
+                      last: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=100'
+                      prev: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=1'
+                      next: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/groups/{group_id}/contacts'
+                      per_page: 1
+                      to: 2
+                      total: 100
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-groups-group_id-contacts
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
     post:
-      description: Description
+      description: This endpoint is used to add a single contact to a single group.
       summary: Add a contact to the group
       tags:
         - Groups
         - Contacts
-      responses: null
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
       operationId: post-groups-group_id-contacts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: John
+                  description: The contact's first name
+                last_name:
+                  type: string
+                  example: Doe
+                  description: The contact's last name
+                name:
+                  type: string
+                  description: 'Alternative to first and last name, can be used instead'
+                  example: John Doe
+                email:
+                  type: string
+                  example: johndoe@ratecard.io
+                  description: The contact's email address
+                phone:
+                  type: string
+                  example: '0612345678'
+                  description: The contact's phone number
+                subscribed:
+                  type: boolean
+                  example: true
+                  description: Subscribe the contact to be able to send them mail and texts
+                anonymous:
+                  type: boolean
+                  example: false
+                  description: Make the contact anonymous
+                smart_fields:
+                  type: object
+                  description: Object of smart fields with name value pairing
+                  properties:
+                    example_field:
+                      type: string
+                      example: example value
+                group_data:
+                  type: object
+                  description: Data belonging to the contact in association with the group
+                  properties:
+                    subscribed:
+                      type: boolean
+                      description: The contact's subscription status to the group (For text & mail to the group)
+                      default: true
+                      example: true
+            examples:
+              Example 1:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                  group_data:
+                    subscribed: true
+              Example 2:
+                value:
+                  name: John Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                    owner: support@ratecard.io
+                  group_data:
+                    subscribed: false
+              Example 3:
+                value:
+                  name: 'Doe, John'
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                  group_data:
+                    subscribed: true
+        description: |-
+          Contacts can be added in a few ways. The endpoint is very flexible in how it accepts the data to be able to process as many use cases as possible just like the regular contact add, but with a few differences now that it's scoped to the group.
+
+          A contact's name can be added in 3 different ways for example:
+          1. With their first and last name in separate keys
+          2. With their first and last name with a space in between
+          3. Wit their last name first and then a comma plus space, followed by their first name
+
+          Instead of a `groups` property, the group contact has the properties `smart_fields` and `group_data`. Smart fields is an object that accepts name value pairs based on the smart field in the group. If a given name doesn't exist the API will try to figure out the smart field type and if it can't it will default to a text field, then save it to both the contact and the group.
+
+          _See the example request bodies to gain a better view of this flexibility._
   '/groups/{group_id}/contacts/{contact_id}':
     parameters:
       - schema:
@@ -2566,40 +2781,189 @@ paths:
         name: group_id
         in: path
         required: true
+        description: The group id
       - schema:
           type: string
         name: contact_id
         in: path
         required: true
+        description: The contact id
     get:
-      description: Description
+      description: This endpoint is used to retrieve a single contact of the given group from your account.
       summary: Retrieve a contact from the group
       tags:
         - Groups
         - Contacts
       responses:
         '200':
-          description: Description
+          description: Group contact response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/groupContact.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    first_name: John
+                    last_name: Doe
+                    email: johndoe@ratecard.io
+                    phone: '0612345678'
+                    subscribed: true
+                    unsubscribe_date: null
+                    anonymous: false
+                    external_type: Contact
+                    external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    synced_at: '2020-11-25T09:33:14.000000Z'
+                    smart_fields:
+                      owner:
+                        id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: John Doe
+                        email: johndoe@ratecard.io
+                      team:
+                        id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Team
+                        email: myteam@ratecard.io
+                      notes: John Doe is an example for us all.
+                      credits: 154325
+                      time_of_arrival: '09:33:14.000000Z'
+                      date_of_arrival: '2020-11-25'
+                      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                      locale: en
+                    group_data:
+                      subscribed: true
+                      date_added: '2020-11-25T09:33:14.000000Z'
+                      date_updated: '2020-11-25T09:33:14.000000Z'
+                    embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-groups-group_id-contacts-contact_id
+      parameters:
+        - $ref: '#/components/parameters/fieldsparam'
     put:
-      description: Description
+      description: This endpoint is used to update a contact in a group
       summary: Update a contact in the group
       tags:
         - Groups
         - Contacts
       responses:
-        '200':
+        '204':
           description: Description
+        '404':
+          $ref: '#/components/responses/404'
       operationId: put-groups-group_id-contacts-contact_id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: John
+                  description: The contact's first name
+                last_name:
+                  type: string
+                  example: Doe
+                  description: The contact's last name
+                name:
+                  type: string
+                  description: 'Alternative to first and last name, can be used instead'
+                  example: John Doe
+                email:
+                  type: string
+                  example: johndoe@ratecard.io
+                  description: The contact's email address
+                phone:
+                  type: string
+                  example: '0612345678'
+                  description: The contact's phone number
+                subscribed:
+                  type: boolean
+                  example: true
+                  description: Subscribe the contact to be able to send them mail and texts
+                anonymous:
+                  type: boolean
+                  example: false
+                  description: Make the contact anonymous
+                smart_fields:
+                  type: object
+                  description: Object of smart fields with name value pairing
+                  properties:
+                    example_field:
+                      type: string
+                      example: example value
+                group_data:
+                  type: object
+                  description: Data belonging to the contact in association with the group
+                  properties:
+                    subscribed:
+                      type: boolean
+                      description: The contact's subscription status to the group (For text & mail to the group)
+                      default: true
+                      example: true
+            examples:
+              Example 1:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                  group_data:
+                    subscribed: true
+              Example 2:
+                value:
+                  name: John Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                    owner: support@ratecard.io
+                  group_data:
+                    subscribed: false
+              Example 3:
+                value:
+                  name: 'Doe, John'
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                  group_data:
+                    subscribed: true
+        description: |-
+          Contacts can be updated in a few ways. The endpoint is very flexible in how it accepts the data to be able to process as many use cases as possible just like the regular contact update, but with a few differences now that it's scoped to the group.
+
+          A contact's name can be updated in 3 different ways for example:
+          1. With their first and last name in separate keys
+          2. With their first and last name with a space in between
+          3. Wit their last name first and then a comma plus space, followed by their first name
+
+          Instead of the contact losing it's `groups` property, the group contact keeps the properties `smart_fields` and `group_data`. Smart fields is an object that accepts name value pairs based on the smart field in the group. If a given name doesn't exist the API will try to figure out the smart field type and if it can't it will default to a text field, then save it to both the contact and the group.
+
+          > Smart fields can't be deleted from a contact, only a group can have its smart fields deleted with it's update (PUT) endpoint
+
+          _See the example request bodies to gain a better view of this flexibility._
     delete:
-      description: Description
+      description: 'This endpoint is used to remove a contact from the group. This request will not delete the contact itself, only the association with the group.'
       summary: Remove a contact from the group
       tags:
         - Groups
         - Contacts
       responses:
         '200':
-          description: Description
+          $ref: '#/components/responses/200-(deleted)'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: delete-groups-group_id-contacts-contact_id
 components:
   securitySchemes:

@@ -1,4 +1,4 @@
-title: Group Contact
+title: GroupContact
 type: object
 description: 'The group contact model is a variation on the contact model specific to the group scope and actions. It contains information regarding a contact with the inclusion of specific data regarding the current group and the ability to transform this data. A regular contact _can_ be added with (multiple) groups attached to it, but to modify (each) or remove this contact from the group(s), the group contact within the group scope is used. The difference between the regular contact and group contact is that it has `smart_fields` and `group_data` properties instead of an array of `groups`'
 properties:
