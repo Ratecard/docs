@@ -101,17 +101,23 @@ properties:
           description: Date of creation
           type: string
           example: '2020-11-25T09:33:14.000000Z'
+          format: datetime
         updated_at:
           description: Date last changed
           type: string
           example: '2020-11-25T09:33:14.000000Z'
+          format: datetime
   created_at:
     description: Date of creation
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   updated_at:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
+description: This is the group model. It contains information regarding a group in your account and it's smart fields.
+x-examples: {}

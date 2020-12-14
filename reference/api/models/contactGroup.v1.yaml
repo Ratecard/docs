@@ -62,15 +62,19 @@ properties:
         description: A smart field of type time
         type: string
         example: '09:33:14.000000Z'
+        format: time
       date_of_arrival:
         description: A smart field of type date
         type: string
         example: '2020-11-25'
+        format: date
       datetime_of_arrival:
         description: A smart field of type datetime
         type: string
         example: '2020-11-25T09:33:14.000000Z'
+        format: datetime
       locale:
         description: A smart field of type language
         type: string
         example: en
+x-examples: {}

@@ -25,7 +25,7 @@ paths:
   /contacts:
     get:
       summary: List of contacts
-      description: This is the list of contacts
+      description: This endpoint retrieves a list of contacts from your account.
       operationId: listContacts
       tags:
         - Contacts
@@ -34,6 +34,7 @@ paths:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Paginated contact response
@@ -86,9 +87,58 @@ paths:
                       total:
                         type: integer
                         example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        first_name: John
+                        last_name: Doe
+                        email: johndoe@ratecard.io
+                        phone: '0612345678'
+                        subscribed: true
+                        unsubscribe_date: null
+                        anonymous: false
+                        external_type: Contact
+                        external_id: ea10916d-0684-4624-9d07-d341193554cf
+                        synced_at: '2020-11-25T09:33:14.000000Z'
+                        groups:
+                          - id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: My Group
+                            smart_fields:
+                              owner:
+                                id: ea10916d-0684-4624-9d07-d341193554cf
+                                name: John Doe
+                                email: johndoe@ratecard.io
+                              team:
+                                id: ea10916d-0684-4624-9d07-d341193554cf
+                                name: My Team
+                                email: myteam@ratecard.io
+                              notes: John Doe is an example for us all.
+                              credits: 154325
+                              time_of_arrival: '09:33:14.000000Z'
+                              date_of_arrival: '2020-11-25'
+                              datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                              locale: en
+                        embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/contacts?page=1'
+                      last: 'https://api.ratecard.io/v1/contacts?page=100'
+                      prev: 'https://api.ratecard.io/v1/contacts?page=1'
+                      next: 'https://api.ratecard.io/v1/contacts?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/contacts'
+                      per_page: 1
+                      to: 2
+                      total: 100
     post:
       summary: Add a new contact
-      description: Description
+      description: 'This endpoint is used to add a contact to the account. '
       operationId: addContact
       tags:
         - Contacts
@@ -100,29 +150,122 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - first_name
-                - last_name
-                - email
               properties:
                 first_name:
                   type: string
                   example: John
+                  description: The contact's first name
                 last_name:
                   type: string
                   example: Doe
+                  description: The contact's last name
+                name:
+                  type: string
+                  description: 'Alternative to first and last name, can be used instead'
+                  example: John Doe
                 email:
                   type: string
                   example: johndoe@ratecard.io
+                  description: The contact's email address
                 phone:
                   type: string
                   example: '0612345678'
+                  description: The contact's phone number
                 subscribed:
                   type: boolean
                   example: true
+                  description: Subscribe the contact to be able to send them mail and texts
                 anonymous:
                   type: boolean
                   example: false
+                  description: Make the contact anonymous
+                groups:
+                  type: array
+                  description: Add the contact to one or many groups with smart fields (see examples)
+                  items:
+                    anyOf:
+                      - properties:
+                          id:
+                            type: string
+                            format: uuid
+                            example: ea10916d-0684-4624-9d07-d341193554cf
+                            description: group id
+                        description: Add to group by group id
+                        required:
+                          - id
+                      - properties:
+                          name:
+                            type: string
+                            example: My Group
+                            description: Group name
+                        description: Add to group by group name (creates new group if group not found)
+                        required:
+                          - name
+                    description: Different ways to add a contact to a group
+                    type: object
+              required:
+                - email
+            examples:
+              Example 1:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  groups:
+                    - id: ea10916d-0684-4624-9d07-d341193554cf
+                      owner: johndoe@ratecard.io
+                      notes: John Doe is an example for us all.
+                      credits: 154325
+                      time_of_arrival: '09:33:14.000000Z'
+                      date_of_arrival: '2020-11-25'
+                      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                      locale: en
+              Example 2:
+                value:
+                  name: John Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  groups:
+                    - name: My Group
+                      owner: ea10916d-0684-4624-9d07-d341193554cf
+                      notes: John Doe is an example for us all.
+                      credits: 154325
+                      time_of_arrival: '09:33:14.000000Z'
+                      date_of_arrival: '2020-11-25'
+                      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                      locale: en
+              Example 3:
+                value:
+                  name: 'Doe, John'
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  groups:
+                    - id: ea10916d-0684-4624-9d07-d341193554cf
+                      owner: John Doe
+                      notes: John Doe is an example for us all.
+                      credits: 154325
+                      time_of_arrival: '09:33:14.000000Z'
+                      date_of_arrival: '2020-11-25'
+                      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                      locale: en
+        description: |-
+          Contacts can be added in a few ways. The endpoint is very flexible in how it accepts the data to be able to process as many use cases as possible. 
+
+          A contact's name can be added in 3 different ways for example:
+          1. With their first and last name in separate keys
+          2. With their first and last name with a space in between
+          3. Wit their last name first and then a comma plus space, followed by their first name
+
+          How a contact is added to a group is also very flexible. A contact can be added to a group with the group id or name of the group present in the object. The rest of the keys given to group objects are smart fields by name and value pairs.
+
+          _See the example request bodies to gain a better view of this flexibility._
       responses:
         '201':
           description: Created
@@ -130,6 +273,41 @@ paths:
             application/json:
               schema:
                 $ref: ./models/contact.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    first_name: John
+                    last_name: Doe
+                    email: johndoe@ratecard.io
+                    phone: '0612345678'
+                    subscribed: true
+                    unsubscribe_date: null
+                    anonymous: false
+                    external_type: Contact
+                    external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    synced_at: '2020-11-25T09:33:14.000000Z'
+                    groups:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Group
+                        smart_fields:
+                          owner:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: John Doe
+                            email: johndoe@ratecard.io
+                          team:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: My Team
+                            email: myteam@ratecard.io
+                          notes: John Doe is an example for us all.
+                          credits: 154325
+                          time_of_arrival: '09:33:14.000000Z'
+                          date_of_arrival: '2020-11-25'
+                          datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                          locale: en
+                    embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           links:
             GetContactById:
               operationId: getContact
@@ -149,23 +327,19 @@ paths:
                 id: $response.body#/id
               description: |
                 The `id` value returned in the response can be used as the `id` parameter in `DELETE /contacts/{id}`.
+        '422':
+          $ref: '#/components/responses/422'
   '/contacts/{id}':
     get:
       summary: Retrieve a contact
-      description: Description
+      description: This endpoints retrieves a contact.
       operationId: getContact
       tags:
         - Contacts
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the contact
-          required: true
-          schema:
-            type: integer
-            format: int64
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Contact response
@@ -173,6 +347,41 @@ paths:
             application/json:
               schema:
                 $ref: ./models/contact.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    first_name: John
+                    last_name: Doe
+                    email: johndoe@ratecard.io
+                    phone: '0612345678'
+                    subscribed: true
+                    unsubscribe_date: null
+                    anonymous: false
+                    external_type: Contact
+                    external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    synced_at: '2020-11-25T09:33:14.000000Z'
+                    groups:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Group
+                        smart_fields:
+                          owner:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: John Doe
+                            email: johndoe@ratecard.io
+                          team:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: My Team
+                            email: myteam@ratecard.io
+                          notes: John Doe is an example for us all.
+                          credits: 154325
+                          time_of_arrival: '09:33:14.000000Z'
+                          date_of_arrival: '2020-11-25'
+                          datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                          locale: en
+                    embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           links:
             UpdateContactById:
               operationId: updateContact
@@ -190,20 +399,13 @@ paths:
           $ref: '#/components/responses/404'
     put:
       summary: Update a contact
-      description: Description
+      description: This endpoint is used to update a contact without group related information.
       operationId: updateContact
       tags:
         - Contacts
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the contact
-          required: true
-          schema:
-            type: integer
-            format: int64
       requestBody:
         content:
           application/json:
@@ -213,21 +415,63 @@ paths:
                 first_name:
                   type: string
                   example: John
+                  description: The contact's first name
                 last_name:
                   type: string
                   example: Doe
+                  description: The contact's last name
+                name:
+                  type: string
+                  description: 'Alternative to first and last name, can be used instead'
+                  example: John Doe
                 email:
                   type: string
                   example: johndoe@ratecard.io
+                  description: The contact's email address
                 phone:
                   type: string
                   example: '0612345678'
+                  description: The contact's phone number
                 subscribed:
                   type: boolean
                   example: true
+                  description: Subscribe the contact to be able to send them mail and texts
                 anonymous:
                   type: boolean
                   example: false
+                  description: Make the contact anonymous
+              required:
+                - email
+            examples:
+              Example 1:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+              Example 2:
+                value:
+                  name: John Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+              Example 3:
+                value:
+                  name: 'Doe, John'
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+        description: |-
+          Similar to the contacts create endpoint, only without the group functionality as this process is handled in the group scoped contact endpoints. The big difference is how the anonymous property is handled. Once a contact is anonymous in our system it will remain anonymous in order to protect their anonimity, meaning a contact can only be anonymized in this endpoint and not the other way around.
+
+          A contact's name can be added in 3 different ways for example:
+          1. With their first and last name in separate keys
+          2. With their first and last name with a space in between
+          3. Wit their last name first and then a comma plus space, followed by their first name
       responses:
         '204':
           description: Contact updated response
@@ -235,29 +479,31 @@ paths:
           $ref: '#/components/responses/404'
     delete:
       summary: Delete a contact
-      description: Description
+      description: This endpoint is used to delete a contact from your account.
       operationId: deleteContact
       tags:
         - Contacts
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the contact
-          required: true
-          schema:
-            type: integer
-            format: int64
       responses:
-        '204':
-          description: Contact deleted response
+        '200':
+          $ref: '#/components/responses/200-(deleted)'
         '404':
           $ref: '#/components/responses/404'
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: ea10916d-0684-4624-9d07-d341193554cf
+        name: id
+        in: path
+        required: true
+        description: id of the contact
   /groups:
     get:
       summary: List of groups
-      description: Description
+      description: This endpoint retrieves a list of groups from your account.
       operationId: listGroups
       tags:
         - Groups
@@ -266,6 +512,7 @@ paths:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Paginated group response
@@ -318,6 +565,45 @@ paths:
                       total:
                         type: integer
                         example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Group
+                        limits:
+                          contacts:
+                            no_duplicates: true
+                            no_duplicates_in_any_group: false
+                          messages:
+                            max: 2
+                            period: d
+                            include_reminders: false
+                          filter:
+                            tag: locale
+                            value: nl
+                        smart_fields:
+                          - type: user
+                            name: owner
+                            slug: owner
+                            value: support@ratecard.io
+                            created_at: '2020-11-25T09:33:14.000000Z'
+                            updated_at: '2020-11-25T09:33:14.000000Z'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/groups?page=1'
+                      last: 'https://api.ratecard.io/v1/groups?page=100'
+                      prev: 'https://api.ratecard.io/v1/groups?page=1'
+                      next: 'https://api.ratecard.io/v1/groups?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/groups'
+                      per_page: 1
+                      to: 2
+                      total: 100
     post:
       summary: Add a new group
       description: Description
@@ -332,28 +618,38 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - name
               properties:
                 name:
+                  description: Name of the group
                   type: string
                   example: My Group
                 limits:
+                  description: Rules for limiting message sends and adding contacts to the groups
                   type: object
                   properties:
                     contacts:
+                      description: Filters that determine if an existing contact can be added to the group
                       type: object
                       properties:
                         no_duplicates:
+                          description: (Dis)allow contacts that already exist in *this* group to be added to the group
                           type: boolean
+                          example: true
                         no_duplicates_in_any_group:
+                          description: (Dis)allow contacts that already exist in *any* group to be added to the group
                           type: boolean
+                          nullable: true
+                          example: false
                     messages:
+                      description: Controls the rate and frequency of which messages can be sent to contacts of the group
                       type: object
                       properties:
                         max:
+                          description: Maximum amount of messages per the defined period (frequency)
                           type: integer
+                          example: 2
                         period:
+                          description: The frequency period to limit message sends on
                           type: string
                           enum:
                             - d
@@ -362,21 +658,106 @@ paths:
                             - q
                             - hy
                             - 'y'
+                          example: d
                         include_reminders:
+                          description: Include reminder messages in the check
                           type: boolean
+                          example: false
                     filter:
+                      description: Determines whether a contact can be added or not
                       type: object
                       properties:
                         tag:
+                          description: The tag the group filters on when adding contacts
                           type: string
                           nullable: true
-                          example: ''
+                          example: locale
                         value:
+                          description: The value that the group tag filter must find to allow a contact to be stored
                           type: string
                           nullable: true
-                          example: ''
+                          example: nl
                 smart_fields:
-                  type: object
+                  anyOf:
+                    - type: array
+                      description: Array of smart field objects
+                      items:
+                        type: object
+                        description: Smart field object
+                        properties:
+                          type:
+                            type: string
+                            example: text
+                            enum:
+                              - datetime
+                              - date
+                              - time
+                              - number
+                              - text
+                              - user
+                              - team
+                              - language
+                            description: Smart field type
+                          name:
+                            type: string
+                            example: My smart field
+                            description: Smart field name
+                          value:
+                            type: string
+                            description: Smart field value
+                            example: My value
+                    - type: object
+                      description: Smart field key value object
+                      properties:
+                        field_name:
+                          type: string
+                          description: Example field
+                  description: Array or object of smart fields
+              required:
+                - name
+            examples:
+              Example 1:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    - type: text
+                      name: My smart field
+                      value: My value
+              Example 2:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    my_smart_field: My value
+        description: |-
+          Just like with the contact endpoint(s). The group endpoint(s) have some built in flexibility regarding the smart fields. There's 2 ways a smart field can be added.
+
+          The first way is by adding an object to the smart field array with the properties: name, type and value. This way you have full control over how the system processes the new smart field.
+
+          The second way is by name and value just like on the contacts endpoints. Our API checks which type of data your name value pair(s) contain(s). When it can't figure out what type of data the field contains it will default to a text field. 
+
+          _See the example request bodies to gain a better view of this flexibility._
       responses:
         '201':
           description: Created
@@ -384,6 +765,31 @@ paths:
             application/json:
               schema:
                 $ref: ./models/group.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: My Group
+                    limits:
+                      contacts:
+                        no_duplicates: true
+                        no_duplicates_in_any_group: false
+                      messages:
+                        max: 2
+                        period: d
+                        include_reminders: false
+                      filter:
+                        tag: locale
+                        value: nl
+                    smart_fields:
+                      - type: user
+                        name: owner
+                        slug: owner
+                        value: support@ratecard.io
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           links:
             GetGroupById:
               operationId: getGroup
@@ -403,23 +809,19 @@ paths:
                 id: $response.body#/id
               description: |
                 The `id` value returned in the response can be used as the `id` parameter in `DELETE /groups/{id}`.
+        '422':
+          $ref: '#/components/responses/422'
   '/groups/{id}':
     get:
       summary: Retrieve a group
-      description: Description
+      description: This endpoint retrieves a single group from your account.
       operationId: getGroup
       tags:
         - Groups
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the group
-          required: true
-          schema:
-            type: integer
-            format: int64
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Group response
@@ -427,6 +829,31 @@ paths:
             application/json:
               schema:
                 $ref: ./models/group.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: My Group
+                    limits:
+                      contacts:
+                        no_duplicates: true
+                        no_duplicates_in_any_group: false
+                      messages:
+                        max: 2
+                        period: d
+                        include_reminders: false
+                      filter:
+                        tag: locale
+                        value: nl
+                    smart_fields:
+                      - type: user
+                        name: owner
+                        slug: owner
+                        value: support@ratecard.io
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           links:
             UpdateGroupById:
               operationId: updateGroup
@@ -444,49 +871,50 @@ paths:
           $ref: '#/components/responses/404'
     put:
       summary: Update a group
-      description: Description
+      description: This endpoint updates the entire group and data given in the request body.
       operationId: updateGroup
       tags:
         - Groups
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the group
-          required: true
-          schema:
-            type: integer
-            format: int64
       requestBody:
         content:
           application/json:
             schema:
               type: object
-              required:
-                - first_name
-                - last_name
-                - email
               properties:
                 name:
+                  description: Name of the group
                   type: string
                   example: My Group
                 limits:
+                  description: Rules for limiting message sends and adding contacts to the groups
                   type: object
                   properties:
                     contacts:
+                      description: Filters that determine if an existing contact can be added to the group
                       type: object
                       properties:
                         no_duplicates:
+                          description: (Dis)allow contacts that already exist in *this* group to be added to the group
                           type: boolean
+                          example: true
                         no_duplicates_in_any_group:
+                          description: (Dis)allow contacts that already exist in *any* group to be added to the group
                           type: boolean
+                          nullable: true
+                          example: false
                     messages:
+                      description: Controls the rate and frequency of which messages can be sent to contacts of the group
                       type: object
                       properties:
                         max:
+                          description: Maximum amount of messages per the defined period (frequency)
                           type: integer
+                          example: 2
                         period:
+                          description: The frequency period to limit message sends on
                           type: string
                           enum:
                             - d
@@ -495,21 +923,273 @@ paths:
                             - q
                             - hy
                             - 'y'
+                          example: d
                         include_reminders:
+                          description: Include reminder messages in the check
                           type: boolean
+                          example: false
                     filter:
+                      description: Determines whether a contact can be added or not
                       type: object
                       properties:
                         tag:
+                          description: The tag the group filters on when adding contacts
                           type: string
                           nullable: true
-                          example: ''
+                          example: locale
                         value:
+                          description: The value that the group tag filter must find to allow a contact to be stored
                           type: string
                           nullable: true
-                          example: ''
+                          example: nl
                 smart_fields:
+                  anyOf:
+                    - type: array
+                      description: Array of smart field objects
+                      items:
+                        type: object
+                        description: Smart field object
+                        properties:
+                          type:
+                            type: string
+                            example: text
+                            enum:
+                              - datetime
+                              - date
+                              - time
+                              - number
+                              - text
+                              - user
+                              - team
+                              - language
+                            description: Smart field type
+                          name:
+                            type: string
+                            example: My smart field
+                            description: Smart field name
+                          value:
+                            type: string
+                            description: Smart field value
+                            example: My value
+                    - type: object
+                      description: Smart field key value object
+                      properties:
+                        field_name:
+                          type: string
+                          description: Example field
+                  description: Array or object of smart fields
+              required:
+                - name
+            examples:
+              Example 1:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    - type: text
+                      name: My smart field
+                      value: My value
+              Example 2:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    my_smart_field: My value
+        description: |-
+          Just like with the contact endpoint(s). The group endpoint(s) have some built in flexibility regarding the smart fields. There's 2 ways a smart field can be added.
+
+          The first way is by adding an object to the smart field array with the properties: name, type and value. This way you have full control over how the system processes the new smart field.
+
+          The second way is by name and value just like on the contacts endpoints. Our API checks which type of data your name value pair(s) contain(s). When it can't figure out what type of data the field contains it will default to a text field.
+
+          _See the example request bodies to gain a better view of this flexibility._
+
+          <!-- theme: warning -->
+          > Do not forget that this is a `PUT` request. 
+          > 
+          > When smart fields are given through this request all smart fields not present in the request will be removed from the group.
+      responses:
+        '204':
+          description: Group updated response
+        '404':
+          $ref: '#/components/responses/404'
+    patch:
+      summary: Partially update a group
+      description: This endpoint partially updates the group and data given in the request body.
+      operationId: partiallyUpdateGroup
+      tags:
+        - Groups
+      parameters:
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Name of the group
+                  type: string
+                  example: My Group
+                limits:
+                  description: Rules for limiting message sends and adding contacts to the groups
                   type: object
+                  properties:
+                    contacts:
+                      description: Filters that determine if an existing contact can be added to the group
+                      type: object
+                      properties:
+                        no_duplicates:
+                          description: (Dis)allow contacts that already exist in *this* group to be added to the group
+                          type: boolean
+                          example: true
+                        no_duplicates_in_any_group:
+                          description: (Dis)allow contacts that already exist in *any* group to be added to the group
+                          type: boolean
+                          nullable: true
+                          example: false
+                    messages:
+                      description: Controls the rate and frequency of which messages can be sent to contacts of the group
+                      type: object
+                      properties:
+                        max:
+                          description: Maximum amount of messages per the defined period (frequency)
+                          type: integer
+                          example: 2
+                        period:
+                          description: The frequency period to limit message sends on
+                          type: string
+                          enum:
+                            - d
+                            - w
+                            - m
+                            - q
+                            - hy
+                            - 'y'
+                          example: d
+                        include_reminders:
+                          description: Include reminder messages in the check
+                          type: boolean
+                          example: false
+                    filter:
+                      description: Determines whether a contact can be added or not
+                      type: object
+                      properties:
+                        tag:
+                          description: The tag the group filters on when adding contacts
+                          type: string
+                          nullable: true
+                          example: locale
+                        value:
+                          description: The value that the group tag filter must find to allow a contact to be stored
+                          type: string
+                          nullable: true
+                          example: nl
+                smart_fields:
+                  anyOf:
+                    - type: array
+                      description: Array of smart field objects
+                      items:
+                        type: object
+                        description: Smart field object
+                        properties:
+                          type:
+                            type: string
+                            example: text
+                            enum:
+                              - datetime
+                              - date
+                              - time
+                              - number
+                              - text
+                              - user
+                              - team
+                              - language
+                            description: Smart field type
+                          name:
+                            type: string
+                            example: My smart field
+                            description: Smart field name
+                          value:
+                            type: string
+                            description: Smart field value
+                            example: My value
+                    - type: object
+                      description: Smart field key value object
+                      properties:
+                        field_name:
+                          type: string
+                          description: Example field
+                  description: Array or object of smart fields
+              required:
+                - name
+            examples:
+              Example 1:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    - type: text
+                      name: My smart field
+                      value: My value
+              Example 2:
+                value:
+                  name: My Group
+                  limits:
+                    contacts:
+                      no_duplicates: true
+                      no_duplicates_in_any_group: true
+                    messages:
+                      max: 0
+                      period: d
+                      include_reminders: true
+                    filter:
+                      tag: ''
+                      value: ''
+                  smart_fields:
+                    my_smart_field: My value
+        description: |-
+          Just like with the contact endpoint(s). The group endpoint(s) have some built in flexibility regarding the smart fields. There's 2 ways a smart field can be added.
+
+          The first way is by adding an object to the smart field array with the properties: name, type and value. This way you have full control over how the system processes the new smart field.
+
+          The second way is by name and value just like on the contacts endpoints. Our API checks which type of data your name value pair(s) contain(s). When it can't figure out what type of data the field contains it will default to a text field.
+
+          _See the example request bodies to gain a better view of this flexibility._
+
+          <!-- theme: info -->
+          > This endpoint can only add smart fields, not remove them.
       responses:
         '204':
           description: Group updated response
@@ -517,188 +1197,1238 @@ paths:
           $ref: '#/components/responses/404'
     delete:
       summary: Delete a group
-      description: Description
+      description: This endpoint deletes the given group.
       operationId: deleteGroup
       tags:
         - Groups
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
-        - in: path
-          name: id
-          description: id of the group
-          required: true
-          schema:
-            type: integer
-            format: int64
       responses:
         '204':
           description: Group deleted response
         '404':
           $ref: '#/components/responses/404'
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: ea10916d-0684-4624-9d07-d341193554cf
+        name: id
+        in: path
+        required: true
+        description: id of the group
   /users:
     get:
-      description: Description
+      description: This endpoint retrieves a list of users from your account.
       summary: List of users
       tags:
         - Users
       responses:
         '200':
-          description: Description
+          description: Paginated user response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/user.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/users?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/users?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/users?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/users?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/users'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        review_visible: true
+                        first_name: John
+                        last_name: Doe
+                        email: johndoe@example.com
+                        phone: +31 6 12345678
+                        date_of_birth: 01-01-2020
+                        profile_picture: string
+                        country: NL
+                        language: NL
+                        function: Developer
+                        role: owner
+                        teams:
+                          - id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: Support
+                            email: support@ratecard.io
+                            review_urls:
+                              google: null
+                              facebook: null
+                              indeed: null
+                              glassdoor: null
+                            created_at: '2020-11-25T09:33:14.000000Z'
+                            updated_at: '2020-11-25T09:33:14.000000Z'
+                        notifications:
+                          app: true
+                          email:
+                            import_errors: true
+                            feedback: true
+                            feedback_below:
+                              enabled: true
+                              score: 0
+                            feedback_comments: true
+                          text:
+                            feedback: true
+                            feedback_below:
+                              enabled: true
+                              score: 0
+                            feedback_comments: true
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/users?page=1'
+                      last: 'https://api.ratecard.io/v1/users?page=100'
+                      prev: 'https://api.ratecard.io/v1/users?page=1'
+                      next: 'https://api.ratecard.io/v1/users?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/users'
+                      per_page: 1
+                      to: 2
+                      total: 100
+          headers: {}
       operationId: get-users
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
     post:
-      description: Description
+      description: This endpoint is used to add new users to your account.
       summary: Add a new user
       tags:
         - Users
       responses:
         '200':
-          description: Description
+          description: New user response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/user.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    review_visible: true
+                    first_name: John
+                    last_name: Doe
+                    email: johndoe@example.com
+                    phone: +31 6 12345678
+                    date_of_birth: 01-01-2020
+                    profile_picture: string
+                    country: NL
+                    language: NL
+                    function: Developer
+                    role: owner
+                    teams:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: Support
+                        email: support@ratecard.io
+                        review_urls:
+                          google: null
+                          facebook: null
+                          indeed: null
+                          glassdoor: null
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    notifications:
+                      app: true
+                      email:
+                        import_errors: true
+                        feedback: true
+                        feedback_below:
+                          enabled: true
+                          score: 0
+                        feedback_comments: true
+                      text:
+                        feedback: true
+                        feedback_below:
+                          enabled: true
+                          score: 0
+                        feedback_comments: true
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '422':
+          $ref: '#/components/responses/422'
       operationId: post-users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: First name of the user
+                  example: John
+                last_name:
+                  type: string
+                  description: Last name of the user
+                  example: Doe
+                email:
+                  type: string
+                  description: Emailaddress of the user
+                  example: johndoe@example.com
+                phone:
+                  type:
+                    - string
+                    - 'null'
+                  example: +31 6 12345678
+                  description: Phone number of the user
+                date_of_birth:
+                  type:
+                    - string
+                    - 'null'
+                  example: 01-01-2020
+                  description: Birthdate of the user
+                country:
+                  type: string
+                  example: NL
+                  description: 'Country of the user, uses ISO 3166-1 alpha-2 language codes'
+                language:
+                  type: string
+                  description: The Ratecard app language for the user
+                  enum:
+                    - NL
+                    - EN
+                function:
+                  type: string
+                  example: Developer
+                  description: The function (job title) of the user
+                role:
+                  type: string
+                  enum:
+                    - owner
+                    - admin
+                    - manager
+                    - user
+                  description: The user's role (within Ratecard)
+                teams:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: ID of the team
+                        example: ea10916d-0684-4624-9d07-d341193554cf
+                        format: uuid
+                        readOnly: true
+                      name:
+                        type: string
+                        description: Name of the team
+                        example: Support
+                      email:
+                        type:
+                          - string
+                          - 'null'
+                        description: Email of the team
+                        example: support@ratecard.io
+                      review_urls:
+                        type: object
+                        description: Review URLs for the team
+                        properties:
+                          google:
+                            type:
+                              - string
+                              - 'null'
+                            description: The team's Google review URL
+                          facebook:
+                            type:
+                              - string
+                              - 'null'
+                            description: The team's Facebook review URL
+                          indeed:
+                            type:
+                              - string
+                              - 'null'
+                            description: The team's Indeed review URL
+                          glassdoor:
+                            type:
+                              - string
+                              - 'null'
+                            description: The team's Glassdoor review URL
+                notifications:
+                  type: object
+                  description: The user's notification settings
+                  properties:
+                    app:
+                      type: boolean
+                      description: In-app notifications (e.g. notification bubbles)
+                    email:
+                      type: object
+                      description: Email based notifications
+                      properties:
+                        import_errors:
+                          type: boolean
+                          description: Sends a notification when an error occurs during an import
+                        feedback:
+                          type: boolean
+                          description: Sends a notification when new feedback arrives
+                        feedback_below:
+                          type: object
+                          description: Only send notification's regarding feedback below the defined score
+                          properties:
+                            enabled:
+                              type: boolean
+                            score:
+                              type: integer
+                              maximum: 10
+                              minimum: 0
+                              exclusiveMaximum: true
+                              exclusiveMinimum: false
+                        feedback_comments:
+                          type: boolean
+                          description: Sends a notification when there's a new comment for feedback
+                    text:
+                      type: object
+                      description: Text (sms) based notifications
+                      properties:
+                        feedback:
+                          type: boolean
+                          description: Sends a notification when new feedback arrives
+                        feedback_below:
+                          type: object
+                          description: Only send notification's regarding feedback below the defined score
+                          properties:
+                            enabled:
+                              type: boolean
+                            score:
+                              type: integer
+                              maximum: 10
+                              minimum: 0
+                              exclusiveMaximum: true
+                        feedback_comments:
+                          type: boolean
+                          description: Sends a notification when there's a new comment for feedback
+                created_at:
+                  description: Date of creation
+                  type: string
+                  example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
+                  readOnly: true
+                updated_at:
+                  description: Date last changed
+                  type: string
+                  example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
+                  readOnly: true
+              required:
+                - first_name
+                - last_name
+                - email
+                - role
+            examples:
+              Example 1:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@example.com
+                  phone: +31 6 12345678
+                  date_of_birth: 01-01-2020
+                  country: NL
+                  language: NL
+                  function: Developer
+                  role: owner
+                  teams:
+                    - id: ea10916d-0684-4624-9d07-d341193554cf
+                  notifications:
+                    app: true
+                    email:
+                      import_errors: true
+                      feedback: true
+                      feedback_below:
+                        enabled: true
+                        score: 0
+                      feedback_comments: true
+                    text:
+                      feedback: true
+                      feedback_below:
+                        enabled: true
+                        score: 0
+                      feedback_comments: true
+                  created_at: '2020-11-25T09:33:14.000000Z'
+                  updated_at: '2020-11-25T09:33:14.000000Z'
+              Example 2:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@example.com
+                  phone: +31 6 12345678
+                  date_of_birth: 01-01-2020
+                  country: NL
+                  language: NL
+                  function: Developer
+                  role: owner
+                  teams:
+                    - name: Support
+                      email: support@ratecard.io
+                  notifications:
+                    app: true
+                    email:
+                      import_errors: true
+                      feedback: true
+                      feedback_below:
+                        enabled: true
+                        score: 0
+                      feedback_comments: true
+                    text:
+                      feedback: true
+                      feedback_below:
+                        enabled: true
+                        score: 0
+                      feedback_comments: true
+                  created_at: '2020-11-25T09:33:14.000000Z'
+                  updated_at: '2020-11-25T09:33:14.000000Z'
+        description: |-
+          Just like with adding contacts, a user can be added to one or more teams when being created. A team's ID or name can be used to add a user to the team. The API will create a new team when a name property is specified and a team with that name doesn't yet exist. It functions the same way as the add new team endpoint, so you can also add the other team properties if needed.
+
+          > A team will not update here if it exists and a property is given that doesn't match it's group. value
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   '/users/{id}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: id
         in: path
         required: true
+        description: The user's ID
     get:
-      description: Description
+      description: This endpoint retrieves a single user from your account.
       summary: Retrieve a user
       tags:
         - Users
       responses:
         '200':
-          description: Description
+          description: User response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/user.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    review_visible: true
+                    first_name: John
+                    last_name: Doe
+                    email: johndoe@example.com
+                    phone: +31 6 12345678
+                    date_of_birth: 01-01-2020
+                    profile_picture: string
+                    country: NL
+                    language: NL
+                    function: Developer
+                    role: owner
+                    teams:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: Support
+                        email: support@ratecard.io
+                        review_urls:
+                          google: null
+                          facebook: null
+                          indeed: null
+                          glassdoor: null
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    notifications:
+                      app: true
+                      email:
+                        import_errors: true
+                        feedback: true
+                        feedback_below:
+                          enabled: true
+                          score: 0
+                        feedback_comments: true
+                      text:
+                        feedback: true
+                        feedback_below:
+                          enabled: true
+                          score: 0
+                        feedback_comments: true
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-users-id
+      parameters:
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
     put:
-      description: Description
+      description: This endpoint is used to update a user in your account.
       summary: Update a user
       tags:
         - Users
       responses:
-        '200':
-          description: Description
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
       operationId: put-users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: First name of the user
+                  example: John
+                last_name:
+                  type: string
+                  description: Last name of the user
+                  example: Doe
+                email:
+                  type: string
+                  description: Emailaddress of the user
+                  example: johndoe@example.com
+                phone:
+                  type:
+                    - string
+                    - 'null'
+                  example: +31 6 12345678
+                  description: Phone number of the user
+                date_of_birth:
+                  type:
+                    - string
+                    - 'null'
+                  example: 01-01-2020
+                  description: Birthdate of the user
+                country:
+                  type: string
+                  example: NL
+                  description: 'Country of the user, uses ISO 3166-1 alpha-2 language codes'
+                language:
+                  type: string
+                  description: The Ratecard app language for the user
+                  enum:
+                    - NL
+                    - EN
+                function:
+                  type: string
+                  example: Developer
+                  description: The function (job title) of the user
+                role:
+                  type: string
+                  enum:
+                    - owner
+                    - admin
+                    - manager
+                    - user
+                  description: The user's role (within Ratecard)
+                notifications:
+                  type: object
+                  description: The user's notification settings
+                  properties:
+                    app:
+                      type: boolean
+                      description: In-app notifications (e.g. notification bubbles)
+                    email:
+                      type: object
+                      description: Email based notifications
+                      properties:
+                        import_errors:
+                          type: boolean
+                          description: Sends a notification when an error occurs during an import
+                        feedback:
+                          type: boolean
+                          description: Sends a notification when new feedback arrives
+                        feedback_below:
+                          type: object
+                          description: Only send notification's regarding feedback below the defined score
+                          properties:
+                            enabled:
+                              type: boolean
+                            score:
+                              type: integer
+                              maximum: 10
+                              minimum: 0
+                              exclusiveMaximum: true
+                              exclusiveMinimum: false
+                        feedback_comments:
+                          type: boolean
+                          description: Sends a notification when there's a new comment for feedback
+                    text:
+                      type: object
+                      description: Text (sms) based notifications
+                      properties:
+                        feedback:
+                          type: boolean
+                          description: Sends a notification when new feedback arrives
+                        feedback_below:
+                          type: object
+                          description: Only send notification's regarding feedback below the defined score
+                          properties:
+                            enabled:
+                              type: boolean
+                            score:
+                              type: integer
+                              maximum: 10
+                              minimum: 0
+                              exclusiveMaximum: true
+                        feedback_comments:
+                          type: boolean
+                          description: Sends a notification when there's a new comment for feedback
+                created_at:
+                  description: Date of creation
+                  type: string
+                  example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
+                  readOnly: true
+                updated_at:
+                  description: Date last changed
+                  type: string
+                  example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
+                  readOnly: true
+        description: |-
+          Just like with contacts and groups, you're currently unable to add/remove a user to/from a team with the user update request.
+
+          <!-- theme: warning -->
+          > Be careful when updating user roles, so they don't get a role they shouldn't have
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
     delete:
-      description: Description
+      description: This endpoint is used to remove a user from your account.
       summary: Delete a user
       tags:
         - Users
       responses:
         '200':
-          description: Description
+          $ref: '#/components/responses/200-(deleted)'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: delete-users-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   /teams:
     get:
-      description: Description
+      description: This endpoint is used to retrieve a list of teams from your account.
       summary: List of teams
       tags:
         - Teams
       responses:
         '200':
-          description: Description
+          description: Paginated team response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/team.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/teams?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/teams?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/teams?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/teams?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/teams'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: Support
+                        email: support@ratecard.io
+                        review_urls:
+                          google: null
+                          facebook: null
+                          indeed: null
+                          glassdoor: null
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/teams?page=1'
+                      last: 'https://api.ratecard.io/v1/teams?page=100'
+                      prev: 'https://api.ratecard.io/v1/teams?page=1'
+                      next: 'https://api.ratecard.io/v1/teams?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/teams'
+                      per_page: 1
+                      to: 2
+                      total: 100
       operationId: get-teams
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
     post:
-      description: Description
+      description: This endpoint is used to add a team to your account.
       summary: Add a new team
       tags:
         - Teams
       responses:
         '200':
-          description: Description
+          description: Team response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/team.v1.yaml
+        '422':
+          $ref: '#/components/responses/422'
       operationId: post-teams
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the team
+                  example: Support
+                email:
+                  type:
+                    - string
+                    - 'null'
+                  description: Email of the team
+                  example: support@ratecard.io
+                review_urls:
+                  type: object
+                  description: Review URLs for the team
+                  properties:
+                    google:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Google review URL
+                    facebook:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Facebook review URL
+                    indeed:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Indeed review URL
+                    glassdoor:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Glassdoor review URL
+              required:
+                - name
+            examples:
+              Example:
+                value:
+                  name: Support
+                  email: support@ratecard.io
+                  review_urls:
+                    google: null
+                    facebook: null
+                    indeed: null
+                    glassdoor: null
   '/teams/{id}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: id
         in: path
         required: true
+        description: The team id
     get:
-      description: Description
+      description: This endpoint is used to retrieve a single team from you account.
       summary: Retrieve a team
       tags:
         - Teams
       responses:
         '200':
-          description: Description
+          description: Group response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/team.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: Support
+                    email: support@ratecard.io
+                    review_urls:
+                      google: null
+                      facebook: null
+                      indeed: null
+                      glassdoor: null
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-teams-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/fieldsparam'
     put:
-      description: Description
+      description: This endpoint is used to update a team in your account.
       summary: Update a team
       tags:
         - Teams
       responses:
-        '200':
-          description: Description
+        '204':
+          description: Team update response
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
       operationId: put-teams
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the team
+                  example: Support
+                email:
+                  type:
+                    - string
+                    - 'null'
+                  description: Email of the team
+                  example: support@ratecard.io
+                review_urls:
+                  type: object
+                  description: Review URLs for the team
+                  properties:
+                    google:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Google review URL
+                    facebook:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Facebook review URL
+                    indeed:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Indeed review URL
+                    glassdoor:
+                      type:
+                        - string
+                        - 'null'
+                      description: The team's Glassdoor review URL
+              required:
+                - name
+            examples:
+              Example:
+                value:
+                  name: Support
+                  email: support@ratecard.io
+                  review_urls:
+                    google: null
+                    facebook: null
+                    indeed: null
+                    glassdoor: null
     delete:
-      description: Description
+      description: This endpoint is used to remove a team from your account.
       summary: Delete a team
       tags:
         - Teams
       responses:
         '200':
-          description: Description
+          $ref: '#/components/responses/200-(deleted)'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: delete-teams-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   /webhooks:
     get:
-      description: Description
+      description: This webhook retrieves a list of webhooks from your account.
       summary: List of webhooks
       tags:
         - Webhooks
       responses:
         '200':
-          description: Description
+          description: Paginated webhook response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/webhook.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/webhooks?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/webhooks?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/webhooks?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/webhooks?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/webhooks'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
       operationId: get-webhooks
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
     post:
-      description: Description
+      description: This webhook is used to add a new webhook to your account.
       summary: Add a new webhook
       tags:
         - Webhooks
       responses:
         '200':
           description: Description
+          content:
+            application/json:
+              schema:
+                $ref: ./models/webhook.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: My Webhook
+                    is_inbound: false
+                    uses_signature: false
+                    events:
+                      - messages.sent
+                    metadata: {}
+                    url: 'http://example.com'
+                    secret: string
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '422':
+          $ref: '#/components/responses/422'
       operationId: post-webhooks
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Name of the webhook, if not given we create a default name'
+                  example: My Webhook
+                is_inbound:
+                  type: boolean
+                  description: Indicates whether a webhook is inbound (you send to Ratecard) or outbound (Ratecard sends to you)
+                  example: false
+                  default: false
+                uses_signature:
+                  type: boolean
+                  description: 'When true, webhook data must be signed with an HMAC (sha256).'
+                  default: false
+                  example: false
+                events:
+                  type: array
+                  description: Actions (inbound) and subscriptions (outbound) that your app or Ratecard listens for at the specified URLs.
+                  example:
+                    - messages.sent
+                  items:
+                    type: string
+                url:
+                  type: string
+                  description: This is the URL you specify for outbound webhooks or the URL we generate for inbound webhooks
+                  format: uri
+            examples:
+              Example Inbound:
+                value:
+                  name: My Webhook
+                  is_inbound: true
+                  uses_signature: false
+                  events:
+                    - contacts.create
+              Example Outbound:
+                value:
+                  name: My Message Webhook
+                  is_inbound: false
+                  uses_signature: false
+                  events:
+                    - messages.sent
+                    - messages.opened
+                    - messages.clicked
+                  url: 'https://my-company-website.com'
+        description: ''
   '/webhooks/{id}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: id
         in: path
         required: true
+        description: The webhook id
     get:
-      description: Description
+      description: This endpoint is used to retrieve a single webhook from your account.
       summary: Retrieve a webhook
       tags:
         - Webhooks
       responses:
         '200':
-          description: Description
+          description: Webhook response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/webhook.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: My Webhook
+                    is_inbound: false
+                    uses_signature: false
+                    events:
+                      - messages.sent
+                    metadata: {}
+                    url: 'http://example.com'
+                    secret: string
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-webhooks-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/fieldsparam'
     put:
-      description: Description
+      description: This endpoint is used to update webhooks in your account.
       summary: Update a webhook
       tags:
         - Webhooks
       responses:
-        '200':
-          description: Description
+        '204':
+          description: Webhook update response
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
       operationId: put-webhooks-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Name of the webhook, if not given we create a default name'
+                  example: My Webhook
+                is_inbound:
+                  type: boolean
+                  description: Indicates whether a webhook is inbound (you send to Ratecard) or outbound (Ratecard sends to you)
+                  example: false
+                  default: false
+                uses_signature:
+                  type: boolean
+                  description: 'When true, webhook data must be signed with an HMAC (sha256).'
+                  default: false
+                  example: false
+                events:
+                  type: array
+                  description: Actions (inbound) and subscriptions (outbound) that your app or Ratecard listens for at the specified URLs.
+                  example:
+                    - messages.sent
+                  items:
+                    type: string
+                url:
+                  type: string
+                  description: This is the URL you specify for outbound webhooks or the URL we generate for inbound webhooks
+                  format: uri
+            examples:
+              Example Inbound:
+                value:
+                  name: My Webhook
+                  is_inbound: true
+                  uses_signature: false
+                  events:
+                    - contacts.create
+              Example Outbound:
+                value:
+                  name: My Message Webhook
+                  is_inbound: false
+                  uses_signature: false
+                  events:
+                    - messages.sent
+                    - messages.opened
+                    - messages.clicked
+                  url: 'https://my-company-website.com'
+        description: |-
+          <!-- theme: info -->
+          > Keep in mind when modifying an active webhook that the URL we post to or the app sending data to us is updated accordingly if breaking changes are possible.
+
+          <!-- theme: warning -->
+          > Do not forget that this is a `PUT` request. 
+          > 
+          > When the events property is present in the request body it will override the existing list of events previously specified.
     delete:
-      description: Description
+      description: |-
+        This endpoint is used to delete webhooks from your account.
+
+        <!-- theme: info -->
+        > Keep in mind when deleting an active webhook, that you disable the endpoints sending data to us or receiving data from us, so no unnecessary calls are made or unused code will remain in your systems.
       summary: Delete a webhook
       tags:
         - Webhooks
       responses:
         '200':
-          description: Description
+          $ref: '#/components/responses/200-(deleted)'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: delete-webhooks-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   /accounts:
     get:
       summary: List of accounts
-      description: This is the list of accounts
+      description: This endpoint retrieves a list of accounts the access token's owner belongs to.
       tags:
         - Accounts
       parameters:
@@ -706,6 +2436,7 @@ paths:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Paginated account response
@@ -758,25 +2489,95 @@ paths:
                       total:
                         type: integer
                         example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: Ratecard
+                        public: false
+                        general:
+                          website: 'https://ratecard.io/'
+                          phone: +31 6 123 45 678
+                          address: Jisperweg 2
+                          zip_code: 1463 ND
+                          city: Noordbeemster
+                          country: NL
+                          description: ''
+                          company_size: 2-10
+                          industries:
+                            - Staffing and Recruiting
+                          profiles:
+                            facebook: 'https://www.facebook.com/ratecardio'
+                            twiter: 'https://twitter.com/ratecardio'
+                            linkedin: 'https://www.linkedin.com/company/10642017'
+                            glassdoor: ''
+                          review_urls:
+                            google: ''
+                            indeed: ''
+                            glassdoor: ''
+                            facebook: ''
+                        branding:
+                          logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                          header: 'https://ratecard.io/img/accounts/header_image/ratecard-613524.png'
+                          forms:
+                            logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                            colors:
+                              navigation: '#1d8bdf'
+                              background: '#ffffff'
+                              buttons: '#1d8bdf'
+                          campaigns:
+                            logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                            colors:
+                              primary: '#1d8bdf'
+                              secondary: '#ffffff'
+                              tertiary: '#1d8bdf'
+                        limits:
+                          messages:
+                            max: 2
+                            period: d
+                            include_reminders: false
+                          allowed_domains: 'ratecard.io, ratecard.info, etc...'
+                        source: Bullhorn
+                        date_last_login: '2020-11-25T09:33:14.000000Z'
+                        access_token: string
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/accounts?page=1'
+                      last: 'https://api.ratecard.io/v1/accounts?page=100'
+                      prev: 'https://api.ratecard.io/v1/accounts?page=1'
+                      next: 'https://api.ratecard.io/v1/accounts?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/accounts'
+                      per_page: 1
+                      to: 2
+                      total: 100
           headers: {}
       operationId: get-accounts
   '/accounts/{id}':
     parameters:
       - schema:
           type: string
+          format: uuid
+          example: ea10916d-0684-4624-9d07-d341193554cf
         name: id
         in: path
         required: true
         description: id of the account
     get:
       summary: Retrieve an account
-      description: Description
+      description: This enpoint retrieves a single account the access token's owner belongs to.
       operationId: get-accounts-id
       tags:
         - Accounts
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
           description: Account response
@@ -784,86 +2585,703 @@ paths:
             application/json:
               schema:
                 $ref: ./models/account.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: Ratecard
+                    public: false
+                    general:
+                      website: 'https://ratecard.io/'
+                      phone: +31 6 123 45 678
+                      address: Jisperweg 2
+                      zip_code: 1463 ND
+                      city: Noordbeemster
+                      country: NL
+                      description: ''
+                      company_size: 2-10
+                      industries:
+                        - Staffing and Recruiting
+                      profiles:
+                        facebook: 'https://www.facebook.com/ratecardio'
+                        twiter: 'https://twitter.com/ratecardio'
+                        linkedin: 'https://www.linkedin.com/company/10642017'
+                        glassdoor: ''
+                      review_urls:
+                        google: ''
+                        indeed: ''
+                        glassdoor: ''
+                        facebook: ''
+                    branding:
+                      logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                      header: 'https://ratecard.io/img/accounts/header_image/ratecard-613524.png'
+                      forms:
+                        logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                        colors:
+                          navigation: '#1d8bdf'
+                          background: '#ffffff'
+                          buttons: '#1d8bdf'
+                      campaigns:
+                        logo: 'https://ratecard.io/img/accounts/profile/ratecard-49029.png'
+                        colors:
+                          primary: '#1d8bdf'
+                          secondary: '#ffffff'
+                          tertiary: '#1d8bdf'
+                    limits:
+                      messages:
+                        max: 2
+                        period: d
+                        include_reminders: false
+                      allowed_domains: 'ratecard.io, ratecard.info, etc...'
+                    source: Bullhorn
+                    date_last_login: '2020-11-25T09:33:14.000000Z'
+                    access_token: string
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
           headers: null
         '404':
           $ref: '#/components/responses/404'
   /messages:
     get:
-      description: Description
+      description: This endpoint is used to retrieve a list of messages from your account.
       summary: List of messages
       tags:
         - Messages
       responses:
         '200':
-          description: Description
+          description: Paginated message response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/message.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/messages?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/messages?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/messages?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/messages?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/messages'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        channel: email
+                        from: Ratecard
+                        to: johndoe@ratecard.io
+                        reply_to: johndoe@ratecard.io
+                        subject: 'Hey John, how was your job application with our company?'
+                        body: string
+                        language: EN
+                        reminder: true
+                        remind_at: '2020-11-25T09:33:14.000000Z'
+                        metadata:
+                          send_date: '2020-11-25T09:33:14.000000Z'
+                          status: feedback
+                          time_till_status: 450
+                          views: 2
+                          first_view_date: '2020-11-25T09:33:14.000000Z'
+                          time_to_open: 150
+                          last_view_date: '2020-11-25T09:33:14.000000Z'
+                          clicks: 2
+                          first_click_date: '2020-11-25T09:33:14.000000Z'
+                          time_to_click: 150
+                          last_click_date: '2020-11-25T09:33:14.000000Z'
+                          left_feedback: '2020-11-25T09:33:14.000000Z'
+                          time_to_rate: 150
+                        campaign:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Campaign
+                        form:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Form
+                        connectable:
+                          type: group
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Group
+                        connected_user:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: John Doe
+                          email: johndoe@ratecard.io
+                        recipient:
+                          type: contact
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: John Doe
+                          email: johndoe@example.com
+                        feedback: null
+                        embed_url: 'https://ratecard.io/embed/messages/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                        deleted_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/messages?page=1'
+                      last: 'https://api.ratecard.io/v1/messages?page=100'
+                      prev: 'https://api.ratecard.io/v1/messages?page=1'
+                      next: 'https://api.ratecard.io/v1/messages?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/messages'
+                      per_page: 1
+                      to: 2
+                      total: 100
       operationId: get-messages
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
   '/messages/{id}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: id
         in: path
         required: true
+        description: The message id
     get:
-      description: Description
+      description: This endpoint is used to retrieve a single message from your account
       summary: Retrieve a message
       tags:
         - Messages
       responses:
         '200':
-          description: Description
+          description: Message response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/message.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    channel: email
+                    from: Ratecard
+                    to: johndoe@ratecard.io
+                    reply_to: johndoe@ratecard.io
+                    subject: 'Hey John, how was your job application with our company?'
+                    body: string
+                    language: EN
+                    reminder: true
+                    remind_at: '2020-11-25T09:33:14.000000Z'
+                    metadata:
+                      send_date: '2020-11-25T09:33:14.000000Z'
+                      status: feedback
+                      time_till_status: 450
+                      views: 2
+                      first_view_date: '2020-11-25T09:33:14.000000Z'
+                      time_to_open: 150
+                      last_view_date: '2020-11-25T09:33:14.000000Z'
+                      clicks: 2
+                      first_click_date: '2020-11-25T09:33:14.000000Z'
+                      time_to_click: 150
+                      last_click_date: '2020-11-25T09:33:14.000000Z'
+                      left_feedback: '2020-11-25T09:33:14.000000Z'
+                      time_to_rate: 150
+                    campaign:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Campaign
+                    form:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Form
+                    connectable:
+                      type: group
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Group
+                    connected_user:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: John Doe
+                      email: johndoe@ratecard.io
+                    recipient:
+                      type: contact
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: John Doe
+                      email: johndoe@example.com
+                    feedback: null
+                    embed_url: 'https://ratecard.io/embed/messages/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+                    deleted_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-messages-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/fieldsparam'
   /feedback:
     get:
-      description: Description
+      description: This endpoint retrieves a list of the feedback in your account.
       summary: List of feedback
       tags:
         - Feedback
+      parameters:
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
       responses:
         '200':
-          description: Description
+          description: Paginated feedback response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/feedback.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/feedback?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/feedback?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/feedback?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/feedback?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/feedback'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        review: true
+                        anonymous: true
+                        closed: false
+                        respondent:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          first_name: John
+                          last_name: Doe
+                          email: johndoe@example.com
+                          phone: '612345678'
+                        form:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Form
+                        answers:
+                          - question_id: ea10916d-0684-4624-9d07-d341193554cf
+                            required: true
+                            hidden: false
+                            title: How would you rate Ratecard?
+                            type: rating
+                            value: 9
+                        replies:
+                          - subject: Thank you for your response
+                            message: We will make sure to forward your feedback to the right people in our organization.
+                            by: John Doe
+                        notes:
+                          - subject: Valuable feedback!
+                            message: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
+                            by: John Doe
+                        assignee: null
+                        score: 8.5
+                        nps: 9
+                        duration: 300
+                        locale: NL
+                        embed_url: 'https://ratecard.io/embed/feedback/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                        completed_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/feedback?page=1'
+                      last: 'https://api.ratecard.io/v1/feedback?page=100'
+                      prev: 'https://api.ratecard.io/v1/feedback?page=1'
+                      next: 'https://api.ratecard.io/v1/feedback?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/feedback'
+                      per_page: 1
+                      to: 2
+                      total: 100
       operationId: get-feedback
   '/feedback/{id}':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: id
         in: path
         required: true
     get:
-      description: Description
+      description: This endpoint retrieves a single feedback item from your account.
       summary: Retrieve a feedback item
       tags:
         - Feedback
       responses:
         '200':
-          description: Description
+          description: Feedback response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/feedback.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    review: true
+                    anonymous: true
+                    closed: false
+                    respondent:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      first_name: John
+                      last_name: Doe
+                      email: johndoe@example.com
+                      phone: '612345678'
+                    form:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Form
+                    answers:
+                      - question_id: ea10916d-0684-4624-9d07-d341193554cf
+                        required: true
+                        hidden: false
+                        title: How would you rate Ratecard?
+                        type: rating
+                        value: 9
+                    replies:
+                      - subject: Thank you for your response
+                        message: We will make sure to forward your feedback to the right people in our organization.
+                        by: John Doe
+                    notes:
+                      - subject: Valuable feedback!
+                        message: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
+                        by: John Doe
+                    assignee: null
+                    score: 8.5
+                    nps: 9
+                    duration: 300
+                    locale: NL
+                    embed_url: 'https://ratecard.io/embed/feedback/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+                    completed_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-feedback-id
+      parameters:
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   '/groups/{group_id}/contacts':
     parameters:
       - schema:
           type: string
+          format: uuid
         name: group_id
         in: path
         required: true
     get:
-      description: Description
+      description: This endpoint retrieves a list of contacts that belong to the given group from your account.
       summary: List of contacts in the group
       tags:
         - Groups
         - Contacts
       responses:
         '200':
-          description: Description
+          description: Paginated group contact response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/groupContact.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/groups/{group_id}/contacts'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        first_name: John
+                        last_name: Doe
+                        email: johndoe@ratecard.io
+                        phone: '0612345678'
+                        subscribed: true
+                        unsubscribe_date: null
+                        anonymous: false
+                        external_type: Contact
+                        external_id: ea10916d-0684-4624-9d07-d341193554cf
+                        synced_at: '2020-11-25T09:33:14.000000Z'
+                        smart_fields:
+                          owner:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: John Doe
+                            email: johndoe@ratecard.io
+                          team:
+                            id: ea10916d-0684-4624-9d07-d341193554cf
+                            name: My Team
+                            email: myteam@ratecard.io
+                          notes: John Doe is an example for us all.
+                          credits: 154325
+                          time_of_arrival: '09:33:14.000000Z'
+                          date_of_arrival: '2020-11-25'
+                          datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                          locale: en
+                        group_data:
+                          subscribed: true
+                          date_added: '2020-11-25T09:33:14.000000Z'
+                          date_updated: '2020-11-25T09:33:14.000000Z'
+                        embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=1'
+                      last: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=100'
+                      prev: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=1'
+                      next: 'https://api.ratecard.io/v1/groups/{group_id}/contacts?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/groups/{group_id}/contacts'
+                      per_page: 1
+                      to: 2
+                      total: 100
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-groups-group_id-contacts
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
     post:
-      description: Description
+      description: This endpoint is used to add a single contact to a single group.
       summary: Add a contact to the group
       tags:
         - Groups
         - Contacts
-      responses: 
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '404':
+          $ref: '#/components/responses/404'
+        '422':
+          $ref: '#/components/responses/422'
       operationId: post-groups-group_id-contacts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: John
+                  description: The contact's first name
+                last_name:
+                  type: string
+                  example: Doe
+                  description: The contact's last name
+                name:
+                  type: string
+                  description: 'Alternative to first and last name, can be used instead'
+                  example: John Doe
+                email:
+                  type: string
+                  example: johndoe@ratecard.io
+                  description: The contact's email address
+                phone:
+                  type: string
+                  example: '0612345678'
+                  description: The contact's phone number
+                subscribed:
+                  type: boolean
+                  example: true
+                  description: Subscribe the contact to be able to send them mail and texts
+                anonymous:
+                  type: boolean
+                  example: false
+                  description: Make the contact anonymous
+                smart_fields:
+                  type: object
+                  description: Object of smart fields with name value pairing
+                  properties:
+                    example_field:
+                      type: string
+                      example: example value
+                group_data:
+                  type: object
+                  description: Data belonging to the contact in association with the group
+                  properties:
+                    subscribed:
+                      type: boolean
+                      description: The contact's subscription status to the group (For text & mail to the group)
+                      default: true
+                      example: true
+            examples:
+              Example 1:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                  group_data:
+                    subscribed: true
+              Example 2:
+                value:
+                  name: John Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                    owner: support@ratecard.io
+                  group_data:
+                    subscribed: false
+              Example 3:
+                value:
+                  name: 'Doe, John'
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                  group_data:
+                    subscribed: true
+        description: |-
+          Contacts can be added in a few ways. The endpoint is very flexible in how it accepts the data to be able to process as many use cases as possible just like the regular contact add, but with a few differences now that it's scoped to the group.
+
+          A contact's name can be added in 3 different ways for example:
+          1. With their first and last name in separate keys
+          2. With their first and last name with a space in between
+          3. Wit their last name first and then a comma plus space, followed by their first name
+
+          Instead of a `groups` property, the group contact has the properties `smart_fields` and `group_data`. Smart fields is an object that accepts name value pairs based on the smart field in the group. If a given name doesn't exist the API will try to figure out the smart field type and if it can't it will default to a text field, then save it to both the contact and the group.
+
+          _See the example request bodies to gain a better view of this flexibility._
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
   '/groups/{group_id}/contacts/{contact_id}':
     parameters:
       - schema:
@@ -871,40 +3289,189 @@ paths:
         name: group_id
         in: path
         required: true
+        description: The group id
       - schema:
           type: string
         name: contact_id
         in: path
         required: true
+        description: The contact id
     get:
-      description: Description
+      description: This endpoint is used to retrieve a single contact of the given group from your account.
       summary: Retrieve a contact from the group
       tags:
         - Groups
         - Contacts
       responses:
         '200':
-          description: Description
+          description: Group contact response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/groupContact.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    first_name: John
+                    last_name: Doe
+                    email: johndoe@ratecard.io
+                    phone: '0612345678'
+                    subscribed: true
+                    unsubscribe_date: null
+                    anonymous: false
+                    external_type: Contact
+                    external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    synced_at: '2020-11-25T09:33:14.000000Z'
+                    smart_fields:
+                      owner:
+                        id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: John Doe
+                        email: johndoe@ratecard.io
+                      team:
+                        id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Team
+                        email: myteam@ratecard.io
+                      notes: John Doe is an example for us all.
+                      credits: 154325
+                      time_of_arrival: '09:33:14.000000Z'
+                      date_of_arrival: '2020-11-25'
+                      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                      locale: en
+                    group_data:
+                      subscribed: true
+                      date_added: '2020-11-25T09:33:14.000000Z'
+                      date_updated: '2020-11-25T09:33:14.000000Z'
+                    embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: get-groups-group_id-contacts-contact_id
+      parameters:
+        - $ref: '#/components/parameters/fieldsparam'
     put:
-      description: Description
+      description: This endpoint is used to update a contact in a group
       summary: Update a contact in the group
       tags:
         - Groups
         - Contacts
       responses:
-        '200':
+        '204':
           description: Description
+        '404':
+          $ref: '#/components/responses/404'
       operationId: put-groups-group_id-contacts-contact_id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: John
+                  description: The contact's first name
+                last_name:
+                  type: string
+                  example: Doe
+                  description: The contact's last name
+                name:
+                  type: string
+                  description: 'Alternative to first and last name, can be used instead'
+                  example: John Doe
+                email:
+                  type: string
+                  example: johndoe@ratecard.io
+                  description: The contact's email address
+                phone:
+                  type: string
+                  example: '0612345678'
+                  description: The contact's phone number
+                subscribed:
+                  type: boolean
+                  example: true
+                  description: Subscribe the contact to be able to send them mail and texts
+                anonymous:
+                  type: boolean
+                  example: false
+                  description: Make the contact anonymous
+                smart_fields:
+                  type: object
+                  description: Object of smart fields with name value pairing
+                  properties:
+                    example_field:
+                      type: string
+                      example: example value
+                group_data:
+                  type: object
+                  description: Data belonging to the contact in association with the group
+                  properties:
+                    subscribed:
+                      type: boolean
+                      description: The contact's subscription status to the group (For text & mail to the group)
+                      default: true
+                      example: true
+            examples:
+              Example 1:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                  group_data:
+                    subscribed: true
+              Example 2:
+                value:
+                  name: John Doe
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                    owner: support@ratecard.io
+                  group_data:
+                    subscribed: false
+              Example 3:
+                value:
+                  name: 'Doe, John'
+                  email: johndoe@ratecard.io
+                  phone: '0612345678'
+                  subscribed: true
+                  anonymous: false
+                  smart_fields:
+                    example_field: example value
+                  group_data:
+                    subscribed: true
+        description: |-
+          Contacts can be updated in a few ways. The endpoint is very flexible in how it accepts the data to be able to process as many use cases as possible just like the regular contact update, but with a few differences now that it's scoped to the group.
+
+          A contact's name can be updated in 3 different ways for example:
+          1. With their first and last name in separate keys
+          2. With their first and last name with a space in between
+          3. Wit their last name first and then a comma plus space, followed by their first name
+
+          Instead of the contact losing it's `groups` property, the group contact keeps the properties `smart_fields` and `group_data`. Smart fields is an object that accepts name value pairs based on the smart field in the group. If a given name doesn't exist the API will try to figure out the smart field type and if it can't it will default to a text field, then save it to both the contact and the group.
+
+          > Smart fields can't be deleted from a contact, only a group can have its smart fields deleted with it's update (PUT) endpoint
+
+          _See the example request bodies to gain a better view of this flexibility._
     delete:
-      description: Description
+      description: 'This endpoint is used to remove a contact from the group. This request will not delete the contact itself, only the association with the group.'
       summary: Remove a contact from the group
       tags:
         - Groups
         - Contacts
       responses:
         '200':
-          description: Description
+          $ref: '#/components/responses/200-(deleted)'
+        '404':
+          $ref: '#/components/responses/404'
       operationId: delete-groups-group_id-contacts-contact_id
 components:
   securitySchemes:
@@ -932,6 +3499,8 @@ components:
       schema:
         type: integer
         format: int32
+        minimum: 1
+        default: 1
     showParam:
       name: show
       in: query
@@ -942,6 +3511,11 @@ components:
       schema:
         type: integer
         format: int32
+        maximum: 100
+        minimum: 1
+        exclusiveMinimum: true
+        exclusiveMaximum: true
+        default: 5
     contentTypeParam:
       in: header
       name: Content-Type
@@ -975,9 +3549,17 @@ components:
       schema:
         type: integer
         example: 58
+    fieldsparam:
+      name: fields
+      in: query
+      schema:
+        type: string
+        example: 'first_name,last_name,email'
+      description: Comma separated parameter to select specific fields only from the response.
+      allowEmptyValue: true
   responses:
     '404':
-      description: Not found
+      description: This response returns an object with a message property containing the entity that couldn't be found.
       content:
         application/json:
           schema:
@@ -986,3 +3568,46 @@ components:
               message:
                 type: string
                 example: Not found
+          examples:
+            Example:
+              value:
+                message: Entity not found!
+    '422':
+      description: |-
+        This response returns an object with a message property that contains the main error message and an errors property that contains the detailed error messages. 
+
+        The errors property is an object that contains the properties which threw an error. The properties are each an array of strings. These might not always match the properties in your request body as the API restructures or renames some old data and properties to better reflect the meaning and intent of them in our systems. Error messages will be improved upon in the future, but should still give a clear enough response.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: The error message
+              errors:
+                type: object
+                description: An object that lists the unprocessable properties with an array of messages regarding the validation errors
+          examples:
+            Example:
+              value:
+                message: The given data was invalid.
+                errors:
+                  first_name:
+                    - The first_name field is required.
+                  email:
+                    - The email must be a valid email address.
+    200-(deleted):
+      description: This response contains an object with a message to confirm that the entity has been deleted or removed from it's parent.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Entity has been deleted!
+          examples:
+            Example:
+              value:
+                message: Entity has been deleted!

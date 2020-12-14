@@ -1,5 +1,6 @@
 title: Feedback
 type: object
+description: This is the feedback model. It contains all information linked to a given feedback item that our API exposes. Feedback is generated when a recipient or reviewer leaves a form submission or review on one of your forms through a campaign or review URL.
 properties:
   id:
     type: string
@@ -188,6 +189,7 @@ properties:
       - 'null'
     description: The average score given in the feedback item
     example: 8.5
+    minimum: 0
   nps:
     type:
       - number
@@ -211,13 +213,17 @@ properties:
     description: Date of creation
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
   updated_at:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   completed_at:
     description: Date of completion
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
+x-examples: {}

@@ -1,6 +1,6 @@
 title: User
 type: object
-description: ''
+description: 'This is the user model. It contains all basic info regarding a user in your account, their teams and notification settings, which can all be transformed using the API.'
 properties:
   id:
     type: string
@@ -93,7 +93,7 @@ properties:
                 maximum: 10
                 minimum: 0
                 exclusiveMaximum: true
-                exclusiveMinimum: true
+                exclusiveMinimum: false
           feedback_comments:
             type: boolean
             description: Sends a notification when there's a new comment for feedback
@@ -115,7 +115,6 @@ properties:
                 maximum: 10
                 minimum: 0
                 exclusiveMaximum: true
-                exclusiveMinimum: true
           feedback_comments:
             type: boolean
             description: Sends a notification when there's a new comment for feedback
@@ -123,13 +122,16 @@ properties:
     description: Date of creation
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   updated_at:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
 required:
   - first_name
   - last_name
   - email
+x-examples: {}

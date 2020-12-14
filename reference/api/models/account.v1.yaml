@@ -205,6 +205,7 @@ properties:
     description: The most recent login moment of a user belonging to the account
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   access_token:
     type: string
@@ -214,10 +215,13 @@ properties:
     description: Date of creation
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
   updated_at:
     description: Date last changed
     type: string
     example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
     readOnly: true
 description: 'This model is the Account model. It contains the name, status, general information, branding customization, limits and more of the account the access token user belongs to. When a user belongs to multiple accounts, they will all be retrievable within a special scope.'
+x-examples: {}
