@@ -1631,7 +1631,7 @@ paths:
         description: |-
           Just like with adding contacts, a user can be added to one or more teams when being created. A team's ID or name can be used to add a user to the team. The API will create a new team when a name property is specified and a team with that name doesn't yet exist. It functions the same way as the add new team endpoint, so you can also add the other team properties if needed.
 
-          > A team will not update here if it exists and a property is given that doesn't match it's group. value
+          > A team will not update here if it exists and a property is given that doesn't match its group. value
       parameters:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/acceptParam'
@@ -3456,9 +3456,9 @@ paths:
           2. With their first and last name with a space in between
           3. With their last name first and then a comma plus space, followed by their first name
 
-          Instead of the contact losing it's `groups` property, the group contact keeps the properties `smart_fields` and `group_data`. Smart fields is an object that accepts name value pairs based on the smart field in the group. If a given name doesn't exist the API will try to figure out the smart field type and if it can't it will default to a text field, then save it to both the contact and the group.
+          Instead of the contact losing its `groups` property, the group contact keeps the properties `smart_fields` and `group_data`. Smart fields is an object that accepts name value pairs based on the smart field in the group. If a given name doesn't exist the API will try to figure out the smart field type and if it can't it will default to a text field, then save it to both the contact and the group.
 
-          > Smart fields can't be deleted from a contact, only a group can have its smart fields deleted with it's update (PUT) endpoint
+          > Smart fields can't be deleted from a contact, only a group can have its smart fields deleted with its update (PUT) endpoint
 
           _See the example request bodies to gain a better view of this flexibility._
     delete:
@@ -3598,7 +3598,7 @@ components:
                   email:
                     - The email must be a valid email address.
     200-(deleted):
-      description: This response contains an object with a message to confirm that the entity has been deleted or removed from it's parent.
+      description: This response contains an object with a message to confirm that the entity has been deleted or removed from its parent.
       content:
         application/json:
           schema:
