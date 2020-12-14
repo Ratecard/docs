@@ -26,3 +26,6 @@ This Application Programming Interface (API) can be used to  interact with Ratec
 
 .
 
+## Rate limits
+
+100 per minute, can be adjusted (please contact us)
