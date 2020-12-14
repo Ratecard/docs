@@ -471,7 +471,7 @@ paths:
           A contact's name can be added in 3 different ways for example:
           1. With their first and last name in separate keys
           2. With their first and last name with a space in between
-          3. Wit their last name first and then a comma plus space, followed by their first name
+          3. With their last name first and then a comma plus space, followed by their first name
       responses:
         '204':
           description: Contact updated response
@@ -3274,7 +3274,7 @@ paths:
           A contact's name can be added in 3 different ways for example:
           1. With their first and last name in separate keys
           2. With their first and last name with a space in between
-          3. Wit their last name first and then a comma plus space, followed by their first name
+          3. With their last name first and then a comma plus space, followed by their first name
 
           Instead of a `groups` property, the group contact has the properties `smart_fields` and `group_data`. Smart fields is an object that accepts name value pairs based on the smart field in the group. If a given name doesn't exist the API will try to figure out the smart field type and if it can't it will default to a text field, then save it to both the contact and the group.
 
@@ -3454,7 +3454,7 @@ paths:
           A contact's name can be updated in 3 different ways for example:
           1. With their first and last name in separate keys
           2. With their first and last name with a space in between
-          3. Wit their last name first and then a comma plus space, followed by their first name
+          3. With their last name first and then a comma plus space, followed by their first name
 
           Instead of the contact losing it's `groups` property, the group contact keeps the properties `smart_fields` and `group_data`. Smart fields is an object that accepts name value pairs based on the smart field in the group. If a given name doesn't exist the API will try to figure out the smart field type and if it can't it will default to a text field, then save it to both the contact and the group.
 
