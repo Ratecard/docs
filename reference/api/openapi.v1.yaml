@@ -261,7 +261,7 @@ paths:
           A contact's name can be added in 3 different ways for example:
           1. With their first and last name in separate keys
           2. With their first and last name with a space in between
-          3. Wit their last name first and then a comma plus space, followed by their first name
+          3. With their last name first and then a comma plus space, followed by their first name
 
           How a contact is added to a group is also very flexible. A contact can be added to a group with the group id or name of the group present in the object. The rest of the keys given to group objects are smart fields by name and value pairs.
 
