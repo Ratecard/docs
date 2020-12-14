@@ -4,7 +4,7 @@
 >Ratecard API is a paid feature. [Register](http://ratecard.io/register?source=API-docs) for a free trial or upgrade to a paid plan to make use of it.
 
 Ratecard API lets you collect feedback and reviews on autopilot, and is used for:
-- Experience Management
+- Experience Management, e.g. for [candidates](https://ratecard.io/candidate-experience) and [employees](https://ratecard.io/employee-experience)
 - Performance Management
 - Reputation Management
 
