@@ -1,9 +1,18 @@
-# How to generate your access token
+# Access tokens
 
 The beginning of an awesome article...
 
+## Generate an access token
 
+.
 
+## Allowed scopes
+
+.
+
+## Single vs. Multi-account
+
+.
 
 ---
 
