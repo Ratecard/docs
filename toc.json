@@ -12,6 +12,52 @@
     },
     {
       "type": "divider",
+      "title": "Webhooks"
+    },
+    {
+      "type": "item",
+      "title": "Introduction",
+      "uri": "docs/webhooks/introduction.md"
+    },
+    {
+      "type": "item",
+      "title": "The webhook call object",
+      "uri": "reference/api/models/webhookCall.v1.yaml"
+    },
+    {
+      "type": "group",
+      "title": "Inbound",
+      "items": [
+        {
+          "type": "item",
+          "title": "How to use",
+          "uri": "docs/webhooks/inbound/how-to-use.md"
+        },
+        {
+          "type": "item",
+          "title": "Actions",
+          "uri": "docs/webhooks/inbound/actions"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Outbound",
+      "items": [
+        {
+          "type": "item",
+          "title": "How to use",
+          "uri": "docs/webhooks/outbound/how-to-use.md"
+        },
+        {
+          "type": "item",
+          "title": "Subscriptions",
+          "uri": "docs/webhooks/outbound/subscriptions.md"
+        }
+      ]
+    },
+    {
+      "type": "divider",
       "title": "Models"
     },
     {

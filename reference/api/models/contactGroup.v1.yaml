@@ -1,4 +1,4 @@
-title: ContactGroup
+title: Contact Group
 type: object
 description: This model contains the group data when it is retrieved in the API as a relation of a contact
 properties:

@@ -1,0 +1,66 @@
+title: Webhook Call
+type: object
+description: This model contains the base object of a webhook call that will be sent to an URL linked to an outbound webhook.
+properties:
+  id:
+    type: string
+    description: ID of the webhook call
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    format: uuid
+    readOnly: true
+  webhook:
+    type: object
+    description: Webhook the call belongs to
+    properties:
+      id:
+        type: string
+        description: ID of the webhook
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        format: uuid
+        readOnly: true
+      name:
+        type: string
+        description: Name of the webhook
+        example: My webhook
+        readOnly: true
+  account:
+    type: object
+    description: Account the call belongs to
+    properties:
+      id:
+        type: string
+        description: ID of the account
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        format: uuid
+        readOnly: true
+      name:
+        type: string
+        description: Name of the account
+        example: My account
+        readOnly: true
+  payload:
+    type: object
+    description: The payload contains the data of the call and the object that triggered the event
+    example:
+      type: object
+      properties:
+        message:
+          $ref: ./message.v1.yaml
+  event:
+    type: string
+    description: Name of the event that was triggered
+    example: messages.sent
+    readOnly: true
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
+    readOnly: true
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
+    readOnly: true
+x-examples: {}
