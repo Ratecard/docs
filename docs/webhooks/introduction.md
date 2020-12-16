@@ -5,7 +5,10 @@ In this article you will learn what Ratecard webhooks are, how they work, and wh
 This is the webhook object. It can be fully configured through the API or in our app.
 
 ```yaml json_schema
-$ref: '../../models/webhook.v1.yaml'
+title: Webhook
+type: object
+properties:
+  $ref: '../../models/webhook.v1.yaml'
 ```
 
 > You can find webhooks under API in the top right (user) menu in our app if your role is admin or owner.
