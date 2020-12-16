@@ -3,5 +3,5 @@ In this article you'll find all subscriptions for outbound webhooks with an expl
 
 ## Messages
 ```yaml json_schema
-$ref: '../../reference/api/models/webhook-calls/messages.sent.v1.yaml'
+$ref: '../../reference/api/models/webhook-calls/messages-sent.v1.yaml'
 ```
