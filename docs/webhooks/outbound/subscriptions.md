@@ -21,7 +21,7 @@ In this section you'll find all message subscriptions.
   - Does not attach additional data
 
 ## Feedback
-In this section you'll find all feedbac subscriptions.
+In this section you'll find all feedback subscriptions.
 
 > Every feedback subscription will always have an [feedback](../../../reference/api/models/feedback.v1.yaml) object attached to it in the payload.
 
