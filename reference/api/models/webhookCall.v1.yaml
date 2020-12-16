@@ -63,4 +63,3 @@ properties:
     example: '2020-11-25T09:33:14.000000Z'
     format: datetime
     readOnly: true
-x-examples: {}
