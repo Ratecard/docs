@@ -8,7 +8,7 @@ This is the webhook object. It can be fully configured through the API or in our
 title: Webhook
 type: object
 properties:
-  $ref: '../../models/Webhook.md'
+  $ref: '../../models/webhook.v1.yaml'
 ```
 
 > You can find webhooks under API in the top right (user) menu in our app if your role is admin or owner.
