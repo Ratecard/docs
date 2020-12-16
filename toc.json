@@ -31,7 +31,7 @@
         {
           "type": "item",
           "title": "Actions",
-          "uri": "docs/webhooks/inbound/actions"
+          "uri": "docs/webhooks/inbound/actions.md"
         }
       ]
     },
