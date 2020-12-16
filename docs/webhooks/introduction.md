@@ -1,12 +1,62 @@
 # Introduction to webhooks
 In this article you will learn what Ratecard webhooks are, how they work, and what you can do with them. To start we have two types of webhooks, inbound and outbound. With inbound webhooks you send data to us and with outbound webhooks we send data to you.
 
-## The webhook object
-This is the webhook object. It can be fully configured through the API or in our app.
+## The webhook model
+This is the webhook model. It can be fully configured through the API or in our app.
+
+<!--
+type: tab
+title: Schema
+-->
 
 ```yaml json_schema
 $ref: '../../reference/api/models/webhook.v1.yaml'
 ```
+
+<!--
+type: tab
+title: Inbound example
+-->
+
+```json
+{
+  "id": "ea10916d-0684-4624-9d07-d341193554cf",
+  "name": "My Webhook",
+  "is_inbound": true,
+  "uses_signature": false,
+  "events": [
+    "contact.create"
+  ],
+  "metadata": {},
+  "url": "https://api.ratecard.io/v1/webhooks/<secret>",
+  "secret": "<secret>",
+  "created_at": "2020-11-25T09:33:14.000000Z",
+  "updated_at": "2020-11-25T09:33:14.000000Z"
+}
+```
+
+<!--
+type: tab
+title: Outbound example
+-->
+
+```json
+{
+  "id": "ea10916d-0684-4624-9d07-d341193554cf",
+  "name": "My Webhook",
+  "is_inbound": false,
+  "uses_signature": false,
+  "events": [
+    "messages.sent"
+  ],
+  "metadata": {},
+  "url": "http://example.com",
+  "secret": "<secret>",
+  "created_at": "2020-11-25T09:33:14.000000Z",
+  "updated_at": "2020-11-25T09:33:14.000000Z"
+}
+```
+<!-- type: tab-end -->
 
 > You can find webhooks under API in the top right (user) menu in our app if your role is admin or owner.
 
