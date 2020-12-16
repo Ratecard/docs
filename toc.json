@@ -20,11 +20,6 @@
       "uri": "docs/webhooks/introduction.md"
     },
     {
-      "type": "item",
-      "title": "The webhook call object",
-      "uri": "reference/api/models/webhookCall.v1.yaml"
-    },
-    {
       "type": "group",
       "title": "Inbound",
       "items": [
