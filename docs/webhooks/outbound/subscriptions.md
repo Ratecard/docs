@@ -169,7 +169,41 @@ title: Received
     "name": "My account"
   },
   "payload": {
-    
+    "feedback": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "review": true,
+      "anonymous": true,
+      // ...
+      "respondent": {
+        "id": "ea10916d-0684-4624-9d07-d341193554cf",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "johndoe@example.com",
+        "phone": "612345678"
+      },
+      "form": {
+        "id": "ea10916d-0684-4624-9d07-d341193554cf",
+        "name": "My Form"
+      },
+      "answers": [
+        {
+          "question_id": "ea10916d-0684-4624-9d07-d341193554cf",
+          "required": true,
+          "hidden": false,
+          "title": "How would you rate Ratecard?",
+          "type": "rating",
+          "value": 9
+        }
+      ],
+      // ...
+      "score": 8.5,
+      "nps": 9,
+      "duration": 300,
+      // ...
+      "created_at": "2020-11-25T09:33:14.000000Z",
+      "updated_at": "2020-11-25T09:33:14.000000Z",
+      "completed_at": "2020-11-25T09:33:14.000000Z"
+    }
   },
   "event": "feedback.received",
   "created_at": "2020-11-25T09:33:14.000000Z",
@@ -195,7 +229,17 @@ title: Closed
     "name": "My account"
   },
   "payload": {
-    
+    "feedback": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      // ...
+      "closed": true,
+      // ...
+    },
+    "user": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "name": "John Doe",
+      "email": "johndoe@ratecard.io"
+    }
   },
   "event": "feedback.closed",
   "created_at": "2020-11-25T09:33:14.000000Z",
@@ -221,7 +265,17 @@ title: Reopened
     "name": "My account"
   },
   "payload": {
-    
+    "feedback": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      // ...
+      "closed": false,
+      // ...
+    },
+    "user": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "name": "John Doe",
+      "email": "johndoe@ratecard.io"
+    }
   },
   "event": "feedback.reopened",
   "created_at": "2020-11-25T09:33:14.000000Z",
@@ -247,7 +301,21 @@ title: Assigned
     "name": "My account"
   },
   "payload": {
-    
+    "feedback": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      // ...
+      "assignee": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "name": "John Doe",
+      "email": "johndoe@ratecard.io"
+    },
+      // ...
+    },
+    "user": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "name": "John Doe",
+      "email": "johndoe@ratecard.io"
+    }
   },
   "event": "feedback.assigned",
   "created_at": "2020-11-25T09:33:14.000000Z",
@@ -275,7 +343,25 @@ title: Replied
     "name": "My account"
   },
   "payload": {
-    
+    "subject": "My reply",
+    "message": "This is a reply.",
+    "feedback": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      // ...
+      "respondent": {
+        "id": "ea10916d-0684-4624-9d07-d341193554cf",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "johndoe@example.com",
+        "phone": "612345678"
+      },
+      // ...
+    },
+    "user": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "name": "John Doe",
+      "email": "johndoe@ratecard.io"
+    }
   },
   "event": "feedback.replied",
   "created_at": "2020-11-25T09:33:14.000000Z",
@@ -303,7 +389,17 @@ title: Noted
     "name": "My account"
   },
   "payload": {
-    
+    "subject": "My note",
+    "message": "This is a note.",
+    "feedback": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      // ...
+    },
+    "user": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "name": "John Doe",
+      "email": "johndoe@ratecard.io"
+    }
   },
   "event": "feedback.noted",
   "created_at": "2020-11-25T09:33:14.000000Z",
@@ -329,7 +425,17 @@ title: Archived
     "name": "My account"
   },
   "payload": {
-    
+    "feedback": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      // ...
+      "status": "archived"
+      // ...
+    },
+    "user": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "name": "John Doe",
+      "email": "johndoe@ratecard.io"
+    }
   },
   "event": "feedback.archived",
   "created_at": "2020-11-25T09:33:14.000000Z",
