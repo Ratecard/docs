@@ -8,6 +8,7 @@ In this section you'll find all message subscriptions.
 
 > Every message subscription will always have an [message](../../../reference/api/models/message.v1.yaml) object attached to it in the payload.
 
+### Events
 - `messages.sent`
   - Triggers after a message is sent to a recipient
   - Does not attach additional data
@@ -19,6 +20,129 @@ In this section you'll find all message subscriptions.
 - `messages.clicked`
   - Triggers when a recipient has clicked on the review url in the message they received
   - Does not attach additional data
+
+### Event json
+
+<!-- 
+type: tab
+title: messages.sent
+-->
+```json
+{
+  "id": "ea10916d-0684-4624-9d07-d341193554cf",
+  "webhook": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My webhook"
+  },
+  "account": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My account"
+  },
+  "payload": {
+    "message": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "channel": "email",
+      "from": "Ratecard",
+      "to": "johndoe@ratecard.io",
+      // ...
+      "metadata": {
+        "send_date": "2020-11-25T09:33:14.000000Z",
+        "status": "not_opened",
+        // ...
+      },
+      // ...
+    }
+  },
+  "event": "messages.sent",
+  "created_at": "2020-11-25T09:33:14.000000Z",
+  "updated_at": "2020-11-25T09:33:14.000000Z"
+}
+```
+<!-- 
+type: tab
+title: messages.opened
+-->
+```json
+{
+  "id": "ea10916d-0684-4624-9d07-d341193554cf",
+  "webhook": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My webhook"
+  },
+  "account": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My account"
+  },
+  "payload": {
+    "message": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "channel": "email",
+      "from": "Ratecard",
+      "to": "johndoe@ratecard.io",
+      // ...
+      "metadata": {
+        "send_date": "2020-11-25T09:33:14.000000Z",
+        "status": "opened",
+        "time_till_status": 150,
+        "views": 2,
+        "first_view_date": "2020-11-25T09:33:14.000000Z",
+        "time_to_open": 150,
+        "last_view_date": "2020-11-25T09:33:14.000000Z",
+        // ...
+      },
+      // ...
+    }
+  },
+  "event": "messages.opened",
+  "created_at": "2020-11-25T09:33:14.000000Z",
+  "updated_at": "2020-11-25T09:33:14.000000Z"
+}
+```
+<!-- 
+type: tab
+title: messages.clicked
+-->
+```json
+{
+  "id": "ea10916d-0684-4624-9d07-d341193554cf",
+  "webhook": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My webhook"
+  },
+  "account": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My account"
+  },
+  "payload": {
+    "message": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "channel": "email",
+      "from": "Ratecard",
+      "to": "johndoe@ratecard.io",
+      // ...
+      "metadata": {
+        "send_date": "2020-11-25T09:33:14.000000Z",
+        "status": "clicked",
+        "time_till_status": 300,
+        "views": 2,
+        "first_view_date": "2020-11-25T09:33:14.000000Z",
+        "time_to_open": 150,
+        "last_view_date": "2020-11-25T09:33:14.000000Z",
+        "clicks": 2,
+        "first_click_date": "2020-11-25T09:33:14.000000Z",
+        "time_to_click": 150,
+        "last_click_date": "2020-11-25T09:33:14.000000Z",
+        // ...
+      },
+      // ...
+    }
+  },
+  "event": "messages.clicked",
+  "created_at": "2020-11-25T09:33:14.000000Z",
+  "updated_at": "2020-11-25T09:33:14.000000Z"
+}
+```
+<!-- type: tab-end -->
 
 ## Feedback
 In this section you'll find all feedback subscriptions.

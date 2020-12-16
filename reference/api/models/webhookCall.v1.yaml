@@ -41,11 +41,6 @@ properties:
   payload:
     type: object
     description: The payload contains the data of the call and the object that triggered the event
-    example:
-      type: object
-      properties:
-        message:
-          $ref: ./message.v1.yaml
   event:
     type: string
     description: Name of the event that was triggered
@@ -63,3 +58,4 @@ properties:
     example: '2020-11-25T09:33:14.000000Z'
     format: datetime
     readOnly: true
+x-examples: {}

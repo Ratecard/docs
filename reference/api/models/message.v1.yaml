@@ -254,4 +254,3 @@ properties:
     format: datetime
     readOnly: true
 description: 'This is the message model. Messages contain the data sent to a recipient from a campaign. They are created during the distribution process and are updated when the recipient interacts with the email,  text they receive, or when they leave feedback. The metadata contains these statistics.'
-x-examples: {}
