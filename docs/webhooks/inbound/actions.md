@@ -70,7 +70,7 @@ Single action to add John Doe to My Group:
   "action": "contacts.create",
   "payload": {
     "first_name": "John",
-    "last_name": "Doe"
+    "last_name": "Doe",
     "email": "johndoe@example.com",
     "groups": [
       { "name": "My Group" }
@@ -85,7 +85,7 @@ Single action to add John Doe and Jane Doe to My Group:
   "payload": [
     {
       "first_name": "John",
-      "last_name": "Doe"
+      "last_name": "Doe",
       "email": "johndoe@example.com",
       "groups": [
         { "name": "My Group" }
@@ -93,7 +93,7 @@ Single action to add John Doe and Jane Doe to My Group:
     },
     {
       "first_name": "Jane",
-      "last_name": "Doe"
+      "last_name": "Doe",
       "email": "janedoe@example.com",
       "groups": [
         { "name": "My Group" }
@@ -110,7 +110,7 @@ Multi action to add John Doe to My Group and anonymize Jane Doe:
       "action": "contacts.create",
       "payload": {
         "first_name": "John",
-        "last_name": "Doe"
+        "last_name": "Doe",
         "email": "johndoe@example.com",
         "groups": [
           { "name": "My Group" }
@@ -144,7 +144,7 @@ Add one contact to your account
   "action": "contacts.create",
   "payload": {
     "first_name": "John",
-    "last_name": "Doe"
+    "last_name": "Doe",
     "email": "johndoe@example.com",
     "groups": [
       { "name": "My Group" }
@@ -165,7 +165,7 @@ Add one or more contacts to your account
   "payload": [
     {
       "first_name": "John",
-      "last_name": "Doe"
+      "last_name": "Doe",
       "email": "johndoe@example.com",
       "groups": [
         { "name": "My Group" }
@@ -304,7 +304,7 @@ Add one user to your account
   "action": "users.create",
   "payload": {
     "first_name": "John",
-    "last_name": "Doe"
+    "last_name": "Doe",
     "email": "johndoe@example.com",
   }
 }
@@ -322,7 +322,7 @@ Add one or more users to your account
   "payload": [
     {
       "first_name": "John",
-      "last_name": "Doe"
+      "last_name": "Doe",
       "email": "johndoe@example.com",
     }
   ]
