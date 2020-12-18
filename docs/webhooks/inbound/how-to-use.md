@@ -14,7 +14,7 @@ In this section you'll learn how to create an inbound webhook.
 ### 2.1 Prepare an environment to test the webhooks in
 It is recommended that you have an environment for testing the webhooks in advance. We'll use [Postman](https://www.postman.com/) to test the webhooks by catching the POST requests.
 
-### 2.2 Create the inbonud webhook
+### 2.2 Create the inbound webhook
 There's 2 wasy to create the inbound webhook. Via our api or in our app. 
 
 #### 2.2.1 Creating an outbound webhook in Ratecard
