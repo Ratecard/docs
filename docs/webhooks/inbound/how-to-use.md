@@ -4,6 +4,10 @@ In this article you'll learn how to use our inbound webhooks.
 ## 1. What is an inbound webhook?
 _If you already know what an inbound webhook is feel free to go to step 2._
 
+Inbound webhooks are basically a wrap around our API (with predefined or additional behaviour in some cases). They provide a way to integrate with our app or send data to it without making a full integration with the API. The URL property of the webhook will be the URL you or your app will send data to with a `POST` request. The `events` property is called actions in our app as you will perform actions with the webhook when it is inbound.
+
+[See all actions](./how-to-use.md)
+
 ## 2. How to create an inbound webhook?
 In this section you'll learn how to create an inbound webhook.
 
