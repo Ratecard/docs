@@ -1,4 +1,4 @@
-# Actions
+# Inbound Webhooks: Actions
 In this article you'll find all actions for inbound webhooks with the data you're expected to send to each.
 
 ## Structure
@@ -131,7 +131,7 @@ Multi action to add John Doe to My Group and anonymize Jane Doe:
 ## Contacts
 In this section you'll find all contact actions
 
-### Events
+### Actions
 <!-- 
 type: tab
 title: Create
@@ -283,6 +283,68 @@ Delete one or more contacts from your account.
       "external_id": "123456789",
       "external_type": "Contact"
     }
+  ]
+}
+```
+<!-- type: tab-end -->
+
+## Users
+In this section you'll find all user actions
+
+### Actions
+<!-- 
+type: tab
+title: Create
+-->
+Add one user to your account
+- Name: `users.create`
+- Payload is the same object as the add a new user API endpoint ([view endpoint](../../../reference/api/openapi.v1.yaml/paths/~1users/post))
+```json
+{
+  "action": "users.create",
+  "payload": {
+    "first_name": "John",
+    "last_name": "Doe"
+    "email": "johndoe@example.com",
+  }
+}
+```
+<!-- 
+type: tab
+title: Create (batch)
+-->
+Add one or more users to your account
+- Name: `users.create`
+- Payload is an array that accepts user objects in the same format as the add a new user API endpoint ([view endpoint](../../../reference/api/openapi.v1.yaml/paths/~1users/post))
+```json
+{
+  "action": "users.create",
+  "payload": [
+    {
+      "first_name": "John",
+      "last_name": "Doe"
+      "email": "johndoe@example.com",
+    }
+  ]
+}
+```
+<!-- 
+type: tab
+title: Delete
+-->
+Delete one or more users from your account. 
+
+- Name: `users.delete`
+- Payload is an array
+- Accepts:
+  - User email
+  - User id
+```json
+{
+  "action": "users.delete",
+  "payload": [
+    "johndoe@example.com",
+    "ea10916d-0684-4624-9d07-d341193554cf",
   ]
 }
 ```

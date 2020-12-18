@@ -1,4 +1,4 @@
-# Subscriptions
+# Outbound Webhooks: Subscriptions
 In this article you'll find all subscriptions for outbound webhooks with an explanation for when they trigger and what they send to the URL specified in the webhook.
 
 > A subscription is an event the webhook is subscribed to. When the word subscriptions is used it means a group of event triggers that the webhook listens for.

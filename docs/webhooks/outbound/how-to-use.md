@@ -1,4 +1,4 @@
-# How to use: Outbound Webhooks
+# Outbound Webhooks: How to use
 In this article you'll learn how to use our outbound webhooks.
 
 ## 1. What is an outbound webhook?

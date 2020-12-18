@@ -1,1 +1,1 @@
-# How to use
+# Inbound Webhooks: How to use
