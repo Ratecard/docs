@@ -56,7 +56,7 @@ String functions that can be applied to strings; given as arguments to relationa
 
 > All string functions require a string literal as their parameter (numbers will be interpreted as a string).
 
-- `toUpper(str)` makes a string lieral upper case.
+- `toUpper(str)` makes a string literal upper case.
 - `toLower(str)` makes a string literal lower case.
 - `length(str)` transforms a string into an integer representing the its character length.
 - `blank(str)` true when the given expression is empty or null.
