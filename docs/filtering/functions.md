@@ -30,7 +30,7 @@ Relational functions compare two or more expressions.
 - `matchAny(dp, regex, [,..., regex])` true when the defined property matches the given regular expressions; requires one or more regular expressions.
 - `matchAll(dp, regex, [,..., regex])` true when the defined property matches all of the the given regular expressions; requires one or more regular expression.
 - `between(dp, e, e)` true when the defined property is between expression one and two; requires two expressions.
-- `notBetween` true when the defined property is not between expression one and two; requires two expressions.
+- `notBetween(dp, e, e)` true when the defined property is not between expression one and two; requires two expressions.
 - `isNull(dp)` true when dp is null or unset.
 - `isNotNull(dp)` true when dp is not null.
 
@@ -88,7 +88,7 @@ Functions that can be applied directly to defined properties. These functions ex
 - `toLower(dp)` makes the defined property lower case
 - `ceil(dp)` transforms the defined property into the smallest integer greater than or equal to the given number.
 - `floor(dp)` transforms the defined property into the largest integer less than or equal to the specified number.
-- `round(dp)` the value of thedefined property rounded to the nearest integer.
+- `round(dp)` the value of the defined property rounded to the nearest integer.
 
 ## String literal behaviour
 - Spaces will be trimmed from the edges of string literals.
