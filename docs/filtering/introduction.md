@@ -19,7 +19,7 @@ Basic expression filtering extends the basic filters with functions. For example
 /feedback?created_at=between(now(), now('-30 day'))
 ```
 
-Breaking down the example we see the `between` conditional function being used with 2 parameters. Let's take a look at the between function first. In a regular filter expression it would take 3 parameters, but when used in a basic expression filter the first parameter will be the property, which is `created_at` in this case (this goes for all other functions as well). The second and third parameter are both the `now` function. This function returns the current date, which can optionally take a parameter to modify the date. It can only be used as a parameter of a conditional function.
+Breaking down the example we see the `between` conditional function being used with 2 arguments. Let's take a look at the between function first. In a regular filter expression it would take 3 arguments, but when used in a basic expression filter the first argument will be the property, which is `created_at` in this case (this goes for all other functions as well). The second and third arguments are both the `now` function. This function returns the current date, which can optionally take an argument to modify the date. It can only be used as an argument of a conditional function.
 
 As an additional example let's turn the first example into a basic filter expression:
 ```js
@@ -42,7 +42,9 @@ Example 2, we want all messages with feedback that have a score thats greater or
 ```
 
 ## Filtering on Smart Fields
-Smart fields provided a unique challenge when building the expression filters, especially with regards to performance and their dynamic nature. The only endpoint that currently supports smart field filters is the group contact endpoint. Smart field filters are available in basic (expression) filter format only.
+Smart fields provided a unique challenge when building the expression filters, especially with regards to performance and their dynamic nature. The only endpoint that currently supports smart field filters is the group contact endpoint. 
+
+> Smart field filters are currenctly available in basic (expression) filter format only. This is subject to change in the future.
 
 Let's take a look at an example contact with smart fields:
 ```json
