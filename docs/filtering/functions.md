@@ -105,7 +105,7 @@ Test a fake expression and see how our app processes it!
   "method": "get",
   "url": "https://api.ratecard.io/test_expression?filter="
 }
-\```
+```
 
 ## Glossary
 - `defined property (dp)` is a filterable property that's part of the model that the (basic) filter expression is applied to (e.g. *score* for feedback or *name* for groups). All relational functions require one as their first argument, but can accept more than one (unless they take a single argument).
