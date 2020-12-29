@@ -2437,6 +2437,163 @@ paths:
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the ids of the accounts
+        - in: query
+          name: name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the name of the accounts
+        - in: query
+          name: public
+          schema:
+            type: boolean
+            format: expression
+          description: Filters on the public status of the accounts
+        - in: query
+          name: general_website
+          schema:
+            type: string
+            format: expression
+          description: Filters on the website of the accounts
+        - in: query
+          name: general_phone
+          schema:
+            type: string
+            format: expression
+          description: Filters on the phone of the accounts
+        - in: query
+          name: general_address
+          schema:
+            type: string
+            format: expression
+          description: Filter son the address of the accounts
+        - in: query
+          name: general_zip_code
+          schema:
+            type: string
+            format: expression
+          description: Filters on the zip code of the accounts
+        - in: query
+          name: general_city
+          schema:
+            type: string
+            format: expression
+          description: Filters on the city of the accounts
+        - in: query
+          name: general_country
+          schema:
+            type: string
+            format: expression
+          description: Filters on the country of the accounts
+        - in: query
+          name: general_description
+          schema:
+            type: string
+            format: expression
+          description: Filters on the description of the accounts
+        - in: query
+          name: general_company_size
+          schema:
+            type: string
+            format: expression
+          description: Filters on the company size of the accounts
+        - in: query
+          name: general_profiles_facebook
+          schema:
+            type: string
+            format: expression
+          description: Filters on the Facebook profile of the accounts
+        - in: query
+          name: general_profiles_twitter
+          schema:
+            type: string
+            format: expression
+          description: Filters on the Twitter profile of the accounts
+        - in: query
+          name: general_profiles_linkedin
+          schema:
+            type: string
+            format: expression
+          description: Filters on the LinkedIn profile of the accounts
+        - in: query
+          name: general_profiles_glassdoor
+          schema:
+            type: string
+            format: expression
+          description: Filters on the Glassdoor profile of the accounts
+        - in: query
+          name: general_review_urls_google
+          schema:
+            type: string
+            format: expression
+          description: Filters on the Google review URL of the accounts
+        - in: query
+          name: general_review_urls_indeed
+          schema:
+            type: string
+            format: expression
+          description: Filters on the Indeed review URL of the accounts
+        - in: query
+          name: general_review_urls_glassdoor
+          schema:
+            type: string
+            format: expression
+          description: Filters on the Glassdoor review URL of the accounts
+        - in: query
+          name: general_review_urls_facebook
+          schema:
+            type: string
+            format: expression
+          description: Filters on the Facebook review of the accounts
+        - in: query
+          name: limits_messages_max
+          schema:
+            type: number
+            format: expression
+          description: Filters on the max messages of the accounts
+        - in: query
+          name: limits_messages_period
+          schema:
+            type: string
+            format: expression
+          description: Filters on the max messages period of the accounts
+        - in: query
+          name: limits_messages_include_reminders
+          schema:
+            type: boolean
+            format: expression
+          description: Filter on the include reminders of the accounts
+        - in: query
+          name: limits_allowed_domains
+          schema:
+            type: string
+            format: expression
+          description: Filter on the allowed domains of the accounts
+        - in: query
+          name: date_last_login
+          schema:
+            type: string
+            format: expression
+          description: Filter on the date last login of the accounts
+        - in: query
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filter on the created at date of the accounts
+        - in: query
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filter on the updated at date of the accounts
       responses:
         '200':
           description: Paginated account response
@@ -3557,6 +3714,13 @@ components:
         example: 'first_name,last_name,email'
       description: Comma separated parameter to select specific fields only from the response.
       allowEmptyValue: true
+    exceptParam:
+      name: exceptParam
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Comma separated parameter to remove specific fields from the response.
   responses:
     '404':
       description: This response returns an object with a message property containing the entity that couldn't be found.
