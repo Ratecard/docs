@@ -2442,7 +2442,9 @@ paths:
           name: sort
           schema:
             type: string
-            enum:
+          description: |-
+              Comma separated list to sort the API response. Ascending by default `?sort=name,created_at`, use a dash as a prefix to make a property sort with a descending order `?sort=-name,-created_at`
+
               - id
               - name
               - public
@@ -2469,7 +2471,6 @@ paths:
               - date_last_login
               - created_at
               - updated_at
-          description: Comma separated list to sort the API response
         - in: query
           name: id
           schema:
