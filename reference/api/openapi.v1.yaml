@@ -628,6 +628,100 @@ paths:
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: ?sort=created_at,-name
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+            - id
+            - public_id
+            - name
+            - limits.contacts.no_duplicates
+            - limits.contacts.no_duplicates_in_any_group
+            - limits.messages.max
+            - limits.messages.period
+            - limits.messages.include_reminders
+            - limits.filter.tag
+            - limits.filter.value
+            - created_at
+            - updated_at
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the id of the group
+        - in: query
+          name: public_id
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the public_id of the group
+        - in: query
+          name: name
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the name of the group
+        - in: query
+          name: limits.contacts.no_duplicates
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the limits.contacts.no_duplicates of the group
+        - in: query
+          name: limits.contacts.no_duplicates_in_any_group
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the limits.contacts.no_duplicates_in_any_group of the group
+        - in: query
+          name: limits.messages.max
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the limits.messages.max of the group
+        - in: query
+          name: limits.messages.period
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the limits.messages.period of the group
+        - in: query
+          name: limits.messages.include_reminders
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the limits.messages.include_reminders of the group
+        - in: query
+          name: limits.filter.tag
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the limits.filter.tag of the group
+        - in: query
+          name: limits.filter.value
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the limits.filter.value of the group
+        - in: query
+          name: created_at
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the created_at of the group
+        - in: query
+          name: updated_at
+          schema:
+            type: string
+            format: uuid
+          description: Filters on the updated_at of the group
       responses:
         '200':
           description: Paginated group response
@@ -1456,6 +1550,177 @@ paths:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: ?sort=created_at,-name
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+            - id
+            - review_visible
+            - first_name
+            - last_name
+            - name
+            - email
+            - phone
+            - date_of_birth
+            - country
+            - language
+            - function
+            - role
+            - notifications.app
+            - notifications.email.import_errors
+            - notifications.email.feedback
+            - notifications.email.feedback_below_score
+            - notifications.email.feedback_comments
+            - notifications.text.feedback
+            - notifications.text.feedback_below_score
+            - notifications.text.feedback_comments
+            - created_at
+            - updated_at
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the id of the users
+        - in: query
+          name: review_visible
+          schema:
+            type: string
+            format: expression
+          description: Filters on the review_visible of the users
+        - in: query
+          name: first_name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the first_name of the users
+        - in: query
+          name: last_name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the last_name of the users
+        - in: query
+          name: name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the name of the users
+        - in: query
+          name: email
+          schema:
+            type: string
+            format: expression
+          description: Filters on the email of the users
+        - in: query
+          name: phone
+          schema:
+            type: string
+            format: expression
+          description: Filters on the phone of the users
+        - in: query
+          name: date_of_birth
+          schema:
+            type: string
+            format: expression
+          description: Filters on the date_of_birth of the users
+        - in: query
+          name: country
+          schema:
+            type: string
+            format: expression
+          description: Filters on the country of the users
+        - in: query
+          name: language
+          schema:
+            type: string
+            format: expression
+          description: Filters on the language of the users
+        - in: query
+          name: function
+          schema:
+            type: string
+            format: expression
+          description: Filters on the function of the users
+        - in: query
+          name: role
+          schema:
+            type: string
+            format: expression
+          description: Filters on the role of the users
+        - in: query
+          name: notifications.app
+          schema:
+            type: string
+            format: expression
+          description: Filters on the notifications.app of the users
+        - in: query
+          name: notifications.email.import_errors
+          schema:
+            type: string
+            format: expression
+          description: Filters on the notifications.email.import_errors of the users
+        - in: query
+          name: notifications.email.feedback
+          schema:
+            type: string
+            format: expression
+          description: Filters on the notifications.email.feedback of the users
+        - in: query
+          name: notifications.email.feedback_below_enabled
+          schema:
+            type: string
+            format: expression
+          description: Filters on the notifications.email.feedback_below_enabled of the users
+        - in: query
+          name: notifications.email.feedback_below_score
+          schema:
+            type: string
+            format: expression
+          description: Filters on the notifications.email.feedback_below_score of the users
+        - in: query
+          name: notifications.email.feedback_comments
+          schema:
+            type: string
+            format: expression
+          description: Filters on the notifications.email.feedback_comments of the users
+        - in: query
+          name: notifications.text.feedback
+          schema:
+            type: string
+            format: expression
+          description: Filters on the notifications.text.feedback of the users
+        - in: query
+          name: notifications.text.feedback_below_enabled
+          schema:
+            type: string
+            format: expression
+          description: Filters on the notifications.text.feedback_below_enabled of the users
+        - in: query
+          name: notifications.text.feedback_comments
+          schema:
+            type: string
+            format: expression
+          description: Filters on the notifications.text.feedback_comments of the users
+        - in: query
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the created_at of the users
+        - in: query
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the updated_at of the users
     post:
       description: This endpoint is used to add new users to your account.
       summary: Add a new user
@@ -2066,6 +2331,79 @@ paths:
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: ?sort=created_at,-name
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+            - id
+            - name
+            - email
+            - created_at
+            - updated_at
+            - review_urls.google
+            - review_urls.facebook
+            - review_urls.indeed
+            - review_urls.glassdoor
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the id of the teams
+        - in: query
+          name: name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the name of the teams
+        - in: query
+          name: email
+          schema:
+            type: string
+            format: expression
+          description: Filters on the email of the teams
+        - in: query
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the created_at of the teams
+        - in: query
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the updated_at of the teams
+        - in: query
+          name: review_urls.google
+          schema:
+            type: string
+            format: expression
+          description: Filters on the review_urls.google of the teams
+        - in: query
+          name: review_urls.facebook
+          schema:
+            type: string
+            format: expression
+          description: Filters on the review_urls.facebook of the teams
+        - in: query
+          name: review_urls.indeed
+          schema:
+            type: string
+            format: expression
+          description: Filters on the review_urls.indeed of the teams
+        - in: query
+          name: review_urls.glassdoor
+          schema:
+            type: string
+            format: expression
+          description: Filters on the review_urls.glassdoor of the teams
     post:
       description: This endpoint is used to add a team to your account.
       summary: Add a new team
@@ -2325,6 +2663,65 @@ paths:
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: ?sort=created_at,-name
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+            - id
+            - is_inbound
+            - uses_signature
+            - name
+            - slug
+            - created_at
+            - updated_at
+        - in: query 
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the id of the webhooks
+        - in: query 
+          name: is_inbound
+          schema:
+            type: string
+            format: expression
+          description: Filters on the is_inbound of the webhooks
+        - in: query 
+          name: uses_signature
+          schema:
+            type: string
+            format: expression
+          description: Filters on the uses_signature of the webhooks
+        - in: query 
+          name: name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the name of the webhooks
+        - in: query 
+          name: slug
+          schema:
+            type: string
+            format: expression
+          description: Filters on the slug of the webhooks
+        - in: query 
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the created_at of the webhooks
+        - in: query 
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the updated_at of the webhooks
     post:
       description: This webhook is used to add a new webhook to your account.
       summary: Add a new webhook
@@ -3079,6 +3476,243 @@ paths:
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: ?sort=created_at,-name
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+            - id
+            - channel
+            - from
+            - to
+            - reply_to
+            - subject
+            - language
+            - reminder
+            - remind_at
+            - metadata.send_date
+            - metadata.views
+            - metadata.first_view_date
+            - metadata.last_view_date
+            - metadata.clicks
+            - metadata.first_click_date
+            - metadata.last_click_date
+            - metadata.left_feedback
+            - campaign.id
+            - campaign.name
+            - form.id
+            - form.name
+            - connected_user.id
+            - connected_user.name
+            - connected_user.email
+            - feedback.id
+            - feedback.score
+            - created_at
+            - updated_at
+            - deleted_at
+        - in: query 
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the id of the messages
+        - in: query 
+          name: channel
+          schema:
+            type: string
+            format: expression
+          description: Filters on the channel of the messages
+        - in: query 
+          name: from
+          schema:
+            type: string
+            format: expression
+          description: Filters on the from of the messages
+        - in: query 
+          name: to
+          schema:
+            type: string
+            format: expression
+          description: Filters on the to of the messages
+        - in: query 
+          name: reply_to
+          schema:
+            type: string
+            format: expression
+          description: Filters on the reply_to of the messages
+        - in: query 
+          name: subject
+          schema:
+            type: string
+            format: expression
+          description: Filters on the subject of the messages
+        - in: query 
+          name: language
+          schema:
+            type: string
+            format: expression
+          description: Filters on the language of the messages
+        - in: query 
+          name: reminder
+          schema:
+            type: string
+            format: expression
+          description: Filters on the reminder of the messages
+        - in: query 
+          name: remind_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the remind_at of the messages
+        - in: query 
+          name: metadata.send_date
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.send_date of the messages
+        - in: query 
+          name: metadata.status
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.status of the messages
+        - in: query 
+          name: metadata.time_till_status
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.time_till_status of the messages
+        - in: query 
+          name: metadata.views
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.views of the messages
+        - in: query 
+          name: metadata.first_view_date
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.first_view_date of the messages
+        - in: query 
+          name: metadata.last_view_date
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.last_view_date of the messages
+        - in: query 
+          name: metadata.clicks
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.clicks of the messages
+        - in: query 
+          name: metadata.first_click_date
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.first_click_date of the messages
+        - in: query 
+          name: metadata.time_to_click
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.time_to_click of the messages
+        - in: query 
+          name: metadata.last_click_date
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.last_click_date of the messages
+        - in: query 
+          name: metadata.left_feedback
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.left_feedback of the messages
+        - in: query 
+          name: metadata.time_to_rate
+          schema:
+            type: string
+            format: expression
+          description: Filters on the metadata.time_to_rate of the messages
+        - in: query 
+          name: campaign.id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the campaign.id of the messages
+        - in: query 
+          name: campaign.name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the campaign.name of the messages
+        - in: query 
+          name: form.id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the form.id of the messages
+        - in: query 
+          name: form.name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the form.name of the messages
+        - in: query 
+          name: connected_user.id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the connected_user.id of the messages
+        - in: query 
+          name: connected_user.name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the connected_user.name of the messages
+        - in: query 
+          name: connected_user.email
+          schema:
+            type: string
+            format: expression
+          description: Filters on the connected_user.email of the messages
+        - in: query 
+          name: feedback.id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the feedback.id of the messages
+        - in: query 
+          name: feedback.score
+          schema:
+            type: string
+            format: expression
+          description: Filters on the feedback.score of the messages
+        - in: query 
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the created_at of the messages
+        - in: query 
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the updated_at of the messages
+        - in: query 
+          name: deleted_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the deleted_at of the messages
   '/messages/{id}':
     parameters:
       - schema:
@@ -3591,6 +4225,128 @@ paths:
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: ?sort=created_at,-name
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+            - id
+            - subscribed
+            - unsubscribe_date
+            - first_name
+            - last_name
+            - name
+            - email
+            - phone
+            - rating
+            - anonymous
+            - external_type
+            - external_id
+            - synced_at
+            - created_at
+            - updated_at
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the id of the contacts
+        - in: query
+          name: first_name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the first_name of the contacts
+        - in: query
+          name: last_name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the last_name of the contacts
+        - in: query
+          name: name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the name of the contacts
+        - in: query
+          name: email
+          schema:
+            type: string
+            format: expression
+          description: Filters on the email of the contacts
+        - in: query
+          name: phone
+          schema:
+            type: string
+            format: expression
+          description: Filters on the phone of the contacts
+        - in: query
+          name: subscribed
+          schema:
+            type: string
+            format: expression
+          description: Filters on the subscribed of the contacts
+        - in: query
+          name: anonymous
+          schema:
+            type: string
+            format: expression
+          description: Filters on the anonymous of the contacts
+        - in: query
+          name: external_type
+          schema:
+            type: string
+            format: expression
+          description: Filters on the external_type of the contacts
+        - in: query
+          name: external_id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the external_id of the contacts
+        - in: query
+          name: unsubscribe_date
+          schema:
+            type: string
+            format: expression
+          description: Filters on the unsubscribe_date of the contacts
+        - in: query
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the created_at of the contacts
+        - in: query
+          name: synced_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the synced_at of the contacts
+        - in: query
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the updated_at of the contacts
+        - in: query
+          name: rating
+          schema:
+            type: string
+            format: expression
+          description: Filters on the rating of the contacts
+        - in: query
+          name: smart_fields.*
+          schema:
+            type: string
+            format: expression
+          example: smart_fields.owner=johndoe@ratecard.io
+          description: Filters on the smart fields of the contacts
     post:
       description: This endpoint is used to add a single contact to a single group.
       summary: Add a contact to the group
