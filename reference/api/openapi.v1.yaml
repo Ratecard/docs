@@ -2439,6 +2439,38 @@ paths:
         - $ref: '#/components/parameters/fieldsparam'
         - $ref: '#/components/parameters/exceptParam'
         - in: query
+          name: sort
+          schema:
+            type: string
+            enum:
+              - id
+              - name
+              - public
+              - general_website
+              - general_phone
+              - general_address
+              - general_zip_code
+              - general_city
+              - general_country
+              - general_description
+              - general_company_size
+              - general_profiles_facebook
+              - general_profiles_twitter
+              - general_profiles_linkedin
+              - general_profiles_glassdoor
+              - general_review_urls_google
+              - general_review_urls_indeed
+              - general_review_urls_glassdoor
+              - general_review_urls_facebook
+              - limits_messages_max
+              - limits_messages_period
+              - limits_messages_include_reminders
+              - limits_allowed_domains
+              - date_last_login
+              - created_at
+              - updated_at
+          description: Comma separated list to sort the API response
+        - in: query
           name: id
           schema:
             type: string
