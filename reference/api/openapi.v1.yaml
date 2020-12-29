@@ -2443,34 +2443,35 @@ paths:
           schema:
             type: string
           description: |-
-              A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
-              - id
-              - name
-              - public
-              - general_website
-              - general_phone
-              - general_address
-              - general_zip_code
-              - general_city
-              - general_country
-              - general_description
-              - general_company_size
-              - general_profiles_facebook
-              - general_profiles_twitter
-              - general_profiles_linkedin
-              - general_profiles_glassdoor
-              - general_review_urls_google
-              - general_review_urls_indeed
-              - general_review_urls_glassdoor
-              - general_review_urls_facebook
-              - limits_messages_max
-              - limits_messages_period
-              - limits_messages_include_reminders
-              - limits_allowed_domains
-              - date_last_login
-              - created_at
-              - updated_at
+            Sortable properties:
+            - id
+            - name
+            - public
+            - general.website
+            - general.phone
+            - general.address
+            - general.zip_code
+            - general.city
+            - general.country
+            - general.description
+            - general.company_size
+            - general.profiles.facebook
+            - general.profiles.twitter
+            - general.profiles.linkedin
+            - general.profiles.glassdoor
+            - general.review_urls.google
+            - general.review_urls.indeed
+            - general.review_urls.glassdoor
+            - general.review_urls.facebook
+            - limits.messages.max
+            - limits.messages.period
+            - limits.messages.include_reminders
+            - limits.allowed_domains
+            - date_last_login
+            - created_at
+            - updated_at
         - in: query
           name: id
           schema:
@@ -2490,121 +2491,121 @@ paths:
             format: expression
           description: Filters on the public status of the accounts
         - in: query
-          name: general_website
+          name: general.website
           schema:
             type: string
             format: expression
           description: Filters on the website of the accounts
         - in: query
-          name: general_phone
+          name: general.phone
           schema:
             type: string
             format: expression
           description: Filters on the phone of the accounts
         - in: query
-          name: general_address
+          name: general.address
           schema:
             type: string
             format: expression
           description: Filter son the address of the accounts
         - in: query
-          name: general_zip_code
+          name: general.zip_code
           schema:
             type: string
             format: expression
           description: Filters on the zip code of the accounts
         - in: query
-          name: general_city
+          name: general.city
           schema:
             type: string
             format: expression
           description: Filters on the city of the accounts
         - in: query
-          name: general_country
+          name: general.country
           schema:
             type: string
             format: expression
           description: Filters on the country of the accounts
         - in: query
-          name: general_description
+          name: general.description
           schema:
             type: string
             format: expression
           description: Filters on the description of the accounts
         - in: query
-          name: general_company_size
+          name: general.company_size
           schema:
             type: string
             format: expression
           description: Filters on the company size of the accounts
         - in: query
-          name: general_profiles_facebook
+          name: general.profiles.facebook
           schema:
             type: string
             format: expression
           description: Filters on the Facebook profile of the accounts
         - in: query
-          name: general_profiles_twitter
+          name: general.profiles.twitter
           schema:
             type: string
             format: expression
           description: Filters on the Twitter profile of the accounts
         - in: query
-          name: general_profiles_linkedin
+          name: general.profiles.linkedin
           schema:
             type: string
             format: expression
           description: Filters on the LinkedIn profile of the accounts
         - in: query
-          name: general_profiles_glassdoor
+          name: general.profiles.glassdoor
           schema:
             type: string
             format: expression
           description: Filters on the Glassdoor profile of the accounts
         - in: query
-          name: general_review_urls_google
+          name: general.review_urls.google
           schema:
             type: string
             format: expression
           description: Filters on the Google review URL of the accounts
         - in: query
-          name: general_review_urls_indeed
+          name: general.review_urls.indeed
           schema:
             type: string
             format: expression
           description: Filters on the Indeed review URL of the accounts
         - in: query
-          name: general_review_urls_glassdoor
+          name: general.review_urls.glassdoor
           schema:
             type: string
             format: expression
           description: Filters on the Glassdoor review URL of the accounts
         - in: query
-          name: general_review_urls_facebook
+          name: general.review_urls.facebook
           schema:
             type: string
             format: expression
           description: Filters on the Facebook review of the accounts
         - in: query
-          name: limits_messages_max
+          name: limits.messages.max
           schema:
             type: number
             format: expression
           description: Filters on the max messages of the accounts
         - in: query
-          name: limits_messages_period
+          name: limits.messages.period
           schema:
             type: string
             format: expression
           description: Filters on the max messages period of the accounts
         - in: query
-          name: limits_messages_include_reminders
+          name: limits.messages.include_reminders
           schema:
             type: boolean
             format: expression
           description: Filter on the include reminders of the accounts
         - in: query
-          name: limits_allowed_domains
+          name: limits.allowed_domains
           schema:
             type: string
             format: expression
