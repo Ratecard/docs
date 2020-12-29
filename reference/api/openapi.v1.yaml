@@ -35,6 +35,105 @@ paths:
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+            - id
+            - subscribed
+            - unsubscribe_date
+            - first_name
+            - last_name
+            - name
+            - email
+            - phone
+            - rating
+            - anonymous
+            - external_type
+            - external_id
+            - synced_at
+            - created_at
+            - updated_at
+        - in: query
+          name: id
+          schema:
+            type: string
+          description: Filters on the id of the contacts
+        - in: query
+          name: first_name
+          schema:
+            type: string
+          description: Filters on the first_name of the contacts
+        - in: query
+          name: last_name
+          schema:
+            type: string
+          description: Filters on the last_name of the contacts
+        - in: query
+          name: name
+          schema:
+            type: string
+          description: Filters on the name of the contacts
+        - in: query
+          name: email
+          schema:
+            type: string
+          description: Filters on the email of the contacts
+        - in: query
+          name: phone
+          schema:
+            type: string
+          description: Filters on the phone of the contacts
+        - in: query
+          name: subscribed
+          schema:
+            type: string
+          description: Filters on the subscribed of the contacts
+        - in: query
+          name: anonymous
+          schema:
+            type: string
+          description: Filters on the anonymous of the contacts
+        - in: query
+          name: external_type
+          schema:
+            type: string
+          description: Filters on the external_type of the contacts
+        - in: query
+          name: external_id
+          schema:
+            type: string
+          description: Filters on the external_id of the contacts
+        - in: query
+          name: unsubscribe_date
+          schema:
+            type: string
+          description: Filters on the unsubscribe_date of the contacts
+        - in: query
+          name: created_at
+          schema:
+            type: string
+          description: Filters on the created_at of the contacts
+        - in: query
+          name: synced_at
+          schema:
+            type: string
+          description: Filters on the synced_at of the contacts
+        - in: query
+          name: updated_at
+          schema:
+            type: string
+          description: Filters on the updated_at of the contacts
+        - in: query
+          name: rating
+          schema:
+            type: string
+          description: Filters on the rating of the contacts
       responses:
         '200':
           description: Paginated contact response
