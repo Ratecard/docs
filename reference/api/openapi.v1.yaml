@@ -2443,7 +2443,7 @@ paths:
           schema:
             type: string
           description: |-
-              Comma separated list to sort the API response. Ascending by default `?sort=name,created_at`, use a dash as a prefix to make a property sort with a descending order `?sort=-name,-created_at`
+              A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
               - id
               - name
