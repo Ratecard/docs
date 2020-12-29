@@ -73,7 +73,11 @@ Numeric functions can be applied to numbers; given as arguments to relational fu
 Date functions can be applied to dates; given as arguments to relational functions.
 
 - `now(str)` returns the current date as it's value; accepts an optional parameter to transform the date or to parse a date.
-  - `now()`, `now('2020-12-28')` `now('-30 day')`, `now('+1 month')`
+  - Examples:
+    - `now()`
+    - `now('2020-12-28')` 
+    - `now('-30 day')`
+    - `now('+1 month')`
 
 ## Database functions
 Functions that can be applied directly to defined properties. These functions expose a select few functions from the database to transform the value of the defined properties.

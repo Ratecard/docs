@@ -25,6 +25,7 @@ As an additional example let's turn the first example into a basic filter expres
 ```js
 /contacts?first_name=in('John', 'Jane')&last_name=equals('Doe')
 ```
+[See all functions](https://developers.ratecard.io/studio/api/edit)
 
 ## Advanced Expression Filtering
 If you are familiar with query languages such as MySQL it will essentialy be building a WHERE clause when building a full filter expression. Advanced expression filters use the `filter` parameter in the URL. Let's go through a few examples.
@@ -40,6 +41,8 @@ Example 2, we want all messages with feedback that have a score thats greater or
 /messages?filter=and(equals(metadata.status, 'feedback'), greaterThanOrEqualTo(feedback.score, 9), in(connected_user.email, 'johndoe@example.com', 'janedoe@example.com'))
 /messages?filter=and(eq(metadata.status, 'feedback'), ge(feedback.score, 9), in(connected_user.email, 'johndoe@example.com', 'janedoe@example.com'))
 ```
+
+[See all functions](https://developers.ratecard.io/studio/api/edit)
 
 ## Filtering on Smart Fields
 Smart fields provided a unique challenge when building the expression filters, especially with regards to performance and their dynamic nature. The only endpoint that currently supports smart field filters is the group contact endpoint. 
