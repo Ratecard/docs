@@ -40,6 +40,7 @@ paths:
           name: sort
           schema:
             type: string
+          example: ?sort=created_at,-name
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -63,76 +64,91 @@ paths:
           name: id
           schema:
             type: string
+            format: expression
           description: Filters on the id of the contacts
         - in: query
           name: first_name
           schema:
             type: string
+            format: expression
           description: Filters on the first_name of the contacts
         - in: query
           name: last_name
           schema:
             type: string
+            format: expression
           description: Filters on the last_name of the contacts
         - in: query
           name: name
           schema:
             type: string
+            format: expression
           description: Filters on the name of the contacts
         - in: query
           name: email
           schema:
             type: string
+            format: expression
           description: Filters on the email of the contacts
         - in: query
           name: phone
           schema:
             type: string
+            format: expression
           description: Filters on the phone of the contacts
         - in: query
           name: subscribed
           schema:
             type: string
+            format: expression
           description: Filters on the subscribed of the contacts
         - in: query
           name: anonymous
           schema:
             type: string
+            format: expression
           description: Filters on the anonymous of the contacts
         - in: query
           name: external_type
           schema:
             type: string
+            format: expression
           description: Filters on the external_type of the contacts
         - in: query
           name: external_id
           schema:
             type: string
+            format: expression
           description: Filters on the external_id of the contacts
         - in: query
           name: unsubscribe_date
           schema:
             type: string
+            format: expression
           description: Filters on the unsubscribe_date of the contacts
         - in: query
           name: created_at
           schema:
             type: string
+            format: expression
           description: Filters on the created_at of the contacts
         - in: query
           name: synced_at
           schema:
             type: string
+            format: expression
           description: Filters on the synced_at of the contacts
         - in: query
           name: updated_at
           schema:
             type: string
+            format: expression
           description: Filters on the updated_at of the contacts
         - in: query
           name: rating
           schema:
             type: string
+            format: expression
           description: Filters on the rating of the contacts
       responses:
         '200':
@@ -2541,6 +2557,7 @@ paths:
           name: sort
           schema:
             type: string
+          example: ?sort=created_at,-name
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -3153,6 +3170,127 @@ paths:
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: ?sort=created_at,-name
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+            - id
+            - review
+            - anonymous
+            - closed
+            - respondent.first_name
+            - respondent.last_nam
+            - respondent.name
+            - respondent.email
+            - score
+            - nps
+            - duration
+            - locale
+            - created_at
+            - updated_at
+            - completed_at
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the id of the feedback
+        - in: query
+          name: respondent.first_name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the respondent.first_name of the feedback
+        - in: query
+          name: respondent.last_name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the respondent.last_name of the feedback
+        - in: query
+          name: respondent.name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the respondent.name of the feedback
+        - in: query
+          name: respondent.email
+          schema:
+            type: string
+            format: expression
+          description: Filters on the respondent.email of the feedback
+        - in: query
+          name: respondent.phone
+          schema:
+            type: string
+            format: expression
+          description: Filters on the respondent.phone of the feedback
+        - in: query
+          name: review
+          schema:
+            type: string
+            format: expression
+          description: Filters on the review of the feedback
+        - in: query
+          name: anonymous
+          schema:
+            type: string
+            format: expression
+          description: Filters on the anonymous of the feedback
+        - in: query
+          name: closed
+          schema:
+            type: string
+            format: expression
+          description: Filters on the closed of the feedback
+        - in: query
+          name: score
+          schema:
+            type: string
+            format: expression
+          description: Filters on the score of the feedback
+        - in: query
+          name: nps
+          schema:
+            type: string
+            format: expression
+          description: Filters on the nps of the feedback
+        - in: query
+          name: duration
+          schema:
+            type: string
+            format: expression
+          description: Filters on the duration of the feedback
+        - in: query
+          name: locale
+          schema:
+            type: string
+            format: expression
+          description: Filters on the locale of the feedback
+        - in: query
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the created_at of the feedback
+        - in: query
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the updated_at of the feedback
+        - in: query
+          name: completed_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the completed_at of the feedback
       responses:
         '200':
           description: Paginated feedback response
