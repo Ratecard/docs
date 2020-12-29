@@ -1,5 +1,8 @@
-# Filtering: Functions
-In this article you'll find all the functions that can be used in basic and advanced expression filtering.
+# Filtering: Expressions
+In this article you'll learn about expressions and the functions used to build them, followed by additional examples for each of the three ways to filter, an endpoint to test (advanced) expressions (without defined properties), and a glossary containing some additional descriptions.
+
+## Expressions
+An **expression** in the Ratecard API is a combination of functions, string literals and/or defined properties. Generally these expressions will be found in GET API endpoints that return collections of items such as a list of contacts. If you've read the introduction to filtering you've come to know that these expressions are implemented in three different ways throughout these endpoints. Let's dive deeper into how this all works in our API in order to make it as clear as possible how everything works.
 
 ## Logical Functions
 Logical functions combine other boolean expressions.
@@ -98,6 +101,161 @@ Functions that can be applied directly to defined properties. These functions ex
 - Spaces will be trimmed from the edges of string literals.
 - When `true` and `false` are given as a string they will automatically be cast to a boolean.
 - When `null` is given as a string it will automatically be cast to null.
+
+## Expression filtering
+In this section we dive a little deeper into the expression filtering and go through each of the variants to see how they function and what their limitations are.
+
+> The paragraphs in this section build on top of one another.
+
+### Basic filtering
+Basic filters follow a key value pair structure where the value is what's being filtered on and are limited in their functionality. In the background these are mapped to expressions that will eventually be applied to the query resulting in the collection returned. Basic filters use the `equals` and `in` relational functions. The key, property or query paremeter in this context is called the **defined property**. These are specified as query parameters at each endpoint.
+
+Here you can see the forms in which you could apply a basic filter depending on the available query parameters:
+```js
+// key equals value -> name equals John
+<key>=<value> -> name=John
+// the property of object equals value -> the user's name equals John
+<object>.<property>=<value> -> user.name=John
+// key is one of the given values -> name is one of Jane or John
+<key>=<value>|<value> -> name=Jane|John
+// the property of object is one of the given values -> the user's name is one of Jane or John
+<object>.<property>=<value>|<value> -> user.name=Jane|John
+```
+
+### Basic expression filtering
+Basic expression filters follow a key value pair structure where the value is a **relational function** (rf) without the **defined property** (dp) as the key is the defined property. Relational functions that only take the defined property as an argument (arg) will not accept any arguments. Relational functions can also accept string, numeric & date functions (df).
+
+Let's take the examples from basic filtering and write them in their basic expression form:
+```js
+name=John -> name=equals('John')
+user.name=John -> user.name=equals('John')
+name=Jane|John -> name=in('Jane', 'Joe')
+user.name=Jane|John -> user.name=in('Jane', 'Joe')
+```
+Now let's expand on that and match only the users that were created in 2020 with the first name Jane or Joe and last name Doe:
+```js
+// <dp>=<rf>(<arg1>, <arg2>)&<dp>=<rf>(<arg1>)&<dp>=<rf>(<df>(<arg1>))
+first_name=in('Jane', 'Joe')&last_name=equals('Doe')&created_at=greaterThanOrEqualTo(now('2020-01-01'))
+```
+This can be simplified to the following mixing basic filters and basic expression filters with aliases:
+```js
+first_name=Jane|Joe&last_name=Doe&created_at=ge(now('2020-01-01'))
+```
+
+### Advanced expression filtering
+Advanced expression filtering unlocks the full potential of expressions. In the API endpoints this will be possible via the query parameter `filter`. It accepts both logical functions and relational functions. When a relational function is given it essentially functions as a basic expression filter, however the defined property will have to be specified.
+
+Let's take a look at how it works with a simple example where a users email has to contain ratecard:
+```js
+filter=contains(email, 'ratecard')
+// Alternatively:
+email=contains('ratecard')
+```
+As you can see this example can just as well be written as a basic expression filter. So what can we do with an advanced expression filter? Let's say we want to apply 2 filters to one property or we want to match one of the given expression, basic filters don't allow that. 
+
+#### Example 1
+Let's take the example with the contains and we want to check if the email contains gmail or outlook:
+<!--  
+type: tab
+title: Expression
+-->
+```js
+or(contains(email, 'gmail'), contains(email, 'outlook'))
+// With aliases
+or(ct(email, 'gmail'), ct(email, 'outlook'))
+```
+<!--  
+type: tab
+title: JSON
+-->
+```json
+{
+  "name": "or",
+  "arguments": [
+    {
+      "name": "contains",
+      "arguments": [
+        "email",
+        "gmail"
+      ]
+    },
+    {
+      "name": "contains",
+      "arguments": [
+        "email",
+        "outlook"
+      ]
+    }
+  ]
+}
+```
+<!--  
+type: tab
+title: SQL
+-->
+```sql 
+WHERE email LIKE '%gmail%' OR email LIKE '%outlook%';
+```
+<!-- type: tab-end -->
+
+#### Example 2
+We want all feedback with an NPS above 8 or a score above 8 given in the past month. Additionaly we want to make sure that our score is rounded as it can have decimal values and that the respondent's email ends with our company's domain name (ratecard.io). We also want to ensure the respondent email will not have spaces in it so we trim it.
+<!--  
+type: tab
+title: Expression
+-->
+```js
+and(or(greaterThan(nps, 8), greaterThan(round(score), 8)), endsWith(trim(respondent.email), 'ratecard.io'))
+// With aliases
+and(or(gt(nps, 8), gt(round(score), 8)), ew(trim(respondent.email), 'ratecard.io'))
+```
+<!--  
+type: tab
+title: Json
+-->
+```json
+{
+  "name": "and",
+  "arguments": [
+    {
+      "name": "or",
+      "arguments": [
+        {
+          "name": "greaterThan",
+          "arguments": [
+            "nps",
+            8
+          ]
+        },
+        {
+          "name": "greaterThan",
+          "arguments": [
+            "round(score)",
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "name": "endsWith",
+      "arguments": [
+        "trim(respondent.email)",
+        "ratecard.io"
+      ]
+    }
+  ]
+}
+```
+<!--  
+type: tab
+title: SQL
+-->
+```sql 
+WHERE (nps > 8 OR ROUND(score) > 8) 
+AND 
+TRIM(respondent.email) LIKE '%ratecard.io';
+```
+<!-- type: tab-end -->
 
 ## Test an expression
 Test a fake expression and see how our app processes it!

@@ -12,6 +12,22 @@
     },
     {
       "type": "divider",
+      "title": "Filtering"
+    },
+    {
+    
+      "type": "item",
+      "title": "Introduction",
+      "uri": "docs/filtering/introduction.md"
+    },
+    {
+    
+      "type": "item",
+      "title": "Expressions",
+      "uri": "docs/filtering/expressions.md"
+    },
+    {
+      "type": "divider",
       "title": "Webhooks"
     },
     {
