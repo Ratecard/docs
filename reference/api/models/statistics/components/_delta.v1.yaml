@@ -1,0 +1,23 @@
+title: Delta
+type: object
+properties:
+  current:
+    type: number
+    example: 2
+    description: Current value
+  new:
+    type: number
+    example: 1
+    description: If not given it will be equal to difference
+  previous:
+    type: number
+    example: 1
+    description: Previous value
+  difference:
+    type: number
+    example: 1
+    description: Difference between current and previous values
+  percentage:
+    type: number
+    example: 100.0
+    description: Percentage difference between current and previous values

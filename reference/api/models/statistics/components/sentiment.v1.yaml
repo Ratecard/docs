@@ -1,0 +1,23 @@
+title: Sentiment
+type: object
+properties:
+  value:
+    type: string
+    enum:
+      - very_positive
+      - positive
+      - neutral
+      - negative
+      - very_negative
+  delta:
+    type: object
+    properties:
+      value:
+        type: string
+        enum:
+          - very_positive
+          - positive
+          - neutral
+          - negative
+          - very_negative
+

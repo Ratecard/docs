@@ -1,0 +1,30 @@
+title: Duration
+type: object
+properties:
+  timestamp:
+    type: integer
+    example: 34995661
+  years:
+    type: integer
+    example: 1
+  months:
+    type: integer
+    example: 1
+  weeks:
+    type: integer
+    example: 1
+  days:
+    type: integer
+    example: 1
+  hours:
+    type: integer
+    example: 1
+  minutes:
+    type: integer
+    example: 1
+  seconds:
+    type: integer
+    example: 1
+  display:
+    type: string
+    example: 1y1m1w1d1h1m1s

@@ -1,0 +1,12 @@
+title: completion
+type: object
+properties:
+  avg:
+    type: number
+    example: 100.0
+  delta:
+    type: object
+    properties: 
+      avg:
+        type: number
+        example: 100.0

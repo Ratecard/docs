@@ -1,0 +1,56 @@
+title: Messages
+type: object
+properties:
+  total:
+    type: integer
+    example: 1
+  opens:
+    type: integer
+    example: 1
+  open_ratio:
+    type: number
+    example: 100.0
+  time_to_open:
+    $ref: './_duration.v1.yaml'
+  clicks:
+    type: integer
+    example: 1
+  click_through_rate:
+    type: integer
+    example: 100.0
+  time_to_click:
+    $ref: './_duration.v1.yaml'
+  conversion:
+    type: number
+    example: 100.0
+  feedback_with_messages:
+    type: integer
+    example: 1
+  delta:
+    type: object
+    properties:
+      total:
+        type: integer
+        example: 1
+      opens:
+        type: integer
+        example: 1
+      open_ratio:
+        type: number
+        example: 100.0
+      time_to_open:
+        $ref: './_duration.v1.yaml'
+      clicks:
+        type: integer
+        example: 1
+      click_through_rate:
+        type: integer
+        example: 100.0
+      time_to_click:
+        $ref: './_duration.v1.yaml'
+      conversion:
+        type: number
+        example: 100.0
+      feedback_with_messages:
+        type: integer
+        example: 1

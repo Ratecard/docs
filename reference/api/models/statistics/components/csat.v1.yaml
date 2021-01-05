@@ -1,0 +1,72 @@
+title: CSAT
+type: object
+properties:
+  avg:
+    type: number
+    example: 9
+    description: Average CSAT given
+  recent:
+    type: array
+    minItems: 5
+    maxItems: 5
+    description: Most recent CSAT values
+    items:
+      type: integer
+    example:
+      - 9
+      - 0
+      - 0
+      - 0
+      - 0
+  breakdown:
+    above_nine:
+      type: integer
+      example: 1
+    seven_to_eight:
+      type: integer
+      example: 1
+    below_six:
+      type: integer
+      example: 1
+    avg:
+      type: number
+      example: 9
+    total:
+      type: integer
+      example: 1
+  delta:
+    type: object
+    properties:
+      avg:
+        type: number
+        example: 9
+        description: Average CSAT given
+      recent:
+        type: array
+        minItems: 5
+        maxItems: 5
+        description: Most recent CSAT values
+        items:
+          type: integer
+        example:
+          - 9
+          - 0
+          - 0
+          - 0
+          - 0
+      breakdown:
+        above_nine:
+          type: integer
+          example: 1
+        seven_to_eight:
+          type: integer
+          example: 1
+        below_six:
+          type: integer
+          example: 1
+        avg:
+          type: number
+          example: 9
+        total:
+          type: integer
+          example: 1

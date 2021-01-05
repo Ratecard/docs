@@ -1,0 +1,82 @@
+title: NPS
+type: object
+properties:
+  avg:
+    type: number
+    example: 9
+    description: Average NPS given
+  recent:
+    type: array
+    minItems: 5
+    maxItems: 5
+    description: Most recent NPS values
+    items:
+      type: integer
+    example:
+      - 9
+      - 0
+      - 0
+      - 0
+      - 0
+  breakdown:
+    type: object
+    properties:
+      promoters:
+        type: integer
+        example: 1
+      neutrals:
+        type: integer
+        example: 0
+      detractors:
+        type: integer
+        example: 0
+      total:
+        type: integer
+        example: 1
+      promoter_score:
+        type: number
+        example: 100.0
+      detractor_score:
+        type: number
+        example: 100.0
+  delta:
+    type: object
+    properties:
+      avg:
+        type: number
+        example: 9
+        description: Average NPS given
+      recent:
+        type: array
+        minItems: 5
+        maxItems: 5
+        description: Most recent NPS values
+        items:
+          type: integer
+        example:
+          - 9
+          - 0
+          - 0
+          - 0
+          - 0
+      breakdown:
+        type: object
+        properties:
+          promoters:
+            type: integer
+            example: 1
+          neutrals:
+            type: integer
+            example: 0
+          detractors:
+            type: integer
+            example: 0
+          total:
+            type: integer
+            example: 1
+          promoter_score:
+            type: number
+            example: 100.0
+          detractor_score:
+            type: number
+            example: 100.0

@@ -1,0 +1,46 @@
+title: Engagement
+type: object
+properties:
+  value:
+    type: string
+    enum:
+      - very_high
+      - high
+      - moderate
+      - low
+      - very_low
+  points:
+    type: object
+    properties:
+      total:
+        type: number
+        example: 60
+      current:
+        type: integer
+        example: 12
+      percentage:
+        type: number
+        example: 20
+  delta:
+    type: object
+    properties:
+      value:
+        type: string
+        enum:
+          - very_high
+          - high
+          - moderate
+          - low
+          - very_low
+      points:
+        type: object
+        properties:
+          total:
+            type: number
+            example: 60
+          current:
+            type: integer
+            example: 12
+          percentage:
+            type: number
+            example: 20

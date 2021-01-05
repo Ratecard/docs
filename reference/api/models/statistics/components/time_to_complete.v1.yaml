@@ -1,0 +1,10 @@
+title: Time To Complete
+type: object
+properties:
+  avg:
+    - $ref: './_duration.v1.yaml'
+  delta:
+    type: object
+    properties: 
+      avg:
+        - $ref: './_duration.v1.yaml'
