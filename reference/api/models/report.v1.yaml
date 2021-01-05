@@ -1,5 +1,28 @@
 title: Report
 type: object
+description: |-
+  This is the report model. It contains all information about a report, it's template and configuration. In our app reports are used to visualize statistics, filter on and view a subset of data.
+
+  We have 9 report templates:
+  1. `Dashboard` This is the most dynamic report showing your inbox, outbox, and leaderboard. In thisreport, both CSAT and NPS metrics are shown.
+  2. `CSAT` This report shows you how you're performing on Candidate and/or Customer Satisfaction (CSAT). It therefore contains no NPS.
+  3. `NPS` This report shows you how you're performing on Net Promoter Score (NPS). It therefore contains no CSAT, and NPS only.
+  4. `Journey` This report helps you to visualise, measure and improve your candidate, customer or employee journey and its touch points.
+  5. `Wordcloud` This report helps you to visualise everything your respondents said about you in a wordcloud you can customise.
+  6. `Leaderboard` Set up leaderboards of users or teams within your company, so you can compare their CSAT, NPS, conversion and more.
+  7. `Comparison` Compare two objects of the same type, e.g. two groups, forms, campaigns, users or teams.
+  8. `Map` Create a map with markers or a heatmap of feedback you’ve collected. We use IP addresses to set up this map.
+  9. `Matrix` Set up a matrix to compare users or teams on CSAT, NPS and/or number of feedback and messages.
+
+  Besides these templates a few of our other models also have statistics that function as virtual reports tailored to those models. Users, Teams, Contacts, Groups, Forms, Campaigns & Teams. These will have endpoints similar to reports e.g. for reports you have the following endpoints:
+  - `/v1/reports/<report_id>/statistics` (also included in `/v1/reports/<report_id>`)
+  - `/v1/reports/<report_id>/feedback`
+  - `/v1/reports/<report_id>/messages`
+
+  For one of the other models e.g. users it would look like this:
+  - `/v1/users/<user_id>/statistics`
+  - `/v1/users/<user_id>/feedback`
+  - `/v1/users/<user_id>/messages`
 properties:
   id:
     type: string
@@ -133,8 +156,7 @@ properties:
       options:
         description: Options for the report template (not all have options)
         oneOf:
-          - type: object
-            description: Leaderboard options
+          - description: Leaderboard options
             properties:
               show_columns:
                 type: string
@@ -166,8 +188,7 @@ properties:
                   - 25
                 example: 5
                 description: Amount of users/teams to show
-          - type: object
-            description: Matrix options
+          - description: Matrix options
             properties:
               stream:
                 type: string
@@ -220,8 +241,7 @@ properties:
                 description: Position of the legend
               relative_maximum:
                 type: boolean
-          - type: object
-            description: Wordcloud options
+          - description: Wordcloud options
             properties:
               filter_names:
                 type: boolean
@@ -233,8 +253,7 @@ properties:
                 type: boolean
               filter_custom:
                 type: string
-          - type: object
-            description: Comparison options
+          - description: Comparison options
             properties:
               show:
                 type: string
@@ -255,8 +274,7 @@ properties:
                     type: boolean
                   filter_custom:
                     type: string
-          - type: object
-            description: Map options
+          - description: Map options
             properties:
               type:
                 type: string
@@ -273,5 +291,14 @@ properties:
                   - inbox
                   - outbox
                 description: Stream type
+        type: object
+  statistics:
+    oneOf:
+      - ''
+    type: object
+  shares:
+    $ref: ./share.v1.yaml
+  filters:
+    $ref: ./filter.v1.yaml
 required:
   - name

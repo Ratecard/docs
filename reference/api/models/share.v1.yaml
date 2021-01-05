@@ -1,0 +1,25 @@
+title: share
+type: object
+properties:
+  type: 
+    type: string
+    enum:
+      - user
+      - team
+      - role
+    description: The object type that has access to the share
+    example: user
+  id:
+    type: string
+    description: ID of the object with access to the share
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: Name of the object with access to the shared object
+    example: John Doe
+  email:
+    type: string
+    description: Email of the object with access to the shared object
+    example: johndoe@ratecard.io

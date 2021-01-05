@@ -1,0 +1,86 @@
+title: Filter
+type: object
+description: ''
+properties:
+  id:
+    type: string
+    description: ID of the filter
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    readOnly: true
+    format: uuid
+  operator:
+    type: string
+    enum:
+      - AND
+      - OR
+    description: Operator the filter uses in the query
+  object:
+    type: string
+    enum:
+      - form
+      - campaign
+      - group
+      - contact
+      - user
+      - team
+      - form_question
+      - csat
+      - nps
+      - text_search
+      - period
+    description: Object that's being searched on
+  search:
+    type: array
+    description: Array of values to search on
+    items:
+      type: string
+  type:
+    type: string
+    enum:
+      - none
+      - text
+      - numeric
+      - date
+      - time
+      - datetime
+      - team
+      - user
+      - has_value
+      - choice
+      - language
+      - relationship
+    description: Type of filter
+  condition:
+    type: string
+    enum:
+      - equals
+      - is
+      - has_value
+      - is_not
+      - contains
+      - does_not_contain
+      - starts_with
+      - ends_with
+      - greater_than
+      - between
+      - period
+      - period_start
+      - period_end
+      - less_than
+      - greater_than_or_equal
+      - less_than_or_equal
+    description: Condition to filter on
+  values:
+    type: object
+    description: Values to apply the condition to
+    properties:
+      start:
+        type: string
+        description: The first or starting value
+      end:
+        type: string
+        description: The last or ending value
+required:
+  - operator
+  - object
+  - search

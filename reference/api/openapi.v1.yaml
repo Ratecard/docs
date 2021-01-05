@@ -40,7 +40,7 @@ paths:
           name: sort
           schema:
             type: string
-          example: ?sort=created_at,-name
+          example: '?sort=created_at,-name'
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -633,7 +633,7 @@ paths:
           name: sort
           schema:
             type: string
-          example: ?sort=created_at,-name
+          example: '?sort=created_at,-name'
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -1556,7 +1556,7 @@ paths:
           name: sort
           schema:
             type: string
-          example: ?sort=created_at,-name
+          example: '?sort=created_at,-name'
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -2336,7 +2336,7 @@ paths:
           name: sort
           schema:
             type: string
-          example: ?sort=created_at,-name
+          example: '?sort=created_at,-name'
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -2668,7 +2668,7 @@ paths:
           name: sort
           schema:
             type: string
-          example: ?sort=created_at,-name
+          example: '?sort=created_at,-name'
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -2680,43 +2680,43 @@ paths:
             - slug
             - created_at
             - updated_at
-        - in: query 
+        - in: query
           name: id
           schema:
             type: string
             format: expression
           description: Filters on the id of the webhooks
-        - in: query 
+        - in: query
           name: is_inbound
           schema:
             type: string
             format: expression
           description: Filters on the is_inbound of the webhooks
-        - in: query 
+        - in: query
           name: uses_signature
           schema:
             type: string
             format: expression
           description: Filters on the uses_signature of the webhooks
-        - in: query 
+        - in: query
           name: name
           schema:
             type: string
             format: expression
           description: Filters on the name of the webhooks
-        - in: query 
+        - in: query
           name: slug
           schema:
             type: string
             format: expression
           description: Filters on the slug of the webhooks
-        - in: query 
+        - in: query
           name: created_at
           schema:
             type: string
             format: expression
           description: Filters on the created_at of the webhooks
-        - in: query 
+        - in: query
           name: updated_at
           schema:
             type: string
@@ -2954,7 +2954,7 @@ paths:
           name: sort
           schema:
             type: string
-          example: ?sort=created_at,-name
+          example: '?sort=created_at,-name'
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -3481,7 +3481,7 @@ paths:
           name: sort
           schema:
             type: string
-          example: ?sort=created_at,-name
+          example: '?sort=created_at,-name'
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -3515,199 +3515,199 @@ paths:
             - created_at
             - updated_at
             - deleted_at
-        - in: query 
+        - in: query
           name: id
           schema:
             type: string
             format: expression
           description: Filters on the id of the messages
-        - in: query 
+        - in: query
           name: channel
           schema:
             type: string
             format: expression
           description: Filters on the channel of the messages
-        - in: query 
+        - in: query
           name: from
           schema:
             type: string
             format: expression
           description: Filters on the from of the messages
-        - in: query 
+        - in: query
           name: to
           schema:
             type: string
             format: expression
           description: Filters on the to of the messages
-        - in: query 
+        - in: query
           name: reply_to
           schema:
             type: string
             format: expression
           description: Filters on the reply_to of the messages
-        - in: query 
+        - in: query
           name: subject
           schema:
             type: string
             format: expression
           description: Filters on the subject of the messages
-        - in: query 
+        - in: query
           name: language
           schema:
             type: string
             format: expression
           description: Filters on the language of the messages
-        - in: query 
+        - in: query
           name: reminder
           schema:
             type: string
             format: expression
           description: Filters on the reminder of the messages
-        - in: query 
+        - in: query
           name: remind_at
           schema:
             type: string
             format: expression
           description: Filters on the remind_at of the messages
-        - in: query 
+        - in: query
           name: metadata.send_date
           schema:
             type: string
             format: expression
           description: Filters on the metadata.send_date of the messages
-        - in: query 
+        - in: query
           name: metadata.status
           schema:
             type: string
             format: expression
           description: Filters on the metadata.status of the messages
-        - in: query 
+        - in: query
           name: metadata.time_till_status
           schema:
             type: string
             format: expression
           description: Filters on the metadata.time_till_status of the messages
-        - in: query 
+        - in: query
           name: metadata.views
           schema:
             type: string
             format: expression
           description: Filters on the metadata.views of the messages
-        - in: query 
+        - in: query
           name: metadata.first_view_date
           schema:
             type: string
             format: expression
           description: Filters on the metadata.first_view_date of the messages
-        - in: query 
+        - in: query
           name: metadata.last_view_date
           schema:
             type: string
             format: expression
           description: Filters on the metadata.last_view_date of the messages
-        - in: query 
+        - in: query
           name: metadata.clicks
           schema:
             type: string
             format: expression
           description: Filters on the metadata.clicks of the messages
-        - in: query 
+        - in: query
           name: metadata.first_click_date
           schema:
             type: string
             format: expression
           description: Filters on the metadata.first_click_date of the messages
-        - in: query 
+        - in: query
           name: metadata.time_to_click
           schema:
             type: string
             format: expression
           description: Filters on the metadata.time_to_click of the messages
-        - in: query 
+        - in: query
           name: metadata.last_click_date
           schema:
             type: string
             format: expression
           description: Filters on the metadata.last_click_date of the messages
-        - in: query 
+        - in: query
           name: metadata.left_feedback
           schema:
             type: string
             format: expression
           description: Filters on the metadata.left_feedback of the messages
-        - in: query 
+        - in: query
           name: metadata.time_to_rate
           schema:
             type: string
             format: expression
           description: Filters on the metadata.time_to_rate of the messages
-        - in: query 
+        - in: query
           name: campaign.id
           schema:
             type: string
             format: expression
           description: Filters on the campaign.id of the messages
-        - in: query 
+        - in: query
           name: campaign.name
           schema:
             type: string
             format: expression
           description: Filters on the campaign.name of the messages
-        - in: query 
+        - in: query
           name: form.id
           schema:
             type: string
             format: expression
           description: Filters on the form.id of the messages
-        - in: query 
+        - in: query
           name: form.name
           schema:
             type: string
             format: expression
           description: Filters on the form.name of the messages
-        - in: query 
+        - in: query
           name: connected_user.id
           schema:
             type: string
             format: expression
           description: Filters on the connected_user.id of the messages
-        - in: query 
+        - in: query
           name: connected_user.name
           schema:
             type: string
             format: expression
           description: Filters on the connected_user.name of the messages
-        - in: query 
+        - in: query
           name: connected_user.email
           schema:
             type: string
             format: expression
           description: Filters on the connected_user.email of the messages
-        - in: query 
+        - in: query
           name: feedback.id
           schema:
             type: string
             format: expression
           description: Filters on the feedback.id of the messages
-        - in: query 
+        - in: query
           name: feedback.score
           schema:
             type: string
             format: expression
           description: Filters on the feedback.score of the messages
-        - in: query 
+        - in: query
           name: created_at
           schema:
             type: string
             format: expression
           description: Filters on the created_at of the messages
-        - in: query 
+        - in: query
           name: updated_at
           schema:
             type: string
             format: expression
           description: Filters on the updated_at of the messages
-        - in: query 
+        - in: query
           name: deleted_at
           schema:
             type: string
@@ -3809,7 +3809,7 @@ paths:
           name: sort
           schema:
             type: string
-          example: ?sort=created_at,-name
+          example: '?sort=created_at,-name'
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -4230,7 +4230,7 @@ paths:
           name: sort
           schema:
             type: string
-          example: ?sort=created_at,-name
+          example: '?sort=created_at,-name'
           description: |-
             A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
 
@@ -4657,6 +4657,88 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       operationId: delete-groups-group_id-contacts-contact_id
+  /reports:
+    get:
+      summary: List of reports
+      tags:
+        - Reports
+      responses: {}
+      operationId: get-reports
+      description: ''
+  '/reports/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Retrieve a report
+      tags:
+        - Reports
+      responses:
+        '200':
+          description: Report response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/report.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    name: My Report
+                    default: true
+                    public: true
+                    auto_update: true
+                    include_archived: false
+                    type: all
+                    theme: base
+                    slug: my-report
+                    protection_enabled: true
+                    protection_type: password
+                    protection_value: myPassword123
+                    account:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Account
+                    owner:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: John Doe
+                      email: johndoe@ratecard.io
+                    template:
+                      name: dashboard
+                      description: This is the dashboard template
+                      image: 'https://ratecard.io/assets/icons/report-templates/dashboard.svg'
+                      options:
+                        show_columns: csat_nps
+                        show_trends: true
+                        use_teams: false
+                        user_count: 5
+                    statistics: null
+                    shares:
+                      type: user
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: John Doe
+                      email: johndoe@ratecard.io
+                    filters:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      operator: AND
+                      object: form
+                      search:
+                        - string
+                      type: none
+                      condition: equals
+                      values:
+                        start: string
+                        end: string
+      operationId: get-reports-id
+      description: This endpoint is used to retrieve a single report from your account.
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - $ref: '#/components/parameters/periodParam'
 components:
   securitySchemes:
     bearerAuth:
@@ -4742,12 +4824,22 @@ components:
       description: Comma separated parameter to select specific fields only from the response.
       allowEmptyValue: true
     exceptParam:
-      name: exceptParam
+      name: except
       in: query
       required: false
       schema:
         type: string
       description: Comma separated parameter to remove specific fields from the response.
+    periodParam:
+      name: period
+      in: query
+      required: false
+      schema:
+        type: integer
+        exclusiveMinimum: true
+        minimum: 0
+      description: Amount of days for the delta
+      allowEmptyValue: true
   responses:
     '404':
       description: This response returns an object with a message property containing the entity that couldn't be found.
