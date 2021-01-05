@@ -1,0 +1,277 @@
+title: Report
+type: object
+properties:
+  id:
+    type: string
+    description: ID of the report
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    format: uuid
+    readOnly: true
+  name:
+    type: string
+    description: Name of the report
+    example: My Report
+  default:
+    type: boolean
+    description: 'Made by the app, can''t be edited or deleted'
+    example: true
+  public:
+    type: boolean
+    description: Public reports can be reached via the public URL
+    example: true
+  auto_update:
+    type: boolean
+    description: Auto updating reports refresh on their own on the public URL
+    example: true
+  include_archived:
+    type: boolean
+    description: Allow archived data to be used in the report (statistics)
+    example: false
+  type:
+    type: string
+    example: all
+    enum:
+      - all
+      - feedback
+      - review
+    description: Determines the type of feedback used for the report
+  theme:
+    type: string
+    example: base
+    enum:
+      - base
+      - light
+      - dark
+    description: The theme for the public report page
+  slug:
+    type:
+      - string
+      - 'null'
+    example: my-report
+    description: Used in the URL to navigate to the report
+  protection_enabled:
+    type: boolean
+    example: true
+    description: Enables public report protection
+  protection_type:
+    type:
+      - string
+      - 'null'
+    enum:
+      - password
+      - token
+    example: password
+    description: Type of protection
+  protection_value:
+    type: string
+    example: myPassword123
+    description: Contains the token or password value (the API returns the unencrypted password)
+  account:
+    type: object
+    description: The account to which the Report belongs to (reports can be aggregated)
+    properties:
+      id:
+        type: string
+        description: ID of the account
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        format: uuid
+        readOnly: true
+      name:
+        type: string
+        description: Name of the account
+        example: My Account
+        readOnly: true
+  owner:
+    type: object
+    description: The user to which the Report belongs to
+    properties:
+      id:
+        type: string
+        description: ID of the User
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        format: uuid
+        readOnly: true
+      name:
+        type: string
+        description: Name of the User
+        example: John Doe
+        readOnly: true
+      email:
+        type: string
+        description: Email of the user
+        example: johndoe@ratecard.io
+        readOnly: true
+  template:
+    type: object
+    description: Template the report uses to display it's data
+    properties:
+      name:
+        type: string
+        enum:
+          - dashboard
+          - csat
+          - nps
+          - journey
+          - wordcloud
+          - leaderboard
+          - comparison
+          - map
+          - matrix
+        description: Name of the template
+        example: dashboard
+        readOnly: true
+      description:
+        type: string
+        description: Describes the report type
+        example: This is the dashboard template
+        readOnly: true
+      image:
+        type: string
+        description: Image representing the report type
+        example: 'https://ratecard.io/assets/icons/report-templates/dashboard.svg'
+        readOnly: true
+      options:
+        description: Options for the report template (not all have options)
+        oneOf:
+          - type: object
+            description: Leaderboard options
+            properties:
+              show_columns:
+                type: string
+                enum:
+                  - csat_nps
+                  - nps
+                  - csat
+                  - conversion_csat
+                  - conversion_nps
+                  - consersion
+                example: csat_nps
+                description: Data to be displayed on the right side leaderboards
+              show_trends:
+                type: boolean
+                description: Show trend leaderboards underneath regular leaderboards
+                example: true
+              use_teams:
+                type: boolean
+                description: Use teams as leaderboard items instead of users
+                example: false
+              user_count:
+                type: number
+                enum:
+                  - 3
+                  - 5
+                  - 10
+                  - 15
+                  - 20
+                  - 25
+                example: 5
+                description: Amount of users/teams to show
+          - type: object
+            description: Matrix options
+            properties:
+              stream:
+                type: string
+                enum:
+                  - none
+                  - inbox_outbox
+                  - inbox
+                  - outbox
+                description: Stream type
+              object:
+                type: string
+                enum:
+                  - users
+                  - teams
+                descriptions: Use users or teams for matrix data
+              xAxis:
+                type: string
+                enum:
+                  - feedback
+                  - messages
+                  - csat
+                  - nps
+                description: Data to be used for the xAxis
+              yAxis:
+                type: string
+                enum:
+                  - feedback
+                  - messages
+                  - csat
+                  - nps
+                description: Data to be used for the yAxis
+              radius:
+                type: string
+                enum:
+                  - feedback
+                  - messages
+                  - csat
+                  - nps
+                description: Data to be used for the radius
+              show_legend:
+                type: boolean
+                description: Show the legend in the matrix chart
+              legend_position:
+                type: string
+                enum:
+                  - top
+                  - left
+                  - bottom
+                  - right
+                description: Position of the legend
+              relative_maximum:
+                type: boolean
+          - type: object
+            description: Wordcloud options
+            properties:
+              filter_names:
+                type: boolean
+              filter_verbs:
+                type: boolean
+              filter_hidden:
+                type: boolean
+              filter_urls:
+                type: boolean
+              filter_custom:
+                type: string
+          - type: object
+            description: Comparison options
+            properties:
+              show:
+                type: string
+                enum:
+                  - inbox_outbox
+                  - wordcloud
+              worcloud:
+                type: object
+                description: Wordcloud options
+                properties:
+                  filter_names:
+                    type: boolean
+                  filter_verbs:
+                    type: boolean
+                  filter_hidden:
+                    type: boolean
+                  filter_urls:
+                    type: boolean
+                  filter_custom:
+                    type: string
+          - type: object
+            description: Map options
+            properties:
+              type:
+                type: string
+                enum:
+                  - default
+                  - heatmap
+              satellite:
+                type: boolean
+              stream:
+                type: string
+                enum:
+                  - none
+                  - inbox_outbox
+                  - inbox
+                  - outbox
+                description: Stream type
+required:
+  - name
