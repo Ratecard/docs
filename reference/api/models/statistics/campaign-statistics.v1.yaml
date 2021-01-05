@@ -1,0 +1,46 @@
+title: Campaign Statistics
+type: object
+readOnly: true
+properties:
+  id:
+    type: string
+    description: ID of the campaign
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    format: uuid
+  type:
+    type: string
+    example: campaigns
+  name:
+    type: string
+    example: My campaign
+  statistics:
+    type: object
+    properties:
+      feedback:
+        type: object
+        properties:
+          total:
+            oneOf:
+              - type: integer
+                example: 1
+              - $ref: ./components/_delta.v1.yaml
+      messages:
+        $ref: ./components/messages.v1.yaml
+      nps:
+        $ref: ./components/nps.v1.yaml
+      csat:
+        $ref: ./components/csat.v1.yaml
+      sentiment:
+        $ref: ./components/sentiment.v1.yaml
+      time_to_complete:
+        $ref: ./components/time_to_complete.v1.yaml
+      engagement:
+        $ref: ./components/engagement.v1.yaml
+      contacts:
+        type: object
+        properties:
+          total:
+            oneOf:
+              - type: integer
+                example: 1
+              - $ref: ./components/_delta.v1.yaml

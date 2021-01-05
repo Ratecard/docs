@@ -23,6 +23,7 @@ tags:
   - name: Feedback
   - name: Reports
   - name: VirtualReports
+  - name: Campaigns
 paths:
   /contacts:
     get:
@@ -5062,6 +5063,8 @@ paths:
           description: User statistics response
       operationId: get-users-id-statistics
       description: ' Statistics for the user'
+      parameters:
+        - $ref: '#/components/parameters/periodParam'
   '/teams/{id}/messages':
     parameters:
       - schema:
@@ -5256,6 +5259,8 @@ paths:
                             percentage: 20
       operationId: get-teams-id-statistics
       description: ' Statistics for the team'
+      parameters:
+        - $ref: '#/components/parameters/periodParam'
   '/contacts/{id}/messages':
     parameters:
       - schema:
@@ -5455,6 +5460,134 @@ paths:
                             percentage: 20
       operationId: get-contact-id-statistics
       description: ' Statistics for the contact'
+      parameters:
+        - $ref: '#/components/parameters/periodParam'
+  '/groups/{id}/messages':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the group
+    get:
+      summary: Group Messages
+      tags:
+        - Groups
+      responses:
+        '200':
+          description: 'See [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get)'
+      operationId: get-groups-id-messages
+      description: |-
+        Feeback related to the group.
+
+        Identical to [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
+  '/groups/{id}/feedback':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the group
+    get:
+      summary: Group Feedback
+      tags:
+        - Groups
+      responses:
+        '200':
+          description: 'See [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
+      operationId: get-groups-id-feedback
+      description: |-
+        Feeback related to the group.
+
+        Identical to [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
+  '/groups/{id}/statistics':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the group
+    get:
+      summary: Group Statistics
+      tags:
+        - Groups
+      responses:
+        '200':
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: ./models/statistics/group-statistics.v1.yaml
+      operationId: get-group-id-statistics
+      description: ' Statistics for the group'
+      parameters:
+        - $ref: '#/components/parameters/periodParam'
+  '/campaigns/{id}/messages':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the campaign
+    get:
+      summary: Campaign Messages
+      tags:
+        - Campaigns
+      responses:
+        '200':
+          description: 'See [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get)'
+      operationId: get-campaigns-id-messages
+      description: |-
+        Feeback related to the campaign.
+
+        Identical to [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
+  '/campaigns/{id}/feedback':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the campaign
+    get:
+      summary: Campaign Feedback
+      tags:
+        - Campaigns
+      responses:
+        '200':
+          description: 'See [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
+      operationId: get-campaigns-id-feedback
+      description: |-
+        Feeback related to the campaign.
+
+        Identical to [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
+  '/campaigns/{id}/statistics':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the campaign
+    get:
+      summary: Campaign Statistics
+      tags:
+        - Campaigns
+      responses:
+        '200':
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: ./models/statistics/campaign-statistics.v1.yaml
+      operationId: get-campaign-id-statistics
+      description: ' Statistics for the campaign'
+      parameters:
+        - $ref: '#/components/parameters/periodParam'
 components:
   securitySchemes:
     bearerAuth:
