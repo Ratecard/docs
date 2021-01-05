@@ -4876,12 +4876,12 @@ paths:
         - Users
       responses:
         '200':
-          description: 'See [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get)'
+          description: 'See [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get)'
       operationId: get-users-id-messages
       description: |-
         Feeback related to the user.
 
-        Identical to [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
+        Identical to [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
   '/users/{id}/feedback':
     parameters:
       - schema:
@@ -4896,12 +4896,12 @@ paths:
         - Users
       responses:
         '200':
-          description: 'See [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
+          description: 'See [List all feedback](/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
       operationId: get-users-id-feedback
       description: |-
         Feeback related to the user.
 
-        Identical to [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
+        Identical to [List all feedback](/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
   '/users/{id}/statistics':
     parameters:
       - schema:
@@ -5076,12 +5076,12 @@ paths:
         - Teams
       responses:
         '200':
-          description: 'See [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get)'
+          description: 'See [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get)'
       operationId: get-teams-id-messages
       description: |-
         Feeback related to the team.
 
-        Identical to [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
+        Identical to [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
   '/teams/{id}/feedback':
     parameters:
       - schema:
@@ -5096,12 +5096,12 @@ paths:
         - Teams
       responses:
         '200':
-          description: 'See [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
+          description: 'See [List all feedback](/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
       operationId: get-teams-id-feedback
       description: |-
         Feeback related to the team.
 
-        Identical to [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
+        Identical to [List all feedback](/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
   '/teams/{id}/statistics':
     parameters:
       - schema:
@@ -5270,12 +5270,12 @@ paths:
         - Contacts
       responses:
         '200':
-          description: 'See [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get)'
+          description: 'See [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get)'
       operationId: get-contacts-id-messages
       description: |-
         Feeback related to the contact.
 
-        Identical to [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
+        Identical to [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
   '/contacts/{id}/feedback':
     parameters:
       - schema:
@@ -5290,12 +5290,12 @@ paths:
         - Contacts
       responses:
         '200':
-          description: 'See [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
+          description: 'See [List all feedback](/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
       operationId: get-contacts-id-feedback
       description: |-
         Feeback related to the contact.
 
-        Identical to [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
+        Identical to [List all feedback](/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
   '/contacts/{id}/statistics':
     parameters:
       - schema:
