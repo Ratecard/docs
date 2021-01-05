@@ -21,6 +21,7 @@ tags:
   - name: Webhooks
   - name: Messages
   - name: Feedback
+  - name: Reports
 paths:
   /contacts:
     get:
@@ -4660,11 +4661,132 @@ paths:
   /reports:
     get:
       summary: List of reports
+      description: This endpoint retrieves a list of reports the access token's owner belongs to.
       tags:
         - Reports
-      responses: {}
+      parameters:
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+      responses:
+        '200':
+          description: Paginated report response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/report.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/reports?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/reports?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/reports?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/reports?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/reports'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Report
+                        default: true
+                        public: true
+                        auto_update: true
+                        include_archived: false
+                        type: all
+                        theme: base
+                        slug: my-report
+                        protection_enabled: true
+                        protection_type: password
+                        protection_value: myPassword123
+                        account:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Account
+                        owner:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: John Doe
+                          email: johndoe@ratecard.io
+                        template:
+                          name: dashboard
+                          description: This is the dashboard template
+                          image: 'https://ratecard.io/assets/icons/report-templates/dashboard.svg'
+                          options:
+                            show_columns: csat_nps
+                            show_trends: true
+                            use_teams: false
+                            user_count: 5
+                        statistics: null
+                        shares:
+                          type: user
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: John Doe
+                          email: johndoe@ratecard.io
+                        filters:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          operator: AND
+                          object: form
+                          search:
+                            - string
+                          type: none
+                          condition: equals
+                          values:
+                            start: string
+                            end: string
+                    links:
+                      first: 'https://api.ratecard.io/v1/reports?page=1'
+                      last: 'https://api.ratecard.io/v1/reports?page=100'
+                      prev: 'https://api.ratecard.io/v1/reports?page=1'
+                      next: 'https://api.ratecard.io/v1/reports?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/reports'
+                      per_page: 1
+                      to: 2
+                      total: 100
       operationId: get-reports
-      description: ''
   '/reports/{id}':
     parameters:
       - schema:
@@ -4672,6 +4794,7 @@ paths:
         name: id
         in: path
         required: true
+        description: The report id
     get:
       summary: Retrieve a report
       tags:
