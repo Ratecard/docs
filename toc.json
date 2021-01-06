@@ -117,8 +117,7 @@
     },
     {
       "type": "item",
-      "title": "Overview",
-      "uri": "https://developers.ratecard.io/docs/api/reference/api/openapi.v1.yaml"
+      "title": "reference/api/openapi.v1.yaml/"
     },
     {
       "type": "group",
