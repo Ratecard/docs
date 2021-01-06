@@ -107,7 +107,7 @@
       "uri": "reference/api/models/team.v1.yaml"
     },
     {
-      "type": "report",
+      "type": "item",
       "title": "Report",
       "uri": "reference/api/models/report.v1.yaml"
     },
