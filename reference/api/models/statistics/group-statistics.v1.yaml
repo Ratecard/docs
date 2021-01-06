@@ -44,3 +44,90 @@ properties:
               - type: integer
                 example: 1
               - $ref: ./components/_delta.v1.yaml
+          recently_added:
+            type: array
+            description: The 10 most recently added contacts
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: ID of the contact
+                  example: ea10916d-0684-4624-9d07-d341193554cf
+                  readOnly: true
+                name:
+                  type: string
+                  description: Name of the contact
+                  example: John Doe
+                email:
+                  description: Email of the contact
+                  type: string
+                  example: johndoe@ratecard.io
+                rating:
+                  type: number
+                  description: The average rating the contact has given to your account
+                  example: 8.5
+                created_at:
+                  description: Date of creation
+                  type: string
+                  example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
+                  readOnly: true
+          recently_updated:
+            type: array
+            description: The 10 most recently added contacts
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: ID of the contact
+                  example: ea10916d-0684-4624-9d07-d341193554cf
+                  readOnly: true
+                name:
+                  type: string
+                  description: Name of the contact
+                  example: John Doe
+                email:
+                  description: Email of the contact
+                  type: string
+                  example: johndoe@ratecard.io
+                rating:
+                  type: number
+                  description: The average rating the contact has given to your account
+                  example: 8.5
+                updated_at:
+                  description: Date last updated
+                  type: string
+                  example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
+                  readOnly: true
+          latest_interactions:
+            type: array
+            description: The 10 contacts with the most recent interaction
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: ID of the contact
+                  example: ea10916d-0684-4624-9d07-d341193554cf
+                  readOnly: true
+                name:
+                  type: string
+                  description: Name of the contact
+                  example: John Doe
+                email:
+                  description: Email of the contact
+                  type: string
+                  example: johndoe@ratecard.io
+                rating:
+                  type: number
+                  description: The average rating the contact has given to your account
+                  example: 8.5
+                interacted_at:
+                  description: Date of interaction
+                  type: string
+                  example: '2020-11-25T09:33:14.000000Z'
+                  format: datetime
+                  readOnly: true
