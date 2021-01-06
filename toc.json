@@ -121,6 +121,46 @@
       "title": "Ratecard API"
     },
     {
+      "type": "item",
+      "title": "Overview",
+      "uri": "reference/api/openapi.v1.yaml"
+    },
+    {
+      "type": "group",
+      "title": "Accounts",
+      "items": []
+    },
+    {
+      "type": "group",
+      "title": "Users",
+      "items": []
+    },
+    {
+      "type": "group",
+      "title": "Teams",
+      "items": []
+    },
+    {
+      "type": "group",
+      "title": "Contacts",
+      "items": []
+    },
+    {
+      "type": "group",
+      "title": "Groups",
+      "items": []
+    },
+    {
+      "type": "group",
+      "title": "Group Contacts",
+      "items": []
+    },
+    {
+      "type": "group",
+      "title": "Campaigns",
+      "items": []
+    },
+    {
       "type": "group",
       "title": "Messages",
       "items": [
@@ -133,6 +173,69 @@
           "type": "item",
           "title": "Retrieve a message",
           "uri": "reference/api/openapi.v1.yaml/paths/~1messages~1{id}/get"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Feedback",
+      "items": [
+        {
+          "type": "item",
+          "title": "List all feedback",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1feedback/get"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a feedback",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1feedback~1{id}/get"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Reports",
+      "items": [
+        {
+          "type": "item",
+          "title": "List all reports",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1reports/get"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a report",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1reports~1{id}/get"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Webhooks",
+      "items": [
+        {
+          "type": "item",
+          "title": "List all webhooks",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks/get"
+        },
+        {
+          "type": "item",
+          "title": "Add a new webhook",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks/post"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a webhook",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks~1{id}/get"
+        },
+        {
+          "type": "item",
+          "title": "Update a webhook",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks~1{id}/put"
+        },
+        {
+          "type": "item",
+          "title": "Delete a webhook",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks~1{id}/delete"
         }
       ]
     }
