@@ -6,11 +6,6 @@
       "uri": "docs/getting-started.md"
     },
     {
-      "type": "item",
-      "title": "Ratecard API",
-      "uri": "reference/api/openapi.v1.yaml"
-    },
-    {
       "type": "divider",
       "title": "Filtering"
     },
@@ -128,37 +123,259 @@
     {
       "type": "group",
       "title": "Accounts",
-      "items": []
+      "items": [
+        {
+          "type": "item",
+          "title": "List all accounts",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1accounts/get"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve an account",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1accounts~1{id}/get"
+        }
+      ]
     },
     {
       "type": "group",
       "title": "Users",
-      "items": []
+      "items": [
+        {
+          "type": "item",
+          "title": "List all users",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users/get"
+        },
+        {
+          "type": "item",
+          "title": "Add a new user",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users/post"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a user",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}/get"
+        },
+        {
+          "type": "item",
+          "title": "Update a user",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}/put"
+        },
+        {
+          "type": "item",
+          "title": "Delete a user",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}/delete"
+        },
+        {
+          "type": "item",
+          "title": "User Statistics",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}/statistics/get"
+        },
+        {
+          "type": "item",
+          "title": "User Feedback",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}/feedback/get"
+        },
+        {
+          "type": "item",
+          "title": "User Messages",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}/messages/get"
+        }
+      ]
     },
     {
       "type": "group",
       "title": "Teams",
-      "items": []
+      "items": [
+        {
+          "type": "item",
+          "title": "List all teams",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams/get"
+        },
+        {
+          "type": "item",
+          "title": "Add a new team",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams/post"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a team",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}/get"
+        },
+        {
+          "type": "item",
+          "title": "Update a team",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}/put"
+        },
+        {
+          "type": "item",
+          "title": "Delete a team",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}/delete"
+        },
+        {
+          "type": "item",
+          "title": "Team Statistics",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}/statistics/get"
+        },
+        {
+          "type": "item",
+          "title": "Team Feedback",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}/feedback/get"
+        },
+        {
+          "type": "item",
+          "title": "Team Messages",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}/messages/get"
+        }
+      ]
     },
     {
       "type": "group",
       "title": "Contacts",
-      "items": []
+      "items": [
+        {
+          "type": "item",
+          "title": "List all contacts",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts/get"
+        },
+        {
+          "type": "item",
+          "title": "Add a new contact",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts/post"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a contact",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}/get"
+        },
+        {
+          "type": "item",
+          "title": "Update a contact",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}/put"
+        },
+        {
+          "type": "item",
+          "title": "Delete a contact",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}/delete"
+        },
+        {
+          "type": "item",
+          "title": "Contact Statistics",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}/statistics/get"
+        },
+        {
+          "type": "item",
+          "title": "Contact Feedback",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}/feedback/get"
+        },
+        {
+          "type": "item",
+          "title": "Contact Messages",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}/messages/get"
+        }
+      ]
     },
     {
       "type": "group",
       "title": "Groups",
-      "items": []
+      "items": [
+        {
+          "type": "item",
+          "title": "List all groups",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups/get"
+        },
+        {
+          "type": "item",
+          "title": "Add a new group",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups/post"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a group",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/get"
+        },
+        {
+          "type": "item",
+          "title": "Update a group",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/put"
+        },
+        {
+          "type": "item",
+          "title": "Partially update a group",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/patch"
+        },
+        {
+          "type": "item",
+          "title": "Delete a group",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/delete"
+        },
+        {
+          "type": "item",
+          "title": "Group Statistics",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/statistics/get"
+        },
+        {
+          "type": "item",
+          "title": "Group Feedback",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/feedback/get"
+        },
+        {
+          "type": "item",
+          "title": "Group Messages",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/messages/get"
+        }
+      ]
     },
     {
       "type": "group",
       "title": "Group Contacts",
-      "items": []
+      "items": [
+        {
+          "type": "item",
+          "title": "List all group contacts",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{group_id}~1contacts/get"
+        },
+        {
+          "type": "item",
+          "title": "Add a new group contact",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{group_id}~1contacts/post"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a group contact",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{group_id}~1contacts~1{contact_id}/get"
+        },
+        {
+          "type": "item",
+          "title": "Update a group contact",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{group_id}~1contacts~1{contact_id}/put"
+        },
+        {
+          "type": "item",
+          "title": "Delete a group contact",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{group_id}~1contacts~1{contact_id}/delete"
+        }
+      ]
     },
     {
       "type": "group",
       "title": "Campaigns",
-      "items": []
+      "items": [
+        {
+          "type": "item",
+          "title": "Campaign Statistics",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}/statistics/get"
+        },
+        {
+          "type": "item",
+          "title": "Campaign Feedback",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}/feedback/get"
+        },
+        {
+          "type": "item",
+          "title": "Campaign Messages",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}/messages/get"
+        }
+      ]
     },
     {
       "type": "group",
