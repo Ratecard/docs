@@ -7,117 +7,7 @@
     },
     {
       "type": "divider",
-      "title": "Filtering"
-    },
-    {
-    
-      "type": "item",
-      "title": "Introduction",
-      "uri": "docs/filtering/introduction.md"
-    },
-    {
-    
-      "type": "item",
-      "title": "Expressions",
-      "uri": "docs/filtering/expressions.md"
-    },
-    {
-      "type": "divider",
-      "title": "Webhooks"
-    },
-    {
-      "type": "item",
-      "title": "Introduction",
-      "uri": "docs/webhooks/introduction.md"
-    },
-    {
-      "type": "group",
-      "title": "Inbound",
-      "items": [
-        {
-          "type": "item",
-          "title": "How to use",
-          "uri": "docs/webhooks/inbound/how-to-use.md"
-        },
-        {
-          "type": "item",
-          "title": "Actions",
-          "uri": "docs/webhooks/inbound/actions.md"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "title": "Outbound",
-      "items": [
-        {
-          "type": "item",
-          "title": "How to use",
-          "uri": "docs/webhooks/outbound/how-to-use.md"
-        },
-        {
-          "type": "item",
-          "title": "Subscriptions",
-          "uri": "docs/webhooks/outbound/subscriptions.md"
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "title": "Models"
-    },
-    {
-      "type": "item",
-      "title": "Account",
-      "uri": "reference/api/models/account.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Contact",
-      "uri": "reference/api/models/contact.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Feedback",
-      "uri": "reference/api/models/feedback.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Group",
-      "uri": "reference/api/models/group.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Message",
-      "uri": "reference/api/models/message.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "User",
-      "uri": "reference/api/models/user.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Team",
-      "uri": "reference/api/models/team.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Report",
-      "uri": "reference/api/models/report.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Webhook",
-      "uri": "reference/api/models/webhook.v1.yaml"
-    },
-    {
-      "type": "divider",
       "title": "Ratecard API"
-    },
-    {
-      "type": "item",
-      "title": "reference/api/openapi.v1.yaml/"
     },
     {
       "type": "group",
@@ -454,6 +344,112 @@
           "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks~1{id}/delete"
         }
       ]
+    },
+    {
+      "type": "divider",
+      "title": "Filtering"
+    },
+    {
+    
+      "type": "item",
+      "title": "Introduction",
+      "uri": "docs/filtering/introduction.md"
+    },
+    {
+    
+      "type": "item",
+      "title": "Expressions",
+      "uri": "docs/filtering/expressions.md"
+    },
+    {
+      "type": "divider",
+      "title": "Webhooks"
+    },
+    {
+      "type": "item",
+      "title": "Introduction",
+      "uri": "docs/webhooks/introduction.md"
+    },
+    {
+      "type": "group",
+      "title": "Inbound",
+      "items": [
+        {
+          "type": "item",
+          "title": "How to use",
+          "uri": "docs/webhooks/inbound/how-to-use.md"
+        },
+        {
+          "type": "item",
+          "title": "Actions",
+          "uri": "docs/webhooks/inbound/actions.md"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Outbound",
+      "items": [
+        {
+          "type": "item",
+          "title": "How to use",
+          "uri": "docs/webhooks/outbound/how-to-use.md"
+        },
+        {
+          "type": "item",
+          "title": "Subscriptions",
+          "uri": "docs/webhooks/outbound/subscriptions.md"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "title": "Models"
+    },
+    {
+      "type": "item",
+      "title": "Account",
+      "uri": "reference/api/models/account.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Contact",
+      "uri": "reference/api/models/contact.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Feedback",
+      "uri": "reference/api/models/feedback.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Group",
+      "uri": "reference/api/models/group.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Message",
+      "uri": "reference/api/models/message.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "User",
+      "uri": "reference/api/models/user.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Team",
+      "uri": "reference/api/models/team.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Report",
+      "uri": "reference/api/models/report.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Webhook",
+      "uri": "reference/api/models/webhook.v1.yaml"
     }
   ]
 }
