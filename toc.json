@@ -57,17 +57,17 @@
         {
           "type": "item",
           "title": "User Statistics",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}/statistics/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}~1statistics/get"
         },
         {
           "type": "item",
           "title": "User Feedback",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}/feedback/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}~1feedback/get"
         },
         {
           "type": "item",
           "title": "User Messages",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}/messages/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1users~1{id}~1messages/get"
         }
       ]
     },
@@ -103,17 +103,17 @@
         {
           "type": "item",
           "title": "Team Statistics",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}/statistics/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}~1statistics/get"
         },
         {
           "type": "item",
           "title": "Team Feedback",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}/feedback/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}~1feedback/get"
         },
         {
           "type": "item",
           "title": "Team Messages",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}/messages/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1teams~1{id}~1messages/get"
         }
       ]
     },
@@ -149,17 +149,17 @@
         {
           "type": "item",
           "title": "Contact Statistics",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}/statistics/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}~1statistics/get"
         },
         {
           "type": "item",
           "title": "Contact Feedback",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}/feedback/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}~1feedback/get"
         },
         {
           "type": "item",
           "title": "Contact Messages",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}/messages/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1contacts~1{id}~1messages/get"
         }
       ]
     },
@@ -200,17 +200,17 @@
         {
           "type": "item",
           "title": "Group Statistics",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/statistics/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}~1statistics/get"
         },
         {
           "type": "item",
           "title": "Group Feedback",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/feedback/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}~1feedback/get"
         },
         {
           "type": "item",
           "title": "Group Messages",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}/messages/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1groups~1{id}~1messages/get"
         }
       ]
     },
@@ -252,17 +252,17 @@
         {
           "type": "item",
           "title": "Campaign Statistics",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}/statistics/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}~1statistics/get"
         },
         {
           "type": "item",
           "title": "Campaign Feedback",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}/feedback/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}~1feedback/get"
         },
         {
           "type": "item",
           "title": "Campaign Messages",
-          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}/messages/get"
+          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}~1messages/get"
         }
       ]
     },
