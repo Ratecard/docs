@@ -19,5 +19,6 @@ properties:
     description: Difference between current and previous values
   percentage:
     type: number
-    example: 100.0
+    example: 100
     description: Percentage difference between current and previous values
+description: ''

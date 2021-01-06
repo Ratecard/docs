@@ -19,21 +19,28 @@ properties:
       - 0
       - 0
   breakdown:
-    above_nine:
-      type: integer
-      example: 1
-    seven_to_eight:
-      type: integer
-      example: 1
-    below_six:
-      type: integer
-      example: 1
-    avg:
-      type: number
-      example: 9
-    total:
-      type: integer
-      example: 1
+    type: object
+    properties:
+      above_nine:
+        type: integer
+        example: 1
+        description: Feedback items with a CSAT of 9 and higher
+      seven_to_eight:
+        type: integer
+        example: 1
+        description: Feedback items with a CSAT between 7 and 8
+      below_six:
+        type: integer
+        example: 1
+        description: Feedback items with a CSAT below 6
+      avg:
+        type: number
+        example: 9
+        description: Average CSAT given
+      total:
+        type: integer
+        example: 1
+        description: Total feedback items with a CSAT
   delta:
     type: object
     properties:
@@ -55,18 +62,25 @@ properties:
           - 0
           - 0
       breakdown:
-        above_nine:
+        type: object
+        properties:
+          above_nine:
+            type: integer
+            example: 1
+            description: Feedback items with a CSAT of 9 and higher
+          seven_to_eight:
+            type: integer
+            example: 1
+            description: Feedback items with a CSAT between 7 and 8
+          below_six:
+            type: integer
+            example: 1
+            description: Feedback items with a CSAT below 6
+          avg:
+            type: number
+            example: 9
+            description: Average CSAT given
+          total:
           type: integer
           example: 1
-        seven_to_eight:
-          type: integer
-          example: 1
-        below_six:
-          type: integer
-          example: 1
-        avg:
-          type: number
-          example: 9
-        total:
-          type: integer
-          example: 1
+          description: Total feedback items with a CSAT

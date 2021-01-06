@@ -1,12 +1,14 @@
-title: completion
+title: Completion
 type: object
 properties:
   avg:
     type: number
     example: 100.0
+    description: Average completion percentage of for feedback
   delta:
     type: object
     properties: 
       avg:
         type: number
         example: 100.0
+        description: Average completion percentage of for feedback

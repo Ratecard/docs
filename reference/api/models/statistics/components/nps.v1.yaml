@@ -10,35 +10,47 @@ properties:
     minItems: 5
     maxItems: 5
     description: Most recent NPS values
-    items:
-      type: integer
     example:
       - 9
       - 0
       - 0
       - 0
       - 0
+    items:
+      type: integer
   breakdown:
     type: object
     properties:
       promoters:
         type: integer
         example: 1
+        description: Total amount of promoters
       neutrals:
         type: integer
         example: 0
+        description: Total amount of neutrals
       detractors:
         type: integer
         example: 0
+        description: Total amount of detractors
       total:
         type: integer
         example: 1
+        description: Total amount of feedback with NPS
       promoter_score:
         type: number
-        example: 100.0
+        example: 100
+        description: Percentage of promoters from total
       detractor_score:
         type: number
-        example: 100.0
+        example: 100
+        description: Percentage of detractors from total
+      score:
+        type: number
+        example: 100
+        description: NPS score
+        minimum: -100
+        maximum: 100
   delta:
     type: object
     properties:
@@ -51,14 +63,14 @@ properties:
         minItems: 5
         maxItems: 5
         description: Most recent NPS values
-        items:
-          type: integer
         example:
           - 9
           - 0
           - 0
           - 0
           - 0
+        items:
+          type: integer
       breakdown:
         type: object
         properties:
@@ -76,7 +88,13 @@ properties:
             example: 1
           promoter_score:
             type: number
-            example: 100.0
+            example: 100
           detractor_score:
             type: number
-            example: 100.0
+            example: 100
+          score:
+            type: number
+            example: 100
+            description: NPS score
+            minimum: -100
+            maximum: 100

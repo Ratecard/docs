@@ -28,3 +28,4 @@ properties:
   display:
     type: string
     example: 1y1m1w1d1h1m1s
+description: ''

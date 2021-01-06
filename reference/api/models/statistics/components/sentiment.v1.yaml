@@ -9,6 +9,7 @@ properties:
       - neutral
       - negative
       - very_negative
+    description: Sentiment status, based on CSAT and NPS values
   delta:
     type: object
     properties:
@@ -20,4 +21,5 @@ properties:
           - neutral
           - negative
           - very_negative
+        description: Sentiment status, based on CSAT and NPS values
 

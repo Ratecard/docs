@@ -4,28 +4,35 @@ properties:
   total:
     type: integer
     example: 1
+    description: Total amount of messages
   opens:
     type: integer
     example: 1
+    description: Total amount of opened messages
   open_ratio:
     type: number
     example: 100.0
+    description: The percentage of opened messages
   time_to_open:
     $ref: './_duration.v1.yaml'
   clicks:
     type: integer
     example: 1
+    description: Total amount of review urls clicked in a message
   click_through_rate:
     type: integer
     example: 100.0
+    description: The percentage of clicked messages
   time_to_click:
     $ref: './_duration.v1.yaml'
   conversion:
     type: number
     example: 100.0
+    description: The percentage of messages that translated to feedback
   feedback_with_messages:
     type: integer
     example: 1
+    description: Total feedback given after following a message review url
   delta:
     type: object
     properties:

@@ -9,18 +9,23 @@ properties:
       - moderate
       - low
       - very_low
+    description: Engagement status based on the score
   points:
     type: object
+    description: Points used to calculate engagement status
     properties:
       total:
         type: number
         example: 60
+        description: Maximum possible engagement points
       current:
         type: integer
         example: 12
+        description: Current engagement points
       percentage:
         type: number
         example: 20
+        description: Percentage of engagement
   delta:
     type: object
     properties:
@@ -32,15 +37,20 @@ properties:
           - moderate
           - low
           - very_low
+        description: Engagement status based on the score
       points:
         type: object
+        description: Points used to calculate engagement status
         properties:
           total:
             type: number
             example: 60
+            description: Maximum possible engagement points
           current:
             type: integer
             example: 12
+            description: Current engagement points
           percentage:
             type: number
             example: 20
+            description: Percentage of engagement
