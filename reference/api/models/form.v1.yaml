@@ -1,0 +1,71 @@
+title: Form
+type: object
+properties:
+  id:
+    type: string
+    description: ID of the form
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    readOnly: true
+    format: uuid
+  public:
+    type: boolean
+    description: Indicates whether a form collects reviews (true) or internal feedback (false)
+  status:
+    type: boolean
+    description: Indicates whether a form is in draft mode or not
+  name:
+    type: string
+    description: The name of the form
+    example: My Form
+  language:
+    type: string
+    description: Primary language of the form
+    example: nl
+  other_languages:
+    type: array
+    description: Additional languages the form supports
+    items:
+      type: string
+      example: de
+  branding:
+    type: object
+    description: Customization for the form
+    properties:
+      logo:
+        type: string
+        description: The form's logo
+        example: https://ratecard.io/site/img/text.svg
+      background_color:
+        type: string
+        description: The form's background color
+        example: '#FFFFFF'
+      button_color:
+        type: string
+        description: The form's button color
+        example: '#1D8BDF'
+      navigation_color:
+        type: string
+        description: The form's navigation color
+        example: '#1D8BDF'
+  redirect:
+    type: string
+    format: uri
+    example: https://ratecard.io/ratecard
+    description: URL that the respondent will be redirected to after they complete the form
+  period:
+    type: integer
+    description: Time (in days) until the same individual can submit feedback to the this form again.
+    example: 1
+    default: 1
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
+    readOnly: true
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
+    readOnly: true

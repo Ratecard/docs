@@ -1,0 +1,191 @@
+title: Campaign
+type: object
+properties:
+  id:
+    type: string
+    description: ID of the form
+    example: ea10916d-0684-4624-9d07-d341193554cf
+    readOnly: true
+    format: uuid
+  channel:
+    type: string
+    enum:
+      - sms
+      - email
+    description: The of channel the campaign sends it's messages through
+    example: email
+  type:
+    type: string
+    enum:
+      onetime
+      recurring
+      event-based
+    description: Determines how and when the campaign sends messages
+    example: event-based
+  interval:
+    type: string
+    enum:
+      - ''
+      - daily
+      - weekly
+      - four_weekly
+      - monthly
+      - quarterly
+      - quadrimester
+      - half-yearly
+      - yearly
+    description: frequency of which the campaign sends (recurring campaign only)
+  status:
+    type: string
+    enum:
+      - draft
+      - sent
+      - running
+      - paused
+      - sending
+    description: The current status for campaigns
+    example: running
+  name:
+    type: string
+    description: Name of the campaign
+    example: My Campaign
+  subject:
+    type: string
+    description: Subject the messages the campaign sends will have
+    example: Hi John, how was your experience with Ratecard?
+  subject_multi:
+    type: object
+    description: Object of additional subjects per language the campaign sends from
+    properties:
+      nl:
+        type: string
+        example: Hoi John, hoe was jouw ervaring met Ratecard?
+        description: Example subject for (Dutch) as a secondary campaign language
+  from:
+    type: string
+    description: The (dynamic) team member the campaign is linked to
+    example: '%TEAMMEMBER1% | Ratecard'
+  reply_to:
+    type: string
+    format: email
+    description: Email the campaign sends from or the respondent can reply to
+    example: john@ratecard.io
+  language:
+    type: string
+    description: Primary language of the campaign
+    example: en
+  other_languages:
+    type: array
+    description: Additional languages the campaign can send from
+    items:
+      type: string
+      example: nl
+  delay:
+    type: integer
+    description: Sending delay for the campaign (in seconds)
+    example: 1
+  agenda_connect:
+    type: boolean
+    description: Determines which date value is used to schedule an event based feedback send
+  agenda_start_end:
+    type: string
+    description: Determines the date used to set a campaign trigger
+  reminder:
+    type: object
+    description: Reminder values
+    properties:
+      enabled:
+        type: boolean
+        description: Shows whether the reminder is enabled or not
+        example: true
+      days:
+        type: integer
+        description: Amount of days between the send and the reminder send
+        example:
+      subject:
+        type: string
+        description: The reminder subject
+      subject_multi:
+        type: object
+        description: The reminder subjects when there are more languages
+        properties:
+          nl:
+            type: string
+            description: Example dutch reminder description
+  form:
+    type: object
+    description: The form this campaign uses for it's review URLs
+    properties:
+      id:
+        type: string
+        description: ID of the form
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      name:
+        type: string
+        description: Name of the form
+        example: My Form
+        readOnly: true
+  connected_to:
+    type: object
+    description: The user or team the campaign is connected to
+    properties:
+      type:
+        type: string
+        description: Indicates whether the connected to is a group or team
+        enum:
+          - user
+          - team
+        example: group
+      id:
+        type: string
+        description: ID of the connected user or team
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      name:
+        type: string
+        description: Name of the connected user or team
+        example: My Team
+        readOnly: true
+  connectable:
+    type: object
+    description: The group or team the campaign uses for sending messages to contacts or users
+    properties:
+      type:
+        type: string
+        description: Indicates whether the connected to is a group or team
+        enum:
+          - group
+          - team
+        example: group
+      id:
+        type: string
+        description: ID of the connected group or team
+        example: ea10916d-0684-4624-9d07-d341193554cf
+        readOnly: true
+        format: uuid
+      name:
+        type: string
+        description: Name of the connected group or team
+        example: My Group
+        readOnly: true
+  send_date:
+    description: The moment the campaign will be scheduled for sending
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
+    readOnly: true
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
+    readOnly: true
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
+    readOnly: true

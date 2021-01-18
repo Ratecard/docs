@@ -5588,6 +5588,198 @@ paths:
       description: ' Statistics for the campaign'
       parameters:
         - $ref: '#/components/parameters/periodParam'
+  /campaigns:
+    get:
+      summary: List of campaigns
+      tags:
+        - Campaigns
+      responses:
+        '200':
+          description: Paginated campaigns response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/campaign.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/campaigns?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/campaigns?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/campaigns?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/campaigns?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/campaigns'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        channel: email
+                        type: event-based
+                        interval: ''
+                        status: running
+                        name: My Campaign
+                        subject: 'Hi John, how was your experience with Ratecard?'
+                        subject_multi:
+                          nl: 'Hoi John, hoe was jouw ervaring met Ratecard?'
+                        from: '%TEAMMEMBER1% | Ratecard'
+                        reply_to: john@ratecard.io
+                        language: en
+                        other_languages:
+                          - nl
+                        delay: 1
+                        agenda_connect: true
+                        agenda_start_end: string
+                        reminder:
+                          enabled: true
+                          days: null
+                          subject: string
+                          subject_multi:
+                            nl: string
+                        form:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Form
+                        connected_to:
+                          type: group
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Team
+                        connectable:
+                          type: group
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Group
+                        send_date: '2020-11-25T09:33:14.000000Z'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/campaigns?page=1'
+                      last: 'https://api.ratecard.io/v1/campaigns?page=100'
+                      prev: 'https://api.ratecard.io/v1/campaigns?page=1'
+                      next: 'https://api.ratecard.io/v1/campaigns?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/campaigns'
+                      per_page: 1
+                      to: 2
+                      total: 100
+      operationId: get-campaigns
+      description: This endpoint retrieves a list of the campaigns in your account.
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+  '/campaigns/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Retrieve a campaign
+      tags:
+        - Campaigns
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/campaign.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    channel: email
+                    type: event-based
+                    interval: ''
+                    status: running
+                    name: My Campaign
+                    subject: 'Hi John, how was your experience with Ratecard?'
+                    subject_multi:
+                      nl: 'Hoi John, hoe was jouw ervaring met Ratecard?'
+                    from: '%TEAMMEMBER1% | Ratecard'
+                    reply_to: john@ratecard.io
+                    language: en
+                    other_languages:
+                      - nl
+                    delay: 1
+                    agenda_connect: true
+                    agenda_start_end: string
+                    reminder:
+                      enabled: true
+                      days: null
+                      subject: string
+                      subject_multi:
+                        nl: string
+                    form:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Form
+                    connected_to:
+                      type: team
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Team
+                    connectable:
+                      type: group
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My Group
+                    send_date: '2020-11-25T09:33:14.000000Z'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+      operationId: get-campaigns-id
+      parameters:
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+      description: This endpoint retrieves a single campaign from your account.
 components:
   securitySchemes:
     bearerAuth:

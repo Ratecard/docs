@@ -418,6 +418,16 @@
     },
     {
       "type": "item",
+      "title": "Form",
+      "uri": "reference/api/models/form.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Campaign",
+      "uri": "reference/api/models/campaign.v1.yaml"
+    },
+    {
+      "type": "item",
       "title": "Feedback",
       "uri": "reference/api/models/feedback.v1.yaml"
     },
