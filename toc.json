@@ -247,8 +247,34 @@
     },
     {
       "type": "group",
+      "title": "Forms",
+      "items": [
+        {
+          "type": "item",
+          "title": "List all forms",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1forms/get"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a form",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1forms~1{id}/get"
+        }
+      ]
+    },
+    {
+      "type": "group",
       "title": "Campaigns",
       "items": [
+        {
+          "type": "item",
+          "title": "List all campaigns",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns/get"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a campaign",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}/get"
+        },
         {
           "type": "item",
           "title": "Campaign Statistics",
