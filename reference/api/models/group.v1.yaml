@@ -73,7 +73,7 @@ properties:
       type: object
       properties:
         type:
-          description: Type of the smart field
+          description: Type of the smart field (the user and team types can be called team_member or department for legacy reasons)
           type: string
           enum:
             - user
@@ -121,5 +121,9 @@ properties:
     example: '2020-11-25T09:33:14.000000Z'
     format: datetime
     readOnly: true
-description: This is the group model. It contains information regarding a group in your account and its smart fields.
+description: |-
+  This is the group model. It contains information regarding a group in your account and its smart fields.
+
+  <!-- theme: warning -->
+  > The smart field types user and team can be called team_member and department when returning from the API. This happens due to the values needing to be compatible with one of our legacy systems.
 x-examples: {}

@@ -486,6 +486,20 @@
       "type": "item",
       "title": "Webhook",
       "uri": "reference/api/models/webhook.v1.yaml"
-    }
+    },
+    {
+      "type": "divider",
+      "title": "Changelogs"
+    },
+    {
+      "type": "item",
+      "title": "Documentation",
+      "uri": "docs/changelogs/API.md"
+    },
+    {
+      "type": "item",
+      "title": "API",
+      "uri": "docs/changelogs/API.md"
+    },
   ]
 }
