@@ -494,12 +494,12 @@
     {
       "type": "item",
       "title": "Documentation",
-      "uri": "docs/changelogs/API.md"
+      "uri": "docs/changelogs/documentation.md"
     },
     {
       "type": "item",
       "title": "API",
-      "uri": "docs/changelogs/API.md"
-    },
+      "uri": "docs/changelogs/api.md"
+    }
   ]
 }
