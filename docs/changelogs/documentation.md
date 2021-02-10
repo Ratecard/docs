@@ -5,4 +5,4 @@ The format is partially based on [Keep a Changelog](https://keepachangelog.com/e
 
 ## 2021-02-10
 ### Changed
-- Smart field types now list team_member and department field types, these are identical to the user and team types
+- Smart field types now list team_members and departments field types, these are identical to the user and team types
