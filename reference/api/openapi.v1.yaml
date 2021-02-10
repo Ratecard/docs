@@ -908,9 +908,9 @@ paths:
                               - number
                               - text
                               - user
-                              - team_member
+                              - team_members
                               - team
-                              - department
+                              - departments
                               - language
                             description: Smart field type
                           name:
@@ -1175,9 +1175,9 @@ paths:
                               - number
                               - text
                               - user
-                              - team_member
+                              - team_members
                               - team
-                              - department
+                              - departments
                               - language
                             description: Smart field type
                           name:
@@ -1341,9 +1341,9 @@ paths:
                               - number
                               - text
                               - user
-                              - team_member
+                              - team_members
                               - team
-                              - department
+                              - departments
                               - language
                             description: Smart field type
                           name:

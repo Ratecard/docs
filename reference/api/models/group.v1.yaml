@@ -77,9 +77,9 @@ properties:
           type: string
           enum:
             - user
-            - team_member
+            - team_members
             - team
-            - department
+            - departments
             - text
             - number
             - datetime
@@ -125,5 +125,5 @@ description: |-
   This is the group model. It contains information regarding a group in your account and its smart fields.
 
   <!-- theme: warning -->
-  > The smart field types user and team can be called team_member and department when returning from the API. This happens due to the values needing to be compatible with one of our legacy systems.
+  > The smart field types user and team can be called team_members and departments when returning from the API. This happens due to the values needing to be compatible with one of our legacy systems.
 x-examples: {}
