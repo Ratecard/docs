@@ -5,6 +5,9 @@ The format is partially based on [Keep a Changelog](https://keepachangelog.com/e
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.0.3] - 2021-02-12
+### Added
+- Profile picture file upload
+
 ### Changed
 - Swapped out the old smart field mapper on the contacts endpoints with the new one
 

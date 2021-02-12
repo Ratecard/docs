@@ -38,7 +38,7 @@ properties:
   profile_picture:
     type: string
     description: Profile picture of the user
-    readOnly: true
+    example: https://cdn.ratecard.info/app/profile_pictures/36cf8885-8b44-4aa5-a6ff-6f3057076203.gif
   country:
     type: string
     example: NL

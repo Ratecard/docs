@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  version: 0.2.0
+  version: 1.0.3
   title: Ratecard API
   description: 'Integrate Ratecard directly with your applications through via the Ratecard [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. In this documentation you will find all the resources you''ll need to connect to our API.'
   contact:
@@ -1753,7 +1753,7 @@ paths:
                     email: johndoe@example.com
                     phone: +31 6 12345678
                     date_of_birth: 01-01-2020
-                    profile_picture: string
+                    profile_picture: 'https://cdn.ratecard.info/app/profile_pictures/36cf8885-8b44-4aa5-a6ff-6f3057076203.gif'
                     country: NL
                     language: NL
                     function: Developer
@@ -1819,6 +1819,11 @@ paths:
                     - 'null'
                   example: 01-01-2020
                   description: Birthdate of the user
+                profile_picture:
+                  type: string
+                  format: binary
+                  description: Profile picture for the user
+                  example: 'https://cdn.ratecard.info/app/profile_pictures/36cf8885-8b44-4aa5-a6ff-6f3057076203.gif'
                 country:
                   type: string
                   example: NL
@@ -2022,6 +2027,9 @@ paths:
           Just like with adding contacts, a user can be added to one or more teams when being created. A team's ID or name can be used to add a user to the team. The API will create a new team when a name property is specified and a team with that name doesn't yet exist. It functions the same way as the add new team endpoint, so you can also add the other team properties if needed.
 
           > A team will not update here if it exists and a property is given that doesn't match its group. value
+
+          <!-- theme: warning -->
+          > Keep in mind: `profile_picture` has to be attached as a file
       parameters:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/acceptParam'
@@ -2139,6 +2147,11 @@ paths:
                     - 'null'
                   example: 01-01-2020
                   description: Birthdate of the user
+                profile_picture:
+                  type: string
+                  format: binary
+                  description: Profile picture for the user
+                  example: 'https://cdn.ratecard.info/app/profile_pictures/36cf8885-8b44-4aa5-a6ff-6f3057076203.gif'
                 country:
                   type: string
                   example: NL
@@ -2231,6 +2244,9 @@ paths:
 
           <!-- theme: warning -->
           > Be careful when updating user roles, so they don't get a role they shouldn't have
+
+          <!-- theme: warning -->
+          > Keep in mind: `profile_picture` has to be attached as a file
       parameters:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/acceptParam'
