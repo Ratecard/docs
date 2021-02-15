@@ -4,6 +4,13 @@ All notable changes to the API will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2021-02-15
+### Added
+- The profile picture attribute for the user model now accepts images in the form of a base64 string too
+
+### Fixed
+- Report error caused by a missing share type
+
 ## [1.0.3] - 2021-02-12
 ### Added
 - Profile picture file upload

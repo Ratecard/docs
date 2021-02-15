@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  version: 1.0.3
+  version: 1.0.4
   title: Ratecard API
   description: 'Integrate Ratecard directly with your applications through via the Ratecard [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. In this documentation you will find all the resources you''ll need to connect to our API.'
   contact:
@@ -2028,8 +2028,11 @@ paths:
 
           > A team will not update here if it exists and a property is given that doesn't match its group. value
 
-          <!-- theme: warning -->
-          > Keep in mind: `profile_picture` has to be attached as a file
+          > `profile_picture` accepts 2 forms of data
+          > 1. Image file uploads
+          > 2. Base64 encoded image strings
+          >
+          > Both accept PNG, JPG, JPEG, GIF and WEBP image types
       parameters:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/acceptParam'
@@ -2245,8 +2248,11 @@ paths:
           <!-- theme: warning -->
           > Be careful when updating user roles, so they don't get a role they shouldn't have
 
-          <!-- theme: warning -->
-          > Keep in mind: `profile_picture` has to be attached as a file
+          > `profile_picture` accepts 2 forms of data
+          > 1. Image file uploads
+          > 2. Base64 encoded image strings
+          >
+          > Both accept PNG, JPG, JPEG, GIF and WEBP image types
       parameters:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/acceptParam'
