@@ -1990,8 +1990,6 @@ paths:
                         enabled: true
                         score: 0
                       feedback_comments: true
-                  created_at: '2020-11-25T09:33:14.000000Z'
-                  updated_at: '2020-11-25T09:33:14.000000Z'
               Example 2:
                 value:
                   first_name: John
@@ -2021,8 +2019,6 @@ paths:
                         enabled: true
                         score: 0
                       feedback_comments: true
-                  created_at: '2020-11-25T09:33:14.000000Z'
-                  updated_at: '2020-11-25T09:33:14.000000Z'
               Base64 image example:
                 value:
                   first_name: John
