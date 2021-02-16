@@ -2230,18 +2230,34 @@ paths:
                         feedback_comments:
                           type: boolean
                           description: Sends a notification when there's a new comment for feedback
-                created_at:
-                  description: Date of creation
-                  type: string
-                  example: '2020-11-25T09:33:14.000000Z'
-                  format: datetime
-                  readOnly: true
-                updated_at:
-                  description: Date last changed
-                  type: string
-                  example: '2020-11-25T09:33:14.000000Z'
-                  format: datetime
-                  readOnly: true
+            examples:
+              Example:
+                value:
+                  first_name: John
+                  last_name: Doe
+                  email: johndoe@example.com
+                  phone: +31 6 12345678
+                  date_of_birth: 01-01-2020
+                  profile_picture: 'data:image/jpeg;base64,<image-data>'
+                  country: NL
+                  language: NL
+                  function: Developer
+                  role: owner
+                  notifications:
+                    app: true
+                    email:
+                      import_errors: true
+                      feedback: true
+                      feedback_below:
+                        enabled: true
+                        score: 0
+                      feedback_comments: true
+                    text:
+                      feedback: true
+                      feedback_below:
+                        enabled: true
+                        score: 0
+                      feedback_comments: true
         description: |-
           Just like with contacts and groups, you're currently unable to add/remove a user to/from a team with the user update request.
 
