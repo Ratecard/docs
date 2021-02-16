@@ -1969,6 +1969,7 @@ paths:
                   email: johndoe@example.com
                   phone: +31 6 12345678
                   date_of_birth: 01-01-2020
+                  profile_picture: 'data:image/jpeg;base64,<image-data>'
                   country: NL
                   language: NL
                   function: Developer
@@ -1997,6 +1998,7 @@ paths:
                   email: johndoe@example.com
                   phone: +31 6 12345678
                   date_of_birth: 01-01-2020
+                  profile_picture: 'data:image/jpeg;base64,<image-data>'
                   country: NL
                   language: NL
                   function: Developer
@@ -2019,13 +2021,6 @@ paths:
                         enabled: true
                         score: 0
                       feedback_comments: true
-              Base64 image example:
-                value:
-                  first_name: John
-                  last_name: Doe
-                  email: johndoe@example.com
-                  profile_picture: 'data:image/jpeg;base64,<image-data>'
-                  role: owner
         description: |-
           Just like with adding contacts, a user can be added to one or more teams when being created. A team's ID or name can be used to add a user to the team. The API will create a new team when a name property is specified and a team with that name doesn't yet exist. It functions the same way as the add new team endpoint, so you can also add the other team properties if needed.
 
@@ -2034,8 +2029,10 @@ paths:
           > `profile_picture` accepts 2 forms of data
           > 1. Image file uploads
           > 2. Base64 encoded image strings
+          > - Both accept PNG, JPG, JPEG, GIF and WEBP image types.
+          > - Image file uploads have a maximum size of 2MB (2048 KB)
           >
-          > Both accept PNG, JPG, JPEG, GIF and WEBP image types
+          > _Image file uploads will not be shown as the examples can only contain JSON, not form data, so the base64 encoded image is shown in the examples._
       parameters:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/acceptParam'
@@ -2254,8 +2251,12 @@ paths:
           > `profile_picture` accepts 2 forms of data
           > 1. Image file uploads
           > 2. Base64 encoded image strings
+          > - Both accept PNG, JPG, JPEG, GIF and WEBP image types.
+          > - Image file uploads have a maximum size of 2MB (2048 KB)
           >
-          > Both accept PNG, JPG, JPEG, GIF and WEBP image types
+          > _Image file uploads will not be shown as the examples can only contain JSON, not form data, so the base64 encoded image is shown in the examples._
+          > 
+          > **To upload files you have to `POST` to this endpoint and add `_method=PUT` to the URL or request body**!
       parameters:
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/acceptParam'
