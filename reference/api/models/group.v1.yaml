@@ -109,6 +109,12 @@ properties:
           type: string
           example: '2020-11-25T09:33:14.000000Z'
           format: datetime
+  embed_url:
+    description: Embed URL to view the group's stats
+    type: string
+    format: url
+    readOnly: true
+    example: https://ratecard.io/embed/reports/groups/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>
   created_at:
     description: Date of creation
     type: string

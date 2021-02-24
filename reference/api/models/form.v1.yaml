@@ -57,6 +57,12 @@ properties:
     description: Time (in days) until the same individual can submit feedback to the this form again.
     example: 1
     default: 1
+  embed_url:
+    description: Embed URL to view the form's stats
+    type: string
+    format: url
+    readOnly: true
+    example: https://ratecard.io/embed/reports/forms/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>
   created_at:
     description: Date of creation
     type: string

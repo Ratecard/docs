@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  version: 1.0.4
+  version: 1.0.5
   title: Ratecard API
   description: 'Integrate Ratecard directly with your applications through via the Ratecard [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. In this documentation you will find all the resources you''ll need to connect to our API.'
   contact:
@@ -802,6 +802,7 @@ paths:
                             value: support@ratecard.io
                             created_at: '2020-11-25T09:33:14.000000Z'
                             updated_at: '2020-11-25T09:33:14.000000Z'
+                        embed_url: 'https://ratecard.io/embed/reports/groups/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                         created_at: '2020-11-25T09:33:14.000000Z'
                         updated_at: '2020-11-25T09:33:14.000000Z'
                     links:
@@ -1067,6 +1068,7 @@ paths:
                         value: support@ratecard.io
                         created_at: '2020-11-25T09:33:14.000000Z'
                         updated_at: '2020-11-25T09:33:14.000000Z'
+                    embed_url: 'https://ratecard.io/embed/reports/groups/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                     created_at: '2020-11-25T09:33:14.000000Z'
                     updated_at: '2020-11-25T09:33:14.000000Z'
           links:
@@ -1507,7 +1509,7 @@ paths:
                         email: johndoe@example.com
                         phone: +31 6 12345678
                         date_of_birth: 01-01-2020
-                        profile_picture: string
+                        profile_picture: 'https://cdn.ratecard.info/app/profile_pictures/36cf8885-8b44-4aa5-a6ff-6f3057076203.gif'
                         country: NL
                         language: NL
                         function: Developer
@@ -1521,6 +1523,7 @@ paths:
                               facebook: null
                               indeed: null
                               glassdoor: null
+                            embed_url: 'https://ratecard.io/embed/reports/teams/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                             created_at: '2020-11-25T09:33:14.000000Z'
                             updated_at: '2020-11-25T09:33:14.000000Z'
                         notifications:
@@ -1538,6 +1541,7 @@ paths:
                               enabled: true
                               score: 0
                             feedback_comments: true
+                        embed_url: 'https://ratecard.io/embed/reports/users/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                         created_at: '2020-11-25T09:33:14.000000Z'
                         updated_at: '2020-11-25T09:33:14.000000Z'
                     links:
@@ -2067,7 +2071,7 @@ paths:
                     email: johndoe@example.com
                     phone: +31 6 12345678
                     date_of_birth: 01-01-2020
-                    profile_picture: string
+                    profile_picture: 'https://cdn.ratecard.info/app/profile_pictures/36cf8885-8b44-4aa5-a6ff-6f3057076203.gif'
                     country: NL
                     language: NL
                     function: Developer
@@ -2081,6 +2085,7 @@ paths:
                           facebook: null
                           indeed: null
                           glassdoor: null
+                        embed_url: 'https://ratecard.io/embed/reports/teams/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                         created_at: '2020-11-25T09:33:14.000000Z'
                         updated_at: '2020-11-25T09:33:14.000000Z'
                     notifications:
@@ -2098,6 +2103,7 @@ paths:
                           enabled: true
                           score: 0
                         feedback_comments: true
+                    embed_url: 'https://ratecard.io/embed/reports/users/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                     created_at: '2020-11-25T09:33:14.000000Z'
                     updated_at: '2020-11-25T09:33:14.000000Z'
         '404':
@@ -2361,6 +2367,7 @@ paths:
                           facebook: null
                           indeed: null
                           glassdoor: null
+                        embed_url: 'https://ratecard.io/embed/reports/teams/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                         created_at: '2020-11-25T09:33:14.000000Z'
                         updated_at: '2020-11-25T09:33:14.000000Z'
                     links:
@@ -2558,6 +2565,7 @@ paths:
                       facebook: null
                       indeed: null
                       glassdoor: null
+                    embed_url: 'https://ratecard.io/embed/reports/teams/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                     created_at: '2020-11-25T09:33:14.000000Z'
                     updated_at: '2020-11-25T09:33:14.000000Z'
         '404':
@@ -5734,6 +5742,7 @@ paths:
                           id: ea10916d-0684-4624-9d07-d341193554cf
                           name: My Group
                         send_date: '2020-11-25T09:33:14.000000Z'
+                        embed_url: 'https://ratecard.io/embed/reports/campaigns/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                         created_at: '2020-11-25T09:33:14.000000Z'
                         updated_at: '2020-11-25T09:33:14.000000Z'
                     links:
@@ -5812,7 +5821,7 @@ paths:
                       id: ea10916d-0684-4624-9d07-d341193554cf
                       name: My Form
                     connected_to:
-                      type: team
+                      type: group
                       id: ea10916d-0684-4624-9d07-d341193554cf
                       name: My Team
                     connectable:
@@ -5820,6 +5829,7 @@ paths:
                       id: ea10916d-0684-4624-9d07-d341193554cf
                       name: My Group
                     send_date: '2020-11-25T09:33:14.000000Z'
+                    embed_url: 'https://ratecard.io/embed/reports/campaigns/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                     created_at: '2020-11-25T09:33:14.000000Z'
                     updated_at: '2020-11-25T09:33:14.000000Z'
       operationId: get-campaigns-id
@@ -5905,6 +5915,7 @@ paths:
                           navigation_color: '#1D8BDF'
                         redirect: 'https://ratecard.io/ratecard'
                         period: 1
+                        embed_url: 'https://ratecard.io/embed/reports/forms/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                         created_at: '2020-11-25T09:33:14.000000Z'
                         updated_at: '2020-11-25T09:33:14.000000Z'
                     links:
@@ -5970,6 +5981,7 @@ paths:
                       navigation_color: '#1D8BDF'
                     redirect: 'https://ratecard.io/ratecard'
                     period: 1
+                    embed_url: 'https://ratecard.io/embed/reports/forms/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                     created_at: '2020-11-25T09:33:14.000000Z'
                     updated_at: '2020-11-25T09:33:14.000000Z'
       operationId: get-forms-id

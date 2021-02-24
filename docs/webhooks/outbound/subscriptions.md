@@ -5,6 +5,19 @@ In this article you'll find all subscriptions for outbound webhooks with an expl
 
 > Examples will only show the data relevant to their event. Refer to the linked models to see all the properties.
 
+## About the request
+In this section you'll find details regarding the request we send.
+
+### Headers
+
+- `Ratecard-Webhook-Secret` contains the secret of the webhook which can be found by going to the webhook's detail page in the app or by retrieving it from the API.
+
+### Status codes
+When the app or service to which we're sending the webhook doesn't return a response with a `2xx` message our webhook service will consider the call as failed. A maximum of 3 attempts will be made to successfully send the webhook call.
+
+### Response time
+If it takes longer than 3 seconds before we get a response from your app or service we will also consider the call as failed. 
+
 ## Messages
 In this section you'll find all message subscriptions. 
 
@@ -287,7 +300,7 @@ type: tab
 title: Assigned
 -->
 - Name: `feedback.assigned`
-- Triggers when a user in your account reopens an feedback item
+- Triggers when a user in your account gets assigned to an feedback item
 - Attaches the _id_, _name_, and _email_ of the user that performed the action to a property named _user_ in the payload
 ```json
 {
@@ -327,7 +340,7 @@ type: tab
 title: Replied
 -->
 - Name: `feedback.replied`
-- Triggers when a user in your account reopens an feedback item
+- Triggers when a user in your account replies to an feedback item
 - Attaches the subject and message of the reply as properties to the payload
 - Attaches the _id_, _name_, and _email_ of the user that performed the action to a property named _user_ in the payload
 - Has been sent to the contact that gave the feedback
@@ -343,8 +356,10 @@ title: Replied
     "name": "My account"
   },
   "payload": {
-    "subject": "My reply",
-    "message": "This is a reply.",
+    "reply": {
+      "subject": "My reply",
+      "body": "This is a reply.",
+    },
     "feedback": {
       "id": "ea10916d-0684-4624-9d07-d341193554cf",
       // ...
@@ -373,7 +388,7 @@ type: tab
 title: Noted
 -->
 - Name: `feedback.noted`
-- Triggers when a user in your account reopens an feedback item
+- Triggers when a user in your account adds a note to an feedback item
 - Attaches the subject and message of the note as properties to the payload
 - Attaches the _id_, _name_, and _email_ of the user that performed the action to a property named _user_ in the payload
 - Is internal
@@ -389,8 +404,10 @@ title: Noted
     "name": "My account"
   },
   "payload": {
-    "subject": "My note",
-    "message": "This is a note.",
+    "note": {
+      "subject": "My note",
+      "body": "This is a note.",
+    },
     "feedback": {
       "id": "ea10916d-0684-4624-9d07-d341193554cf",
       // ...
@@ -411,7 +428,7 @@ type: tab
 title: Archived
 -->
 - Name: `feedback.archived`
-- Triggers when a user in your account reopens an feedback item
+- Triggers when a user in your account archives an feedback item
 - Attaches the _id_, _name_, and _email_ of the user that performed the action to a property named _user_ in the payload
 ```json
 {
