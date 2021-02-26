@@ -5,8 +5,17 @@ The format is partially based on [Keep a Changelog](https://keepachangelog.com/e
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## \[1.0.6] - 2021-02-26
+### Added
+- Webhook call history
+  - List of all webhook calls
+  - List of webhook calls per webhook
+  - Retrieve an webhook call
+  - Retrieve an webhook call belonging to a webhook
+
 ### Changed
 - The `message` property of replies and notes for feedback items has been renamed to `body` to follow the recent changes to the webhooks.
+- Updated the webhook call with an exception property
+  - Contains error messages that are thrown or caught by our systems
 
 ## \[1.0.5] - 2021-02-24
 ### Changed

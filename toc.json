@@ -368,6 +368,32 @@
           "type": "item",
           "title": "Delete a webhook",
           "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks~1{id}/delete"
+        },
+        {
+          "type": "item",
+          "title": "List of the webhook's history",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks~1%7Bwebhook_id%7D~1history/get"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve one of the webhook's calls",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks~1%7Bwebhook_id%7D~1history~1%7Bwebhook_call_id%7D/get"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Webhook History",
+      "items": [
+        {
+          "type": "item",
+          "title": "List of webhook calls",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks~1%7~1history/get"
+        },
+        {
+          "type": "item",
+          "title": "Retrieve a webhook call",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1webhooks~1%7D~1history~1%7Bwebhook_call_id%7D/get"
         }
       ]
     },

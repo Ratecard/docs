@@ -4,8 +4,16 @@ All notable changes to the documentation will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), but will not follow semantic versioning as it will list the changes made to the documentation on the date thereof.
 
 ## 2021-02-26
+### Added
+- Webhook call history
+  - List of all webhook calls
+  - List of webhook calls per webhook
+  - Retrieve an webhook call
+  - Retrieve an webhook call belonging to a webhook
+
 ### Changed
 - Updated the feedback model and examples to match changes made to the API.
+- Updated the webhook call model to match API changes.
 
 ### Fixed
 - Feedback for message examples showing as null instead of the possible object.
