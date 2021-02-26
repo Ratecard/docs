@@ -4,6 +4,10 @@ All notable changes to the API will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## \[1.0.6] - 2021-02-26
+### Changed
+- The `message` property of replies and notes for feedback items has been renamed to `body` to follow the recent changes to the webhooks.
+
 ## \[1.0.5] - 2021-02-24
 ### Changed
 - The outbound webhooks `feedback.noted` and `feedback.replied` their payloads have been updated to differentiate them from the message object other payloads contain.

@@ -3511,7 +3511,9 @@ paths:
                           id: ea10916d-0684-4624-9d07-d341193554cf
                           name: John Doe
                           email: johndoe@example.com
-                        feedback: null
+                        feedback:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          score: 10
                         embed_url: 'https://ratecard.io/embed/messages/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                         created_at: '2020-11-25T09:33:14.000000Z'
                         updated_at: '2020-11-25T09:33:14.000000Z'
@@ -3840,7 +3842,9 @@ paths:
                       id: ea10916d-0684-4624-9d07-d341193554cf
                       name: John Doe
                       email: johndoe@example.com
-                    feedback: null
+                    feedback:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      score: 10
                     embed_url: 'https://ratecard.io/embed/messages/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
                     created_at: '2020-11-25T09:33:14.000000Z'
                     updated_at: '2020-11-25T09:33:14.000000Z'
@@ -4051,7 +4055,7 @@ paths:
                           first_name: John
                           last_name: Doe
                           email: johndoe@example.com
-                          phone: '612345678'
+                          phone: 612345678
                         form:
                           id: ea10916d-0684-4624-9d07-d341193554cf
                           name: My Form
@@ -4064,11 +4068,11 @@ paths:
                             value: 9
                         replies:
                           - subject: Thank you for your response
-                            message: We will make sure to forward your feedback to the right people in our organization.
+                            body: We will make sure to forward your feedback to the right people in our organization.
                             by: John Doe
                         notes:
                           - subject: Valuable feedback!
-                            message: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
+                            body: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
                             by: John Doe
                         assignee: null
                         score: 8.5
@@ -4125,7 +4129,7 @@ paths:
                       first_name: John
                       last_name: Doe
                       email: johndoe@example.com
-                      phone: '612345678'
+                      phone: 612345678
                     form:
                       id: ea10916d-0684-4624-9d07-d341193554cf
                       name: My Form
@@ -4138,11 +4142,11 @@ paths:
                         value: 9
                     replies:
                       - subject: Thank you for your response
-                        message: We will make sure to forward your feedback to the right people in our organization.
+                        body: We will make sure to forward your feedback to the right people in our organization.
                         by: John Doe
                     notes:
                       - subject: Valuable feedback!
-                        message: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
+                        body: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
                         by: John Doe
                     assignee: null
                     score: 8.5

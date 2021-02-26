@@ -138,7 +138,7 @@ properties:
           type: string
           description: Subject of the reply
           example: Thank you for your response
-        message:
+        body:
           type: string
           description: Message body of the reply
           example: We will make sure to forward your feedback to the right people in our organization.
@@ -156,7 +156,7 @@ properties:
           type: string
           description: Subject of the note
           example: Valuable feedback!
-        message:
+        body:
           type: string
           description: Message body of the note
           example: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.

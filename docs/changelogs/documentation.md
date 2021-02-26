@@ -3,6 +3,13 @@ All notable changes to the documentation will be documented in this file.
 
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), but will not follow semantic versioning as it will list the changes made to the documentation on the date thereof.
 
+## 2021-02-26
+### Changed
+- Updated the feedback model and examples to match changes made to the API.
+
+### Fixed
+- Feedback for message examples showing as null instead of the possible object.
+
 ## 2021-02-24
 ### Added
 - More information regarding the [outbound webhook subscriptions](../webhooks/outbound/subscriptions.md) 
