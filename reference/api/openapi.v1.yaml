@@ -25,6 +25,7 @@ tags:
   - name: VirtualReports
   - name: Campaigns
   - name: Forms
+  - name: WebhookCalls
 paths:
   /contacts:
     get:
@@ -2659,7 +2660,7 @@ paths:
         - $ref: '#/components/parameters/acceptParam'
   /webhooks:
     get:
-      description: This webhook retrieves a list of webhooks from your account.
+      description: This endpoint retrieves a list of webhooks from your account.
       summary: List of webhooks
       tags:
         - Webhooks
@@ -4055,7 +4056,7 @@ paths:
                           first_name: John
                           last_name: Doe
                           email: johndoe@example.com
-                          phone: 612345678
+                          phone: '612345678'
                         form:
                           id: ea10916d-0684-4624-9d07-d341193554cf
                           name: My Form
@@ -4129,7 +4130,7 @@ paths:
                       first_name: John
                       last_name: Doe
                       email: johndoe@example.com
-                      phone: 612345678
+                      phone: '612345678'
                     form:
                       id: ea10916d-0684-4624-9d07-d341193554cf
                       name: My Form
@@ -5995,6 +5996,407 @@ paths:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
       description: This endpoint retrieves a single form from your account.
+  /webhooks/history:
+    get:
+      summary: List of webhook calls
+      description: This endpoint retrieves a list of webhook calls from your account.
+      tags:
+        - WebhookCalls
+      responses:
+        '200':
+          description: Paginated webhook call response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/webhookCall.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/webhooks/history?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/webhooks/history?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/webhooks/history?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/webhooks/history?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/webhooks/history'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        webhook:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My webhook
+                        account:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My account
+                        payload: {}
+                        exception: {}
+                        event: messages.sent
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/webhooks/history?page=1'
+                      last: 'https://api.ratecard.io/v1/webhooks/history?page=100'
+                      prev: 'https://api.ratecard.io/v1/webhooks/history?page=1'
+                      next: 'https://api.ratecard.io/v1/webhooks/history?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/webhooks/history'
+                      per_page: 1
+                      to: 2
+                      total: 100
+      operationId: get-webhooks-history
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the id of the webhook calls
+        - in: query
+          name: is_inbound
+          schema:
+            type: boolean
+            format: expression
+          description: Filters on the inbound/outbound status of the webhook call
+        - in: query
+          name: event
+          schema:
+            type: string
+            format: expression
+          description: Filters on the events of the webhook calls
+        - in: query
+          name: payload
+          schema:
+            type: string
+            format: expression
+          description: Filters on the data in the payload
+        - in: query
+          name: exception
+          schema:
+            type: string
+            format: expression
+          description: Filters on the data in the exception
+        - in: query
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the date of creation
+        - in: query
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the date last updated
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: '?sort=created_at,-name'
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+              - id
+              - is_inbound
+              - event
+              - created_at
+              - updated_at
+  '/webhooks/history/{webhook_call_id}':
+    parameters:
+      - schema:
+          type: string
+        name: webhook_call_id
+        in: path
+        required: true
+        description: ID of the webhook call
+    get:
+      summary: Retrieve a webhook call
+      description: Webhook call response
+      tags:
+        - WebhookCalls
+      responses:
+        '200':
+          description: Webhook call response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/webhookCall.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    webhook:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My webhook
+                    account:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My account
+                    payload: null
+                    exception: null
+                    event: messages.sent
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
+      operationId: get-webhooks-webhook-id-history-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/fieldsparam'
+  '/webhooks/{webhook_id}/history':
+    get:
+      summary: List of webhook calls
+      description: This endpoint retrieves a list of webhook calls from your account.
+      tags:
+        - WebhookCalls
+      responses:
+        '200':
+          description: Paginated webhook call response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/webhookCall.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/webhooks/history?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/webhooks/history?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/webhooks/history?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/webhooks/history?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/webhooks/history'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: ea10916d-0684-4624-9d07-d341193554cf
+                        webhook:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My webhook
+                        account:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My account
+                        payload: {}
+                        exception: {}
+                        event: messages.sent
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
+                    links:
+                      first: 'https://api.ratecard.io/v1/webhooks/history?page=1'
+                      last: 'https://api.ratecard.io/v1/webhooks/history?page=100'
+                      prev: 'https://api.ratecard.io/v1/webhooks/history?page=1'
+                      next: 'https://api.ratecard.io/v1/webhooks/history?page=2'
+                    meta:
+                      current_page: 2
+                      from: 2
+                      last_page: 10
+                      path: 'https://api.ratecard.io/v1/webhooks/history'
+                      per_page: 1
+                      to: 2
+                      total: 100
+      operationId: get-webhooks-webhook-id-history
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/showParam'
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the id of the webhook calls
+        - in: query
+          name: is_inbound
+          schema:
+            type: boolean
+            format: expression
+          description: Filters on the inbound/outbound status of the webhook call
+        - in: query
+          name: event
+          schema:
+            type: string
+            format: expression
+          description: Filters on the events of the webhook calls
+        - in: query
+          name: payload
+          schema:
+            type: string
+            format: expression
+          description: Filters on the data in the payload
+        - in: query
+          name: exception
+          schema:
+            type: string
+            format: expression
+          description: Filters on the data in the exception
+        - in: query
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the date of creation
+        - in: query
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the date last updated
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: '?sort=created_at,-name'
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+              - id
+              - is_inbound
+              - event
+              - created_at
+              - updated_at
+    parameters:
+      - schema:
+          type: string
+        name: webhook_id
+        in: path
+        required: true
+        description: ID of the webhook
+  '/webhooks/{webhook_id}/history/{webhook_call_id}':
+    parameters:
+      - schema:
+          type: string
+        name: webhook_call_id
+        in: path
+        required: true
+        description: ID of the webhook call
+      - schema:
+          type: string
+        name: webhook_id
+        in: path
+        required: true
+        description: ID of the webhook
+    get:
+      summary: Retrieve a webhook call
+      description: Webhook call response
+      tags:
+        - WebhookCalls
+      responses:
+        '200':
+          description: Webhook call response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/webhookCall.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    webhook:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My webhook
+                    account:
+                      id: ea10916d-0684-4624-9d07-d341193554cf
+                      name: My account
+                    payload: null
+                    exception: null
+                    event: messages.sent
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
+        '404':
+          $ref: '#/components/responses/404'
+      operationId: get-webhooks-history-id
+      parameters:
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/fieldsparam'
 components:
   securitySchemes:
     bearerAuth:

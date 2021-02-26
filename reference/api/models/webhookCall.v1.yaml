@@ -1,6 +1,7 @@
 title: Webhook Call
 type: object
 description: This model contains the base object of a webhook call that will be sent to an URL linked to an outbound webhook.
+x-examples: {}
 properties:
   id:
     type: string
@@ -39,8 +40,15 @@ properties:
         example: My account
         readOnly: true
   payload:
-    type: object
+    type:
+      - object
+      - 'null'
     description: The payload contains the data of the call and the object that triggered the event
+  exception:
+    type:
+      - object
+      - 'null'
+    description: The exception thrown by our system causing the webhook call to fail
   event:
     type: string
     description: Name of the event that was triggered
@@ -58,4 +66,3 @@ properties:
     example: '2020-11-25T09:33:14.000000Z'
     format: datetime
     readOnly: true
-x-examples: {}
