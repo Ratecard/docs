@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  version: 1.0.5
+  version: 1.0.7
   title: Ratecard API
   description: 'Integrate Ratecard directly with your applications through via the Ratecard [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. In this documentation you will find all the resources you''ll need to connect to our API.'
   contact:
