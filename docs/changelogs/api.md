@@ -4,6 +4,12 @@ All notable changes to the API will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## \[1.0.8] - 2021-03-04
+### Fixed
+- 500 errors caused by null values for profile pictures on the user
+s `POST` and `UPDATE` endpoints. Null values will now be ignored and validation works as intended again.
+- `profile_picture` on user results always showing a `ratecard.io` URL when it should be a `cdn.ratecard.info` URL.
+
 ## \[1.0.7] - 2021-03-01
 ### Added
 - Support for `assigned_to` and `is_closed` report filters.
