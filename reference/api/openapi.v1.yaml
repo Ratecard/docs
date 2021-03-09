@@ -4837,6 +4837,10 @@ paths:
                           values:
                             start: string
                             end: string
+                        public_url: 'https://ratecard.io/ratecard-demo/example-report'
+                        embed_url: 'https://ratecard.io/embed/reports/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                        created_at: '2020-11-25T09:33:14.000000Z'
+                        updated_at: '2020-11-25T09:33:14.000000Z'
                     links:
                       first: 'https://api.ratecard.io/v1/reports?page=1'
                       last: 'https://api.ratecard.io/v1/reports?page=100'
@@ -4918,6 +4922,10 @@ paths:
                       values:
                         start: string
                         end: string
+                    public_url: 'https://ratecard.io/ratecard-demo/example-report'
+                    embed_url: 'https://ratecard.io/embed/reports/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
       operationId: get-reports-id
       description: This endpoint is used to retrieve a single report from your account.
       parameters:

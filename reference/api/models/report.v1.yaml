@@ -300,5 +300,27 @@ properties:
     $ref: ./share.v1.yaml
   filters:
     $ref: ./filter.v1.yaml
+  public_url:
+    type: string
+    format: uri
+    description: The public URL for the Report, visible when public is true or an account user is logged in to Ratecard
+    example: https://ratecard.io/ratecard-demo/example-report
+  embed_url:
+    type: string
+    format: uri
+    description: A public embed URL for this report with a special embed scoped access token
+    example: 'https://ratecard.io/embed/reports/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+  created_at:
+    description: Date of creation
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
+    readOnly: true
+  updated_at:
+    description: Date last changed
+    type: string
+    example: '2020-11-25T09:33:14.000000Z'
+    format: datetime
+    readOnly: true
 required:
   - name
