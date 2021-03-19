@@ -3,6 +3,13 @@ All notable changes to the documentation will be documented in this file.
 
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), but will not follow semantic versioning as it will list the changes made to the documentation on the date thereof.
 
+## 2021-03-19
+### Added
+- Account update endpoint documentation
+
+### Fixed
+- Incorrect response codes shown on some of the create and update endpoints.
+
 ## 2021-03-09
 ### Fixed
 - `public_url`, `embed_url`, `created_at` and `updated_at` columns missing from the Report model

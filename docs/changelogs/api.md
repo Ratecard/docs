@@ -4,6 +4,27 @@ All notable changes to the API will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## \[1.0.9] - 2021-03-16
+### Added
+- Account update endpoint.
+  - `PUT: /v1/accounts/{id}`.
+  - You can now fully update your account as it is shown in the `GET` responses minus the automatically generated or static variables.
+- The `brand_color` and `accent_color` of the account have been added to the `branding` object in a new `colors` object to the Account model.
+
+### Changed
+- All images will now be uploaded to the CDN.
+- Image URLs returned by the API can now contain CDN URLs.
+  - `Account`, `Campaign`, `Form` and `User` `GET` responses will contain CDN image URLs if their files were uploaded to the CDN.
+
+### Fixed
+- Image validation requiring images to be exactly 2048KB.
+  - This has now been corrected to be the maximum image size for image file uploads.
+  - This did not affect base64 image strings.
+- Error saving user when an image as a file was uploaded.
+  - `profile_picture` was not extracted correctly from the input data.
+  - This did not affect base64 `profile_picture` uploads.
+- `uuid` having null as value in campaign `GET` responses
+
 ## \[1.0.8] - 2021-03-04
 ### Fixed
 - 500 errors caused by null values for profile pictures on the user
