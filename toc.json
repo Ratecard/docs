@@ -22,6 +22,11 @@
           "type": "item",
           "title": "Retrieve an account",
           "uri": "reference/api/openapi.v1.yaml/paths/~1accounts~1{id}/get"
+        },
+        {
+          "type": "item",
+          "title": "Update an account",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1accounts~1{id}/put"
         }
       ]
     },
