@@ -15,6 +15,7 @@ and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 
 ### Fixed
 - `protection_enabled` property of Reports returning an integer whilst it should be returned as a boolean
+- Smart field mapper not auto mapping smart fields
 
 ## \[1.0.9] - 2021-03-16
 ### Added
