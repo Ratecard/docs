@@ -221,6 +221,7 @@ paths:
                         anonymous: false
                         external_type: Contact
                         external_id: ea10916d-0684-4624-9d07-d341193554cf
+                        source: API
                         synced_at: '2020-11-25T09:33:14.000000Z'
                         groups:
                           - id: ea10916d-0684-4624-9d07-d341193554cf
@@ -427,6 +428,7 @@ paths:
                     anonymous: false
                     external_type: Contact
                     external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    source: API
                     synced_at: '2020-11-25T09:33:14.000000Z'
                     groups:
                       - id: ea10916d-0684-4624-9d07-d341193554cf
@@ -501,6 +503,7 @@ paths:
                     anonymous: false
                     external_type: Contact
                     external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    source: API
                     synced_at: '2020-11-25T09:33:14.000000Z'
                     groups:
                       - id: ea10916d-0684-4624-9d07-d341193554cf
@@ -581,6 +584,18 @@ paths:
                   type: boolean
                   example: false
                   description: Make the contact anonymous
+                external_id:
+                  type: string
+                  example: ea10916d-0684-4624-9d07-d341193554cf
+                  description: The contact's external identifier
+                external_type:
+                  type: string
+                  description: The contact's external type
+                  example: Contact
+                source:
+                  type: string
+                  example: API
+                  description: The contact's source
               required:
                 - email
             examples:
@@ -592,6 +607,9 @@ paths:
                   phone: '0612345678'
                   subscribed: true
                   anonymous: false
+                  external_id: ea10916d-0684-4624-9d07-d341193554cf
+                  external_type: Contact
+                  source: API
               Example 2:
                 value:
                   name: John Doe
@@ -599,6 +617,9 @@ paths:
                   phone: '0612345678'
                   subscribed: true
                   anonymous: false
+                  external_id: ea10916d-0684-4624-9d07-d341193554cf
+                  external_type: Contact
+                  source: API
               Example 3:
                 value:
                   name: 'Doe, John'
@@ -606,6 +627,9 @@ paths:
                   phone: '0612345678'
                   subscribed: true
                   anonymous: false
+                  external_id: ea10916d-0684-4624-9d07-d341193554cf
+                  external_type: Contact
+                  source: API
         description: |-
           Similar to the contacts create endpoint, only without the group functionality as this process is handled in the group scoped contact endpoints. The big difference is how the anonymous property is handled. Once a contact is anonymous in our system it will remain anonymous in order to protect their anonimity, meaning a contact can only be anonymized in this endpoint and not the other way around.
 
@@ -4536,6 +4560,7 @@ paths:
                         anonymous: false
                         external_type: Contact
                         external_id: ea10916d-0684-4624-9d07-d341193554cf
+                        source: API
                         synced_at: '2020-11-25T09:33:14.000000Z'
                         smart_fields:
                           owner:
@@ -4715,8 +4740,44 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                $ref: ./models/groupContact.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: ea10916d-0684-4624-9d07-d341193554cf
+                    first_name: John
+                    last_name: Doe
+                    email: johndoe@ratecard.io
+                    phone: '0612345678'
+                    subscribed: true
+                    unsubscribe_date: null
+                    anonymous: false
+                    external_type: Contact
+                    external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    source: API
+                    synced_at: '2020-11-25T09:33:14.000000Z'
+                    smart_fields:
+                      owner:
+                        id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: John Doe
+                        email: johndoe@ratecard.io
+                      team:
+                        id: ea10916d-0684-4624-9d07-d341193554cf
+                        name: My Team
+                        email: myteam@ratecard.io
+                      notes: John Doe is an example for us all.
+                      credits: 154325
+                      time_of_arrival: '09:33:14.000000Z'
+                      date_of_arrival: '2020-11-25'
+                      datetime_of_arrival: '2020-11-25T09:33:14.000000Z'
+                      locale: en
+                    group_data:
+                      subscribed: true
+                      date_added: '2020-11-25T09:33:14.000000Z'
+                      date_updated: '2020-11-25T09:33:14.000000Z'
+                    embed_url: 'https://ratecard.io/embed/contacts/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
+                    created_at: '2020-11-25T09:33:14.000000Z'
+                    updated_at: '2020-11-25T09:33:14.000000Z'
         '404':
           $ref: '#/components/responses/404'
         '422':
@@ -4883,6 +4944,7 @@ paths:
                     anonymous: false
                     external_type: Contact
                     external_id: ea10916d-0684-4624-9d07-d341193554cf
+                    source: API
                     synced_at: '2020-11-25T09:33:14.000000Z'
                     smart_fields:
                       owner:
@@ -4957,6 +5019,18 @@ paths:
                   type: boolean
                   example: false
                   description: Make the contact anonymous
+                external_id:
+                  type: string
+                  example: ea10916d-0684-4624-9d07-d341193554cf
+                  description: The contact's external identifier
+                external_type:
+                  type: string
+                  description: The contact's external type
+                  example: Contact
+                source:
+                  type: string
+                  example: API
+                  description: The contact's source
                 smart_fields:
                   type: object
                   description: Object of smart fields with name value pairing
@@ -4982,6 +5056,9 @@ paths:
                   phone: '0612345678'
                   subscribed: true
                   anonymous: false
+                  external_id: ea10916d-0684-4624-9d07-d341193554cf
+                  external_type: Contact
+                  source: API
                   smart_fields:
                     example_field: example value
                   group_data:
@@ -4993,6 +5070,9 @@ paths:
                   phone: '0612345678'
                   subscribed: true
                   anonymous: false
+                  external_id: ea10916d-0684-4624-9d07-d341193554cf
+                  external_type: Contact
+                  source: API
                   smart_fields:
                     example_field: example value
                     owner: support@ratecard.io
@@ -5005,6 +5085,9 @@ paths:
                   phone: '0612345678'
                   subscribed: true
                   anonymous: false
+                  external_id: ea10916d-0684-4624-9d07-d341193554cf
+                  external_type: Contact
+                  source: API
                   smart_fields:
                     example_field: example value
                   group_data:
