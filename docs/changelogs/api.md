@@ -4,6 +4,18 @@ All notable changes to the API will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## \[1.0.10] - 2021-03-22
+### Added
+- Expressions for Reports
+- Sorting for Reports
+
+### Changed
+- Behaviour update for the except and fields query parameters for reports `GET` endpoints to speed up the API response time when fields that contain sub queries are excluded from the response
+  - Previously everything was still executed on the background
+
+### Fixed
+- `protection_enabled` property of Reports returning an integer whilst it should be returned as a boolean
+
 ## \[1.0.9] - 2021-03-16
 ### Added
 - Account update endpoint.

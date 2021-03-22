@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  version: 1.0.8
+  version: 1.0.10
   title: Ratecard API
   description: 'Integrate Ratecard directly with your applications through via the Ratecard [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. In this documentation you will find all the resources you''ll need to connect to our API.'
   contact:
@@ -4999,12 +4999,156 @@ paths:
       tags:
         - Reports
       parameters:
-        - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/pageParam'
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
         - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: sort
+          schema:
+            type: string
+          example: '?sort=created_at,-name'
+          description: |-
+            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
+
+            Sortable properties:
+            - id
+            - default
+            - public
+            - auto_update
+            - include_archived
+            - name
+            - type
+            - theme
+            - slug
+            - protection_enabled
+            - protection_type
+            - protection_value
+            - owner
+            - created_at
+            - updated_at
+        - in: query 
+          name: id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the id property of the Report
+        - in: query 
+          name: default
+          schema:
+            type: string
+            format: expression
+          description: Filters on the default property of the Report
+        - in: query 
+          name: public
+          schema:
+            type: string
+            format: expression
+          description: Filters on the public property of the Report
+        - in: query 
+          name: auto_update
+          schema:
+            type: string
+            format: expression
+          description: Filters on the auto_update property of the Report
+        - in: query 
+          name: include_archived
+          schema:
+            type: string
+            format: expression
+          description: Filters on the include_archived property of the Report
+        - in: query 
+          name: name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the name property of the Report
+        - in: query 
+          name: type
+          schema:
+            type: string
+            format: expression
+          description: Filters on the type property of the Report
+        - in: query 
+          name: theme
+          schema:
+            type: string
+            format: expression
+          description: Filters on the theme property of the Report
+        - in: query 
+          name: slug
+          schema:
+            type: string
+            format: expression
+          description: Filters on the slug property of the Report
+        - in: query 
+          name: protection_enabled
+          schema:
+            type: string
+            format: expression
+          description: Filters on the protection_enabled property of the Report
+        - in: query 
+          name: protection_type
+          schema:
+            type: string
+            format: expression
+          description: Filters on the protection_type property of the Report
+        - in: query 
+          name: protection_value
+          schema:
+            type: string
+            format: expression
+          description: Filters on the protection_value property of the Report
+        - in: query 
+          name: owner
+          schema:
+            type: string
+            format: expression
+          description: Filters on the owner property of the Report
+        - in: query 
+          name: owner.id
+          schema:
+            type: string
+            format: expression
+          description: Filters on the owner.id property of the Report
+        - in: query 
+          name: owner.name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the owner.name property of the Report
+        - in: query 
+          name: owner.email
+          schema:
+            type: string
+            format: expression
+          description: Filters on the owner.email property of the Report
+        - in: query 
+          name: template.name
+          schema:
+            type: string
+            format: expression
+          description: Filters on the template.name property of the Report
+        - in: query 
+          name: template.description
+          schema:
+            type: string
+            format: expression
+          description: Filters on the template.description property of the Report
+        - in: query 
+          name: created_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the created_at property of the Report
+        - in: query 
+          name: updated_at
+          schema:
+            type: string
+            format: expression
+          description: Filters on the updated_at property of the Report
       responses:
         '200':
           description: Paginated report response
