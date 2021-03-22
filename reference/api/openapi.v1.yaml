@@ -299,26 +299,38 @@ paths:
                   type: boolean
                   example: false
                   description: Make the contact anonymous
+                external_id:
+                  type: string
+                  example: ea10916d-0684-4624-9d07-d341193554cf
+                  description: The contact's external identifier
+                external_type:
+                  type: string
+                  description: The contact's external type
+                  example: Contact
+                source:
+                  type: string
+                  example: API
+                  description: The contact's source
                 groups:
                   type: array
                   description: Add the contact to one or many groups with smart fields (see examples)
                   items:
                     anyOf:
-                      - properties:
+                      - description: Add to group by group id
+                        properties:
                           id:
                             type: string
                             format: uuid
                             example: ea10916d-0684-4624-9d07-d341193554cf
                             description: group id
-                        description: Add to group by group id
                         required:
                           - id
-                      - properties:
+                      - description: Add to group by group name (creates new group if group not found)
+                        properties:
                           name:
                             type: string
                             example: My Group
                             description: Group name
-                        description: Add to group by group name (creates new group if group not found)
                         required:
                           - name
                     description: Different ways to add a contact to a group
@@ -4735,6 +4747,18 @@ paths:
                   type: boolean
                   example: false
                   description: Make the contact anonymous
+                external_id:
+                  type: string
+                  example: ea10916d-0684-4624-9d07-d341193554cf
+                  description: The contact's external identifier
+                external_type:
+                  type: string
+                  description: The contact's external type
+                  example: Contact
+                source:
+                  type: string
+                  example: API
+                  description: The contact's source
                 smart_fields:
                   type: object
                   description: Object of smart fields with name value pairing
@@ -5029,121 +5053,121 @@ paths:
             - owner
             - created_at
             - updated_at
-        - in: query 
+        - in: query
           name: id
           schema:
             type: string
             format: expression
           description: Filters on the id property of the Report
-        - in: query 
+        - in: query
           name: default
           schema:
             type: string
             format: expression
           description: Filters on the default property of the Report
-        - in: query 
+        - in: query
           name: public
           schema:
             type: string
             format: expression
           description: Filters on the public property of the Report
-        - in: query 
+        - in: query
           name: auto_update
           schema:
             type: string
             format: expression
           description: Filters on the auto_update property of the Report
-        - in: query 
+        - in: query
           name: include_archived
           schema:
             type: string
             format: expression
           description: Filters on the include_archived property of the Report
-        - in: query 
+        - in: query
           name: name
           schema:
             type: string
             format: expression
           description: Filters on the name property of the Report
-        - in: query 
+        - in: query
           name: type
           schema:
             type: string
             format: expression
           description: Filters on the type property of the Report
-        - in: query 
+        - in: query
           name: theme
           schema:
             type: string
             format: expression
           description: Filters on the theme property of the Report
-        - in: query 
+        - in: query
           name: slug
           schema:
             type: string
             format: expression
           description: Filters on the slug property of the Report
-        - in: query 
+        - in: query
           name: protection_enabled
           schema:
             type: string
             format: expression
           description: Filters on the protection_enabled property of the Report
-        - in: query 
+        - in: query
           name: protection_type
           schema:
             type: string
             format: expression
           description: Filters on the protection_type property of the Report
-        - in: query 
+        - in: query
           name: protection_value
           schema:
             type: string
             format: expression
           description: Filters on the protection_value property of the Report
-        - in: query 
+        - in: query
           name: owner
           schema:
             type: string
             format: expression
           description: Filters on the owner property of the Report
-        - in: query 
+        - in: query
           name: owner.id
           schema:
             type: string
             format: expression
           description: Filters on the owner.id property of the Report
-        - in: query 
+        - in: query
           name: owner.name
           schema:
             type: string
             format: expression
           description: Filters on the owner.name property of the Report
-        - in: query 
+        - in: query
           name: owner.email
           schema:
             type: string
             format: expression
           description: Filters on the owner.email property of the Report
-        - in: query 
+        - in: query
           name: template.name
           schema:
             type: string
             format: expression
           description: Filters on the template.name property of the Report
-        - in: query 
+        - in: query
           name: template.description
           schema:
             type: string
             format: expression
           description: Filters on the template.description property of the Report
-        - in: query 
+        - in: query
           name: created_at
           schema:
             type: string
             format: expression
           description: Filters on the created_at property of the Report
-        - in: query 
+        - in: query
           name: updated_at
           schema:
             type: string

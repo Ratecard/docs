@@ -8,6 +8,13 @@ and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 ### Added
 - Expressions for Reports
 - Sorting for Reports
+- `source` property to contacts and groups
+  - A source represents the origin of the data (e.g. Dynamics CRM)
+- `source`, `external_id` and `external_type` properties of contact can now be added/updated
+  - Source can also be added/updated for the a group 
+
+- `external_id` identifier of the contact in another system _(e.g. 123456 in Carerix)_
+- `external_type` type of the contact in another system _((e.g. "Candidate" in Carerix)_
 
 ### Changed
 - Behaviour update for the except and fields query parameters for reports `GET` endpoints to speed up the API response time when fields that contain sub queries are excluded from the response

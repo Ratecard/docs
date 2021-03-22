@@ -48,6 +48,10 @@ properties:
     type: string
     nullable: true
     example: ea10916d-0684-4624-9d07-d341193554cf
+  source:
+    description: Source of the contact's data
+    type: string
+    example: API
   synced_at:
     description: 'When a contact has been synced with an external system, this column is updated'
     type: string

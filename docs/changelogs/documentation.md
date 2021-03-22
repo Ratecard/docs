@@ -6,6 +6,7 @@ The format is partially based on [Keep a Changelog](https://keepachangelog.com/e
 ## 2021-03-22
 ### Added
 - Expression & sort documentation to the reports list endpoint
+- Source documentation to groups and contacts
 
 ## 2021-03-19
 ### Added

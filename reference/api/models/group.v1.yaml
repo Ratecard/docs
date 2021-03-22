@@ -109,6 +109,10 @@ properties:
           type: string
           example: '2020-11-25T09:33:14.000000Z'
           format: datetime
+  source:
+    description: Source of the group's data
+    type: string
+    example: API
   embed_url:
     description: Embed URL to view the group's stats
     type: string
