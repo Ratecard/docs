@@ -362,6 +362,9 @@ paths:
                   phone: '0612345678'
                   subscribed: true
                   anonymous: false
+                  external_id: ea10916d-0684-4624-9d07-d341193554cf
+                  external_type: Contact
+                  source: API
                   groups:
                     - name: My Group
                       owner: ea10916d-0684-4624-9d07-d341193554cf
@@ -378,6 +381,9 @@ paths:
                   phone: '0612345678'
                   subscribed: true
                   anonymous: false
+                  external_id: ea10916d-0684-4624-9d07-d341193554cf
+                  external_type: Contact
+                  source: API
                   groups:
                     - id: ea10916d-0684-4624-9d07-d341193554cf
                       owner: John Doe
