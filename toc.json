@@ -263,6 +263,16 @@
           "type": "item",
           "title": "Retrieve a form",
           "uri": "reference/api/openapi.v1.yaml/paths/~1forms~1{id}/get"
+        },
+        {
+          "type": "item",
+          "title": "Form Feedback",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1forms~1{id}~1feedback/get"
+        },
+        {
+          "type": "item",
+          "title": "Form Messages",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1forms~1{id}~1messages/get"
         }
       ]
     },
@@ -342,6 +352,16 @@
           "type": "item",
           "title": "Retrieve a report",
           "uri": "reference/api/openapi.v1.yaml/paths/~1reports~1{id}/get"
+        },
+        {
+          "type": "item",
+          "title": "Report Feedback",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1reports~1{id}~1feedback/get"
+        },
+        {
+          "type": "item",
+          "title": "Report Messages",
+          "uri": "reference/api/openapi.v1.yaml/paths/~1reports~1{id}~1messages/get"
         }
       ]
     },
