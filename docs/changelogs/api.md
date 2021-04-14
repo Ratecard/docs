@@ -4,6 +4,30 @@ All notable changes to the API will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## \[1.0.12] - 2021-04-14
+### Added
+- Feedback and message list endpoints for forms.
+- Expressions for feedback answers in the feedback list(s).
+
+### Changed
+- Feedback lists now include approved feedback in the results.
+
+### Fixed
+- Incorrect not found messages.
+
+## \[1.0.11] - 2021-03-30
+### Changed
+- Sources can now be edited for contacts and groups.
+  - When not specified `API` will be the fallback source.
+- Precision for auto campaign scheduling when adding contacts to a group
+- Behaviour for message resources
+  - Now more performant when fields are excluded
+
+### Fixed
+- Incorrect source mapping for Groups & Contacts.
+- Triggers not getting removed from schedule when a contact is deleted or removed from a group.
+- Empty object returning where null should be in the recipient email field when it is not present in a message.
+
 ## \[1.0.10] - 2021-03-22
 ### Added
 - Expressions for Reports

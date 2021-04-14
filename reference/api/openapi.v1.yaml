@@ -4174,7 +4174,22 @@ paths:
         - $ref: '#/components/parameters/fieldsparam'
   /feedback:
     get:
-      description: This endpoint retrieves a list of the feedback in your account.
+      description: |-
+        This endpoint retrieves a list of the feedback in your account.
+
+        <!-- theme: warning -->
+        > Due to the way we store our data the `answers.value` expression only works for answers of the following question types:
+        > 
+        > `rating`,`nps_standard`,`nps_custom`,`text`,`textarea`,`legal`,`date`,`email`,`phone`, and `website`
+
+        > Scoped feedback endpoints:
+        > - [Users](/reference/api/openapi.v1.yaml/paths/~1users~1{id}~1feedback/get): Feedback linked to a user (e.g. as the value of a `team_member` question).
+        > - [Teams](/reference/api/openapi.v1.yaml/paths/~1teams~1{id}~1feedback/get): Feedback linked to a team (e.g. as the value of a `department` question).
+        > - [Contact](/reference/api/openapi.v1.yaml/paths/~1contacts~1{id}~1feedback/get): Feedback given by a contact.
+        > - [Group](/reference/api/openapi.v1.yaml/paths/~1groups~1{id}~1feedback/get): Feedback linked to contacts of a group.
+        > - [Campaign](/reference/api/openapi.v1.yaml/paths/~1campaigns~1{id}~1feedback/get): Feedback linked to recipients of campaign messages.
+        > - [Form](/reference/api/openapi.v1.yaml/paths/~1forms~1{id}~1feedback/get): Feedback submitted to this form.
+        > - [Report](/reference/api/openapi.v1.yaml/paths/~1reports~1{id}~1feedback/get): Feedback based on a report's filter(s).
       summary: List of feedback
       tags:
         - Feedback
@@ -4245,6 +4260,36 @@ paths:
             type: string
             format: expression
           description: Filters on the respondent.phone of the feedback
+        - in: query
+          name: answers.question_id
+          description: Filters on the answers.question_id of the feedback
+          schema:
+            type: string
+            format: expression
+        - in: query
+          name: answers.hidden
+          description: Filters on the answers.hidden of the feedback
+          schema:
+            type: string
+            format: expression
+        - in: query
+          name: answers.title
+          description: Filters on the answers.title of the feedback
+          schema:
+            type: string
+            format: expression
+        - in: query
+          name: answers.type
+          description: Filters on the answers.type of the feedback
+          schema:
+            type: string
+            format: expression
+        - in: query
+          name: answers.value
+          description: Filters on the answers.value of the feedback
+          schema:
+            type: string
+            format: expression
         - in: query
           name: review
           schema:
@@ -5473,25 +5518,65 @@ paths:
         - $ref: '#/components/parameters/fieldsparam'
         - $ref: '#/components/parameters/exceptParam'
         - $ref: '#/components/parameters/periodParam'
-  '/users/{id}/messages':
+  '/reports/{id}/messages':
     parameters:
       - schema:
           type: string
         name: id
         in: path
         required: true
+        description: ID of the report
     get:
-      summary: User Messages
+      summary: Report Messages
       tags:
-        - Users
+        - Reports
       responses:
         '200':
-          description: 'See [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get)'
-      operationId: get-users-id-messages
+          description: 'See [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get)'
+      operationId: get-reports-id-messages
       description: |-
-        Feeback related to the user.
+        Feeback related to the report.
 
-        Identical to [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
+        Identical to [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
+  '/reports/{id}/feedback':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the report
+    get:
+      summary: Report Feedback
+      tags:
+        - Reports
+      responses:
+        '200':
+          description: 'See [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
+      operationId: get-reports-id-feedback
+      description: |-
+        Feeback related to the report.
+
+        Identical to [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
+    '/users/{id}/messages':
+      parameters:
+        - schema:
+            type: string
+          name: id
+          in: path
+          required: true
+      get:
+        summary: User Messages
+        tags:
+          - Users
+        responses:
+          '200':
+            description: 'See [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get)'
+        operationId: get-users-id-messages
+        description: |-
+          Feeback related to the user.
+
+          Identical to [List all messages](/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
   '/users/{id}/feedback':
     parameters:
       - schema:
@@ -6543,6 +6628,46 @@ paths:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
       description: This endpoint retrieves a single form from your account.
+  '/forms/{id}/messages':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the form
+    get:
+      summary: Form Messages
+      tags:
+        - Forms
+      responses:
+        '200':
+          description: 'See [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get)'
+      operationId: get-forms-id-messages
+      description: |-
+        Feeback related to the form.
+  
+        Identical to [List all messages](/docs/api/reference/api/openapi.v1.yaml/paths/~1messages/get) in terms of functionality.
+  '/forms/{id}/feedback':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the form
+    get:
+      summary: Form Feedback
+      tags:
+        - Forms
+      responses:
+        '200':
+          description: 'See [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get)'
+      operationId: get-forms-id-feedback
+      description: |-
+        Feeback related to the form.
+  
+        Identical to [List all feedback](/docs/api/reference/api/openapi.v1.yaml/paths/~1feedback/get) in terms of functionality.
   /webhooks/history:
     get:
       summary: List of webhook calls
