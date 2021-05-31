@@ -4,6 +4,26 @@ All notable changes to the API will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## \[1.0.16] - 2021-05-28
+### Added
+- User default settings to the user creation endpoint.
+  - These default settings can be configured in the account settings in the Ratecard app.
+  - Newly created users will now have these defaults instead of the previous system defaults, unless they're given upon creation in the JSON.
+
+## \[1.0.15] - 2021-05-27
+### Changed
+- Event statuses regarding contact updates were too strict.
+  - The status will now always be contact updated when a call is succesful.
+
+## \[1.0.14] - 2021-05-17
+### Fixed
+- Webhooks not being created/sent due to a version mistmatch with an underlying library.
+
+## \[1.0.13] - 2021-05-06
+### Added
+- Campaign pauses / flags
+  - When a contact is added to a group with active campaigns a message can be scheduled; when the campaign exceeds a flag limit it will be paused and mails regarding the pause will be sent to all relevant parties.
+
 ## \[1.0.12] - 2021-04-14
 ### Added
 - Feedback and message list endpoints for forms.
