@@ -194,6 +194,66 @@ properties:
         type: string
         description: Comma separated list of domains allowed to send import data to Ratecard
         example: 'ratecard.io, ratecard.info, etc...'
+  notifications:
+    type: object
+    description: The account's notification settings
+    properties:
+      feedback_confirmation:
+        type: boolean
+        description: Sends respondents a confirmation email with the answers they gave
+      user_defaults:
+        type: object
+        description: The default notification settings for users in your account
+        properties:
+          app:
+            type: boolean
+            description: In-app notifications (e.g. notification bubbles)
+          email:
+            type: object
+            description: Email based notifications
+            properties:
+              import_errors:
+                type: boolean
+                description: Sends a notification when an error occurs during an import
+              feedback:
+                type: boolean
+                description: Sends a notification when new feedback arrives
+              feedback_below:
+                type: object
+                description: Only send notification's regarding feedback below the defined score
+                properties:
+                  enabled:
+                    type: boolean
+                  score:
+                    type: integer
+                    maximum: 10
+                    minimum: 0
+                    exclusiveMaximum: true
+                    exclusiveMinimum: false
+              feedback_comments:
+                type: boolean
+                description: Sends a notification when there's a new comment for feedback
+          text:
+            type: object
+            description: Text (sms) based notifications
+            properties:
+              feedback:
+                type: boolean
+                description: Sends a notification when new feedback arrives
+              feedback_below:
+                type: object
+                description: Only send notification's regarding feedback below the defined score
+                properties:
+                  enabled:
+                    type: boolean
+                  score:
+                    type: integer
+                    maximum: 10
+                    minimum: 0
+                    exclusiveMaximum: true
+              feedback_comments:
+                type: boolean
+                description: Sends a notification when there's a new comment for feedback
   source:
     type: string
     nullable: true
@@ -225,3 +285,4 @@ properties:
     readOnly: true
 description: 'This model is the Account model. It contains the name, status, general information, branding customization, limits and more of the account the access token user belongs to. When a user belongs to multiple accounts, they will all be retrievable within a special scope.'
 x-examples: {}
+examples: []

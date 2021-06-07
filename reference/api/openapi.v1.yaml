@@ -3348,6 +3348,23 @@ paths:
                             period: d
                             include_reminders: false
                           allowed_domains: 'ratecard.io, ratecard.info, etc...'
+                        notifications:
+                          feedback_confirmation: true
+                          user_defaults:
+                            app: true
+                            email:
+                              import_errors: true
+                              feedback: true
+                              feedback_below:
+                                enabled: true
+                                score: 0
+                              feedback_comments: true
+                            text:
+                              feedback: true
+                              feedback_below:
+                                enabled: true
+                                score: 0
+                              feedback_comments: true
                         source: Bullhorn
                         date_last_login: '2020-11-25T09:33:14.000000Z'
                         access_token: string
@@ -3443,6 +3460,23 @@ paths:
                         period: d
                         include_reminders: false
                       allowed_domains: 'ratecard.io, ratecard.info, etc...'
+                    notifications:
+                      feedback_confirmation: true
+                      user_defaults:
+                        app: true
+                        email:
+                          import_errors: true
+                          feedback: true
+                          feedback_below:
+                            enabled: true
+                            score: 1
+                          feedback_comments: true
+                        text:
+                          feedback: true
+                          feedback_below:
+                            enabled: true
+                            score: 0
+                          feedback_comments: true
                     source: Bullhorn
                     date_last_login: '2020-11-25T09:33:14.000000Z'
                     access_token: string
@@ -3661,6 +3695,113 @@ paths:
                       type: string
                       description: Comma separated list of domains allowed to send import data to Ratecard
                       example: 'ratecard.io, ratecard.info, etc...'
+                notifications:
+                  type: object
+                  description: The account's notification settings
+                  properties:
+                    feedback_confirmation:
+                      type: boolean
+                      description: Sends respondents a confirmation email with the answers they gave
+                    user_defaults:
+                      type: object
+                      description: The default notification settings for users in your account
+                      properties:
+                        app:
+                          type: boolean
+                          description: In-app notifications (e.g. notification bubbles)
+                        email:
+                          type: object
+                          description: Email based notifications
+                          properties:
+                            import_errors:
+                              type: boolean
+                              description: Sends a notification when an error occurs during an import
+                            feedback:
+                              type: boolean
+                              description: Sends a notification when new feedback arrives
+                            feedback_below:
+                              type: object
+                              description: Only send notification's regarding feedback below the defined score
+                              properties:
+                                enabled:
+                                  type: boolean
+                                score:
+                                  type: integer
+                                  maximum: 10
+                                  minimum: 0
+                                  exclusiveMaximum: true
+                                  exclusiveMinimum: false
+                            feedback_comments:
+                              type: boolean
+                              description: Sends a notification when there's a new comment for feedback
+                        text:
+                          type: object
+                          description: Text (sms) based notifications
+                          properties:
+                            feedback:
+                              type: boolean
+                              description: Sends a notification when new feedback arrives
+                            feedback_below:
+                              type: object
+                              description: Only send notification's regarding feedback below the defined score
+                              properties:
+                                enabled:
+                                  type: boolean
+                                score:
+                                  type: integer
+                                  maximum: 10
+                                  minimum: 0
+                                  exclusiveMaximum: true
+                            feedback_comments:
+                              type: boolean
+                              description: Sends a notification when there's a new comment for feedback
+                  examples:
+                    Example:
+                      value:
+                        name: Ratecard
+                        public: false
+                        general:
+                          website: 'https://ratecard.io/'
+                          phone: +31 6 123 45 678
+                    address: Jisperweg 2
+                    zip_code: 1463 ND
+                    city: Noordbeemster
+                    country: NL
+                    description: ''
+                    company_size: 2-10
+                    industries:
+                      - Staffing and Recruiting
+                    profiles:
+                      facebook: 'https://www.facebook.com/ratecardio'
+                      twiter: 'https://twitter.com/ratecardio'
+                      linkedin: 'https://www.linkedin.com/company/10642017'
+                      glassdoor: ''
+                    review_urls:
+                      google: ''
+                      indeed: ''
+                      glassdoor: ''
+                      facebook: ''
+                  branding:
+                    logo: 'data:image/jpeg;base64,<image-data>'
+                    header: 'data:image/jpeg;base64,<image-data>'
+                    forms:
+                      logo: 'data:image/jpeg;base64,<image-data>'
+                      colors:
+                        navigation: '#1d8bdf'
+                        background: '#ffffff'
+                        buttons: '#1d8bdf'
+                    campaigns:
+                      logo: 'data:image/jpeg;base64,<image-data>'
+                      colors:
+                        primary: '#1d8bdf'
+                        secondary: '#ffffff'
+                        tertiary: '#1d8bdf'
+                  limits:
+                    messages:
+                      max: 2
+                      period: d
+                      include_reminders: false
+                    allowed_domains: 'ratecard.io, ratecard.info, etc...'
             examples:
               Example:
                 value:
@@ -3708,6 +3849,23 @@ paths:
                       period: d
                       include_reminders: false
                     allowed_domains: 'ratecard.io, ratecard.info, etc...'
+                  notifications:
+                    feedback_confirmation: true
+                    user_defaults:
+                      app: true
+                      email:
+                        import_errors: true
+                        feedback: true
+                        feedback_below:
+                          enabled: true
+                          score: 1
+                        feedback_comments: true
+                      text:
+                        feedback: true
+                        feedback_below:
+                          enabled: true
+                          score: 0
+                        feedback_comments: true
         description: |-
           > ### Uploading Images
           > Under `branding` you'll see a few `logo` properties and an `header` property.

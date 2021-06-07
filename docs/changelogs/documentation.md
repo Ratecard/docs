@@ -3,6 +3,11 @@ All notable changes to the documentation will be documented in this file.
 
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), but will not follow semantic versioning as it will list the changes made to the documentation on the date thereof.
 
+## 2021-05-07
+### Updated
+- Account model with new notification settings
+- API endpoints for accounts with new notification settings
+
 ## 2021-04-14
 ### Added
 - New expressions to feedback list

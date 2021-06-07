@@ -38,7 +38,7 @@ properties:
   profile_picture:
     type: string
     description: Profile picture of the user
-    example: https://cdn.ratecard.info/app/profile_pictures/36cf8885-8b44-4aa5-a6ff-6f3057076203.gif
+    example: 'https://cdn.ratecard.info/app/profile_pictures/36cf8885-8b44-4aa5-a6ff-6f3057076203.gif'
   country:
     type: string
     example: NL
@@ -123,7 +123,7 @@ properties:
     type: string
     format: url
     readOnly: true
-    example: https://ratecard.io/embed/reports/users/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>
+    example: 'https://ratecard.io/embed/reports/users/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
   created_at:
     description: Date of creation
     type: string
@@ -141,3 +141,5 @@ required:
   - last_name
   - email
 x-examples: {}
+examples: []
+x-internal: false
