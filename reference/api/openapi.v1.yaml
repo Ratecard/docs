@@ -4129,7 +4129,121 @@ paths:
         - $ref: '#/components/parameters/fieldsparam'
   /feedback:
     get:
-      description: This endpoint retrieves a list of the feedback in your account.
+      description: |-
+        <!--
+        type: tab
+        title: Info
+        -->
+        This endpoint retrieves a list of the feedback in your account.
+        <!--
+        type: tab
+        title: Expansions
+        -->
+        ##### What are expansions?
+        Sometimes data is hidden within a related item. Expansions are a way to retrieve more information from a single resource without needing to make additional API calls. Below you will find the `expand` query parameter with a list of expandable properties that can be used in a comma separated list.
+        <!--
+        type: tab
+        title: Additional query parameters
+        -->
+
+        ##### List of additional query parameters for related resources
+
+        <!-- theme: info -->
+
+        > All these query parameters can be used in expressions.
+
+        <!-- theme: warning -->
+
+        > Not all properties of related resources (e.g. `respondent.rating`) could be made available yet, but will be added in a future update.
+
+        ```
+        • respondent.subscribed
+        • respondent.anonymous
+        • respondent.external_type
+        • respondent.external_id
+        • respondent.unsubscribe_date
+        • respondent.created_at
+        • respondent.synced_at
+        • respondent.updated_at
+        • campaign.type
+        • campaign.interval
+        • campaign.status
+        • campaign.subject
+        • campaign.subject_multi
+        • campaign.from
+        • campaign.reply_to
+        • campaign.language
+        • campaign.other_languages
+        • campaign.delay
+        • campaign.agenda_connect
+        • campaign.agenda_start_end
+        • campaign.reminder.enabled
+        • campaign.reminder.days
+        • campaign.reminder.subject
+        • campaign.reminder.subject_multi
+        • campaign.branding.logo
+        • campaign.branding.colors.primary_color
+        • campaign.branding.colors.secondary_color
+        • campaign.branding.colors.tertiary_color
+        • campaign.send_date
+        • campaign.created_at
+        • campaign.updated_at
+        • message.from
+        • message.to
+        • message.reply_to
+        • message.language
+        • message.reminder
+        • message.remind_at
+        • message.metadata.send_date
+        • message.metadata.views
+        • message.metadata.first_view_date
+        • message.metadata.last_view_date
+        • message.metadata.clicks
+        • message.metadata.first_click_date
+        • message.metadata.time_to_click
+        • message.metadata.last_click_date
+        • message.created_at
+        • message.updated_at
+        • message.deleted_at
+        • assignee.id
+        • assignee.review_visible
+        • assignee.first_name
+        • assignee.last_name
+        • assignee.name
+        • assignee.email
+        • assignee.phone
+        • assignee.date_of_birth
+        • assignee.country
+        • assignee.language
+        • assignee.function
+        • assignee.notifications.app
+        • assignee.notifications.email.import_errors
+        • assignee.notifications.email.feedback
+        • assignee.notifications.email.feedback.below.enabled
+        • assignee.notifications.email.feedback.below.score
+        • assignee.notifications.email.feedback.comments
+        • assignee.notifications.text.feedback
+        • assignee.notifications.text.feedback.below.enabled
+        • assignee.notifications.text.feedback.below.score
+        • assignee.notifications.text.feedback.comments
+        • assignee.created_at
+        • assignee.updated_at
+        • form.id
+        • form.public
+        • form.status
+        • form.name
+        • form.language
+        • form.other_languages
+        • form.branding.logo
+        • form.branding.background_color
+        • form.branding.button_color
+        • form.branding.navigation_color
+        • form.redirect
+        • form.period
+        • form.updated_at
+        • form.created_at
+        ```
+        <!-- type: tab-end -->
       summary: List of feedback
       tags:
         - Feedback
@@ -4140,6 +4254,19 @@ paths:
         - $ref: '#/components/parameters/showParam'
         - $ref: '#/components/parameters/fieldsparam'
         - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: expand
+          schema:
+            type: string
+          example: '?expand=form'
+          description: |-
+            A comma separated list to expand objects within the API response.
+
+            Expandable properties:
+            - form
+            - assignee
+            - campaign
+            - message
         - in: query
           name: sort
           schema:
@@ -4188,18 +4315,6 @@ paths:
             type: string
             format: expression
           description: Filters on the respondent.name of the feedback
-        - in: query
-          name: respondent.email
-          schema:
-            type: string
-            format: expression
-          description: Filters on the respondent.email of the feedback
-        - in: query
-          name: respondent.phone
-          schema:
-            type: string
-            format: expression
-          description: Filters on the respondent.phone of the feedback
         - in: query
           name: review
           schema:
@@ -4260,6 +4375,60 @@ paths:
             type: string
             format: expression
           description: Filters on the completed_at of the feedback
+        - in: query
+          name: respondent.id
+          schema:
+            type: string
+            format: expression
+          description: Filters on respondent.id the of the feedback
+        - in: query
+          name: respondent.email
+          schema:
+            type: string
+            format: expression
+          description: Filters on respondent.email the of the feedback
+        - in: query
+          name: respondent.phone
+          schema:
+            type: string
+            format: expression
+          description: Filters on respondent.phone the of the feedback
+        - in: query
+          name: campaign.id
+          schema:
+            type: string
+            format: expression
+          description: Filters on campaign.id the of the feedback
+        - in: query
+          name: campaign.name
+          schema:
+            type: string
+            format: expression
+          description: Filters on campaign.name the of the feedback
+        - in: query
+          name: message.id
+          schema:
+            type: string
+            format: expression
+          description: Filters on message.id the of the feedback
+        - in: query
+          name: message.subject
+          schema:
+            type: string
+            format: expression
+          description: Filters on message.subject the of the feedback
+        - in: query
+          name: form.id
+          schema:
+            type: string
+            format: expression
+          description: Filters on form.id the of the feedback
+        - in: query
+          name: form.name
+          schema:
+            type: string
+            format: expression
+          description: Filters on form.name the of the feedback
       responses:
         '200':
           description: Paginated feedback response
@@ -4326,7 +4495,7 @@ paths:
                           first_name: John
                           last_name: Doe
                           email: johndoe@example.com
-                          phone: '612345678'
+                          phone: 612345678
                         form:
                           id: ea10916d-0684-4624-9d07-d341193554cf
                           name: My Form
@@ -4345,7 +4514,16 @@ paths:
                           - subject: Valuable feedback!
                             body: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
                             by: John Doe
-                        assignee: null
+                        assignee:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: John Doe
+                          email: johndoe@ratecard.io
+                        campaign:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          name: My Campaign
+                        message:
+                          id: ea10916d-0684-4624-9d07-d341193554cf
+                          subject: 'Hey John, how was your job application with our company?'
                         score: 8.5
                         nps: 9
                         duration: 300
@@ -4435,6 +4613,19 @@ paths:
         - $ref: '#/components/parameters/fieldsparam'
         - $ref: '#/components/parameters/contentTypeParam'
         - $ref: '#/components/parameters/acceptParam'
+        - in: query
+          name: expand
+          schema:
+            type: string
+          example: '?expand=form'
+          description: |-
+            A comma separated list to expand objects within the API response.
+
+            Expandable properties:
+            - form
+            - assignee
+            - campaign
+            - message
   '/groups/{group_id}/contacts':
     parameters:
       - schema:
@@ -6766,6 +6957,13 @@ components:
       schema:
         type: string
       description: Comma separated parameter to remove specific fields from the response.
+    expandParam:
+      name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Comma separated parameter to expand specific fields in the response.
     periodParam:
       name: period
       in: query

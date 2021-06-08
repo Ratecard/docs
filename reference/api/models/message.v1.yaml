@@ -1,6 +1,7 @@
 title: Message
 type: object
-readOnly: true
+description: 'This is the message model. Messages contain the data sent to a recipient from a campaign. They are created during the distribution process and are updated when the recipient interacts with the email,  text they receive, or when they leave feedback. The metadata contains these statistics.'
+x-examples: {}
 properties:
   id:
     type: string
@@ -118,120 +119,140 @@ properties:
         description: Time in seconds it took till the feedback was completed
         example: 150
   campaign:
-    type: object
     description: The campaign this message is sent by
-    properties:
-      id:
-        type: string
-        description: ID of the campaign
-        example: ea10916d-0684-4624-9d07-d341193554cf
-        readOnly: true
-        format: uuid
-      name:
-        type: string
-        description: Name of the campaign
-        example: My Campaign
-        readOnly: true
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          id:
+            type: string
+            description: ID of the campaign
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            format: uuid
+            readOnly: true
+          name:
+            type: string
+            description: Name of the campaign
+            example: My Campaign
+            readOnly: true
+      - $ref: ./message.v1.yaml
   form:
-    type: object
     description: The form this message item belongs to
-    properties:
-      id:
-        type: string
-        description: ID of the form
-        example: ea10916d-0684-4624-9d07-d341193554cf
-        readOnly: true
-        format: uuid
-      name:
-        type: string
-        description: Name of the form
-        example: My Form
-        readOnly: true
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          id:
+            type: string
+            description: ID of the form
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            format: uuid
+            readOnly: true
+          name:
+            type: string
+            description: Name of the form
+            example: My Form
+            readOnly: true
+      - $ref: ./form.v1.yaml
   connectable:
-    type: object
     description: The group or team the message is connected to
-    properties:
-      type:
-        type: string
-        enum:
-          - group
-          - team
-        example: group
-      id:
-        type: string
-        description: ID of the connectable
-        example: ea10916d-0684-4624-9d07-d341193554cf
-        readOnly: true
-        format: uuid
-      name:
-        type: string
-        description: Name of the connectable
-        example: My Group
-        readOnly: true
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          type:
+            type: string
+            enum:
+              - group
+              - team
+            example: group
+          id:
+            type: string
+            description: ID of the connectable
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            format: uuid
+            readOnly: true
+          name:
+            type: string
+            description: Name of the connectable
+            example: My Group
+            readOnly: true
+      - $ref: ./group.v1.yaml
+      - $ref: ./team.v1.yaml
   connected_user:
-    type: object
     description: The user the message is connected to
-    properties:
-      id:
-        type: string
-        description: ID of the user
-        example: ea10916d-0684-4624-9d07-d341193554cf
-        readOnly: true
-        format: uuid
-      name:
-        type: string
-        description: Name of the user
-        example: John Doe
-        readOnly: true
-      email:
-        type: string
-        description: Email of the user
-        example: johndoe@ratecard.io
-        readOnly: true
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          id:
+            type: string
+            description: ID of the user
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            format: uuid
+            readOnly: true
+          name:
+            type: string
+            description: Name of the user
+            example: John Doe
+            readOnly: true
+          email:
+            type: string
+            description: Email of the user
+            example: johndoe@ratecard.io
+            readOnly: true
+      - $ref: ./user.v1.yaml
   recipient:
-    type: object
     description: The recipient the message is sent to
-    properties:
-      type:
-        type: string
-        enum:
-          - contact
-          - user
-        example: contact
-        readOnly: true
-      id:
-        type: string
-        description: ID of the recipient
-        example: ea10916d-0684-4624-9d07-d341193554cf
-        readOnly: true
-        format: uuid
-      name:
-        type: string
-        description: Name of the recipient
-        example: John Doe
-        readOnly: true
-      email:
-        type: string
-        description: Email of the recipient
-        example: johndoe@example.com
-        readOnly: true
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          type:
+            type: string
+            enum:
+              - contact
+              - user
+            example: contact
+            readOnly: true
+          id:
+            type: string
+            description: ID of the recipient
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            format: uuid
+            readOnly: true
+          name:
+            type: string
+            description: Name of the recipient
+            example: John Doe
+            readOnly: true
+          email:
+            type: string
+            description: Email of the recipient
+            example: johndoe@example.com
+            readOnly: true
+      - $ref: ./contact.v1.yaml
+      - $ref: ./user.v1.yaml
   feedback:
-    type:
-      - object
-      - 'null'
     description: The feedback given by the recipient
-    properties:
-      id:
-        type: string
-        description: ID of the feedback
-        example: ea10916d-0684-4624-9d07-d341193554cf
-        readOnly: true
-        format: uuid
-      score:
-        type: number
-        description: Score given by the recipient
-        example: 8.5
-        readOnly: true
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          id:
+            type: string
+            description: ID of the feedback
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            format: uuid
+            readOnly: true
+          score:
+            type: number
+            description: Score given by the recipient
+            example: 8.5
+            readOnly: true
+      - $ref: ./feedback.v1.yaml
+      - type: 'null'
+        description: No feedback has been given yet
   embed_url:
     type: string
     description: A public embed URL for this message with a special embed scoped access token
@@ -253,5 +274,4 @@ properties:
     example: '2020-11-25T09:33:14.000000Z'
     format: datetime
     readOnly: true
-description: 'This is the message model. Messages contain the data sent to a recipient from a campaign. They are created during the distribution process and are updated when the recipient interacts with the email,  text they receive, or when they leave feedback. The metadata contains these statistics.'
-x-examples: {}
+readOnly: true
