@@ -1,13 +1,14 @@
 title: Feedback
 type: object
 description: This is the feedback model. It contains all information linked to a given feedback item that our API exposes. Feedback is generated when a recipient or reviewer leaves a form submission or review on one of your forms through a campaign or review URL.
+x-examples: {}
 properties:
   id:
     type: string
     description: ID of the feedback
     example: ea10916d-0684-4624-9d07-d341193554cf
-    readOnly: true
     format: uuid
+    readOnly: true
   review:
     type: boolean
     description: 'When true, this feedback item is a review, not internal feedback'
@@ -47,20 +48,23 @@ properties:
         description: Phone number of the respondent
         example: 612345678
   form:
-    type: object
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          id:
+            type: string
+            description: ID of the form
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            format: uuid
+            readOnly: true
+          name:
+            type: string
+            description: Name of the form
+            example: My Form
+            readOnly: true
+      - $ref: ./form.v1.yaml
     description: The form this feedback item belongs to
-    properties:
-      id:
-        type: string
-        description: ID of the form
-        example: ea10916d-0684-4624-9d07-d341193554cf
-        readOnly: true
-        format: uuid
-      name:
-        type: string
-        description: Name of the form
-        example: My Form
-        readOnly: true
   answers:
     type: array
     items:
@@ -70,8 +74,8 @@ properties:
           type: string
           description: ID of the form question
           example: ea10916d-0684-4624-9d07-d341193554cf
-          readOnly: true
           format: uuid
+          readOnly: true
         required:
           type: boolean
           description: Indicates whether this question was required
@@ -118,8 +122,8 @@ properties:
               type: string
               description: ID of the team or user
               example: ea10916d-0684-4624-9d07-d341193554cf
-              readOnly: true
               format: uuid
+              readOnly: true
             name:
               type: string
               description: Name of the team or user
@@ -166,23 +170,67 @@ properties:
           example: John Doe
   assignee:
     description: The user the feedback is assigned to
-    type:
-      - object
-      - 'null'
-    properties:
-      id:
-        type: string
-        description: ID of the user
-        example: ea10916d-0684-4624-9d07-d341193554cf
-        readOnly: true
-      name:
-        description: Name of the user
-        type: string
-        example: John Doe
-      email:
-        description: Email of the user
-        type: string
-        example: johndoe@ratecard.io
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          id:
+            type: string
+            description: ID of the user
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            readOnly: true
+          name:
+            description: Name of the user
+            type: string
+            example: John Doe
+          email:
+            description: Email of the user
+            type: string
+            example: johndoe@ratecard.io
+      - $ref: ./user.v1.yaml
+      - type: 'null'
+        description: |
+          Feedback item is not assigned to any user
+  campaign:
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          id:
+            type: string
+            description: ID of the campaign
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            format: uuid
+            readOnly: true
+          name:
+            type: string
+            description: Name of the campaign
+            example: My Campaign
+      - $ref: ./campaign.v1.yaml
+      - type: 'null'
+        description: |-
+          Feedback item not related to a
+           campaign
+    description: The campaign the feedback item belongs to
+  message:
+    oneOf:
+      - type: object
+        description: Default API response when not expanded
+        properties:
+          id:
+            type: string
+            description: ID of the message
+            example: ea10916d-0684-4624-9d07-d341193554cf
+            format: uuid
+            readOnly: true
+          subject:
+            type: string
+            description: Subject of the message
+            example: 'Hey John, how was your job application with our company?'
+      - $ref: ./message.v1.yaml
+      - type: 'null'
+        description: Feedback item is not related to a message
+    description: The message the feedback item belongs to
   score:
     type:
       - number
@@ -226,4 +274,4 @@ properties:
     example: '2020-11-25T09:33:14.000000Z'
     format: datetime
     readOnly: true
-x-examples: {}
+examples: []
