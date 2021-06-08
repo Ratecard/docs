@@ -4,6 +4,53 @@ All notable changes to the API will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## \[1.1.0] - 2021-06-08
+### Added
+- Campaign relation to [Feedback](../../reference/api/models/feedback.v1.yaml)
+- Message relation to [Feedback](../../reference/api/models/feedback.v1.yaml)
+- Resource expansion via the `expand` query parameter.
+  - Example: `/feedback?expand=respondent` to get the full respondent relation
+  - Expandable models and properties:
+    - [Feedback](../../reference/api/models/feedback.v1.yaml)
+      - `respondent`
+      - `campaign`
+      - `message`
+      - `assignee`
+      - `form`
+    - [Message](../../reference/api/models/message.v1.yaml)
+      - `feedback`
+      - `campaign`
+      - `connected_user`
+      - `form`
+      - `connectable`
+      - `recipient`
+  - Nested expansion
+    - Example: `/feedback?expand=messages,messages.campaign` to get the entire message with it's associated campaign related to the feedback item
+- Extended expression filtering for expandable relations
+  - See: [List all feedback](/reference/api/openapi.v1.yaml/paths/~1feedback/get) for a list of additional query paremeters that can also be used for expression filtering
+  - More endpoints will soon be updated to support this
+- JSON support for `GET` endpoints
+  - `fields`, `except`, `expand` & `sort` can all be given as a comma separated string or array
+  - `page` & `show` can both be given as a number or numeric string
+  - Expressions can be added with the following notations in JSON
+    - Dot: `{ "respondent.name": "John Doe" }`
+    - Underscore: `{ "respondent_name": "John Doe" }`
+    - Object: `{ "respondent": { "name": "John doe" } }`
+  - Additionally the `GET` query parameters also support multiple input types now
+    - Dot: `respondent.name=John+Doe`
+    - Underscore: `respondent_name=John+Doe`
+    - Object: `respondent[name]=John+Doe`
+- Randomized sorting with `sort=rand()`
+  - Could be used for an UI element that randomly shows a set of items.
+
+### Changed
+- Answers for feedback will now be properly mapped to objects
+  - Previously answers of type `multiple_choice` and `matrix` would return as a json encoded string
+- Backend configuration and routes will now be cached which could result in a minor performance gain per request
+
+### Fixed
+- Some expressions with wrong configuration not working as intended
+
 ## \[1.0.17] - 2021-06-07
 ### Added
 - Notification settings for accounts

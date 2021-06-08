@@ -3,8 +3,21 @@ All notable changes to the documentation will be documented in this file.
 
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), but will not follow semantic versioning as it will list the changes made to the documentation on the date thereof.
 
+## 2021-06-08
+### Added
+- `campaign` and `message` properties to Feedback model
+- expandable properties to Feedback and Message model
+- Additional query parameters list on feedback list endpoint
+- Expansion explanation on feedback list and item endpoints
+
+### Changed
+- Feedback list and item `GET` endpoints to reflect the changes in the update
+
+### Fixed
+- Inconsistencies with query parameter naming on multiple endpoints
+
 ## 2021-05-07
-### Updated
+### Changed
 - Account model with new notification settings
 - API endpoints for accounts with new notification settings
 

@@ -4802,7 +4802,19 @@ paths:
         in: path
         required: true
     get:
-      description: This endpoint retrieves a single feedback item from your account.
+      description: |-
+        <!--
+        type: tab
+        title: Info
+        -->
+        This endpoint retrieves a single feedback item from your account.
+        <!--
+        type: tab
+        title: Expansions
+        -->
+        ##### What are expansions?
+        Sometimes data is hidden within a related item. Expansions are a way to retrieve more information from a single resource without needing to make additional API calls. Below you will find the `expand` query parameter with a list of expandable properties that can be used in a comma separated list.
+        <!-- type: tab-end -->
       summary: Retrieve a feedback item
       tags:
         - Feedback
@@ -4873,6 +4885,7 @@ paths:
             - assignee
             - campaign
             - message
+        - $ref: '#/components/parameters/exceptParam'
   '/groups/{group_id}/contacts':
     parameters:
       - schema:
