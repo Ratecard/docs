@@ -3,6 +3,19 @@ All notable changes to the API will be documented in this file.
 
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## \[1.1.1] - 2021-07-12
+### Changed
+- Reminders are now excluded from message statistics.
+- Form questions with multiple users or teams are now mapped correctly.
+- API & webhook source linking will not happen anymore if an object already has a source when being created/updated.
+- Contact last name no longer required when creating/udpdating contacts.
+
+### Fixed
+- Event source not being linked when a group contact is created.
+- Test messages showing up in message statistics.
+- Group filters ignoring smart field names
+  - Group filter only worked on base fields, before. Now it checks for smart field names, e.g. "Feedback (Y/N)", instead of custom tag names, e.g. "feedback".
+- Matrix question mapping
 
 ## \[1.1.0] - 2021-06-08
 ### Added
