@@ -8,7 +8,7 @@ and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0
 - Reminders are now excluded from message statistics.
 - Form questions with multiple users or teams are now mapped correctly.
 - API & webhook source linking will not happen anymore if an object already has a source when being created/updated.
-- Contact last name no longer required when creating/udpdating contacts.
+- Contact last name no longer required when creating/updating contacts.
 
 ### Fixed
 - Event source not being linked when a group contact is created.
