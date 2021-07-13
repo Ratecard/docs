@@ -165,6 +165,127 @@ In this section you'll find all feedback subscriptions.
 
 <!-- 
 type: tab
+title: Created
+-->
+- Name: `feedback.created`
+- Triggers when you new feedback is created for the first time
+- Does not attach additional data
+- Answers could be empty as sometimes feedback items get created before a recipient fills in any answers
+```json
+{
+  "id": "ea10916d-0684-4624-9d07-d341193554cf",
+  "webhook": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My webhook"
+  },
+  "account": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My account"
+  },
+  "payload": {
+    "feedback": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "review": true,
+      "anonymous": true,
+      // ...
+      "respondent": {
+        "id": "ea10916d-0684-4624-9d07-d341193554cf",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "johndoe@example.com",
+        "phone": "612345678"
+      },
+      "form": {
+        "id": "ea10916d-0684-4624-9d07-d341193554cf",
+        "name": "My Form"
+      },
+      "answers": [
+        {
+          "question_id": "ea10916d-0684-4624-9d07-d341193554cf",
+          "required": true,
+          "hidden": false,
+          "title": "How would you rate Ratecard?",
+          "type": "rating",
+          "value": 9
+        }
+      ],
+      // ...
+      "score": 8.5,
+      "nps": 9,
+      "duration": 300,
+      // ...
+      "created_at": "2020-11-25T09:33:14.000000Z",
+      "updated_at": "2020-11-25T09:33:14.000000Z",
+      "completed_at": "2020-11-25T09:33:14.000000Z"
+    }
+  },
+  "event": "feedback.created",
+  "created_at": "2020-11-25T09:33:14.000000Z",
+  "updated_at": "2020-11-25T09:33:14.000000Z"
+}
+```
+<!-- 
+type: tab
+title: Updated
+-->
+- Name: `feedback.updated`
+- Triggers when existing feedback is updated/completed
+- Does not attach additional data
+```json
+{
+  "id": "ea10916d-0684-4624-9d07-d341193554cf",
+  "webhook": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My webhook"
+  },
+  "account": {
+    "id": "ea10916d-0684-4624-9d07-d341193554cf",
+    "name": "My account"
+  },
+  "payload": {
+    "feedback": {
+      "id": "ea10916d-0684-4624-9d07-d341193554cf",
+      "review": true,
+      "anonymous": true,
+      // ...
+      "respondent": {
+        "id": "ea10916d-0684-4624-9d07-d341193554cf",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "johndoe@example.com",
+        "phone": "612345678"
+      },
+      "form": {
+        "id": "ea10916d-0684-4624-9d07-d341193554cf",
+        "name": "My Form"
+      },
+      "answers": [
+        {
+          "question_id": "ea10916d-0684-4624-9d07-d341193554cf",
+          "required": true,
+          "hidden": false,
+          "title": "How would you rate Ratecard?",
+          "type": "rating",
+          "value": 9
+        }
+      ],
+      // ...
+      "score": 8.5,
+      "nps": 9,
+      "duration": 300,
+      // ...
+      "created_at": "2020-11-25T09:33:14.000000Z",
+      "updated_at": "2020-11-25T09:33:14.000000Z",
+      "completed_at": "2020-11-25T09:33:14.000000Z"
+    }
+  },
+  "event": "feedback.updated",
+  "created_at": "2020-11-25T09:33:14.000000Z",
+  "updated_at": "2020-11-25T09:33:14.000000Z"
+}
+```
+<!-- 
+type: tab
 title: Received
 -->
 - Name: `feedback.received`
