@@ -7,6 +7,10 @@ The format is partially based on [Keep a Changelog](https://keepachangelog.com/e
 ### Added
 - `feedback.created` and `feedback.updated` to the outbound webhooks
 
+### Removed
+- `feedback.received` webhook subscription, `feedback.created` should be used instead
+  - Existing webhooks with this deprecated subscription will still work.
+
 ## 2021-07-12
 ### Changed
 - Contact last name no longer shows as required
