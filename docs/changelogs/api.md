@@ -3,6 +3,11 @@ All notable changes to the API will be documented in this file.
 
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## \[1.1.2] - 2021-08-31
+### Fixed
+- Fallback to default value when a smart field value couldn't resolve to an object.
+
 ## \[1.1.1] - 2021-07-12
 ### Changed
 - Reminders are now excluded from message statistics.
