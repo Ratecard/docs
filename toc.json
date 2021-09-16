@@ -17,6 +17,11 @@
           "type":"item",
           "title":"Authentication",
           "uri": "docs/getting-started/authentication.md"
+        },
+        {
+          "type":"item",
+          "title":"API Guidelines",
+          "uri": "docs/getting-started/guidelines.md"
         }
       ]
     },
