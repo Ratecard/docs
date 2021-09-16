@@ -1,3 +1,0 @@
-# Postman Tutorial
-
-The beginning of an awesome article...

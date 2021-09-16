@@ -2,12 +2,23 @@
   "items": [
     {
       "type": "divider",
-      "title": "API Docs"
+      "title": "API DOCS"
     },
     {
       "type":"item",
-      "title":"Getting Started",
-      "uri": "docs/getting-started.md"
+      "title":"Overview",
+      "uri": "docs/overview.md"
+    },
+    {
+      "type": "group",
+      "title": "Getting Started",
+      "items": [
+        {
+          "type":"item",
+          "title":"Authentication",
+          "uri": "docs/getting-started/authentication.md"
+        }
+      ]
     },
     {
       "type": "item",
@@ -16,65 +27,58 @@
     },
     {
       "type": "divider",
-      "title": "Articles"
+      "title": "Filtering"
+    },
+    {
+    
+      "type": "item",
+      "title": "Introduction",
+      "uri": "docs/filtering/introduction.md"
+    },
+    {
+    
+      "type": "item",
+      "title": "Expressions",
+      "uri": "docs/filtering/expressions.md"
+    },
+    {
+      "type": "divider",
+      "title": "Webhooks"
+    },
+    {
+      "type": "item",
+      "title": "Introduction",
+      "uri": "docs/webhooks/introduction.md"
     },
     {
       "type": "group",
-      "title": "Filtering",
+      "title": "Inbound",
       "items": [
         {
           "type": "item",
-          "title": "Introduction",
-          "uri": "docs/filtering/introduction.md"
+          "title": "How to use",
+          "uri": "docs/webhooks/inbound/how-to-use.md"
         },
         {
-        
           "type": "item",
-          "title": "Expressions",
-          "uri": "docs/filtering/expressions.md"
+          "title": "Actions",
+          "uri": "docs/webhooks/inbound/actions.md"
         }
       ]
     },
     {
       "type": "group",
-      "title": "Webhooks",
+      "title": "Outbound",
       "items": [
         {
           "type": "item",
-          "title": "Introduction",
-          "uri": "docs/webhooks/introduction.md"
+          "title": "How to use",
+          "uri": "docs/webhooks/outbound/how-to-use.md"
         },
         {
-          "type": "group",
-          "title": "Inbound",
-          "items": [
-            {
-              "type": "item",
-              "title": "How to use",
-              "uri": "docs/webhooks/inbound/how-to-use.md"
-            },
-            {
-              "type": "item",
-              "title": "Actions",
-              "uri": "docs/webhooks/inbound/actions.md"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "title": "Outbound",
-          "items": [
-            {
-              "type": "item",
-              "title": "How to use",
-              "uri": "docs/webhooks/outbound/how-to-use.md"
-            },
-            {
-              "type": "item",
-              "title": "Subscriptions",
-              "uri": "docs/webhooks/outbound/subscriptions.md"
-            }
-          ]
+          "type": "item",
+          "title": "Subscriptions",
+          "uri": "docs/webhooks/outbound/subscriptions.md"
         }
       ]
     },

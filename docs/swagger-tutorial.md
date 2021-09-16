@@ -1,3 +1,0 @@
-# Swagger Tutorial
-
-The beginning of an awesome article...
