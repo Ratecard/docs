@@ -3,49 +3,67 @@ All notable changes to the documentation will be documented in this file.
 
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), but will not follow semantic versioning as it will list the changes made to the documentation on the date thereof.
 
-## 2021-07-13
+## 2021-09-16
 ### Added
-- `feedback.created` and `feedback.updated` to the outbound webhooks
+- [Overview](../localization.md)
+- Getting Started
+  - [Authentication](../getting-started/authentication.md)
+  - [Guidelines](../getting-started/authentication.md)
+- [Localization](../localization.md)
+- [Experimental Features](../experimental.md)
+- **API DOCS** category to group the top level articles and API.
+- **OTHER** category added for articles not fitting in with the rest.
+
+### Changed
+- Updated the API Reference to the latest version.
+- Table of contents structure.
 
 ### Removed
-- `feedback.received` webhook subscription, `feedback.created` should be used instead
+- Getting Started (article)
+
+## 2021-07-13
+### Added
+- `feedback.created` and `feedback.updated` to the outbound webhooks.
+
+### Removed
+- `feedback.received` webhook subscription, `feedback.created` should be used instead.
   - Existing webhooks with this deprecated subscription will still work.
 
 ## 2021-07-12
 ### Changed
-- Contact last name no longer shows as required
+- Contact last name no longer shows as required.
 
 ## 2021-06-08
 ### Added
-- `campaign` and `message` properties to Feedback model
-- expandable properties to Feedback and Message model
-- Additional query parameters list on feedback list endpoint
-- Expansion explanation on feedback list and item endpoints
+- `campaign` and `message` properties to Feedback model.
+- expandable properties to Feedback and Message model.
+- Additional query parameters list on feedback list endpoint.
+- Expansion explanation on feedback list and item endpoints.
 
 ### Changed
 - Feedback list and item `GET` endpoints to reflect the changes in the update
 
 ### Fixed
-- Inconsistencies with query parameter naming on multiple endpoints
+- Inconsistencies with query parameter naming on multiple endpoints.
 
 ## 2021-05-07
 ### Changed
-- Account model with new notification settings
-- API endpoints for accounts with new notification settings
+- Account model with new notification settings.
+- API endpoints for accounts with new notification settings.
 
 ## 2021-04-14
 ### Added
-- New expressions to feedback list
-- Feedback & message list endpoints for forms and reports
+- New expressions to feedback list.
+- Feedback & message list endpoints for forms and reports.
 
 ## 2021-03-22
 ### Added
-- Expression & sort documentation to the reports list endpoint
-- Source documentation to groups and contacts
+- Expression & sort documentation to the reports list endpoint.
+- Source documentation to groups and contacts.
 
 ## 2021-03-19
 ### Added
-- Account update endpoint documentation
+- Account update endpoint documentation.
 
 ### Fixed
 - Incorrect response codes shown on some of the create and update endpoints.

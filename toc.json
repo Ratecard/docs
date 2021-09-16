@@ -36,11 +36,6 @@
       "uri": "reference/api/openapi.v1.yaml"
     },
     {
-      "type":"item",
-      "title": "Experimental Features",
-      "uri": "docs/experimental.md"
-    },
-    {
       "type": "divider",
       "title": "Filtering"
     },
@@ -155,6 +150,15 @@
       "type": "item",
       "title": "Webhook",
       "uri": "reference/api/models/webhook.v1.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "other"
+    },
+    {
+      "type":"item",
+      "title": "Experimental Features (new)",
+      "uri": "docs/experimental.md"
     },
     {
       "type": "divider",
