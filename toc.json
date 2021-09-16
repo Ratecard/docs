@@ -2,16 +2,12 @@
   "items": [
     {
       "type": "divider",
-      "title": "INFO"
+      "title": "API Docs"
     },
     {
       "type":"item",
       "title":"Getting Started",
       "uri": "docs/getting-started.md"
-    },
-    {
-      "type": "divider",
-      "title": "API"
     },
     {
       "type": "item",
