@@ -1,0 +1,5 @@
+title: country.v1
+type: object
+properties:
+  id:
+    type: string

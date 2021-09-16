@@ -1,0 +1,5 @@
+title: script.v1
+type: object
+properties:
+  id:
+    type: string

@@ -4,6 +4,17 @@ All notable changes to the API will be documented in this file.
 The format is partially based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this changelog adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## \[1.2.0] - 2021-09-16
+### Added
+- Localization
+
+### Changed
+- Query logic to give a significant speed boost to feedback and message endpoints.
+
+### Fixed
+- User & Team answers containing complete model data when they should only show id, name & email.
+- API error responses causing redirect to documentation instead of returning JSON.
+
 ## \[1.1.2] - 2021-08-31
 ### Fixed
 - Fallback to default value when a smart field value couldn't resolve to an object.
