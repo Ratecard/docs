@@ -27,8 +27,18 @@
     },
     {
       "type": "item",
+      "title":"Localization (new)",
+      "uri": "docs/localization.md"
+    },
+    {
+      "type": "item",
       "title": "Ratecard API",
       "uri": "reference/api/openapi.v1.yaml"
+    },
+    {
+      "type":"item",
+      "title": "Experimental Features",
+      "uri": "docs/experimental/auto-translation.md"
     },
     {
       "type": "divider",
