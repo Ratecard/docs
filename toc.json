@@ -6,6 +6,11 @@
       "uri": "docs/getting-started.md"
     },
     {
+      "type": "item",
+      "title": "Ratecard API",
+      "uri": "reference/api/openapi.v1.yaml"
+    },
+    {
       "type": "divider",
       "title": "Ratecard API"
     },
