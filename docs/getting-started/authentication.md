@@ -15,27 +15,27 @@ title: Bearer Auth
 ```http
 GET https://api.ratecard.io/v1/contacts
 Connection: Keep-Alive
-Authorization: Bearer <token>
+Authorization: Bearer <access_token>
 Accept: application/json
 ```
 
 <!--
 type: tab
-title: API Key (Header)
+title: HTTP Header
 -->
-
+> Similar to the bearer auth, the `Ratecard-AccessToken` header can be used as an alternative.
 ```http
 GET https://api.ratecard.io/v1/contacts
 Connection: Keep-Alive
-Ratecard-AccessToken: <token>
+Ratecard-AccessToken: <access_token>
 Accept: application/json
 ```
 
 <!--
 type: tab
-title: API Key (Query Parameter)
+title: Query Parameter
 -->
-
+> As an alternative to the header based authentication methods you can also pass a query parameter called `access_token` in the request. This parameter is accepted in the URL, form data or JSON body.
 ```
 GET https://api.ratecard.io/v1/contacts?access_token=<access_token>
 ```
