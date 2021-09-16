@@ -36,12 +36,8 @@ type: tab
 title: Parameter
 -->
 > As an alternative to the header based authentication methods you can also pass a query parameter called `access_token` in the request. This parameter is accepted in the URL, application/x-www-form-urlencoded content, multipart/form-data content or JSON body.
-<!--
-title: "My code snippet passed via md annotations"
-lineNumbers: true
-highlightLines: [[1,2], [4,5]]
--->
-```http
+
+```http title="Passed via meta tag"
 GET https://api.ratecard.io/v1/contacts?access_token=<access_token>
 ```
 
