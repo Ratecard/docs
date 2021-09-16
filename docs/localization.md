@@ -9,12 +9,12 @@ This featureset was built to support our customers that work with an internation
 >
 > This is especially beneficial to applications working on a multi-lingual or multi-national scope.
 
-## URI Localization
+## URI localization
 Localizing the URI can be done by prefixing the API version with a locale:
 - Format: `GET https://api.ratecard.io/{locale?}/v1`
 - Example: `GET https://api.ratecard.io/de_DE/v1`
 
-## Header Localization
+## Header localization
 > In the future more headers will be added when localization functionality is implemented more broadly throughout the application.
 #### `Accept-Language`
 The Accept Language header is used as a substitute for the localized URI. Localized URIs take precedence over this header, so you should only use it when you're not localizing the URI.
@@ -66,7 +66,7 @@ Return data matching the language or country of the locale.
 If your locale is `es_ES: Spanish (Spain)` you will see all feedback given in Spanish, Spanish speaking regions or Spain and languages spoken in Spain. This is a combination of the language and country options their results.
 <!-- type: tab-end -->
 
-## Auto Translation
+## Auto translation
 As part of the new localization features auto translation has been added. The only endpoint support auto translation currently is the feedback list endpoint.
 
 [Read more here](./experimental.md#auto-translate)

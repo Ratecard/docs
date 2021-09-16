@@ -7,13 +7,13 @@ In this article you'll learn about our experimental features.
 
 Now lets take a dive into the future of the Ratecard API.
 
-## Auto Translate
+## Auto translate
 An extension to the new localization feature set. Auto translate integrates with the Google Translate API to translate data in responses based on the current or given locale. The only endpoint supporting auto translate is the feedback list endpoint (and scoped variants).
 
 <!-- theme: warning -->
 > Using Auto Translate will result in a significantly slower response time for large batches of data. It is recommended you only use this header when retrieving single items if your request is not on a back-end process.
 
-### Enabling Auto Translate
+### Enabling auto translate
 To enable auto translate you need to add the `Ratecard-Auto-Translate` header to your request.
 
 ### Levels
