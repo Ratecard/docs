@@ -10,7 +10,7 @@ Ratecard lets you collect feedback and reviews on autopilot, and is used for:
 ## Getting Started
 
 - [Authenticate with the API](./getting-started/authentication.md)
-- [Read the guidelines to make optimal use of the API](./getting-started/authentication.md)
+- [Read the guidelines to make optimal use of the API](./getting-started/guidelines.md)
 
 ## Ready for launch 💪🏼 🚀
 
