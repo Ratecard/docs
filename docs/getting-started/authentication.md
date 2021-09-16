@@ -37,12 +37,12 @@ title: Parameter
 -->
 > As an alternative to the header based authentication methods you can also pass a query parameter called `access_token` in the request. This parameter is accepted in the URL, application/x-www-form-urlencoded content, multipart/form-data content or JSON body.
 
-###### URL
+##### URL
 ```http
 GET https://api.ratecard.io/v1/contacts?access_token=<access_token>
 ```
 
-###### application/x-www-form-urlencoded
+##### application/x-www-form-urlencoded
 ```http
 POST /v1/contacts HTTP/1.1
 Host: api.ratecard.io
@@ -53,7 +53,7 @@ Content-Length: 97
 access_token=<access_token>
 ```
 
-###### multipart/form-data
+##### multipart/form-data
 ```http
 POST /v1/contacts HTTP/1.1
 Host: api.ratecard.io
@@ -66,7 +66,7 @@ Content-Disposition: form-data; name="access_token"
 --boundary--
 ```
 
-###### JSON
+##### JSON
 ```http
 POST /v1/contacts HTTP/1.1
 Content-Type: application/json
