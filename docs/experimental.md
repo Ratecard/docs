@@ -28,5 +28,5 @@ This translation includes translations from previous level  and translates data 
 ##### Level 3 (resource strings) |  `Ratecard-Auto-Translate: 3`
 This translation level translates names, subjects & other string values that can contain translatable language for resources. This is limited to the feedback endpoints currently.  Includes translations from previous level.
 
-### Changing the locale
-Because we need to be able to support edge cases the `translate=<locale>` query parameter has been added. If you've localized your integration and want to apply translations to strings in the response you can use this query parameter.
+### Overruling the locale
+Because we need to be able to support edge cases the `translate=<language>` query parameter has been added. If you've localized your integration and want to apply translations to strings in the response that don't match your localized language you can use this query parameter.
