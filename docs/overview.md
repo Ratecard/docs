@@ -1,6 +1,6 @@
 # Overview
 Welcome to the Ratecard API Reference.
-This documentation will help you get started using our API.
+This documentation will help you get started with using our API.
 If you have any questions, please reach out to us!
 
 ## Introduction
