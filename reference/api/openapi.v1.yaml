@@ -15,6 +15,7 @@ security:
 tags:
   - name: Contacts
   - name: Groups
+  - name: Group Contacts
   - name: Accounts
   - name: Teams
   - name: Users
@@ -26,7 +27,6 @@ tags:
   - name: Campaigns
   - name: Forms
   - name: Webhook Calls
-    description: Webhook Calls
 paths:
   /contacts:
     get:
@@ -4899,6 +4899,7 @@ paths:
       description: This endpoint retrieves a list of contacts that belong to the given group from your account.
       summary: List of contacts in the group
       tags:
+        - Group Contacts
         - Groups
         - Contacts
       responses:
@@ -5139,6 +5140,7 @@ paths:
       description: This endpoint is used to add a single contact to a single group.
       summary: Add a contact to the group
       tags:
+        - Group Contacts
         - Groups
         - Contacts
       responses:
@@ -5329,6 +5331,7 @@ paths:
       description: This endpoint is used to retrieve a single contact of the given group from your account.
       summary: Retrieve a contact from the group
       tags:
+        - Group Contacts
         - Groups
         - Contacts
       responses:
@@ -5384,6 +5387,7 @@ paths:
       description: This endpoint is used to update a contact in a group
       summary: Update a contact in the group
       tags:
+        - Group Contacts
         - Groups
         - Contacts
       responses:
@@ -5516,6 +5520,7 @@ paths:
       description: 'This endpoint is used to remove a contact from the group. This request will not delete the contact itself, only the association with the group.'
       summary: Remove a contact from the group
       tags:
+        - Group Contacts
         - Groups
         - Contacts
       responses:
