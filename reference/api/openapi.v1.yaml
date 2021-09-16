@@ -13,19 +13,19 @@ servers:
 security:
   - bearerAuth: []
 tags:
+  - name: Accounts
+  - name: Users
+  - name: Teams
+  - name: Forms
+  - name: Campaigns
   - name: Contacts
   - name: Groups
   - name: Group Contacts
-  - name: Accounts
-  - name: Teams
-  - name: Users
-  - name: Webhooks
   - name: Messages
   - name: Feedback
   - name: Reports
   - name: VirtualReports
-  - name: Campaigns
-  - name: Forms
+  - name: Webhooks
   - name: Webhook Calls
 paths:
   /contacts:
