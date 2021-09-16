@@ -25,7 +25,7 @@ tags:
   - name: VirtualReports
   - name: Campaigns
   - name: Forms
-  - name: WebhookCalls
+  - name: Webhook Calls
     description: Webhook Calls
 paths:
   /contacts:
@@ -7035,7 +7035,7 @@ paths:
       summary: List of webhook calls
       description: This endpoint retrieves a list of webhook calls from your account.
       tags:
-        - WebhookCalls
+        - Webhook Calls
       responses:
         '200':
           description: Paginated webhook call response
@@ -7194,7 +7194,7 @@ paths:
       summary: Retrieve a webhook call
       description: Webhook call response
       tags:
-        - WebhookCalls
+        - Webhook Calls
       responses:
         '200':
           description: Webhook call response
@@ -7229,7 +7229,7 @@ paths:
       summary: List of webhook calls
       description: This endpoint retrieves a list of webhook calls from your account.
       tags:
-        - WebhookCalls
+        - Webhook Calls
       responses:
         '200':
           description: Paginated webhook call response
@@ -7401,7 +7401,7 @@ paths:
       summary: Retrieve a webhook call
       description: Webhook call response
       tags:
-        - WebhookCalls
+        - Webhook Calls
       responses:
         '200':
           description: Webhook call response
