@@ -13,7 +13,7 @@ The Ratecard API currently has one form of limiting which is rate limiting. This
 ```
 
 ### Headers
-#### All responses
+#### All Responses
 The following headers are present on all responses
 - `X-RateLimit-Limit`: the number of requests allowed per minute.
 - `X-RateLimit-Remaining`: the number of request remaining in before encountering a 429 error.
