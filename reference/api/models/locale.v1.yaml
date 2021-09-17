@@ -5,6 +5,47 @@ description: |-
   >
   > [ICU Locale Documentation](https://unicode-org.github.io/icu/userguide/locale/)
   ___
+examples:
+  - code: zh_Hans_CN
+    name: 'Chinese (Simplified, China)'
+    language:
+      code: zho
+      name: Chinese
+    script:
+      code: Hans
+      name: Han (Simplified variant)
+    country:
+      code: CN
+      name: China
+  - code: zh_Hans_CN
+    name: 'Chinese (Simplified, China)'
+    language:
+      code: zho
+      name: Chinese
+      ISO_639_1: zh
+      ISO_639_1T: zho
+      ISO_639_1B: string
+      scope: I
+      type: A
+    script:
+      code: Hans
+      numeric: 501
+      name: Han (Simplified variant)
+      pva: null
+      date: '2004-05-29'
+    country:
+      code: '156'
+      name: China
+      alpha_2: CN
+      alpha_3: CHN
+      iso_3166_2: 'ISO 3166-2:C'
+      region: Asia
+      sub_region: Eastern Asia
+      intermediate_region: ''
+      region_code: '142'
+      sub_region_code: '030'
+      intermediate_region_code: ''
+      dial_code: 86
 properties:
   code:
     type: string
@@ -41,7 +82,6 @@ properties:
             description: Name of the script
       - $ref: ./script.v1.yaml
       - type: 'null'
-        properties: {}
   country:
     oneOf:
       - type: object
@@ -56,5 +96,3 @@ properties:
             description: Name of the country
       - $ref: ./region.v1.yaml
       - type: 'null'
-        properties: {}
-x-internal: false

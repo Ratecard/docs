@@ -52,3 +52,4 @@ properties:
     type: integer
     example: 244
     description: Code that has to be used to make a call to the country
+examples: []
