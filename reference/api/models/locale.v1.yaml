@@ -1,5 +1,60 @@
-title: locale.v1
+title: Locale
 type: object
+description: |-
+  > Locales contain all information regarding languages, scripts & countries you may need whilst using the Ratecard API.<br/> They're compliant with the International Components for Unicode definition for locales.
+  >
+  > [ICU Locale Documentation](https://unicode-org.github.io/icu/userguide/locale/)
+  ___
 properties:
-  id:
+  code:
     type: string
+    example: zh_Hans_CN
+    description: 'Unique identifier for the locale using the language ISO_639_1 code, script code & country code with underscore separation'
+  name:
+    type: string
+    example: 'Chinese (Simplified, China)'
+    description: 'The name of the locale based on the language, script & country'
+  language:
+    oneOf:
+      - type: object
+        properties:
+          code:
+            type: string
+            example: zho
+            description: Unique identifier for the language
+          name:
+            type: string
+            example: Chinese
+            description: Name of the language
+      - $ref: ./language.v1.yaml
+  script:
+    oneOf:
+      - type: object
+        properties:
+          code:
+            type: string
+            example: Hans
+            description: Unique identifier for the script
+          name:
+            type: string
+            example: Han (Simplified variant)
+            description: Name of the script
+      - $ref: ./script.v1.yaml
+      - type: 'null'
+        properties: {}
+  country:
+    oneOf:
+      - type: object
+        properties:
+          code:
+            type: string
+            example: CN
+            description: 'Unique identifier for the country (ISO-3166-1, alpha-2)'
+          name:
+            type: string
+            example: China
+            description: Name of the country
+      - $ref: ./region.v1.yaml
+      - type: 'null'
+        properties: {}
+x-internal: false

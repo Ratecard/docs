@@ -152,6 +152,11 @@
       "uri": "reference/api/models/webhook.v1.yaml"
     },
     {
+      "type": "item",
+      "title": "Locale",
+      "uri": "reference/api/models/locale.v1.yaml"
+    },
+    {
       "type": "divider",
       "title": "other"
     },
