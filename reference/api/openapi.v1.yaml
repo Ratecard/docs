@@ -5173,6 +5173,77 @@ paths:
                       total:
                         type: integer
                         example: 100
+              examples:
+                Standard:
+                  data:
+                    - code: zh_Hans_CN
+                      name: 'Chinese (Simplified, China)'
+                      language:
+                        code: zho
+                        name: Chinese
+                      script:
+                        code: Hans
+                        name: Han (Simplified variant)
+                      country:
+                        code: CN
+                        name: China
+                  links:
+                    first: 'https://api.ratecard.io/v1/locales?page=1'
+                    last: 'https://api.ratecard.io/v1/locales?page=100'
+                    prev: 'https://api.ratecard.io/v1/locales?page=1'
+                    next: 'https://api.ratecard.io/v1/locales?page=2'
+                  meta:
+                    current_page: 2
+                    from: 2
+                    last_page: 10
+                    path: 'https://api.ratecard.io/v1/locales'
+                    per_page: 1
+                    to: 2
+                    total: 100
+                Expanded:
+                  data:
+                    - code: zh_Hans_CN
+                      name: 'Chinese (Simplified, China)'
+                      language:
+                        code: zho
+                        name: Chinese
+                        ISO_639_1: zh
+                        ISO_639_1T: zho
+                        ISO_639_1B: string
+                        scope: I
+                        type: A
+                      script:
+                        code: Hans
+                        numeric: 501
+                        name: Han (Simplified variant)
+                        pva: null
+                        date: '2004-05-29'
+                      country:
+                        code: '156'
+                        name: China
+                        alpha_2: CN
+                        alpha_3: CHN
+                        iso_3166_2: 'ISO 3166-2:C'
+                        region: Asia
+                        sub_region: Eastern Asia
+                        intermediate_region: ''
+                        region_code: '142'
+                        sub_region_code: '030'
+                        intermediate_region_code: ''
+                        dial_code: 86
+                  links:
+                    first: 'https://api.ratecard.io/v1/locales?page=1'
+                    last: 'https://api.ratecard.io/v1/locales?page=100'
+                    prev: 'https://api.ratecard.io/v1/locales?page=1'
+                    next: 'https://api.ratecard.io/v1/locales?page=2'
+                  meta:
+                    current_page: 2
+                    from: 2
+                    last_page: 10
+                    path: 'https://api.ratecard.io/v1/locales'
+                    per_page: 1
+                    to: 2
+                    total: 100
     parameters: []
   '/groups/{group_id}/contacts':
     parameters:
