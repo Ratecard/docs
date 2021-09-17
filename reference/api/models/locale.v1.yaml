@@ -94,5 +94,5 @@ properties:
             type: string
             example: China
             description: Name of the country
-      - $ref: ./region.v1.yaml
+      - $ref: ./country.v1.yaml
       - type: 'null'

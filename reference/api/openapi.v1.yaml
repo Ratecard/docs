@@ -4890,58 +4890,6 @@ paths:
         - $ref: '#/components/parameters/exceptParam'
   /locales:
     get:
-      '200':
-        description: Paginated locale response
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: ./models/locale.v1.yaml
-                links:
-                  type: object
-                  properties:
-                    first:
-                      type: string
-                      example: 'https://api.ratecard.io/v1/locales?page=1'
-                    last:
-                      type: string
-                      example: 'https://api.ratecard.io/v1/locales?page=100'
-                    prev:
-                      type: string
-                      nullable: true
-                      example: 'https://api.ratecard.io/v1/locales?page=1'
-                    next:
-                      type: string
-                      nullable: true
-                      example: 'https://api.ratecard.io/v1/locales?page=2'
-                meta:
-                  type: object
-                  properties:
-                    current_page:
-                      type: integer
-                      example: 2
-                    from:
-                      type: integer
-                      example: 2
-                    last_page:
-                      type: integer
-                      example: 10
-                    path:
-                      type: string
-                      example: 'https://api.ratecard.io/v1/locales'
-                    per_page:
-                      type: integer
-                      example: 1
-                    to:
-                      type: integer
-                      example: 2
-                    total:
-                      type: integer
-                      example: 100
       description: |-
         <!--
         type: tab
@@ -5005,8 +4953,7 @@ paths:
           schema:
             type: string
           example: '?expand=form'
-          description: |-
-            A comma separated list to expand objects within the API response.
+          description: A comma separated list to expand objects within the API response.
         - in: query
           name: sort
           schema:
@@ -5019,6 +4966,7 @@ paths:
             type: string
             format: expression
             description: Filters on the code of the locale
+          description: test
         - in: query
           name: name
           schema:
@@ -5172,6 +5120,59 @@ paths:
       operationId: get-locales
       tags:
         - Locales
+      responses:
+        '200':
+          description: Paginated locale response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./models/locale.v1.yaml
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/locales?page=1'
+                      last:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/locales?page=100'
+                      prev:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/locales?page=1'
+                      next:
+                        type: string
+                        nullable: true
+                        example: 'https://api.ratecard.io/v1/locales?page=2'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 2
+                      from:
+                        type: integer
+                        example: 2
+                      last_page:
+                        type: integer
+                        example: 10
+                      path:
+                        type: string
+                        example: 'https://api.ratecard.io/v1/locales'
+                      per_page:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 100
     parameters: []
   '/groups/{group_id}/contacts':
     parameters:
