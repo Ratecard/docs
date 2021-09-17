@@ -1,5 +1,54 @@
-title: country.v1
+title: Country
 type: object
+description: |
+  > Countries returned by the API follow the [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1) standard and contain additional [region](https://unstats.un.org/unsd/methodology/m49/overview/) and [dial code](https://en.wikipedia.org/wiki/List_of_country_calling_codes) information. 
+  ___
 properties:
-  id:
+  code:
     type: string
+    example: '024'
+    description: 'Unique identifier for the country (ISO-3166-1, alpha-2)'
+  name:
+    type: string
+    example: Angola
+    description: Name of the country
+  alpha_2:
+    type: string
+    example: AG
+    description: ISO 3166-1 alpha-2 code representing the country
+  alpha_3:
+    type: string
+    example: ATG
+    description: ISO 3166-1 alpha-3 code representing the country
+  iso_3166_2:
+    type: string
+    example: 'ISO 3166-2:A'
+    description: ISO 3166-2 subdivision code representing the country
+  region:
+    type: string
+    example: Africa
+    description: Region the country belongs to
+  sub_region:
+    type: string
+    example: Sub-Saharan Africa
+    description: Sub region the country belongs to
+  intermediate_region:
+    type: string
+    example: Middle Africe
+    description: Intermediate region the country belongs to
+  region_code:
+    type: string
+    example: '002'
+    description: Code of the region
+  sub_region_code:
+    type: string
+    example: '202'
+    description: Code of the sub region
+  intermediate_region_code:
+    type: string
+    example: '017'
+    description: Code of the intermediate region
+  dial_code:
+    type: integer
+    example: 244
+    description: Code that has to be used to make a call to the country

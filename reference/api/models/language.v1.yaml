@@ -1,5 +1,44 @@
-title: language
+title: Language
 type: object
 properties:
-  id:
+  code:
     type: string
+    example: zho
+    description: Unique identifier for the language
+  name:
+    type: string
+    example: Chinese
+    description: Name of the language
+  ISO_639_1:
+    type: string
+    example: zh
+    description: ISO 639-1 alpha 2 code representing the language
+  ISO_639_1T:
+    type: string
+    example: zho
+    description: ISO 639-2/T alpha 3 code representing the language
+  ISO_639_1B:
+    type: string
+    description: 'Mostly the same as 639-2/T, but with some codes derived from English names rather than native names of language'
+  scope:
+    type: string
+    enum:
+      - I
+      - M
+      - S
+    description: 'Individual, Macrolanguage, Special'
+  type:
+    type: string
+    enum:
+      - A
+      - C
+      - E
+      - H
+      - L
+      - S
+    description: 'Ancient, Constructed, Extinct, Historical, Living, Special'
+description: |-
+  > Languages returned by the API follow the [ISO 639](https://en.wikipedia.org/wiki/ISO_639) standard. 
+  >
+  > The language code is a unique identifier that may not always match the standard as our internal library of languages contains all languages.
+  ___

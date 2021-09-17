@@ -1,5 +1,28 @@
-title: script.v1
+title: Script
 type: object
+description: |
+  > Scrips returned by the API follow the [ISO 15924](https://en.wikipedia.org/wiki/ISO_15924) standard. 
+  ___
 properties:
-  id:
+  code:
     type: string
+    example: Arab
+    description: Unique alpha-4 identifier for the script
+  numeric:
+    type: integer
+    example: 501
+    description: Numeric identifier for the script
+  name:
+    type: string
+    example: Arabic
+    description: Name of the script
+  pva:
+    type: 
+      - string
+      - 'null'
+    example: Arabic
+    description: Property Value Alias defined by Unicode (ISO 10646) (if available)
+  date:
+    type: date
+    example: 2004-05-01
+    description: The date when the script was registered
