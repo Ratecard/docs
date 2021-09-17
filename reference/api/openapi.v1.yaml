@@ -4888,138 +4888,111 @@ paths:
             - campaign
             - message
         - $ref: '#/components/parameters/exceptParam'
-  /feedback - copy:
+  /locales:
     get:
+      '200':
+        description: Paginated locale response
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: ./models/locale.v1.yaml
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      example: 'https://api.ratecard.io/v1/locales?page=1'
+                    last:
+                      type: string
+                      example: 'https://api.ratecard.io/v1/locales?page=100'
+                    prev:
+                      type: string
+                      nullable: true
+                      example: 'https://api.ratecard.io/v1/locales?page=1'
+                    next:
+                      type: string
+                      nullable: true
+                      example: 'https://api.ratecard.io/v1/locales?page=2'
+                meta:
+                  type: object
+                  properties:
+                    current_page:
+                      type: integer
+                      example: 2
+                    from:
+                      type: integer
+                      example: 2
+                    last_page:
+                      type: integer
+                      example: 10
+                    path:
+                      type: string
+                      example: 'https://api.ratecard.io/v1/locales'
+                    per_page:
+                      type: integer
+                      example: 1
+                    to:
+                      type: integer
+                      example: 2
+                    total:
+                      type: integer
+                      example: 100
       description: |-
         <!--
         type: tab
         title: Info
         -->
-        This endpoint retrieves a list of the feedback in your account.
-
-        <!-- theme: warning -->
-        > Due to the way we store our data the `answers.value` expression only works for answers of the following question types:
-        > 
-        > `rating`,`nps_standard`,`nps_custom`,`text`,`textarea`,`legal`,`date`,`email`,`phone`, and `website`
-
-        > Scoped feedback endpoints:
-        > - [Users](/docs/api/b3A6NDcxNDIzNw-user-feedback): Feedback linked to a user (e.g. as the value of a `team_member` question).
-        > - [Teams](/docs/api/b3A6NDcxNDI0MA-team-feedback): Feedback linked to a team (e.g. as the value of a `department` question).
-        > - [Contact](/docs/api/b3A6NDcxNDI0Mw-contact-feedback): Feedback given by a contact.
-        > - [Group](/docs/api/b3A6NDcxNjg2Mg-group-feedback): Feedback linked to contacts of a group.
-        > - [Campaign](/docs/api/b3A6NDcxNjg2NQ-campaign-feedback): Feedback linked to recipients of campaign messages.
-        > - [Form](/docs/api/b3A6OTcwMDI1Ng-report-feedback): Feedback submitted to this form.
-        > - [Report](/docs/api/b3A6OTcwMDI1Ng-report-feedback): Feedback based on a report's filter(s).
+        This endpoint retrieves the list of locales that can be used in Ratecard.
         <!--
         type: tab
         title: Expansions
         -->
-        ##### What are expansions?
-        Sometimes data is hidden within a related item. Expansions are a way to retrieve more information from a single resource without needing to make additional API calls. Below you will find the `expand` query parameter with a list of expandable properties that can be used in a comma separated list.
+        > All properties listed here can be expanded.
+        ```
+        • language
+        • script
+        • country
+        ```
         <!--
         type: tab
-        title: Additional query parameters
+        title: Sorting
         -->
-
-        ##### List of additional query parameters for related resources
-
-        <!-- theme: info -->
-
-        > All these query parameters can be used in expressions.
-
-        <!-- theme: warning -->
-
-        > Not all properties of related resources (e.g. `respondent.rating`) could be made available yet, but will be added in a future update.
-
+        > All properties listed here can be used for sorting.
         ```
-        • respondent.subscribed
-        • respondent.anonymous
-        • respondent.external_type
-        • respondent.external_id
-        • respondent.unsubscribe_date
-        • respondent.created_at
-        • respondent.synced_at
-        • respondent.updated_at
-        • campaign.type
-        • campaign.interval
-        • campaign.status
-        • campaign.subject
-        • campaign.subject_multi
-        • campaign.from
-        • campaign.reply_to
-        • campaign.language
-        • campaign.other_languages
-        • campaign.delay
-        • campaign.agenda_connect
-        • campaign.agenda_start_end
-        • campaign.reminder.enabled
-        • campaign.reminder.days
-        • campaign.reminder.subject
-        • campaign.reminder.subject_multi
-        • campaign.branding.logo
-        • campaign.branding.colors.primary_color
-        • campaign.branding.colors.secondary_color
-        • campaign.branding.colors.tertiary_color
-        • campaign.send_date
-        • campaign.created_at
-        • campaign.updated_at
-        • message.from
-        • message.to
-        • message.reply_to
-        • message.language
-        • message.reminder
-        • message.remind_at
-        • message.metadata.send_date
-        • message.metadata.views
-        • message.metadata.first_view_date
-        • message.metadata.last_view_date
-        • message.metadata.clicks
-        • message.metadata.first_click_date
-        • message.metadata.time_to_click
-        • message.metadata.last_click_date
-        • message.created_at
-        • message.updated_at
-        • message.deleted_at
-        • assignee.id
-        • assignee.review_visible
-        • assignee.first_name
-        • assignee.last_name
-        • assignee.name
-        • assignee.email
-        • assignee.phone
-        • assignee.date_of_birth
-        • assignee.country
-        • assignee.language
-        • assignee.function
-        • assignee.notifications.app
-        • assignee.notifications.email.import_errors
-        • assignee.notifications.email.feedback
-        • assignee.notifications.email.feedback.below.enabled
-        • assignee.notifications.email.feedback.below.score
-        • assignee.notifications.email.feedback.comments
-        • assignee.notifications.text.feedback
-        • assignee.notifications.text.feedback.below.enabled
-        • assignee.notifications.text.feedback.below.score
-        • assignee.notifications.text.feedback.comments
-        • assignee.created_at
-        • assignee.updated_at
-        • form.id
-        • form.public
-        • form.status
-        • form.name
-        • form.language
-        • form.other_languages
-        • form.branding.logo
-        • form.branding.background_color
-        • form.branding.button_color
-        • form.branding.navigation_color
-        • form.redirect
-        • form.period
-        • form.updated_at
-        • form.created_at
+        • code
+        • name
+        • language.code
+        • language.name
+        • language.ISO_639_1
+        • language.ISO_639_2T
+        • language.ISO_639_2B
+        • language.scope
+        • language.type
+        • script.code
+        • script.numeric
+        • script.name
+        • script.pva
+        • script.date
+        • country.code
+        • country.name
+        • country.alpha_2
+        • country.alpha_3
+        • country.iso_3166_2
+        • country.region
+        • country.sub_region
+        • country.intermediate_region
+        • country.region_code
+        • country.sub_region_code
+        • country.intermediate_region_code
+        • country.dial_code
         ```
         <!-- type: tab-end -->
-      summary: List of feedback
+      summary: List of locales
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
@@ -5034,323 +5007,172 @@ paths:
           example: '?expand=form'
           description: |-
             A comma separated list to expand objects within the API response.
-
-            Expandable properties:
-            - form
-            - assignee
-            - campaign
-            - message
         - in: query
           name: sort
           schema:
             type: string
           example: '?sort=created_at,-name'
-          description: |-
-            A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
-
-            Sortable properties:
-            - id
-            - review
-            - anonymous
-            - closed
-            - respondent.first_name
-            - respondent.last_nam
-            - respondent.name
-            - respondent.email
-            - score
-            - nps
-            - duration
-            - locale
-            - created_at
-            - updated_at
-            - completed_at
+          description: A comma separated list to sort the API response. Properties are ascending by default (e.g. `?sort=created_at`). Use a dash as a prefix to make the property return in descending order (e.g `?sort=-created_at`)
         - in: query
-          name: id
+          name: code
           schema:
             type: string
             format: expression
-          description: Filters on the id of the feedback
+            description: Filters on the code of the locale
         - in: query
-          name: respondent.first_name
+          name: name
           schema:
             type: string
             format: expression
-          description: Filters on the respondent.first_name of the feedback
+            description: Filters on the name of the locale
         - in: query
-          name: respondent.last_name
+          name: language.code
           schema:
             type: string
             format: expression
-          description: Filters on the respondent.last_name of the feedback
+            description: Filters on the language.code of the locale
         - in: query
-          name: respondent.name
+          name: language.name
           schema:
             type: string
             format: expression
-          description: Filters on the respondent.name of the feedback
+            description: Filters on the language.name of the locale
         - in: query
-          name: answers.question_id
-          description: Filters on the answers.question_id of the feedback
+          name: language.ISO_639_1
           schema:
             type: string
             format: expression
+            description: Filters on the language.ISO_639_1 of the locale
         - in: query
-          name: answers.hidden
-          description: Filters on the answers.hidden of the feedback
+          name: language.ISO_639_2T
           schema:
             type: string
             format: expression
+            description: Filters on the language.ISO_639_2T of the locale
         - in: query
-          name: answers.title
-          description: Filters on the answers.title of the feedback
+          name: language.ISO_639_2B
           schema:
             type: string
             format: expression
+            description: Filters on the language.ISO_639_2B of the locale
         - in: query
-          name: answers.type
-          description: Filters on the answers.type of the feedback
+          name: language.scope
           schema:
             type: string
             format: expression
+            description: Filters on the language.scope of the locale
         - in: query
-          name: answers.value
-          description: Filters on the answers.value of the feedback
+          name: language.type
           schema:
             type: string
             format: expression
+            description: Filters on the language.type of the locale
         - in: query
-          name: review
+          name: script.code
           schema:
             type: string
             format: expression
-          description: Filters on the review of the feedback
+            description: Filters on the script.code of the locale
         - in: query
-          name: anonymous
+          name: script.numeric
           schema:
             type: string
             format: expression
-          description: Filters on the anonymous of the feedback
+            description: Filters on the script.numeric of the locale
         - in: query
-          name: closed
+          name: script.name
           schema:
             type: string
             format: expression
-          description: Filters on the closed of the feedback
+            description: Filters on the script.name of the locale
         - in: query
-          name: score
+          name: script.pva
           schema:
             type: string
             format: expression
-          description: Filters on the score of the feedback
+            description: Filters on the script.pva of the locale
         - in: query
-          name: nps
+          name: script.date
           schema:
             type: string
             format: expression
-          description: Filters on the nps of the feedback
+            description: Filters on the script.date of the locale
         - in: query
-          name: duration
+          name: country.code
           schema:
             type: string
             format: expression
-          description: Filters on the duration of the feedback
+            description: Filters on the country.code of the locale
         - in: query
-          name: locale
+          name: country.name
           schema:
             type: string
             format: expression
-          description: Filters on the locale of the feedback
+            description: Filters on the country.name of the locale
         - in: query
-          name: created_at
+          name: country.alpha_2
           schema:
             type: string
             format: expression
-          description: Filters on the created_at of the feedback
+            description: Filters on the country.alpha_2 of the locale
         - in: query
-          name: updated_at
+          name: country.alpha_3
           schema:
             type: string
             format: expression
-          description: Filters on the updated_at of the feedback
+            description: Filters on the country.alpha_3 of the locale
         - in: query
-          name: completed_at
+          name: country.iso_3166_2
           schema:
             type: string
             format: expression
-          description: Filters on the completed_at of the feedback
+            description: Filters on the country.iso_3166_2 of the locale
         - in: query
-          name: respondent.id
+          name: country.region
           schema:
             type: string
             format: expression
-          description: Filters on respondent.id the of the feedback
+            description: Filters on the country.region of the locale
         - in: query
-          name: respondent.email
+          name: country.sub_region
           schema:
             type: string
             format: expression
-          description: Filters on respondent.email the of the feedback
+            description: Filters on the country.sub_region of the locale
         - in: query
-          name: respondent.phone
+          name: country.intermediate_region
           schema:
             type: string
             format: expression
-          description: Filters on respondent.phone the of the feedback
+            description: Filters on the country.intermediate_region of the locale
         - in: query
-          name: campaign.id
+          name: country.region_code
           schema:
             type: string
             format: expression
-          description: Filters on campaign.id the of the feedback
+            description: Filters on the country.region_code of the locale
         - in: query
-          name: campaign.name
+          name: country.sub_region_code
           schema:
             type: string
             format: expression
-          description: Filters on campaign.name the of the feedback
+            description: Filters on the country.sub_region_code of the locale
         - in: query
-          name: message.id
+          name: country.intermediate_region_code
           schema:
             type: string
             format: expression
-          description: Filters on message.id the of the feedback
+            description: Filters on the country.intermediate_region_code of the locale
         - in: query
-          name: message.subject
+          name: country.dial_code
           schema:
             type: string
             format: expression
-          description: Filters on message.subject the of the feedback
-        - in: query
-          name: form.id
-          schema:
-            type: string
-            format: expression
-          description: Filters on form.id the of the feedback
-        - in: query
-          name: form.name
-          schema:
-            type: string
-            format: expression
-          description: Filters on form.name the of the feedback
-      responses:
-        '200':
-          description: Paginated feedback response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: ./models/feedback.v1.yaml
-                  links:
-                    type: object
-                    properties:
-                      first:
-                        type: string
-                        example: 'https://api.ratecard.io/v1/feedback?page=1'
-                      last:
-                        type: string
-                        example: 'https://api.ratecard.io/v1/feedback?page=100'
-                      prev:
-                        type: string
-                        nullable: true
-                        example: 'https://api.ratecard.io/v1/feedback?page=1'
-                      next:
-                        type: string
-                        nullable: true
-                        example: 'https://api.ratecard.io/v1/feedback?page=2'
-                  meta:
-                    type: object
-                    properties:
-                      current_page:
-                        type: integer
-                        example: 2
-                      from:
-                        type: integer
-                        example: 2
-                      last_page:
-                        type: integer
-                        example: 10
-                      path:
-                        type: string
-                        example: 'https://api.ratecard.io/v1/feedback'
-                      per_page:
-                        type: integer
-                        example: 1
-                      to:
-                        type: integer
-                        example: 2
-                      total:
-                        type: integer
-                        example: 100
-              examples:
-                Example:
-                  value:
-                    data:
-                      - id: ea10916d-0684-4624-9d07-d341193554cf
-                        review: true
-                        anonymous: true
-                        closed: false
-                        respondent:
-                          id: ea10916d-0684-4624-9d07-d341193554cf
-                          first_name: John
-                          last_name: Doe
-                          email: johndoe@example.com
-                          phone: 612345678
-                        form:
-                          id: ea10916d-0684-4624-9d07-d341193554cf
-                          name: My Form
-                        answers:
-                          - question_id: ea10916d-0684-4624-9d07-d341193554cf
-                            required: true
-                            hidden: false
-                            title: How would you rate Ratecard?
-                            type: rating
-                            value: 9
-                        replies:
-                          - subject: Thank you for your response
-                            body: We will make sure to forward your feedback to the right people in our organization.
-                            by: John Doe
-                        notes:
-                          - subject: Valuable feedback!
-                            body: With this kind of feedback we can improve ourselves so much! Could anyone pass this on to @JohnDoe so he can process it? I'll assign this feedback to them.
-                            by: John Doe
-                        assignee:
-                          id: ea10916d-0684-4624-9d07-d341193554cf
-                          name: John Doe
-                          email: johndoe@ratecard.io
-                        campaign:
-                          id: ea10916d-0684-4624-9d07-d341193554cf
-                          name: My Campaign
-                        message:
-                          id: ea10916d-0684-4624-9d07-d341193554cf
-                          subject: 'Hey John, how was your job application with our company?'
-                        score: 8.5
-                        nps: 9
-                        duration: 300
-                        locale: NL
-                        embed_url: 'https://ratecard.io/embed/feedback/ea10916d-0684-4624-9d07-d341193554cf?access_token=<access_token>'
-                        created_at: '2020-11-25T09:33:14.000000Z'
-                        updated_at: '2020-11-25T09:33:14.000000Z'
-                        completed_at: '2020-11-25T09:33:14.000000Z'
-                    links:
-                      first: 'https://api.ratecard.io/v1/feedback?page=1'
-                      last: 'https://api.ratecard.io/v1/feedback?page=100'
-                      prev: 'https://api.ratecard.io/v1/feedback?page=1'
-                      next: 'https://api.ratecard.io/v1/feedback?page=2'
-                    meta:
-                      current_page: 2
-                      from: 2
-                      last_page: 10
-                      path: 'https://api.ratecard.io/v1/feedback'
-                      per_page: 1
-                      to: 2
-                      total: 100
-      operationId: get-feedback
+            description: Filters on the country.dial_code of the locale
+      operationId: get-locales
       tags:
         - Locales
+    parameters: []
   '/groups/{group_id}/contacts':
     parameters:
       - schema:
