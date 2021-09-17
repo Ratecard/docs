@@ -4901,44 +4901,40 @@ paths:
         title: Expansions
         -->
         > All properties listed here can be expanded.
-        ```
-        • language
-        • script
-        • country
-        ```
+        • `language`<br/>
+        • `script`<br/>
+        • `country`<br/>
         <!--
         type: tab
         title: Sorting
         -->
         > All properties listed here can be used for sorting.
-        ```
-        • code
-        • name
-        • language.code
-        • language.name
-        • language.ISO_639_1
-        • language.ISO_639_2T
-        • language.ISO_639_2B
-        • language.scope
-        • language.type
-        • script.code
-        • script.numeric
-        • script.name
-        • script.pva
-        • script.date
-        • country.code
-        • country.name
-        • country.alpha_2
-        • country.alpha_3
-        • country.iso_3166_2
-        • country.region
-        • country.sub_region
-        • country.intermediate_region
-        • country.region_code
-        • country.sub_region_code
-        • country.intermediate_region_code
-        • country.dial_code
-        ```
+        • `code`<br/>
+        • `name`<br/>
+        • `language.code`<br/>
+        • `language.name`<br/>
+        • `language.ISO_639_1`<br/>
+        • `language.ISO_639_2T`<br/>
+        • `language.ISO_639_2B`<br/>
+        • `language.scope`<br/>
+        • `language.type`<br/>
+        • `script.code`<br/>
+        • `script.numeric`<br/>
+        • `script.name`<br/>
+        • `script.pva`<br/>
+        • `script.date`<br/>
+        • `country.code`<br/>
+        • `country.name`<br/>
+        • `country.alpha_2`<br/>
+        • `country.alpha_3`<br/>
+        • `country.iso_3166_2`<br/>
+        • `country.region`<br/>
+        • `country.sub_region`<br/>
+        • `country.intermediate_region`<br/>
+        • `country.region_code`<br/>
+        • `country.sub_region_code`<br/>
+        • `country.intermediate_region_code`<br/>
+        • `country.dial_code`<br/>
         <!-- type: tab-end -->
       summary: List of locales
       parameters:
