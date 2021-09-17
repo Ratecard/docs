@@ -5197,6 +5197,67 @@ paths:
                     to: 2
                     total: 100
     parameters: []
+  '/locales - copy/{code}':
+    get:
+      description: |-
+        <!--
+        type: tab
+        title: Info
+        -->
+        This endpoint retrieves a single locale that can be used in Ratecard.
+        <!--
+        type: tab
+        title: Expansions
+        -->
+        > All properties listed here can be expanded.
+        • `language`<br/>
+        • `script`<br/>
+        • `country`<br/>
+        <!-- type: tab-end -->
+      summary: List of locales
+      parameters:
+        - $ref: '#/components/parameters/acceptParam'
+        - $ref: '#/components/parameters/contentTypeParam'
+        - $ref: '#/components/parameters/fieldsparam'
+        - $ref: '#/components/parameters/exceptParam'
+        - in: query
+          name: expand
+          schema:
+            type: string
+          example: '?expand=form'
+          description: A comma separated list to expand objects within the API response.
+      operationId: get-locales
+      tags:
+        - Locales
+      responses:
+        '200':
+          description: Locale response
+          content:
+            application/json:
+              schema:
+                $ref: ./models/locale.v1.yaml
+              examples:
+                example-1:
+                  code: zh_Hans_CN
+                  name: 'Chinese (Simplified, China)'
+                  language:
+                    code: zho
+                    name: Chinese
+                  script:
+                    code: Hans
+                    name: Han (Simplified variant)
+                  country:
+                    code: CN
+                    name: China
+        '404':
+          $ref: '#/components/responses/404'
+    parameters:
+      - schema:
+          type: string
+        name: code
+        in: path
+        required: true
+        description: code of the locale
   '/groups/{group_id}/contacts':
     parameters:
       - schema:
