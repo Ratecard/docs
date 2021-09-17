@@ -5214,7 +5214,7 @@ paths:
         • `script`<br/>
         • `country`<br/>
         <!-- type: tab-end -->
-      summary: List of locales
+      summary: Show locale
       parameters:
         - $ref: '#/components/parameters/acceptParam'
         - $ref: '#/components/parameters/contentTypeParam'
