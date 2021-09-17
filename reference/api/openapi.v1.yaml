@@ -5170,7 +5170,7 @@ paths:
                         type: integer
                         example: 100
               examples:
-                Standard:
+                standard:
                   data:
                     - code: zh_Hans_CN
                       name: 'Chinese (Simplified, China)'
@@ -5196,7 +5196,7 @@ paths:
                     per_page: 1
                     to: 2
                     total: 100
-                Expanded:
+                expanded:
                   data:
                     - code: zh_Hans_CN
                       name: 'Chinese (Simplified, China)'
