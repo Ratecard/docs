@@ -6293,6 +6293,14 @@ paths:
         Feeback related to the report.
 
         Identical to [List all feedback](/docs/api/b3A6NDA2NzczMw-list-of-feedback) in terms of functionality.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
     '/users/{id}/messages':
       parameters:
         - schema:
@@ -6329,6 +6337,14 @@ paths:
         Feeback related to the user.
 
         Identical to [List all feedback](/docs/api/b3A6NDA2NzczMw-list-of-feedback) in terms of functionality.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
   '/users/{id}/statistics':
     parameters:
       - schema:
