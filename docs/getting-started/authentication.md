@@ -1,7 +1,7 @@
 # Authentication
 In this article you'll learn everything about authenticating with our API.
 ___
-To be able to authenticate with our API you have to generate an access token in your account ([here](https://ratecard.io/app/settings/api)). If you don't have access to the Ratecard account and/or the API settings page please ask the owner/admin of your account to supply you with this token.
+To be able to authenticate with our API you have to generate an [access token in your account](https://ratecard.io/app/settings/api). If you don't have access to the Ratecard account and/or the API settings page please ask the owner/admin of your account to supply you with this token.
 
 ## Methods
 The Ratecard API supports 3 methods of authenticating with access tokens.
